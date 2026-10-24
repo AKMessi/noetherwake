@@ -1,0 +1,170 @@
+---
+{
+  "id": "linear-functions",
+  "title": "Linear models & intercepts",
+  "prerequisites": [
+    "slope",
+    "equations"
+  ],
+  "domain": "math",
+  "strand": "Algebra",
+  "boundary": "A linear extrapolation may fail outside the measured range; physical rates are seldom constant forever.",
+  "softPrerequisites": [],
+  "difficulty": 0.23,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "linear-functions-gap",
+      "description": "Treating the intercept as the slope",
+      "remediation": "Read f(0) first, then compare f(1) with f(0)."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "For f(x)={a}x+{b}, find f(3).",
+      "answer": "3*{a}+{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "linear-functions-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.18,
+      "expectedSeconds": 45,
+      "hints": [
+        "Read f(0) first, then compare f(1) with f(0).",
+        "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments.",
+        "Use 3*{a}+{b}. Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments."
+      ],
+      "solution": "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A line has f(0)={b} and slope {a}. Find f(2).",
+      "answer": "2*{a}+{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "linear-functions-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.31,
+      "expectedSeconds": 70,
+      "hints": [
+        "Read f(0) first, then compare f(1) with f(0).",
+        "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments.",
+        "Use 2*{a}+{b}. Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments."
+      ],
+      "solution": "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Find x when {a}x+{b}={a}*4+{b}.",
+      "answer": "4",
+      "unit": "",
+      "kind": "numeric",
+      "id": "linear-functions-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.44,
+      "expectedSeconds": 95,
+      "hints": [
+        "Read f(0) first, then compare f(1) with f(0).",
+        "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments.",
+        "Use 4. Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments."
+      ],
+      "solution": "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to linear models & intercepts. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x+3",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "f(x)=mx+b",
+      "rule": "Definition / physical model",
+      "concept": "slope"
+    },
+    {
+      "expression": "f(x)=mx+b",
+      "rule": "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments.",
+      "concept": "equations"
+    },
+    {
+      "expression": "\\text{Example: }13\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "linear-functions"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments.",
+    "keywords": [
+      [
+        "increments"
+      ],
+      [
+        "produce"
+      ]
+    ]
+  },
+  "summary": "A linear model combines a starting value with a constant rate of change. The intercept tells you where counting begins; the slope tells you how the total changes per step."
+}
+---
+
+## Intuition
+
+A linear model combines a starting value with a constant rate of change. The intercept tells you where counting begins; the slope tells you how the total changes per step.
+
+## Formalism
+
+$$f(x)=mx+b$$
+
+Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments.
+
+[Explore slope](concept:slope). [Explore equations](concept:equations).
+
+## Worked example
+
+For f(x)=3x+4, find f(3).
+
+Start with the defining relationship. Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. Substitute the given values: **`3*3+4` = 13 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+A linear extrapolation may fail outside the measured range; physical rates are seldom constant forever.
+
+A common trap is: **treating the intercept as the slope**. Read f(0) first, then compare f(1) with f(0).

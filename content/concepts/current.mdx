@@ -1,0 +1,170 @@
+---
+{
+  "id": "current",
+  "title": "Current & charge continuity",
+  "prerequisites": [
+    "charge",
+    "derivative"
+  ],
+  "domain": "physics",
+  "strand": "Circuits",
+  "boundary": "Conventional current follows positive charge flow; electrons in a metal drift oppositely. Transient charge storage requires including dQ/dt.",
+  "softPrerequisites": [],
+  "difficulty": 0.76,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "current-gap",
+      "description": "Current is used up by a resistor",
+      "remediation": "Compare charge entering and leaving the resistor in steady state; energy changes, not net charge."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "{a} C crosses a section in {b} s. Find average current.",
+      "answer": "{a}/{b}",
+      "unit": "A",
+      "kind": "numeric",
+      "id": "current-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.59,
+      "expectedSeconds": 45,
+      "hints": [
+        "Compare charge entering and leaving the resistor in steady state; energy changes, not net charge.",
+        "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish.",
+        "Use {a}/{b}. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish."
+      ],
+      "solution": "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Q(t)={a}t^2 C. Find current at t={b} s.",
+      "answer": "2*{a}*{b}",
+      "unit": "A",
+      "kind": "numeric",
+      "id": "current-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.72,
+      "expectedSeconds": 70,
+      "hints": [
+        "Compare charge entering and leaving the resistor in steady state; energy changes, not net charge.",
+        "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish.",
+        "Use 2*{a}*{b}. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish."
+      ],
+      "solution": "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "At a steady junction {a}+{b} A enters and {a} A leaves one branch. Find the other outgoing current.",
+      "answer": "{b}",
+      "unit": "A",
+      "kind": "numeric",
+      "id": "current-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.85,
+      "expectedSeconds": 95,
+      "hints": [
+        "Compare charge entering and leaving the resistor in steady state; energy changes, not net charge.",
+        "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish.",
+        "Use {b}. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish."
+      ],
+      "solution": "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to current & charge continuity. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x^2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "I=\\frac{dQ}{dt},\\qquad\\sum I_{in}=\\sum I_{out}",
+      "rule": "Definition / physical model",
+      "concept": "charge"
+    },
+    {
+      "expression": "I=\\frac{dQ}{dt},\\qquad\\sum I_{in}=\\sum I_{out}",
+      "rule": "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish.",
+      "concept": "derivative"
+    },
+    {
+      "expression": "\\text{Example: }0.75\\;A",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "current"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish.",
+    "keywords": [
+      [
+        "conservation"
+      ],
+      [
+        "junction"
+      ]
+    ]
+  },
+  "summary": "Current measures charge crossing a section per time. In steady state, charge cannot keep piling up at a junction, so total current entering equals total current leaving."
+}
+---
+
+## Intuition
+
+Current measures charge crossing a section per time. In steady state, charge cannot keep piling up at a junction, so total current entering equals total current leaving.
+
+## Formalism
+
+$$I=\frac{dQ}{dt},\qquad\sum I_{in}=\sum I_{out}$$
+
+Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish.
+
+[Explore charge](concept:charge). [Explore derivative](concept:derivative).
+
+## Worked example
+
+3 C crosses a section in 4 s. Find average current.
+
+Start with the defining relationship. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. Substitute the given values: **`3/4` = 0.75 A**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Conventional current follows positive charge flow; electrons in a metal drift oppositely. Transient charge storage requires including dQ/dt.
+
+A common trap is: **current is used up by a resistor**. Compare charge entering and leaving the resistor in steady state; energy changes, not net charge.

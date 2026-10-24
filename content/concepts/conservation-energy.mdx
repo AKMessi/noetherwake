@@ -1,0 +1,170 @@
+---
+{
+  "id": "conservation-energy",
+  "title": "Conservation of mechanical energy",
+  "prerequisites": [
+    "kinetic-energy",
+    "potential-energy"
+  ],
+  "domain": "physics",
+  "strand": "Energy",
+  "boundary": "Friction, external work or deformation can change mechanical energy; total energy requires including those channels.",
+  "softPrerequisites": [],
+  "difficulty": 0.62,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "conservation-energy-gap",
+      "description": "Conserving kinetic energy by itself during a fall",
+      "remediation": "Track the sum of kinetic and potential terms between two chosen states."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Total mechanical energy is {a}+{b} J and potential energy is {b} J. Find kinetic energy.",
+      "answer": "{a}",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "conservation-energy-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.48,
+      "expectedSeconds": 45,
+      "hints": [
+        "Track the sum of kinetic and potential terms between two chosen states.",
+        "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.",
+        "Use {a}. Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero."
+      ],
+      "solution": "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Use g=10. From rest an object falls {a} m without drag. Find speed.",
+      "answer": "sqrt(20*{a})",
+      "unit": "m/s",
+      "kind": "numeric",
+      "id": "conservation-energy-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.61,
+      "expectedSeconds": 70,
+      "hints": [
+        "Track the sum of kinetic and potential terms between two chosen states.",
+        "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.",
+        "Use sqrt(20*{a}). Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero."
+      ],
+      "solution": "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Initial mechanical energy is {a}+{b} J. Friction removes {b} J. Find final mechanical energy.",
+      "answer": "{a}",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "conservation-energy-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.74,
+      "expectedSeconds": 95,
+      "hints": [
+        "Track the sum of kinetic and potential terms between two chosen states.",
+        "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.",
+        "Use {a}. Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero."
+      ],
+      "solution": "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to conservation of mechanical energy. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a-0.5*x^2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "K_i+U_i=K_f+U_f",
+      "rule": "Definition / physical model",
+      "concept": "kinetic-energy"
+    },
+    {
+      "expression": "K_i+U_i=K_f+U_f",
+      "rule": "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.",
+      "concept": "potential-energy"
+    },
+    {
+      "expression": "\\text{Example: }3\\;J",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "conservation-energy"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.",
+    "keywords": [
+      [
+        "kinetic"
+      ],
+      [
+        "conservative"
+      ]
+    ]
+  },
+  "summary": "When only conservative forces do work, kinetic and potential energy trade places while their sum stays fixed. A falling object loses height energy at the rate it gains motion energy."
+}
+---
+
+## Intuition
+
+When only conservative forces do work, kinetic and potential energy trade places while their sum stays fixed. A falling object loses height energy at the rate it gains motion energy.
+
+## Formalism
+
+$$K_i+U_i=K_f+U_f$$
+
+Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.
+
+[Explore kinetic energy](concept:kinetic-energy). [Explore potential energy](concept:potential-energy).
+
+## Worked example
+
+Total mechanical energy is 3+4 J and potential energy is 4 J. Find kinetic energy.
+
+Start with the defining relationship. Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. Substitute the given values: **`3` = 3 J**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Friction, external work or deformation can change mechanical energy; total energy requires including those channels.
+
+A common trap is: **conserving kinetic energy by itself during a fall**. Track the sum of kinetic and potential terms between two chosen states.

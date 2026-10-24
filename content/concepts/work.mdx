@@ -1,0 +1,171 @@
+---
+{
+  "id": "work",
+  "title": "Work: force accumulated along a path",
+  "prerequisites": [
+    "dot-product",
+    "integral",
+    "newton-2"
+  ],
+  "domain": "physics",
+  "strand": "Energy",
+  "boundary": "Work can be negative. A force perpendicular to every displacement does zero work even if its magnitude is large.",
+  "softPrerequisites": [],
+  "difficulty": 0.59,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "work-gap",
+      "description": "Multiplying force magnitude by any path length",
+      "remediation": "Use the force component along the displacement, including its sign."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "A parallel constant force {a} N moves an object {b} m. Find work.",
+      "answer": "{a}*{b}",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "work-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.46,
+      "expectedSeconds": 45,
+      "hints": [
+        "Use the force component along the displacement, including its sign.",
+        "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral.",
+        "Use {a}*{b}. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral."
+      ],
+      "solution": "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A force {a} N is perpendicular to displacement {b} m. Find work.",
+      "answer": "0",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "work-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.59,
+      "expectedSeconds": 70,
+      "hints": [
+        "Use the force component along the displacement, including its sign.",
+        "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral.",
+        "Use 0. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral."
+      ],
+      "solution": "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A force F(x)={a}x N acts from x=0 to x={b} m. Find work.",
+      "answer": "{a}*{b}^2/2",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "work-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.72,
+      "expectedSeconds": 95,
+      "hints": [
+        "Use the force component along the displacement, including its sign.",
+        "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral.",
+        "Use {a}*{b}^2/2. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral."
+      ],
+      "solution": "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to work: force accumulated along a path. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "W=\\int\\mathbf F\\cdot d\\mathbf r",
+      "rule": "Definition / physical model",
+      "concept": "dot-product"
+    },
+    {
+      "expression": "W=\\int\\mathbf F\\cdot d\\mathbf r",
+      "rule": "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral.",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\text{Example: }12\\;J",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "work"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral.",
+    "keywords": [
+      [
+        "aligned"
+      ],
+      [
+        "transfers"
+      ]
+    ]
+  },
+  "summary": "Work measures energy transferred by a force along displacement. Only the aligned component contributes; a perpendicular force can turn motion without doing work."
+}
+---
+
+## Intuition
+
+Work measures energy transferred by a force along displacement. Only the aligned component contributes; a perpendicular force can turn motion without doing work.
+
+## Formalism
+
+$$W=\int\mathbf F\cdot d\mathbf r$$
+
+A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral.
+
+[Explore dot product](concept:dot-product). [Explore integral](concept:integral). [Explore newton 2](concept:newton-2).
+
+## Worked example
+
+A parallel constant force 3 N moves an object 4 m. Find work.
+
+Start with the defining relationship. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. Substitute the given values: **`3*4` = 12 J**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Work can be negative. A force perpendicular to every displacement does zero work even if its magnitude is large.
+
+A common trap is: **multiplying force magnitude by any path length**. Use the force component along the displacement, including its sign.

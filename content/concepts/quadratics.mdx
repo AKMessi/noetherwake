@@ -1,0 +1,170 @@
+---
+{
+  "id": "quadratics",
+  "title": "Quadratics & completing a square",
+  "prerequisites": [
+    "exponents",
+    "equations"
+  ],
+  "domain": "math",
+  "strand": "Algebra",
+  "boundary": "A real quadratic may have no real roots. Taking a square root introduces both signs when solving an equation.",
+  "softPrerequisites": [],
+  "difficulty": 0.25,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "quadratics-gap",
+      "description": "Forgetting the negative square root",
+      "remediation": "Check both +r and -r in x squared equals r squared."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "What constant completes x^2 + 2*{a}x into a perfect square?",
+      "answer": "{a}^2",
+      "unit": "",
+      "kind": "numeric",
+      "id": "quadratics-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.19,
+      "expectedSeconds": 45,
+      "hints": [
+        "Check both +r and -r in x squared equals r squared.",
+        "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared.",
+        "Use {a}^2. A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared."
+      ],
+      "solution": "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For f(x)=(x-{a})^2+{b}, where is the minimum x-coordinate?",
+      "answer": "{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "quadratics-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.32,
+      "expectedSeconds": 70,
+      "hints": [
+        "Check both +r and -r in x squared equals r squared.",
+        "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared.",
+        "Use {a}. A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared."
+      ],
+      "solution": "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Find the positive root of x^2={a}^2.",
+      "answer": "{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "quadratics-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.45,
+      "expectedSeconds": 95,
+      "hints": [
+        "Check both +r and -r in x squared equals r squared.",
+        "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared.",
+        "Use {a}. A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared."
+      ],
+      "solution": "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to quadratics & completing a square. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "x^2+a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "x^2+2hx+h^2=(x+h)^2",
+      "rule": "Definition / physical model",
+      "concept": "exponents"
+    },
+    {
+      "expression": "x^2+2hx+h^2=(x+h)^2",
+      "rule": "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared.",
+      "concept": "equations"
+    },
+    {
+      "expression": "\\text{Example: }9\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "quadratics"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared.",
+    "keywords": [
+      [
+        "contains"
+      ],
+      [
+        "rectangles"
+      ]
+    ]
+  },
+  "summary": "A square grows by more with each equal step away from its minimum. Completing a square reveals the centre of that growth, converting an expanded expression into a shifted parabola."
+}
+---
+
+## Intuition
+
+A square grows by more with each equal step away from its minimum. Completing a square reveals the centre of that growth, converting an expanded expression into a shifted parabola.
+
+## Formalism
+
+$$x^2+2hx+h^2=(x+h)^2$$
+
+A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared.
+
+[Explore exponents](concept:exponents). [Explore equations](concept:equations).
+
+## Worked example
+
+What constant completes x^2 + 2*3x into a perfect square?
+
+Start with the defining relationship. A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. Substitute the given values: **`3^2` = 9 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+A real quadratic may have no real roots. Taking a square root introduces both signs when solving an equation.
+
+A common trap is: **forgetting the negative square root**. Check both +r and -r in x squared equals r squared.

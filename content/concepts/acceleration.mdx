@@ -1,0 +1,170 @@
+---
+{
+  "id": "acceleration",
+  "title": "Acceleration & changing velocity",
+  "prerequisites": [
+    "velocity",
+    "derivative"
+  ],
+  "domain": "physics",
+  "strand": "Mechanics",
+  "boundary": "An object moving left can speed up with negative acceleration. Slowing depends on the relative signs of velocity and acceleration.",
+  "softPrerequisites": [],
+  "difficulty": 0.51,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "acceleration-gap",
+      "description": "Negative acceleration always means slowing",
+      "remediation": "Compare the signs of velocity and acceleration: matching signs increase speed in one dimension."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Velocity changes from {a} m/s to {b} m/s in 2 s. Find average acceleration.",
+      "answer": "({b}-{a})/2",
+      "unit": "m/s^2",
+      "kind": "numeric",
+      "id": "acceleration-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.4,
+      "expectedSeconds": 45,
+      "hints": [
+        "Compare the signs of velocity and acceleration: matching signs increase speed in one dimension.",
+        "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value.",
+        "Use ({b}-{a})/2. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value."
+      ],
+      "solution": "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For v(t)={a}t^2 m/s, find acceleration at t=2 s.",
+      "answer": "4*{a}",
+      "unit": "m/s^2",
+      "kind": "numeric",
+      "id": "acceleration-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.53,
+      "expectedSeconds": 70,
+      "hints": [
+        "Compare the signs of velocity and acceleration: matching signs increase speed in one dimension.",
+        "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value.",
+        "Use 4*{a}. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value."
+      ],
+      "solution": "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For x(t)={a}t^2+{b}t m, find acceleration.",
+      "answer": "2*{a}",
+      "unit": "m/s^2",
+      "kind": "numeric",
+      "id": "acceleration-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.66,
+      "expectedSeconds": 95,
+      "hints": [
+        "Compare the signs of velocity and acceleration: matching signs increase speed in one dimension.",
+        "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value.",
+        "Use 2*{a}. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value."
+      ],
+      "solution": "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "motion",
+    "prompt": "Change the parameter and connect the curve to acceleration & changing velocity. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "t (s)",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "a=\\frac{dv}{dt}=\\frac{d^2x}{dt^2}",
+      "rule": "Definition / physical model",
+      "concept": "velocity"
+    },
+    {
+      "expression": "a=\\frac{dv}{dt}=\\frac{d^2x}{dt^2}",
+      "rule": "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value.",
+      "concept": "derivative"
+    },
+    {
+      "expression": "\\text{Example: }0.5\\;m/s^2",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "acceleration"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value.",
+    "keywords": [
+      [
+        "definition"
+      ],
+      [
+        "velocity"
+      ]
+    ]
+  },
+  "summary": "Acceleration measures the rate of velocity change. It can change direction, speed, or both. A negative acceleration is a direction on the chosen axis, not automatically slowing down."
+}
+---
+
+## Intuition
+
+Acceleration measures the rate of velocity change. It can change direction, speed, or both. A negative acceleration is a direction on the chosen axis, not automatically slowing down.
+
+## Formalism
+
+$$a=\frac{dv}{dt}=\frac{d^2x}{dt^2}$$
+
+Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value.
+
+[Explore velocity](concept:velocity). [Explore derivative](concept:derivative).
+
+## Worked example
+
+Velocity changes from 3 m/s to 4 m/s in 2 s. Find average acceleration.
+
+Start with the defining relationship. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. Substitute the given values: **`(4-3)/2` = 0.5 m/s^2**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+An object moving left can speed up with negative acceleration. Slowing depends on the relative signs of velocity and acceleration.
+
+A common trap is: **negative acceleration always means slowing**. Compare the signs of velocity and acceleration: matching signs increase speed in one dimension.

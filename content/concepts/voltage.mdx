@@ -1,0 +1,170 @@
+---
+{
+  "id": "voltage",
+  "title": "Voltage: energy per charge",
+  "prerequisites": [
+    "electric-potential",
+    "charge"
+  ],
+  "domain": "physics",
+  "strand": "Circuits",
+  "boundary": "Voltage is measured between two points. It is not a substance consumed in a wire, and its sign depends on terminal order.",
+  "softPrerequisites": [],
+  "difficulty": 0.75,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "voltage-gap",
+      "description": "Voltage flows through a component",
+      "remediation": "Charge flows; a voltage difference describes an energy change per charge between endpoints."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Charge {a} C passes through a {b} V rise. Find energy gained.",
+      "answer": "{a}*{b}",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "voltage-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.58,
+      "expectedSeconds": 45,
+      "hints": [
+        "Charge flows; a voltage difference describes an energy change per charge between endpoints.",
+        "Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy.",
+        "Use {a}*{b}. Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy."
+      ],
+      "solution": "Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A source transfers {a} J per {b} C. Find voltage.",
+      "answer": "{a}/{b}",
+      "unit": "V",
+      "kind": "numeric",
+      "id": "voltage-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.71,
+      "expectedSeconds": 70,
+      "hints": [
+        "Charge flows; a voltage difference describes an energy change per charge between endpoints.",
+        "Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy.",
+        "Use {a}/{b}. Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy."
+      ],
+      "solution": "Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A potential rises from {a} V to {b} V. Find final minus initial voltage.",
+      "answer": "{b}-{a}",
+      "unit": "V",
+      "kind": "numeric",
+      "id": "voltage-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.84,
+      "expectedSeconds": 95,
+      "hints": [
+        "Charge flows; a voltage difference describes an energy change per charge between endpoints.",
+        "Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy.",
+        "Use {b}-{a}. Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy."
+      ],
+      "solution": "Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to voltage: energy per charge. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\Delta U=q\\Delta V",
+      "rule": "Definition / physical model",
+      "concept": "electric-potential"
+    },
+    {
+      "expression": "\\Delta U=q\\Delta V",
+      "rule": "Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy.",
+      "concept": "charge"
+    },
+    {
+      "expression": "\\text{Example: }12\\;J",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "voltage"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy.",
+    "keywords": [
+      [
+        "potential"
+      ],
+      [
+        "divided"
+      ]
+    ]
+  },
+  "summary": "A voltage difference says how much energy changes per unit charge moved between terminals. A battery maintains this difference by converting chemical energy as charge circulates."
+}
+---
+
+## Intuition
+
+A voltage difference says how much energy changes per unit charge moved between terminals. A battery maintains this difference by converting chemical energy as charge circulates.
+
+## Formalism
+
+$$\Delta U=q\Delta V$$
+
+Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy.
+
+[Explore electric potential](concept:electric-potential). [Explore charge](concept:charge).
+
+## Worked example
+
+Charge 3 C passes through a 4 V rise. Find energy gained.
+
+Start with the defining relationship. Potential is energy divided by charge. Multiplying the terminal difference by transferred charge gives transferred energy. Substitute the given values: **`3*4` = 12 J**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Voltage is measured between two points. It is not a substance consumed in a wire, and its sign depends on terminal order.
+
+A common trap is: **voltage flows through a component**. Charge flows; a voltage difference describes an energy change per charge between endpoints.

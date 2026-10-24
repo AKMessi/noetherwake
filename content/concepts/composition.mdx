@@ -1,0 +1,169 @@
+---
+{
+  "id": "composition",
+  "title": "Composition: one change inside another",
+  "prerequisites": [
+    "functions"
+  ],
+  "domain": "math",
+  "strand": "Functions",
+  "boundary": "The output of the inner rule must lie in the outer domain. Composition is generally not commutative.",
+  "softPrerequisites": [],
+  "difficulty": 0.27,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "composition-gap",
+      "description": "Replacing composition with multiplication",
+      "remediation": "Draw two machines in sequence and label the intermediate value."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "f(x)=x^2, g(x)=x+{a}. Find f(g({b})).",
+      "answer": "({a}+{b})^2",
+      "unit": "",
+      "kind": "numeric",
+      "id": "composition-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.21,
+      "expectedSeconds": 45,
+      "hints": [
+        "Draw two machines in sequence and label the intermediate value.",
+        "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression.",
+        "Use ({a}+{b})^2. Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression."
+      ],
+      "solution": "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "f(x)={a}x, g(x)=x+{b}. Find g(f(2)).",
+      "answer": "2*{a}+{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "composition-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.34,
+      "expectedSeconds": 70,
+      "hints": [
+        "Draw two machines in sequence and label the intermediate value.",
+        "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression.",
+        "Use 2*{a}+{b}. Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression."
+      ],
+      "solution": "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "f(x)=x+{a}, g(x)={b}x. Find f(g(3)).",
+      "answer": "3*{b}+{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "composition-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.47,
+      "expectedSeconds": 95,
+      "hints": [
+        "Draw two machines in sequence and label the intermediate value.",
+        "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression.",
+        "Use 3*{b}+{a}. Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression."
+      ],
+      "solution": "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to composition: one change inside another. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "(a*x+1)^2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "(f\\circ g)(x)=f(g(x))",
+      "rule": "Definition / physical model",
+      "concept": "functions"
+    },
+    {
+      "expression": "(f\\circ g)(x)=f(g(x))",
+      "rule": "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression.",
+      "concept": "functions"
+    },
+    {
+      "expression": "\\text{Example: }49\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "composition"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression.",
+    "keywords": [
+      [
+        "evaluate"
+      ],
+      [
+        "function"
+      ]
+    ]
+  },
+  "summary": "Composition feeds the output of one process into another. Order matters: warming water then measuring expansion is a different sequence from scaling a temperature reading first."
+}
+---
+
+## Intuition
+
+Composition feeds the output of one process into another. Order matters: warming water then measuring expansion is a different sequence from scaling a temperature reading first.
+
+## Formalism
+
+$$(f\circ g)(x)=f(g(x))$$
+
+Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression.
+
+[Explore functions](concept:functions).
+
+## Worked example
+
+f(x)=x^2, g(x)=x+3. Find f(g(4)).
+
+Start with the defining relationship. Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. Substitute the given values: **`(3+4)^2` = 49 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+The output of the inner rule must lie in the outer domain. Composition is generally not commutative.
+
+A common trap is: **replacing composition with multiplication**. Draw two machines in sequence and label the intermediate value.

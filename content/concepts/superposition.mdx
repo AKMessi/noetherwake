@@ -1,0 +1,171 @@
+---
+{
+  "id": "superposition",
+  "title": "Superposition & adding fields",
+  "prerequisites": [
+    "electric-field",
+    "systems",
+    "vectors"
+  ],
+  "domain": "physics",
+  "strand": "Electricity",
+  "boundary": "Add components, not magnitudes. Material response may require finding induced source charges before summing.",
+  "softPrerequisites": [],
+  "difficulty": 0.73,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "superposition-gap",
+      "description": "Adding field magnitudes when directions oppose",
+      "remediation": "Draw each source field arrow at the observation point and give components signs."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Fields at a point are {a} N/C right and {b} N/C left. Find net signed field.",
+      "answer": "{a}-{b}",
+      "unit": "N/C",
+      "kind": "numeric",
+      "id": "superposition-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.57,
+      "expectedSeconds": 45,
+      "hints": [
+        "Draw each source field arrow at the observation point and give components signs.",
+        "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field.",
+        "Use {a}-{b}. Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field."
+      ],
+      "solution": "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Perpendicular field components are {a} and {b} N/C. Find magnitude.",
+      "answer": "sqrt({a}^2+{b}^2)",
+      "unit": "N/C",
+      "kind": "numeric",
+      "id": "superposition-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.7,
+      "expectedSeconds": 70,
+      "hints": [
+        "Draw each source field arrow at the observation point and give components signs.",
+        "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field.",
+        "Use sqrt({a}^2+{b}^2). Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field."
+      ],
+      "solution": "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Two equal opposite fields each have magnitude {a} N/C. Find resultant magnitude.",
+      "answer": "0",
+      "unit": "N/C",
+      "kind": "numeric",
+      "id": "superposition-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.83,
+      "expectedSeconds": 95,
+      "hints": [
+        "Draw each source field arrow at the observation point and give components signs.",
+        "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field.",
+        "Use 0. Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field."
+      ],
+      "solution": "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to superposition & adding fields. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a-x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\mathbf E_{total}=\\sum_i\\mathbf E_i",
+      "rule": "Definition / physical model",
+      "concept": "electric-field"
+    },
+    {
+      "expression": "\\mathbf E_{total}=\\sum_i\\mathbf E_i",
+      "rule": "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field.",
+      "concept": "vectors"
+    },
+    {
+      "expression": "\\text{Example: }-1\\;N/C",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "superposition"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field.",
+    "keywords": [
+      [
+        "electric"
+      ],
+      [
+        "charges"
+      ]
+    ]
+  },
+  "summary": "Each electrostatic source contributes a vector field. The field at a point is the vector sum of those contributions, so cancellation and reinforcement depend on direction."
+}
+---
+
+## Intuition
+
+Each electrostatic source contributes a vector field. The field at a point is the vector sum of those contributions, so cancellation and reinforcement depend on direction.
+
+## Formalism
+
+$$\mathbf E_{total}=\sum_i\mathbf E_i$$
+
+Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field.
+
+[Explore electric field](concept:electric-field). [Explore systems](concept:systems). [Explore vectors](concept:vectors).
+
+## Worked example
+
+Fields at a point are 3 N/C right and 4 N/C left. Find net signed field.
+
+Start with the defining relationship. Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. Substitute the given values: **`3-4` = -1 N/C**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Add components, not magnitudes. Material response may require finding induced source charges before summing.
+
+A common trap is: **adding field magnitudes when directions oppose**. Draw each source field arrow at the observation point and give components signs.

@@ -1,0 +1,170 @@
+---
+{
+  "id": "area",
+  "title": "Signed area & total area",
+  "prerequisites": [
+    "integral",
+    "functions"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "Integrating before locating crossings can give cancellation instead of total area.",
+  "softPrerequisites": [],
+  "difficulty": 0.46,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "area-gap",
+      "description": "Calling every signed integral an area",
+      "remediation": "Shade the negative part and decide whether the question asks net change or total magnitude."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Find the area under y={a} from x=0 to x={b}.",
+      "answer": "{a}*{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "area-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.36,
+      "expectedSeconds": 45,
+      "hints": [
+        "Shade the negative part and decide whether the question asks net change or total magnitude.",
+        "Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower.",
+        "Use {a}*{b}. Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower."
+      ],
+      "solution": "Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Find the total area between y=x and the axis from -{a} to {a}.",
+      "answer": "{a}^2",
+      "unit": "",
+      "kind": "numeric",
+      "id": "area-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.49,
+      "expectedSeconds": 70,
+      "hints": [
+        "Shade the negative part and decide whether the question asks net change or total magnitude.",
+        "Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower.",
+        "Use {a}^2. Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower."
+      ],
+      "solution": "Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Find the area between y={a}+{b} and y={b} on [0,2].",
+      "answer": "2*{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "area-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.62,
+      "expectedSeconds": 95,
+      "hints": [
+        "Shade the negative part and decide whether the question asks net change or total magnitude.",
+        "Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower.",
+        "Use 2*{a}. Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower."
+      ],
+      "solution": "Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to signed area & total area. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "abs(x-a)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\text{area}=\\int_a^b |f(x)|\\,dx",
+      "rule": "Definition / physical model",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\text{area}=\\int_a^b |f(x)|\\,dx",
+      "rule": "Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower.",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\text{Example: }12\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "area"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower.",
+    "keywords": [
+      [
+        "crossings"
+      ],
+      [
+        "reverse"
+      ]
+    ]
+  },
+  "summary": "A signed accumulation cancels portions below the axis against portions above it. Physical totals such as distance need nonnegative contributions, so the sign must be handled before adding."
+}
+---
+
+## Intuition
+
+A signed accumulation cancels portions below the axis against portions above it. Physical totals such as distance need nonnegative contributions, so the sign must be handled before adding.
+
+## Formalism
+
+$$\text{area}=\int_a^b |f(x)|\,dx$$
+
+Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower.
+
+[Explore integral](concept:integral). [Explore functions](concept:functions).
+
+## Worked example
+
+Find the area under y=3 from x=0 to x=4.
+
+Start with the defining relationship. Split at zero crossings, reverse the sign of negative portions, and add the positive pieces. Between two graphs use upper minus lower. Substitute the given values: **`3*4` = 12 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Integrating before locating crossings can give cancellation instead of total area.
+
+A common trap is: **calling every signed integral an area**. Shade the negative part and decide whether the question asks net change or total magnitude.

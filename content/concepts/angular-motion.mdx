@@ -1,0 +1,171 @@
+---
+{
+  "id": "angular-motion",
+  "title": "Rotational inertia & angular dynamics",
+  "prerequisites": [
+    "torque",
+    "circular-motion",
+    "integral"
+  ],
+  "domain": "physics",
+  "strand": "Rotation",
+  "boundary": "These scalar formulas assume rotation about a fixed principal axis. General three-dimensional rotation needs an inertia tensor.",
+  "softPrerequisites": [],
+  "difficulty": 0.67,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "angular-motion-gap",
+      "description": "Adding masses without radius-squared weighting",
+      "remediation": "Compare identical masses at radius r and 2r; the latter contributes four times the inertia."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "A point mass {a} kg is at radius {b} m. Find its rotational inertia.",
+      "answer": "{a}*{b}^2",
+      "unit": "kg*m^2",
+      "kind": "numeric",
+      "id": "angular-motion-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.52,
+      "expectedSeconds": 45,
+      "hints": [
+        "Compare identical masses at radius r and 2r; the latter contributes four times the inertia.",
+        "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha.",
+        "Use {a}*{b}^2. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha."
+      ],
+      "solution": "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Torque is {a} N*m and inertia is {b} kg*m^2. Find angular acceleration.",
+      "answer": "{a}/{b}",
+      "unit": "rad/s^2",
+      "kind": "numeric",
+      "id": "angular-motion-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.65,
+      "expectedSeconds": 70,
+      "hints": [
+        "Compare identical masses at radius r and 2r; the latter contributes four times the inertia.",
+        "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha.",
+        "Use {a}/{b}. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha."
+      ],
+      "solution": "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Inertia is {a} kg*m^2 and angular speed is {b} rad/s. Find rotational kinetic energy.",
+      "answer": "{a}*{b}^2/2",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "angular-motion-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.78,
+      "expectedSeconds": 95,
+      "hints": [
+        "Compare identical masses at radius r and 2r; the latter contributes four times the inertia.",
+        "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha.",
+        "Use {a}*{b}^2/2. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha."
+      ],
+      "solution": "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to rotational inertia & angular dynamics. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x^2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "I=\\sum m_ir_i^2,\\quad\\tau=I\\alpha,\\quad K_{rot}=\\tfrac12I\\omega^2",
+      "rule": "Definition / physical model",
+      "concept": "torque"
+    },
+    {
+      "expression": "I=\\sum m_ir_i^2,\\quad\\tau=I\\alpha,\\quad K_{rot}=\\tfrac12I\\omega^2",
+      "rule": "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha.",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\text{Example: }48\\;kg\\cdot m^2",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "angular-motion"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha.",
+    "keywords": [
+      [
+        "tangential"
+      ],
+      [
+        "acceleration"
+      ]
+    ]
+  },
+  "summary": "Mass farther from an axis is harder to angularly accelerate because the same angular change demands more tangential speed. Rotational inertia weights mass by distance squared."
+}
+---
+
+## Intuition
+
+Mass farther from an axis is harder to angularly accelerate because the same angular change demands more tangential speed. Rotational inertia weights mass by distance squared.
+
+## Formalism
+
+$$I=\sum m_ir_i^2,\quad\tau=I\alpha,\quad K_{rot}=\tfrac12I\omega^2$$
+
+Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha.
+
+[Explore torque](concept:torque). [Explore circular motion](concept:circular-motion). [Explore integral](concept:integral).
+
+## Worked example
+
+A point mass 3 kg is at radius 4 m. Find its rotational inertia.
+
+Start with the defining relationship. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. Substitute the given values: **`3*4^2` = 48 kg*m^2**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+These scalar formulas assume rotation about a fixed principal axis. General three-dimensional rotation needs an inertia tensor.
+
+A common trap is: **adding masses without radius-squared weighting**. Compare identical masses at radius r and 2r; the latter contributes four times the inertia.

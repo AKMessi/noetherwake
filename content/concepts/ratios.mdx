@@ -1,0 +1,169 @@
+---
+{
+  "id": "ratios",
+  "title": "Ratios & proportional change",
+  "prerequisites": [
+    "fractions"
+  ],
+  "domain": "math",
+  "strand": "Foundations",
+  "boundary": "Proportionality requires a fixed ratio and passes through zero. A taxi fare with a starting fee is not proportional.",
+  "softPrerequisites": [],
+  "difficulty": 0.17,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "ratios-gap",
+      "description": "Adding the same amount preserves a ratio",
+      "remediation": "Double both members of a ratio and compare their quotient."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "{a} identical parts cost {b} currency units. What do 6 parts cost?",
+      "answer": "6*{b}/{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "ratios-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.13,
+      "expectedSeconds": 45,
+      "hints": [
+        "Double both members of a ratio and compare their quotient.",
+        "Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input.",
+        "Use 6*{b}/{a}. Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input."
+      ],
+      "solution": "Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A recipe uses {a} cups per batch. How many cups for {b} batches?",
+      "answer": "{a}*{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "ratios-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.26,
+      "expectedSeconds": 70,
+      "hints": [
+        "Double both members of a ratio and compare their quotient.",
+        "Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input.",
+        "Use {a}*{b}. Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input."
+      ],
+      "solution": "Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A map uses {a} cm for 1 km. How many km correspond to {b} cm?",
+      "answer": "{b}/{a}",
+      "unit": "km",
+      "kind": "numeric",
+      "id": "ratios-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.39,
+      "expectedSeconds": 95,
+      "hints": [
+        "Double both members of a ratio and compare their quotient.",
+        "Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input.",
+        "Use {b}/{a}. Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input."
+      ],
+      "solution": "Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to ratios & proportional change. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "y=kx",
+      "rule": "Definition / physical model",
+      "concept": "fractions"
+    },
+    {
+      "expression": "y=kx",
+      "rule": "Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input.",
+      "concept": "fractions"
+    },
+    {
+      "expression": "\\text{Example: }8\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "ratios"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input.",
+    "keywords": [
+      [
+        "constant"
+      ],
+      [
+        "proportionality"
+      ]
+    ]
+  },
+  "summary": "A ratio describes how two quantities scale together. A constant price per kilogram lets you predict any purchase without memorizing a table. Scaling both quantities equally preserves the ratio."
+}
+---
+
+## Intuition
+
+A ratio describes how two quantities scale together. A constant price per kilogram lets you predict any purchase without memorizing a table. Scaling both quantities equally preserves the ratio.
+
+## Formalism
+
+$$y=kx$$
+
+Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input.
+
+[Explore fractions](concept:fractions).
+
+## Worked example
+
+3 identical parts cost 4 currency units. What do 6 parts cost?
+
+Start with the defining relationship. Divide the output by the input to find the constant of proportionality. Multiplication rebuilds the output for a new input. Substitute the given values: **`6*4/3` = 8 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Proportionality requires a fixed ratio and passes through zero. A taxi fare with a starting fee is not proportional.
+
+A common trap is: **adding the same amount preserves a ratio**. Double both members of a ratio and compare their quotient.

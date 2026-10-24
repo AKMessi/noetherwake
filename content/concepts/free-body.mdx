@@ -1,0 +1,170 @@
+---
+{
+  "id": "free-body",
+  "title": "Free-body diagrams & force balance",
+  "prerequisites": [
+    "newton-2",
+    "vectors"
+  ],
+  "domain": "physics",
+  "strand": "Mechanics",
+  "boundary": "Normal force need not equal weight. An accelerating lift or an angled push changes the vertical force balance.",
+  "softPrerequisites": [],
+  "difficulty": 0.57,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "free-body-gap",
+      "description": "Drawing both action and reaction on one body",
+      "remediation": "Label the object receiving each force; third-law partners act on different bodies."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "A {a} kg body rests on a horizontal table. Use g=10. Find the normal force.",
+      "answer": "10*{a}",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "free-body-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.44,
+      "expectedSeconds": 45,
+      "hints": [
+        "Label the object receiving each force; third-law partners act on different bodies.",
+        "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis.",
+        "Use 10*{a}. Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis."
+      ],
+      "solution": "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A {a} kg lift accelerates upward at {b} m/s^2. Use g=10. Find support force.",
+      "answer": "{a}*(10+{b})",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "free-body-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.57,
+      "expectedSeconds": 70,
+      "hints": [
+        "Label the object receiving each force; third-law partners act on different bodies.",
+        "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis.",
+        "Use {a}*(10+{b}). Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis."
+      ],
+      "solution": "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Order the modelling steps. Enter letters separated by commas: A sum components; B isolate body; C solve acceleration.",
+      "answer": "B,A,C",
+      "unit": "",
+      "kind": "ordering",
+      "id": "free-body-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.7,
+      "expectedSeconds": 95,
+      "hints": [
+        "Label the object receiving each force; third-law partners act on different bodies.",
+        "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis.",
+        "Use B,A,C. Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis."
+      ],
+      "solution": "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to free-body diagrams & force balance. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\sum F_x=ma_x,\\qquad\\sum F_y=ma_y",
+      "rule": "Definition / physical model",
+      "concept": "newton-2"
+    },
+    {
+      "expression": "\\sum F_x=ma_x,\\qquad\\sum F_y=ma_y",
+      "rule": "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis.",
+      "concept": "newton-2"
+    },
+    {
+      "expression": "\\text{Example: }30\\;N",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "free-body"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis.",
+    "keywords": [
+      [
+        "identify"
+      ],
+      [
+        "external"
+      ]
+    ]
+  },
+  "summary": "A free-body diagram isolates one object and lists interactions acting on it. Contact forces and long-range forces enter the same vector sum, while forces exerted by the object belong on another diagram."
+}
+---
+
+## Intuition
+
+A free-body diagram isolates one object and lists interactions acting on it. Contact forces and long-range forces enter the same vector sum, while forces exerted by the object belong on another diagram.
+
+## Formalism
+
+$$\sum F_x=ma_x,\qquad\sum F_y=ma_y$$
+
+Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis.
+
+[Explore newton 2](concept:newton-2). [Explore vectors](concept:vectors).
+
+## Worked example
+
+A 3 kg body rests on a horizontal table. Use g=10. Find the normal force.
+
+Start with the defining relationship. Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. Substitute the given values: **`10*3` = 30 N**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Normal force need not equal weight. An accelerating lift or an angled push changes the vertical force balance.
+
+A common trap is: **drawing both action and reaction on one body**. Label the object receiving each force; third-law partners act on different bodies.

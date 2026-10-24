@@ -1,0 +1,171 @@
+---
+{
+  "id": "projectile",
+  "title": "Projectile motion & independent components",
+  "prerequisites": [
+    "free-fall",
+    "vectors",
+    "trig"
+  ],
+  "domain": "physics",
+  "strand": "Mechanics",
+  "boundary": "The familiar 45-degree maximum range assumes equal launch and landing heights, no air resistance and fixed launch speed.",
+  "softPrerequisites": [],
+  "difficulty": 0.54,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "projectile-gap",
+      "description": "Gravity gradually removes horizontal velocity",
+      "remediation": "Separate horizontal and vertical forces before writing component acceleration."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Horizontal velocity is {a} m/s. Flight lasts {b} s. Find range.",
+      "answer": "{a}*{b}",
+      "unit": "m",
+      "kind": "numeric",
+      "id": "projectile-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.42,
+      "expectedSeconds": 45,
+      "hints": [
+        "Separate horizontal and vertical forces before writing component acceleration.",
+        "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component.",
+        "Use {a}*{b}. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component."
+      ],
+      "solution": "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Use g=10. Upward initial velocity is {a}*10 m/s, same-height landing. Find total flight time.",
+      "answer": "2*{a}",
+      "unit": "s",
+      "kind": "numeric",
+      "id": "projectile-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.55,
+      "expectedSeconds": 70,
+      "hints": [
+        "Separate horizontal and vertical forces before writing component acceleration.",
+        "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component.",
+        "Use 2*{a}. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component."
+      ],
+      "solution": "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For fixed launch speed on level ground without drag, enter the range-maximizing angle in degrees.",
+      "answer": "45",
+      "unit": "",
+      "kind": "simulation",
+      "id": "projectile-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.68,
+      "expectedSeconds": 95,
+      "hints": [
+        "Separate horizontal and vertical forces before writing component acceleration.",
+        "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component.",
+        "Use 45. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component."
+      ],
+      "solution": "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to projectile motion & independent components. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x-0.5*x^2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "x=v_0\\cos\\theta\\,t,\\qquad y=v_0\\sin\\theta\\,t-\\tfrac12gt^2",
+      "rule": "Definition / physical model",
+      "concept": "free-fall"
+    },
+    {
+      "expression": "x=v_0\\cos\\theta\\,t,\\qquad y=v_0\\sin\\theta\\,t-\\tfrac12gt^2",
+      "rule": "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component.",
+      "concept": "vectors"
+    },
+    {
+      "expression": "\\text{Example: }12\\;m",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "projectile"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component.",
+    "keywords": [
+      [
+        "project"
+      ],
+      [
+        "velocity"
+      ]
+    ]
+  },
+  "summary": "A projectile combines horizontal motion with vertical free fall. Gravity changes only the vertical component when air resistance is ignored; both components share the same clock."
+}
+---
+
+## Intuition
+
+A projectile combines horizontal motion with vertical free fall. Gravity changes only the vertical component when air resistance is ignored; both components share the same clock.
+
+## Formalism
+
+$$x=v_0\cos\theta\,t,\qquad y=v_0\sin\theta\,t-\tfrac12gt^2$$
+
+Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component.
+
+[Explore free fall](concept:free-fall). [Explore vectors](concept:vectors). [Explore trig](concept:trig).
+
+## Worked example
+
+Horizontal velocity is 3 m/s. Flight lasts 4 s. Find range.
+
+Start with the defining relationship. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. Substitute the given values: **`3*4` = 12 m**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+The familiar 45-degree maximum range assumes equal launch and landing heights, no air resistance and fixed launch speed.
+
+A common trap is: **gravity gradually removes horizontal velocity**. Separate horizontal and vertical forces before writing component acceleration.

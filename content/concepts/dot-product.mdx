@@ -1,0 +1,169 @@
+---
+{
+  "id": "dot-product",
+  "title": "Dot product & alignment",
+  "prerequisites": [
+    "vectors"
+  ],
+  "domain": "math",
+  "strand": "Vectors",
+  "boundary": "The dot product is a scalar. It cannot measure the turning direction that a cross product captures.",
+  "softPrerequisites": [],
+  "difficulty": 0.31,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "dot-product-gap",
+      "description": "Using a sine for aligned work",
+      "remediation": "Parallel vectors must have maximal positive dot product; test the angle-zero case."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Find ({a},2) dot ({b},3).",
+      "answer": "{a}*{b}+6",
+      "unit": "",
+      "kind": "numeric",
+      "id": "dot-product-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.25,
+      "expectedSeconds": 45,
+      "hints": [
+        "Parallel vectors must have maximal positive dot product; test the angle-zero case.",
+        "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part.",
+        "Use {a}*{b}+6. Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part."
+      ],
+      "solution": "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Find ({a},0) dot (0,{b}).",
+      "answer": "0",
+      "unit": "",
+      "kind": "numeric",
+      "id": "dot-product-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.38,
+      "expectedSeconds": 70,
+      "hints": [
+        "Parallel vectors must have maximal positive dot product; test the angle-zero case.",
+        "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part.",
+        "Use 0. Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part."
+      ],
+      "solution": "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Find v dot v for v=({a},{b}).",
+      "answer": "{a}^2+{b}^2",
+      "unit": "",
+      "kind": "numeric",
+      "id": "dot-product-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.51,
+      "expectedSeconds": 95,
+      "hints": [
+        "Parallel vectors must have maximal positive dot product; test the angle-zero case.",
+        "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part.",
+        "Use {a}^2+{b}^2. Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part."
+      ],
+      "solution": "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to dot product & alignment. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\mathbf a\\cdot\\mathbf b=a_xb_x+a_yb_y=|a||b|\\cos\\theta",
+      "rule": "Definition / physical model",
+      "concept": "vectors"
+    },
+    {
+      "expression": "\\mathbf a\\cdot\\mathbf b=a_xb_x+a_yb_y=|a||b|\\cos\\theta",
+      "rule": "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part.",
+      "concept": "vectors"
+    },
+    {
+      "expression": "\\text{Example: }18\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "dot-product"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part.",
+    "keywords": [
+      [
+        "project"
+      ],
+      [
+        "direction"
+      ]
+    ]
+  },
+  "summary": "The dot product measures how much one vector points along another. A perpendicular push contributes no displacement-direction work, even if the force is large."
+}
+---
+
+## Intuition
+
+The dot product measures how much one vector points along another. A perpendicular push contributes no displacement-direction work, even if the force is large.
+
+## Formalism
+
+$$\mathbf a\cdot\mathbf b=a_xb_x+a_yb_y=|a||b|\cos\theta$$
+
+Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part.
+
+[Explore vectors](concept:vectors).
+
+## Worked example
+
+Find (3,2) dot (4,3).
+
+Start with the defining relationship. Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. Substitute the given values: **`3*4+6` = 18 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+The dot product is a scalar. It cannot measure the turning direction that a cross product captures.
+
+A common trap is: **using a sine for aligned work**. Parallel vectors must have maximal positive dot product; test the angle-zero case.

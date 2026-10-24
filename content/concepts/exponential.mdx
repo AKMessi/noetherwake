@@ -1,0 +1,170 @@
+---
+{
+  "id": "exponential",
+  "title": "Exponential change & natural growth",
+  "prerequisites": [
+    "exponents",
+    "chain-rule"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "A constant growth fraction is a model assumption. Resource limits make long-term unlimited growth unrealistic.",
+  "softPrerequisites": [],
+  "difficulty": 0.39,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "exponential-gap",
+      "description": "Confusing constant addition with constant percentage growth",
+      "remediation": "Compare equal time intervals: differences are fixed for linear growth, ratios for exponential growth."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "For f(x)=exp({a}x), find f prime at x=0.",
+      "answer": "{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "exponential-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.31,
+      "expectedSeconds": 45,
+      "hints": [
+        "Compare equal time intervals: differences are fixed for linear growth, ratios for exponential growth.",
+        "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential.",
+        "Use {a}. The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential."
+      ],
+      "solution": "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "An amount starts at {a} and doubles {b} times. Find the amount.",
+      "answer": "{a}*2^{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "exponential-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.44,
+      "expectedSeconds": 70,
+      "hints": [
+        "Compare equal time intervals: differences are fixed for linear growth, ratios for exponential growth.",
+        "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential.",
+        "Use {a}*2^{b}. The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential."
+      ],
+      "solution": "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "If y prime={a}y and y(0)={b}, find y prime(0).",
+      "answer": "{a}*{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "exponential-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.57,
+      "expectedSeconds": 95,
+      "hints": [
+        "Compare equal time intervals: differences are fixed for linear growth, ratios for exponential growth.",
+        "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential.",
+        "Use {a}*{b}. The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential."
+      ],
+      "solution": "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to exponential change & natural growth. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "exp(a*x/4)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\frac{d}{dx}e^{kx}=ke^{kx}",
+      "rule": "Definition / physical model",
+      "concept": "exponents"
+    },
+    {
+      "expression": "\\frac{d}{dx}e^{kx}=ke^{kx}",
+      "rule": "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential.",
+      "concept": "chain-rule"
+    },
+    {
+      "expression": "\\text{Example: }3\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "exponential"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential.",
+    "keywords": [
+      [
+        "interval"
+      ],
+      [
+        "current"
+      ]
+    ]
+  },
+  "summary": "Exponential growth changes in proportion to what is already present. Equal time intervals multiply the amount by the same factor. The natural base makes the instantaneous rate equal the amount itself."
+}
+---
+
+## Intuition
+
+Exponential growth changes in proportion to what is already present. Equal time intervals multiply the amount by the same factor. The natural base makes the instantaneous rate equal the amount itself.
+
+## Formalism
+
+$$\frac{d}{dx}e^{kx}=ke^{kx}$$
+
+The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential.
+
+[Explore exponents](concept:exponents). [Explore chain rule](concept:chain-rule).
+
+## Worked example
+
+For f(x)=exp(3x), find f prime at x=0.
+
+Start with the defining relationship. The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. Substitute the given values: **`3` = 3 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+A constant growth fraction is a model assumption. Resource limits make long-term unlimited growth unrealistic.
+
+A common trap is: **confusing constant addition with constant percentage growth**. Compare equal time intervals: differences are fixed for linear growth, ratios for exponential growth.

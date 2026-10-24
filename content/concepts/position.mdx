@@ -1,0 +1,170 @@
+---
+{
+  "id": "position",
+  "title": "Position, displacement & a reference frame",
+  "prerequisites": [
+    "coordinates",
+    "units"
+  ],
+  "domain": "physics",
+  "strand": "Mechanics",
+  "boundary": "Displacement is not distance travelled. A round trip can have zero displacement and substantial path length.",
+  "softPrerequisites": [],
+  "difficulty": 0.49,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "position-gap",
+      "description": "Confusing distance with displacement",
+      "remediation": "Mark the endpoints separately from the path taken between them."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "An object moves from -{a} m to {b} m. Find displacement.",
+      "answer": "{a}+{b}",
+      "unit": "m",
+      "kind": "numeric",
+      "id": "position-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.38,
+      "expectedSeconds": 45,
+      "hints": [
+        "Mark the endpoints separately from the path taken between them.",
+        "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset.",
+        "Use {a}+{b}. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset."
+      ],
+      "solution": "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "An object starts at {a} m, moves {b} m right, then {b} m left. Find displacement.",
+      "answer": "0",
+      "unit": "m",
+      "kind": "numeric",
+      "id": "position-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.51,
+      "expectedSeconds": 70,
+      "hints": [
+        "Mark the endpoints separately from the path taken between them.",
+        "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset.",
+        "Use 0. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset."
+      ],
+      "solution": "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Start at {a} m and move {b} m left. Find final position.",
+      "answer": "{a}-{b}",
+      "unit": "m",
+      "kind": "numeric",
+      "id": "position-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.64,
+      "expectedSeconds": 95,
+      "hints": [
+        "Mark the endpoints separately from the path taken between them.",
+        "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset.",
+        "Use {a}-{b}. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset."
+      ],
+      "solution": "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to position, displacement & a reference frame. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a+x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\Delta x=x_f-x_i",
+      "rule": "Definition / physical model",
+      "concept": "coordinates"
+    },
+    {
+      "expression": "\\Delta x=x_f-x_i",
+      "rule": "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset.",
+      "concept": "units"
+    },
+    {
+      "expression": "\\text{Example: }7\\;m",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "position"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset.",
+    "keywords": [
+      [
+        "initial"
+      ],
+      [
+        "coordinates"
+      ]
+    ]
+  },
+  "summary": "Position names where an object is relative to a chosen origin. Displacement compares the final position with the initial one; changing the origin shifts both and leaves the displacement unchanged."
+}
+---
+
+## Intuition
+
+Position names where an object is relative to a chosen origin. Displacement compares the final position with the initial one; changing the origin shifts both and leaves the displacement unchanged.
+
+## Formalism
+
+$$\Delta x=x_f-x_i$$
+
+Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset.
+
+[Explore coordinates](concept:coordinates). [Explore units](concept:units).
+
+## Worked example
+
+An object moves from -3 m to 4 m. Find displacement.
+
+Start with the defining relationship. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. Substitute the given values: **`3+4` = 7 m**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Displacement is not distance travelled. A round trip can have zero displacement and substantial path length.
+
+A common trap is: **confusing distance with displacement**. Mark the endpoints separately from the path taken between them.

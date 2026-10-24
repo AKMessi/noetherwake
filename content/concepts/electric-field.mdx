@@ -1,0 +1,171 @@
+---
+{
+  "id": "electric-field",
+  "title": "Electric field: force per charge",
+  "prerequisites": [
+    "coulomb",
+    "newton-2",
+    "vectors"
+  ],
+  "domain": "physics",
+  "strand": "Electricity",
+  "boundary": "The test charge must not significantly rearrange the source. A negative probe feels force opposite the field.",
+  "softPrerequisites": [],
+  "difficulty": 0.72,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "electric-field-gap",
+      "description": "Field direction follows a negative probe force",
+      "remediation": "Define direction with a positive test charge, then apply the sign of the actual charge."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Force on a positive {a} C probe is {b} N right. Find signed field.",
+      "answer": "{b}/{a}",
+      "unit": "N/C",
+      "kind": "numeric",
+      "id": "electric-field-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.56,
+      "expectedSeconds": 45,
+      "hints": [
+        "Define direction with a positive test charge, then apply the sign of the actual charge.",
+        "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.",
+        "Use {b}/{a}. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position."
+      ],
+      "solution": "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A charge -{a} C is in field {b} N/C right. Find signed force.",
+      "answer": "-{a}*{b}",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "electric-field-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.69,
+      "expectedSeconds": 70,
+      "hints": [
+        "Define direction with a positive test charge, then apply the sign of the actual charge.",
+        "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.",
+        "Use -{a}*{b}. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position."
+      ],
+      "solution": "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Field is {a} N/C, charge is {b} C, mass is 2 kg. Find acceleration.",
+      "answer": "{a}*{b}/2",
+      "unit": "m/s^2",
+      "kind": "numeric",
+      "id": "electric-field-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.82,
+      "expectedSeconds": 95,
+      "hints": [
+        "Define direction with a positive test charge, then apply the sign of the actual charge.",
+        "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.",
+        "Use {a}*{b}/2. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position."
+      ],
+      "solution": "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to electric field: force per charge. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a/(x+1)^2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\mathbf E=\\mathbf F/q_{test},\\qquad\\mathbf F=q\\mathbf E",
+      "rule": "Definition / physical model",
+      "concept": "coulomb"
+    },
+    {
+      "expression": "\\mathbf E=\\mathbf F/q_{test},\\qquad\\mathbf F=q\\mathbf E",
+      "rule": "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.",
+      "concept": "newton-2"
+    },
+    {
+      "expression": "\\text{Example: }1.3333\\;N/C",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "electric-field"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.",
+    "keywords": [
+      [
+        "coulomb"
+      ],
+      [
+        "cancels"
+      ]
+    ]
+  },
+  "summary": "An electric field describes what force a small positive test charge would feel at each point. It separates the source arrangement from the probe used to measure it."
+}
+---
+
+## Intuition
+
+An electric field describes what force a small positive test charge would feel at each point. It separates the source arrangement from the probe used to measure it.
+
+## Formalism
+
+$$\mathbf E=\mathbf F/q_{test},\qquad\mathbf F=q\mathbf E$$
+
+Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.
+
+[Explore coulomb](concept:coulomb). [Explore newton 2](concept:newton-2). [Explore vectors](concept:vectors).
+
+## Worked example
+
+Force on a positive 3 C probe is 4 N right. Find signed field.
+
+Start with the defining relationship. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. Substitute the given values: **`4/3` = 1.3333 N/C**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+The test charge must not significantly rearrange the source. A negative probe feels force opposite the field.
+
+A common trap is: **field direction follows a negative probe force**. Define direction with a positive test charge, then apply the sign of the actual charge.

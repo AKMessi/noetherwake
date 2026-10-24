@@ -1,0 +1,170 @@
+---
+{
+  "id": "exponents",
+  "title": "Powers & scaling",
+  "prerequisites": [
+    "signed-numbers",
+    "ratios"
+  ],
+  "domain": "math",
+  "strand": "Foundations",
+  "boundary": "Fractional powers of negative real numbers require domain care. A negative exponent is a reciprocal, not a negative result.",
+  "softPrerequisites": [],
+  "difficulty": 0.18,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "exponents-gap",
+      "description": "Confusing powers of powers with sums",
+      "remediation": "Expand two small powers into repeated factors before using the rule."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Evaluate 2^{a}.",
+      "answer": "2^{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "exponents-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.14,
+      "expectedSeconds": 45,
+      "hints": [
+        "Expand two small powers into repeated factors before using the rule.",
+        "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts.",
+        "Use 2^{a}. Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts."
+      ],
+      "solution": "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Evaluate {a}^2 times {a}^3.",
+      "answer": "{a}^5",
+      "unit": "",
+      "kind": "numeric",
+      "id": "exponents-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.27,
+      "expectedSeconds": 70,
+      "hints": [
+        "Expand two small powers into repeated factors before using the rule.",
+        "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts.",
+        "Use {a}^5. Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts."
+      ],
+      "solution": "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Evaluate {a}^(-2).",
+      "answer": "1/{a}^2",
+      "unit": "",
+      "kind": "numeric",
+      "id": "exponents-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.4,
+      "expectedSeconds": 95,
+      "hints": [
+        "Expand two small powers into repeated factors before using the rule.",
+        "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts.",
+        "Use 1/{a}^2. Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts."
+      ],
+      "solution": "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to powers & scaling. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "x^a",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "x^m x^n=x^{m+n}",
+      "rule": "Definition / physical model",
+      "concept": "signed-numbers"
+    },
+    {
+      "expression": "x^m x^n=x^{m+n}",
+      "rule": "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts.",
+      "concept": "ratios"
+    },
+    {
+      "expression": "\\text{Example: }8\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "exponents"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts.",
+    "keywords": [
+      [
+        "factors"
+      ],
+      [
+        "joining"
+      ]
+    ]
+  },
+  "summary": "A power records repeated multiplication, so it describes repeated scaling. Squaring a length scales an area; doubling a side multiplies the area by four."
+}
+---
+
+## Intuition
+
+A power records repeated multiplication, so it describes repeated scaling. Squaring a length scales an area; doubling a side multiplies the area by four.
+
+## Formalism
+
+$$x^m x^n=x^{m+n}$$
+
+Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts.
+
+[Explore signed numbers](concept:signed-numbers). [Explore ratios](concept:ratios).
+
+## Worked example
+
+Evaluate 2^3.
+
+Start with the defining relationship. Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. Substitute the given values: **`2^3` = 8 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Fractional powers of negative real numbers require domain care. A negative exponent is a reciprocal, not a negative result.
+
+A common trap is: **confusing powers of powers with sums**. Expand two small powers into repeated factors before using the rule.

@@ -1,0 +1,170 @@
+---
+{
+  "id": "product-rule",
+  "title": "Product rule: two changing factors",
+  "prerequisites": [
+    "derivative",
+    "quadratics"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "The derivative of a product is not the product of derivatives. This rule assumes both factors are differentiable.",
+  "softPrerequisites": [],
+  "difficulty": 0.37,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "product-rule-gap",
+      "description": "Multiplying the two derivatives",
+      "remediation": "Sketch the two thin area strips; each retains one original side."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "u(0)={a}, u prime(0)=2, v(0)={b}, v prime(0)=3. Find (uv) prime(0).",
+      "answer": "2*{b}+3*{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "product-rule-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.29,
+      "expectedSeconds": 45,
+      "hints": [
+        "Sketch the two thin area strips; each retains one original side.",
+        "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit.",
+        "Use 2*{b}+3*{a}. Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit."
+      ],
+      "solution": "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Differentiate x*(x+{a}).",
+      "answer": "2*x+{a}",
+      "unit": "",
+      "kind": "symbolic",
+      "id": "product-rule-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.42,
+      "expectedSeconds": 70,
+      "hints": [
+        "Sketch the two thin area strips; each retains one original side.",
+        "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit.",
+        "Use 2*x+{a}. Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit."
+      ],
+      "solution": "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For f(x)=x^2*x^3, find f prime at x=1.",
+      "answer": "5",
+      "unit": "",
+      "kind": "numeric",
+      "id": "product-rule-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.55,
+      "expectedSeconds": 95,
+      "hints": [
+        "Sketch the two thin area strips; each retains one original side.",
+        "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit.",
+        "Use 5. Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit."
+      ],
+      "solution": "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to product rule: two changing factors. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "x*(x+a)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "(uv)\\prime=u\\prime v+uv\\prime",
+      "rule": "Definition / physical model",
+      "concept": "derivative"
+    },
+    {
+      "expression": "(uv)\\prime=u\\prime v+uv\\prime",
+      "rule": "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit.",
+      "concept": "derivative"
+    },
+    {
+      "expression": "\\text{Example: }17\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "product-rule"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit.",
+    "keywords": [
+      [
+        "survive"
+      ],
+      [
+        "division"
+      ]
+    ]
+  },
+  "summary": "The area of a rectangle changes when either side changes. Two thin strips contribute at first order; their tiny corner contributes only second-order area."
+}
+---
+
+## Intuition
+
+The area of a rectangle changes when either side changes. Two thin strips contribute at first order; their tiny corner contributes only second-order area.
+
+## Formalism
+
+$$(uv)\prime=u\prime v+uv\prime$$
+
+Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit.
+
+[Explore derivative](concept:derivative). [Explore quadratics](concept:quadratics).
+
+## Worked example
+
+u(0)=3, u prime(0)=2, v(0)=4, v prime(0)=3. Find (uv) prime(0).
+
+Start with the defining relationship. Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. Substitute the given values: **`2*4+3*3` = 17 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+The derivative of a product is not the product of derivatives. This rule assumes both factors are differentiable.
+
+A common trap is: **multiplying the two derivatives**. Sketch the two thin area strips; each retains one original side.

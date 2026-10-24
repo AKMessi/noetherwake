@@ -1,0 +1,170 @@
+---
+{
+  "id": "integral",
+  "title": "Integration: adding continuous change",
+  "prerequisites": [
+    "limits",
+    "power-rule"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "A signed integral is not always geometric area. Convergence needs checking for unbounded functions or intervals.",
+  "softPrerequisites": [],
+  "difficulty": 0.43,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "integral-gap",
+      "description": "Dropping the width of a strip",
+      "remediation": "Check dimensions: a rate must be multiplied by an input interval before it becomes a total."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "A constant rate is {a} per second for {b} seconds. Find its accumulated total.",
+      "answer": "{a}*{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "integral-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.34,
+      "expectedSeconds": 45,
+      "hints": [
+        "Check dimensions: a rate must be multiplied by an input interval before it becomes a total.",
+        "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.",
+        "Use {a}*{b}. Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs."
+      ],
+      "solution": "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Integrate {a}x from 0 to {b}.",
+      "answer": "{a}*{b}^2/2",
+      "unit": "",
+      "kind": "numeric",
+      "id": "integral-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.47,
+      "expectedSeconds": 70,
+      "hints": [
+        "Check dimensions: a rate must be multiplied by an input interval before it becomes a total.",
+        "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.",
+        "Use {a}*{b}^2/2. Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs."
+      ],
+      "solution": "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Integrate x^2 from 0 to {a}.",
+      "answer": "{a}^3/3",
+      "unit": "",
+      "kind": "numeric",
+      "id": "integral-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.6,
+      "expectedSeconds": 95,
+      "hints": [
+        "Check dimensions: a rate must be multiplied by an input interval before it becomes a total.",
+        "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.",
+        "Use {a}^3/3. Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs."
+      ],
+      "solution": "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to integration: adding continuous change. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\int_a^b f(x)\\,dx=\\lim_{n\\to\\infty}\\sum f(x_i)\\Delta x",
+      "rule": "Definition / physical model",
+      "concept": "limits"
+    },
+    {
+      "expression": "\\int_a^b f(x)\\,dx=\\lim_{n\\to\\infty}\\sum f(x_i)\\Delta x",
+      "rule": "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.",
+      "concept": "power-rule"
+    },
+    {
+      "expression": "\\text{Example: }12\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "integral"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.",
+    "keywords": [
+      [
+        "partition"
+      ],
+      [
+        "interval"
+      ]
+    ]
+  },
+  "summary": "An integral accumulates many tiny contributions. A velocity-time strip has height velocity and width time, so its area is a small displacement. Refining the strips captures changing rates."
+}
+---
+
+## Intuition
+
+An integral accumulates many tiny contributions. A velocity-time strip has height velocity and width time, so its area is a small displacement. Refining the strips captures changing rates.
+
+## Formalism
+
+$$\int_a^b f(x)\,dx=\lim_{n\to\infty}\sum f(x_i)\Delta x$$
+
+Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.
+
+[Explore limits](concept:limits). [Explore power rule](concept:power-rule).
+
+## Worked example
+
+A constant rate is 3 per second for 4 seconds. Find its accumulated total.
+
+Start with the defining relationship. Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. Substitute the given values: **`3*4` = 12 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+A signed integral is not always geometric area. Convergence needs checking for unbounded functions or intervals.
+
+A common trap is: **dropping the width of a strip**. Check dimensions: a rate must be multiplied by an input interval before it becomes a total.

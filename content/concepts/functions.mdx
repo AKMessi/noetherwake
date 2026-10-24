@@ -1,0 +1,170 @@
+---
+{
+  "id": "functions",
+  "title": "Functions & domains",
+  "prerequisites": [
+    "linear-functions",
+    "quadratics"
+  ],
+  "domain": "math",
+  "strand": "Functions",
+  "boundary": "A relation such as a whole circle can give two y values for one x and is not a single function y=f(x).",
+  "softPrerequisites": [],
+  "difficulty": 0.26,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "functions-gap",
+      "description": "Assuming every expression accepts every real input",
+      "remediation": "Locate denominators and roots before evaluating; ask which inputs make them undefined."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "For f(x)=x^2+{a}, find f({b}).",
+      "answer": "{b}^2+{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "functions-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.2,
+      "expectedSeconds": 45,
+      "hints": [
+        "Locate denominators and roots before evaluating; ask which inputs make them undefined.",
+        "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input.",
+        "Use {b}^2+{a}. A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input."
+      ],
+      "solution": "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For f(x)=1/(x-{a}), which input is excluded?",
+      "answer": "{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "functions-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.33,
+      "expectedSeconds": 70,
+      "hints": [
+        "Locate denominators and roots before evaluating; ask which inputs make them undefined.",
+        "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input.",
+        "Use {a}. A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input."
+      ],
+      "solution": "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For f(x)=sqrt(x+{a}), what is the smallest allowed real input?",
+      "answer": "-{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "functions-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.46,
+      "expectedSeconds": 95,
+      "hints": [
+        "Locate denominators and roots before evaluating; ask which inputs make them undefined.",
+        "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input.",
+        "Use -{a}. A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input."
+      ],
+      "solution": "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to functions & domains. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x^2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "f:A\\to B,\\qquad x\\mapsto f(x)",
+      "rule": "Definition / physical model",
+      "concept": "linear-functions"
+    },
+    {
+      "expression": "f:A\\to B,\\qquad x\\mapsto f(x)",
+      "rule": "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input.",
+      "concept": "quadratics"
+    },
+    {
+      "expression": "\\text{Example: }19\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "functions"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input.",
+    "keywords": [
+      [
+        "machine"
+      ],
+      [
+        "separate"
+      ]
+    ]
+  },
+  "summary": "A function is a rule assigning exactly one output to each allowed input. The domain is part of the rule: division, square roots and physical constraints can exclude inputs."
+}
+---
+
+## Intuition
+
+A function is a rule assigning exactly one output to each allowed input. The domain is part of the rule: division, square roots and physical constraints can exclude inputs.
+
+## Formalism
+
+$$f:A\to B,\qquad x\mapsto f(x)$$
+
+A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input.
+
+[Explore linear functions](concept:linear-functions). [Explore quadratics](concept:quadratics).
+
+## Worked example
+
+For f(x)=x^2+3, find f(4).
+
+Start with the defining relationship. A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. Substitute the given values: **`4^2+3` = 19 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+A relation such as a whole circle can give two y values for one x and is not a single function y=f(x).
+
+A common trap is: **assuming every expression accepts every real input**. Locate denominators and roots before evaluating; ask which inputs make them undefined.

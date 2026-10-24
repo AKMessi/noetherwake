@@ -1,0 +1,167 @@
+---
+{
+  "id": "fractions",
+  "title": "Fractions & the whole",
+  "prerequisites": [],
+  "domain": "math",
+  "strand": "Foundations",
+  "boundary": "A denominator cannot be zero. Adding denominators changes the size of the pieces and is not addition of quantities.",
+  "softPrerequisites": [],
+  "difficulty": 0.15,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "fractions-gap",
+      "description": "Adding denominators",
+      "remediation": "Rename both fractions with one common denominator, then add only the numerators."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "A ribbon is {a}/4 metres long. You add {b}/4 metres. What is the total in metres?",
+      "answer": "({a}+{b})/4",
+      "unit": "m",
+      "kind": "numeric",
+      "id": "fractions-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.12,
+      "expectedSeconds": 45,
+      "hints": [
+        "Rename both fractions with one common denominator, then add only the numerators.",
+        "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.",
+        "Use ({a}+{b})/4. Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged."
+      ],
+      "solution": "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Find {a}/3 of {b} equal units. Give a decimal or fraction.",
+      "answer": "{a}*{b}/3",
+      "unit": "",
+      "kind": "numeric",
+      "id": "fractions-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.25,
+      "expectedSeconds": 70,
+      "hints": [
+        "Rename both fractions with one common denominator, then add only the numerators.",
+        "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.",
+        "Use {a}*{b}/3. Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged."
+      ],
+      "solution": "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A whole is cut into {a} equal pieces. What fraction is {b} such pieces?",
+      "answer": "{b}/{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "fractions-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.38,
+      "expectedSeconds": 95,
+      "hints": [
+        "Rename both fractions with one common denominator, then add only the numerators.",
+        "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.",
+        "Use {b}/{a}. Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged."
+      ],
+      "solution": "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to fractions & the whole. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x/4",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\frac a b+\\frac c b=\\frac{a+c}{b}",
+      "rule": "Definition / physical model",
+      "concept": "fractions"
+    },
+    {
+      "expression": "\\frac a b+\\frac c b=\\frac{a+c}{b}",
+      "rule": "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.",
+      "concept": "fractions"
+    },
+    {
+      "expression": "\\text{Example: }1.75\\;m",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "fractions"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.",
+    "keywords": [
+      [
+        "doubling"
+      ],
+      [
+        "unchanged"
+      ]
+    ]
+  },
+  "summary": "A fraction counts equal pieces of a specified whole. Three quarters of a metre and three quarters of a minute share arithmetic, but describe different things. The denominator names the size of the piece; the numerator counts pieces."
+}
+---
+
+## Intuition
+
+A fraction counts equal pieces of a specified whole. Three quarters of a metre and three quarters of a minute share arithmetic, but describe different things. The denominator names the size of the piece; the numerator counts pieces.
+
+## Formalism
+
+$$\frac a b+\frac c b=\frac{a+c}{b}$$
+
+Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.
+
+
+
+## Worked example
+
+A ribbon is 3/4 metres long. You add 4/4 metres. What is the total in metres?
+
+Start with the defining relationship. Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged. Substitute the given values: **`(3+4)/4` = 1.75 m**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+A denominator cannot be zero. Adding denominators changes the size of the pieces and is not addition of quantities.
+
+A common trap is: **adding denominators**. Rename both fractions with one common denominator, then add only the numerators.

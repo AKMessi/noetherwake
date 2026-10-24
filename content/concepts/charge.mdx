@@ -1,0 +1,171 @@
+---
+{
+  "id": "charge",
+  "title": "Charge & conservation",
+  "prerequisites": [
+    "ratios",
+    "signed-numbers",
+    "units"
+  ],
+  "domain": "physics",
+  "strand": "Electricity",
+  "boundary": "Charge is quantized in elementary units; a continuous density is a large-number approximation. Neutral objects can still polarize.",
+  "softPrerequisites": [],
+  "difficulty": 0.7,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "charge-gap",
+      "description": "Neutral means no charged constituents",
+      "remediation": "Neutrality is equal total positive and negative charge, not absence of either."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Charges +{a} C and -{b} C combine. Find net charge.",
+      "answer": "{a}-{b}",
+      "unit": "C",
+      "kind": "numeric",
+      "id": "charge-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.55,
+      "expectedSeconds": 45,
+      "hints": [
+        "Neutrality is equal total positive and negative charge, not absence of either.",
+        "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged.",
+        "Use {a}-{b}. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged."
+      ],
+      "solution": "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "An isolated system starts with {a} C. Charge moves internally. Find total final charge.",
+      "answer": "{a}",
+      "unit": "C",
+      "kind": "numeric",
+      "id": "charge-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.68,
+      "expectedSeconds": 70,
+      "hints": [
+        "Neutrality is equal total positive and negative charge, not absence of either.",
+        "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged.",
+        "Use {a}. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged."
+      ],
+      "solution": "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "{a} identical droplets each carry {b} C. Find total charge.",
+      "answer": "{a}*{b}",
+      "unit": "C",
+      "kind": "numeric",
+      "id": "charge-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.81,
+      "expectedSeconds": 95,
+      "hints": [
+        "Neutrality is equal total positive and negative charge, not absence of either.",
+        "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged.",
+        "Use {a}*{b}. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged."
+      ],
+      "solution": "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to charge & conservation. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a-x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "Q_{total}=\\sum_i q_i",
+      "rule": "Definition / physical model",
+      "concept": "ratios"
+    },
+    {
+      "expression": "Q_{total}=\\sum_i q_i",
+      "rule": "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged.",
+      "concept": "units"
+    },
+    {
+      "expression": "\\text{Example: }-1\\;C",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "charge"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged.",
+    "keywords": [
+      [
+        "entering"
+      ],
+      [
+        "leaving"
+      ]
+    ]
+  },
+  "summary": "Electric charge is a signed property that determines electric interaction. Positive and negative contributions add algebraically; an isolated system can redistribute charge without changing its total."
+}
+---
+
+## Intuition
+
+Electric charge is a signed property that determines electric interaction. Positive and negative contributions add algebraically; an isolated system can redistribute charge without changing its total.
+
+## Formalism
+
+$$Q_{total}=\sum_i q_i$$
+
+Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged.
+
+[Explore ratios](concept:ratios). [Explore signed numbers](concept:signed-numbers). [Explore units](concept:units).
+
+## Worked example
+
+Charges +3 C and -4 C combine. Find net charge.
+
+Start with the defining relationship. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. Substitute the given values: **`3-4` = -1 C**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Charge is quantized in elementary units; a continuous density is a large-number approximation. Neutral objects can still polarize.
+
+A common trap is: **neutral means no charged constituents**. Neutrality is equal total positive and negative charge, not absence of either.

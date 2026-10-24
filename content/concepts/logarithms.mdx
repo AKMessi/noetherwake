@@ -1,0 +1,170 @@
+---
+{
+  "id": "logarithms",
+  "title": "Logarithms & relative change",
+  "prerequisites": [
+    "inverse-functions",
+    "exponential"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "The real natural logarithm accepts only positive inputs. Logarithms do not distribute across addition.",
+  "softPrerequisites": [],
+  "difficulty": 0.4,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "logarithms-gap",
+      "description": "Treating log of a sum as sum of logs",
+      "remediation": "Test ln(1+1) against ln(1)+ln(1); the right side is zero."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Find the derivative of ln(x) at x={a}.",
+      "answer": "1/{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "logarithms-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.31,
+      "expectedSeconds": 45,
+      "hints": [
+        "Test ln(1+1) against ln(1)+ln(1); the right side is zero.",
+        "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x.",
+        "Use 1/{a}. Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x."
+      ],
+      "solution": "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Evaluate ln(exp({a})).",
+      "answer": "{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "logarithms-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.44,
+      "expectedSeconds": 70,
+      "hints": [
+        "Test ln(1+1) against ln(1)+ln(1); the right side is zero.",
+        "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x.",
+        "Use {a}. Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x."
+      ],
+      "solution": "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For f(x)=ln({a}x), find f prime at x={b}.",
+      "answer": "1/{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "logarithms-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.57,
+      "expectedSeconds": 95,
+      "hints": [
+        "Test ln(1+1) against ln(1)+ln(1); the right side is zero.",
+        "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x.",
+        "Use 1/{b}. Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x."
+      ],
+      "solution": "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to logarithms & relative change. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "ln(x+a)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\ln(ab)=\\ln a+\\ln b,\\qquad(\\ln x)\\prime=1/x",
+      "rule": "Definition / physical model",
+      "concept": "inverse-functions"
+    },
+    {
+      "expression": "\\ln(ab)=\\ln a+\\ln b,\\qquad(\\ln x)\\prime=1/x",
+      "rule": "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x.",
+      "concept": "exponential"
+    },
+    {
+      "expression": "\\text{Example: }0.33333\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "logarithms"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x.",
+    "keywords": [
+      [
+        "differentiate"
+      ],
+      [
+        "unknown"
+      ]
+    ]
+  },
+  "summary": "A logarithm counts multiplicative growth steps. Because it undoes exponentiation, it turns products into sums and measures relative rather than absolute scale."
+}
+---
+
+## Intuition
+
+A logarithm counts multiplicative growth steps. Because it undoes exponentiation, it turns products into sums and measures relative rather than absolute scale.
+
+## Formalism
+
+$$\ln(ab)=\ln a+\ln b,\qquad(\ln x)\prime=1/x$$
+
+Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x.
+
+[Explore inverse functions](concept:inverse-functions). [Explore exponential](concept:exponential).
+
+## Worked example
+
+Find the derivative of ln(x) at x=3.
+
+Start with the defining relationship. Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. Substitute the given values: **`1/3` = 0.33333 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+The real natural logarithm accepts only positive inputs. Logarithms do not distribute across addition.
+
+A common trap is: **treating log of a sum as sum of logs**. Test ln(1+1) against ln(1)+ln(1); the right side is zero.

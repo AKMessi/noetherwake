@@ -1,0 +1,171 @@
+---
+{
+  "id": "capacitance",
+  "title": "Capacitance & stored field energy",
+  "prerequisites": [
+    "voltage",
+    "integral",
+    "electric-field"
+  ],
+  "domain": "physics",
+  "strand": "Circuits",
+  "boundary": "The constant-capacitance model neglects dielectric nonlinearities, leakage and breakdown. Large voltages can invalidate it physically.",
+  "softPrerequisites": [],
+  "difficulty": 0.79,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "capacitance-gap",
+      "description": "Using QV instead of one-half QV for charging energy",
+      "remediation": "The voltage rises from zero during charging; its average is half the final value for constant C."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Capacitance is {a} F and voltage {b} V. Find stored charge.",
+      "answer": "{a}*{b}",
+      "unit": "C",
+      "kind": "numeric",
+      "id": "capacitance-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.61,
+      "expectedSeconds": 45,
+      "hints": [
+        "The voltage rises from zero during charging; its average is half the final value for constant C.",
+        "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C.",
+        "Use {a}*{b}. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C."
+      ],
+      "solution": "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Capacitance is {a} F and voltage {b} V. Find stored energy.",
+      "answer": "{a}*{b}^2/2",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "capacitance-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.74,
+      "expectedSeconds": 70,
+      "hints": [
+        "The voltage rises from zero during charging; its average is half the final value for constant C.",
+        "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C.",
+        "Use {a}*{b}^2/2. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C."
+      ],
+      "solution": "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Stored charge is {a} C on capacitance {b} F. Find voltage.",
+      "answer": "{a}/{b}",
+      "unit": "V",
+      "kind": "numeric",
+      "id": "capacitance-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.87,
+      "expectedSeconds": 95,
+      "hints": [
+        "The voltage rises from zero during charging; its average is half the final value for constant C.",
+        "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C.",
+        "Use {a}/{b}. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C."
+      ],
+      "solution": "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to capacitance & stored field energy. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x^2/2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "Q=CV,\\qquad U=\\tfrac12CV^2",
+      "rule": "Definition / physical model",
+      "concept": "voltage"
+    },
+    {
+      "expression": "Q=CV,\\qquad U=\\tfrac12CV^2",
+      "rule": "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C.",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\text{Example: }12\\;C",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "capacitance"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C.",
+    "keywords": [
+      [
+        "voltage"
+      ],
+      [
+        "incremental"
+      ]
+    ]
+  },
+  "summary": "A capacitor stores separated charge, and therefore field energy. Adding charge becomes harder as the voltage rises; capacitance measures how much charge is stored per volt."
+}
+---
+
+## Intuition
+
+A capacitor stores separated charge, and therefore field energy. Adding charge becomes harder as the voltage rises; capacitance measures how much charge is stored per volt.
+
+## Formalism
+
+$$Q=CV,\qquad U=\tfrac12CV^2$$
+
+Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C.
+
+[Explore voltage](concept:voltage). [Explore integral](concept:integral). [Explore electric field](concept:electric-field).
+
+## Worked example
+
+Capacitance is 3 F and voltage 4 V. Find stored charge.
+
+Start with the defining relationship. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. Substitute the given values: **`3*4` = 12 C**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+The constant-capacitance model neglects dielectric nonlinearities, leakage and breakdown. Large voltages can invalidate it physically.
+
+A common trap is: **using qv instead of one-half qv for charging energy**. The voltage rises from zero during charging; its average is half the final value for constant C.

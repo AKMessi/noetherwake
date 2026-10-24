@@ -1,0 +1,170 @@
+---
+{
+  "id": "waves",
+  "title": "Waves: a pattern that travels",
+  "prerequisites": [
+    "oscillator",
+    "functions"
+  ],
+  "domain": "physics",
+  "strand": "Oscillations",
+  "boundary": "Phase speed differs from particle speed and may differ from group speed in dispersive media.",
+  "softPrerequisites": [],
+  "difficulty": 0.69,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "waves-gap",
+      "description": "The medium must travel with the crest",
+      "remediation": "Track one marked point of the medium and a separate marked crest."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Frequency is {a} Hz and wavelength {b} m. Find wave speed.",
+      "answer": "{a}*{b}",
+      "unit": "m/s",
+      "kind": "numeric",
+      "id": "waves-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.54,
+      "expectedSeconds": 45,
+      "hints": [
+        "Track one marked point of the medium and a separate marked crest.",
+        "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period.",
+        "Use {a}*{b}. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period."
+      ],
+      "solution": "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A wave has period {a} s. Find frequency.",
+      "answer": "1/{a}",
+      "unit": "Hz",
+      "kind": "numeric",
+      "id": "waves-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.67,
+      "expectedSeconds": 70,
+      "hints": [
+        "Track one marked point of the medium and a separate marked crest.",
+        "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period.",
+        "Use 1/{a}. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period."
+      ],
+      "solution": "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Angular frequency is {a} rad/s and wavenumber {b} rad/m. Find phase speed.",
+      "answer": "{a}/{b}",
+      "unit": "m/s",
+      "kind": "numeric",
+      "id": "waves-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.8,
+      "expectedSeconds": 95,
+      "hints": [
+        "Track one marked point of the medium and a separate marked crest.",
+        "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period.",
+        "Use {a}/{b}. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period."
+      ],
+      "solution": "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to waves: a pattern that travels. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*sin(x)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "y(x,t)=A\\sin(kx-\\omega t),\\quad v=\\omega/k=f\\lambda",
+      "rule": "Definition / physical model",
+      "concept": "oscillator"
+    },
+    {
+      "expression": "y(x,t)=A\\sin(kx-\\omega t),\\quad v=\\omega/k=f\\lambda",
+      "rule": "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period.",
+      "concept": "functions"
+    },
+    {
+      "expression": "\\text{Example: }12\\;m/s",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "waves"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period.",
+    "keywords": [
+      [
+        "constant"
+      ],
+      [
+        "position"
+      ]
+    ]
+  },
+  "summary": "A travelling wave shifts the same shape across space. Individual pieces of a medium may only oscillate locally while phase and energy move onward."
+}
+---
+
+## Intuition
+
+A travelling wave shifts the same shape across space. Individual pieces of a medium may only oscillate locally while phase and energy move onward.
+
+## Formalism
+
+$$y(x,t)=A\sin(kx-\omega t),\quad v=\omega/k=f\lambda$$
+
+Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period.
+
+[Explore oscillator](concept:oscillator). [Explore functions](concept:functions).
+
+## Worked example
+
+Frequency is 3 Hz and wavelength 4 m. Find wave speed.
+
+Start with the defining relationship. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. Substitute the given values: **`3*4` = 12 m/s**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Phase speed differs from particle speed and may differ from group speed in dispersive media.
+
+A common trap is: **the medium must travel with the crest**. Track one marked point of the medium and a separate marked crest.

@@ -1,0 +1,170 @@
+---
+{
+  "id": "differential-equations",
+  "title": "Dynamics as a rate law",
+  "prerequisites": [
+    "exponential",
+    "integral"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "A rate law without an initial condition usually does not determine a unique solution. More complex laws may need numerical integration.",
+  "softPrerequisites": [],
+  "difficulty": 0.47,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "differential-equations-gap",
+      "description": "Ignoring the initial condition",
+      "remediation": "Substitute t=0 into the proposed trajectory as a separate check."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "For y prime=2y and y(0)={a}, find y prime(0).",
+      "answer": "2*{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "differential-equations-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.37,
+      "expectedSeconds": 45,
+      "hints": [
+        "Substitute t=0 into the proposed trajectory as a separate check.",
+        "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value.",
+        "Use 2*{a}. The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value."
+      ],
+      "solution": "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For y prime={a} and y(0)={b}, find y(2).",
+      "answer": "2*{a}+{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "differential-equations-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.5,
+      "expectedSeconds": 70,
+      "hints": [
+        "Substitute t=0 into the proposed trajectory as a separate check.",
+        "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value.",
+        "Use 2*{a}+{b}. The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value."
+      ],
+      "solution": "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For y prime=y, y(0)={a}, find y(1).",
+      "answer": "{a}*exp(1)",
+      "unit": "",
+      "kind": "numeric",
+      "id": "differential-equations-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.63,
+      "expectedSeconds": 95,
+      "hints": [
+        "Substitute t=0 into the proposed trajectory as a separate check.",
+        "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value.",
+        "Use {a}*exp(1). The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value."
+      ],
+      "solution": "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to dynamics as a rate law. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*exp(x/3)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\dot y=ky,\\qquad y(0)=y_0\\quad\\Rightarrow\\quad y=y_0e^{kt}",
+      "rule": "Definition / physical model",
+      "concept": "exponential"
+    },
+    {
+      "expression": "\\dot y=ky,\\qquad y(0)=y_0\\quad\\Rightarrow\\quad y=y_0e^{kt}",
+      "rule": "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value.",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\text{Example: }6\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "differential-equations"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value.",
+    "keywords": [
+      [
+        "exponential"
+      ],
+      [
+        "exactly"
+      ]
+    ]
+  },
+  "summary": "A differential equation specifies how a state changes rather than listing every future state. An initial condition chooses one trajectory from the family allowed by the law."
+}
+---
+
+## Intuition
+
+A differential equation specifies how a state changes rather than listing every future state. An initial condition chooses one trajectory from the family allowed by the law.
+
+## Formalism
+
+$$\dot y=ky,\qquad y(0)=y_0\quad\Rightarrow\quad y=y_0e^{kt}$$
+
+The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value.
+
+[Explore exponential](concept:exponential). [Explore integral](concept:integral).
+
+## Worked example
+
+For y prime=2y and y(0)=3, find y prime(0).
+
+Start with the defining relationship. The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. Substitute the given values: **`2*3` = 6 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+A rate law without an initial condition usually does not determine a unique solution. More complex laws may need numerical integration.
+
+A common trap is: **ignoring the initial condition**. Substitute t=0 into the proposed trajectory as a separate check.

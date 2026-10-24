@@ -1,0 +1,170 @@
+---
+{
+  "id": "units",
+  "title": "Units & dimensional arguments",
+  "prerequisites": [
+    "ratios",
+    "exponents"
+  ],
+  "domain": "physics",
+  "strand": "Mechanics",
+  "boundary": "Dimensions constrain a formula but cannot fix dimensionless constants or prove a physical law. Angles in radians are dimensionless ratios.",
+  "softPrerequisites": [],
+  "difficulty": 0.48,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "units-gap",
+      "description": "Treating a correct number as sufficient",
+      "remediation": "State what quantity is measured and derive its unit from the defining ratio."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Convert {a} kilometres to metres.",
+      "answer": "1000*{a}",
+      "unit": "m",
+      "kind": "numeric",
+      "id": "units-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.37,
+      "expectedSeconds": 45,
+      "hints": [
+        "State what quantity is measured and derive its unit from the defining ratio.",
+        "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.",
+        "Use 1000*{a}. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator."
+      ],
+      "solution": "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "An object travels {a} m in {b} s. Find average speed.",
+      "answer": "{a}/{b}",
+      "unit": "m/s",
+      "kind": "numeric",
+      "id": "units-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.5,
+      "expectedSeconds": 70,
+      "hints": [
+        "State what quantity is measured and derive its unit from the defining ratio.",
+        "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.",
+        "Use {a}/{b}. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator."
+      ],
+      "solution": "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A mass of {a} kg accelerates at {b} m/s^2. Find force.",
+      "answer": "{a}*{b}",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "units-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.63,
+      "expectedSeconds": 95,
+      "hints": [
+        "State what quantity is measured and derive its unit from the defining ratio.",
+        "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.",
+        "Use {a}*{b}. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator."
+      ],
+      "solution": "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to units & dimensional arguments. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "[v]=LT^{-1},\\quad[a]=LT^{-2},\\quad[F]=MLT^{-2}",
+      "rule": "Definition / physical model",
+      "concept": "ratios"
+    },
+    {
+      "expression": "[v]=LT^{-1},\\quad[a]=LT^{-2},\\quad[F]=MLT^{-2}",
+      "rule": "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.",
+      "concept": "exponents"
+    },
+    {
+      "expression": "\\text{Example: }3000\\;m",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "units"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.",
+    "keywords": [
+      [
+        "displacement"
+      ],
+      [
+        "elapsed"
+      ]
+    ]
+  },
+  "summary": "A unit is part of a measurement, not an annotation added afterward. A rate divides one kind of quantity by another. Dimensional consistency lets you reject equations before calculating."
+}
+---
+
+## Intuition
+
+A unit is part of a measurement, not an annotation added afterward. A rate divides one kind of quantity by another. Dimensional consistency lets you reject equations before calculating.
+
+## Formalism
+
+$$[v]=LT^{-1},\quad[a]=LT^{-2},\quad[F]=MLT^{-2}$$
+
+Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.
+
+[Explore ratios](concept:ratios). [Explore exponents](concept:exponents).
+
+## Worked example
+
+Convert 3 kilometres to metres.
+
+Start with the defining relationship. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. Substitute the given values: **`1000*3` = 3000 m**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Dimensions constrain a formula but cannot fix dimensionless constants or prove a physical law. Angles in radians are dimensionless ratios.
+
+A common trap is: **treating a correct number as sufficient**. State what quantity is measured and derive its unit from the defining ratio.

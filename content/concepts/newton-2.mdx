@@ -1,0 +1,171 @@
+---
+{
+  "id": "newton-2",
+  "title": "Force, mass & the rate of change",
+  "prerequisites": [
+    "newton-1",
+    "acceleration",
+    "equations"
+  ],
+  "domain": "physics",
+  "strand": "Mechanics",
+  "boundary": "Use the total external force and constant mass. Variable-mass systems require a momentum-flow account rather than blindly using F=ma.",
+  "softPrerequisites": [],
+  "difficulty": 0.56,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "newton-2-gap",
+      "description": "Using the largest force instead of the net force",
+      "remediation": "Add signed force components first, then divide by the mass."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "A net force of {a} N acts on mass {b} kg. Find acceleration.",
+      "answer": "{a}/{b}",
+      "unit": "m/s^2",
+      "kind": "numeric",
+      "id": "newton-2-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.43,
+      "expectedSeconds": 45,
+      "hints": [
+        "Add signed force components first, then divide by the mass.",
+        "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.",
+        "Use {a}/{b}. Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma."
+      ],
+      "solution": "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Mass {a} kg accelerates at {b} m/s^2. Find net force.",
+      "answer": "{a}*{b}",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "newton-2-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.56,
+      "expectedSeconds": 70,
+      "hints": [
+        "Add signed force components first, then divide by the mass.",
+        "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.",
+        "Use {a}*{b}. Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma."
+      ],
+      "solution": "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Forces {a} N right and {b} N left act on 2 kg. Find signed acceleration.",
+      "answer": "({a}-{b})/2",
+      "unit": "m/s^2",
+      "kind": "numeric",
+      "id": "newton-2-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.69,
+      "expectedSeconds": 95,
+      "hints": [
+        "Add signed force components first, then divide by the mass.",
+        "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.",
+        "Use ({a}-{b})/2. Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma."
+      ],
+      "solution": "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "motion",
+    "prompt": "Change the parameter and connect the curve to force, mass & the rate of change. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x^2/2",
+    "xLabel": "t (s)",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\sum\\mathbf F=m\\mathbf a",
+      "rule": "Definition / physical model",
+      "concept": "newton-1"
+    },
+    {
+      "expression": "\\sum\\mathbf F=m\\mathbf a",
+      "rule": "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.",
+      "concept": "equations"
+    },
+    {
+      "expression": "\\text{Example: }0.75\\;m/s^2",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "newton-2"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.",
+    "keywords": [
+      [
+        "momentum"
+      ],
+      [
+        "constant"
+      ]
+    ]
+  },
+  "summary": "Force changes momentum. For a constant mass, it changes velocity at a rate proportional to the net force and inversely proportional to the mass. The vector sum matters, not any single push."
+}
+---
+
+## Intuition
+
+Force changes momentum. For a constant mass, it changes velocity at a rate proportional to the net force and inversely proportional to the mass. The vector sum matters, not any single push.
+
+## Formalism
+
+$$\sum\mathbf F=m\mathbf a$$
+
+Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.
+
+[Explore newton 1](concept:newton-1). [Explore acceleration](concept:acceleration). [Explore equations](concept:equations).
+
+## Worked example
+
+A net force of 3 N acts on mass 4 kg. Find acceleration.
+
+Start with the defining relationship. Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma. Substitute the given values: **`3/4` = 0.75 m/s^2**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Use the total external force and constant mass. Variable-mass systems require a momentum-flow account rather than blindly using F=ma.
+
+A common trap is: **using the largest force instead of the net force**. Add signed force components first, then divide by the mass.

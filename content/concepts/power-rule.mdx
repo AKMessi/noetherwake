@@ -1,0 +1,170 @@
+---
+{
+  "id": "power-rule",
+  "title": "Power rule & local scaling",
+  "prerequisites": [
+    "derivative",
+    "exponents"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "Negative and fractional powers require the original domain. At zero, a fractional power may fail to have a finite derivative.",
+  "softPrerequisites": [],
+  "difficulty": 0.35,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "power-rule-gap",
+      "description": "Reducing the power but forgetting its coefficient",
+      "remediation": "Count which of the n factors supplied the one small change."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "For f(x)={a}x^3, find f prime at x=2.",
+      "answer": "12*{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "power-rule-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.28,
+      "expectedSeconds": 45,
+      "hints": [
+        "Count which of the n factors supplied the one small change.",
+        "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit.",
+        "Use 12*{a}. Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit."
+      ],
+      "solution": "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Differentiate {a}x^2. Type an expression in x.",
+      "answer": "2*{a}*x",
+      "unit": "",
+      "kind": "symbolic",
+      "id": "power-rule-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.41,
+      "expectedSeconds": 70,
+      "hints": [
+        "Count which of the n factors supplied the one small change.",
+        "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit.",
+        "Use 2*{a}*x. Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit."
+      ],
+      "solution": "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For f(x)=x^{a}, find f prime at x=1.",
+      "answer": "{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "power-rule-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.54,
+      "expectedSeconds": 95,
+      "hints": [
+        "Count which of the n factors supplied the one small change.",
+        "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit.",
+        "Use {a}. Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit."
+      ],
+      "solution": "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to power rule & local scaling. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x^3",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\frac{d}{dx}x^n=nx^{n-1}",
+      "rule": "Definition / physical model",
+      "concept": "derivative"
+    },
+    {
+      "expression": "\\frac{d}{dx}x^n=nx^{n-1}",
+      "rule": "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit.",
+      "concept": "derivative"
+    },
+    {
+      "expression": "\\text{Example: }36\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "power-rule"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit.",
+    "keywords": [
+      [
+        "subtracting"
+      ],
+      [
+        "dividing"
+      ]
+    ]
+  },
+  "summary": "When a power changes a little, each repeated factor contributes one leading-order change. The number of factors becomes the coefficient of the derivative."
+}
+---
+
+## Intuition
+
+When a power changes a little, each repeated factor contributes one leading-order change. The number of factors becomes the coefficient of the derivative.
+
+## Formalism
+
+$$\frac{d}{dx}x^n=nx^{n-1}$$
+
+Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit.
+
+[Explore derivative](concept:derivative). [Explore exponents](concept:exponents).
+
+## Worked example
+
+For f(x)=3x^3, find f prime at x=2.
+
+Start with the defining relationship. Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. Substitute the given values: **`12*3` = 36 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Negative and fractional powers require the original domain. At zero, a fractional power may fail to have a finite derivative.
+
+A common trap is: **reducing the power but forgetting its coefficient**. Count which of the n factors supplied the one small change.

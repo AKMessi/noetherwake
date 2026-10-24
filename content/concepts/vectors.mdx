@@ -1,0 +1,170 @@
+---
+{
+  "id": "vectors",
+  "title": "Vectors & components",
+  "prerequisites": [
+    "trig",
+    "signed-numbers"
+  ],
+  "domain": "math",
+  "strand": "Vectors",
+  "boundary": "Components depend on the coordinate axes; the physical arrow does not. A vector magnitude is never a signed component.",
+  "softPrerequisites": [],
+  "difficulty": 0.31,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "vectors-gap",
+      "description": "Adding magnitudes for nonparallel vectors",
+      "remediation": "Add each component first, then take the length of the resulting vector."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Add ({a},2) and ({b},3). Enter the x-component.",
+      "answer": "{a}+{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "vectors-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.24,
+      "expectedSeconds": 45,
+      "hints": [
+        "Add each component first, then take the length of the resulting vector.",
+        "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.",
+        "Use {a}+{b}. Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements."
+      ],
+      "solution": "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Find the magnitude of ({a},{b}).",
+      "answer": "sqrt({a}^2+{b}^2)",
+      "unit": "",
+      "kind": "numeric",
+      "id": "vectors-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.37,
+      "expectedSeconds": 70,
+      "hints": [
+        "Add each component first, then take the length of the resulting vector.",
+        "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.",
+        "Use sqrt({a}^2+{b}^2). Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements."
+      ],
+      "solution": "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A vector ({a},{b}) is multiplied by -2. Enter its y-component.",
+      "answer": "-2*{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "vectors-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.5,
+      "expectedSeconds": 95,
+      "hints": [
+        "Add each component first, then take the length of the resulting vector.",
+        "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.",
+        "Use -2*{b}. Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements."
+      ],
+      "solution": "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to vectors & components. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "sqrt(x^2+a^2)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\mathbf a+\\mathbf b=(a_x+b_x,a_y+b_y)",
+      "rule": "Definition / physical model",
+      "concept": "trig"
+    },
+    {
+      "expression": "\\mathbf a+\\mathbf b=(a_x+b_x,a_y+b_y)",
+      "rule": "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.",
+      "concept": "signed-numbers"
+    },
+    {
+      "expression": "\\text{Example: }7\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "vectors"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.",
+    "keywords": [
+      [
+        "displacement"
+      ],
+      [
+        "horizontal"
+      ]
+    ]
+  },
+  "summary": "A vector carries both size and direction. Components record independent changes along chosen axes, so vector addition is just combining those changes axis by axis."
+}
+---
+
+## Intuition
+
+A vector carries both size and direction. Components record independent changes along chosen axes, so vector addition is just combining those changes axis by axis.
+
+## Formalism
+
+$$\mathbf a+\mathbf b=(a_x+b_x,a_y+b_y)$$
+
+Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.
+
+[Explore trig](concept:trig). [Explore signed numbers](concept:signed-numbers).
+
+## Worked example
+
+Add (3,2) and (4,3). Enter the x-component.
+
+Start with the defining relationship. Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. Substitute the given values: **`3+4` = 7 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Components depend on the coordinate axes; the physical arrow does not. A vector magnitude is never a signed component.
+
+A common trap is: **adding magnitudes for nonparallel vectors**. Add each component first, then take the length of the resulting vector.

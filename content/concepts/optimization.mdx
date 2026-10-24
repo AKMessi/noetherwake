@@ -1,0 +1,170 @@
+---
+{
+  "id": "optimization",
+  "title": "Optimization & the shape of change",
+  "prerequisites": [
+    "power-rule",
+    "inequalities"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "Endpoints and corners may also be extrema. A zero derivative can be a flat crossing, so check sign changes or curvature.",
+  "softPrerequisites": [],
+  "difficulty": 0.42,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "optimization-gap",
+      "description": "Calling every stationary point a maximum",
+      "remediation": "Compare derivative signs on both sides of the candidate."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Find the x maximizing -(x-{a})^2+{b}.",
+      "answer": "{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "optimization-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.33,
+      "expectedSeconds": 45,
+      "hints": [
+        "Compare derivative signs on both sides of the candidate.",
+        "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left.",
+        "Use {a}. If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left."
+      ],
+      "solution": "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Find the minimum value of (x-{a})^2+{b}.",
+      "answer": "{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "optimization-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.46,
+      "expectedSeconds": 70,
+      "hints": [
+        "Compare derivative signs on both sides of the candidate.",
+        "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left.",
+        "Use {b}. If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left."
+      ],
+      "solution": "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A rectangle has sides x and {a}+{b}-x. Which x maximizes area?",
+      "answer": "({a}+{b})/2",
+      "unit": "",
+      "kind": "numeric",
+      "id": "optimization-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.59,
+      "expectedSeconds": 95,
+      "hints": [
+        "Compare derivative signs on both sides of the candidate.",
+        "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left.",
+        "Use ({a}+{b})/2. If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left."
+      ],
+      "solution": "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to optimization & the shape of change. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "-(x-a)^2+8",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "f\\prime(x_*)=0\\quad\\text{at an interior differentiable extremum}",
+      "rule": "Definition / physical model",
+      "concept": "power-rule"
+    },
+    {
+      "expression": "f\\prime(x_*)=0\\quad\\text{at an interior differentiable extremum}",
+      "rule": "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left.",
+      "concept": "inequalities"
+    },
+    {
+      "expression": "\\text{Example: }3\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "optimization"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left.",
+    "keywords": [
+      [
+        "derivative"
+      ],
+      [
+        "positive"
+      ]
+    ]
+  },
+  "summary": "At an interior smooth maximum or minimum, a function stops increasing before changing direction. The derivative identifies candidates; the surrounding shape decides what kind they are."
+}
+---
+
+## Intuition
+
+At an interior smooth maximum or minimum, a function stops increasing before changing direction. The derivative identifies candidates; the surrounding shape decides what kind they are.
+
+## Formalism
+
+$$f\prime(x_*)=0\quad\text{at an interior differentiable extremum}$$
+
+If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left.
+
+[Explore power rule](concept:power-rule). [Explore inequalities](concept:inequalities).
+
+## Worked example
+
+Find the x maximizing -(x-3)^2+4.
+
+Start with the defining relationship. If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. Substitute the given values: **`3` = 3 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Endpoints and corners may also be extrema. A zero derivative can be a flat crossing, so check sign changes or curvature.
+
+A common trap is: **calling every stationary point a maximum**. Compare derivative signs on both sides of the candidate.

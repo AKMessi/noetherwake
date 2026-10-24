@@ -1,0 +1,170 @@
+---
+{
+  "id": "torque",
+  "title": "Torque & rotational leverage",
+  "prerequisites": [
+    "vectors",
+    "work"
+  ],
+  "domain": "physics",
+  "strand": "Rotation",
+  "boundary": "Choose an axis and sign convention. Torque and energy share dimensions but have different physical meanings.",
+  "softPrerequisites": [],
+  "difficulty": 0.66,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "torque-gap",
+      "description": "Using the full lever length when force is radial",
+      "remediation": "Find the perpendicular distance from the axis to the force line of action."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "A perpendicular force {a} N acts at lever arm {b} m. Find torque magnitude.",
+      "answer": "{a}*{b}",
+      "unit": "N*m",
+      "kind": "numeric",
+      "id": "torque-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.52,
+      "expectedSeconds": 45,
+      "hints": [
+        "Find the perpendicular distance from the axis to the force line of action.",
+        "A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque.",
+        "Use {a}*{b}. A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque."
+      ],
+      "solution": "A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A radial force {a} N acts on a lever {b} m long. Find torque.",
+      "answer": "0",
+      "unit": "N*m",
+      "kind": "numeric",
+      "id": "torque-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.65,
+      "expectedSeconds": 70,
+      "hints": [
+        "Find the perpendicular distance from the axis to the force line of action.",
+        "A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque.",
+        "Use 0. A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque."
+      ],
+      "solution": "A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A tangential force of 2 N acts at radius {a} m. Find torque.",
+      "answer": "2*{a}",
+      "unit": "N*m",
+      "kind": "numeric",
+      "id": "torque-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.78,
+      "expectedSeconds": 95,
+      "hints": [
+        "Find the perpendicular distance from the axis to the force line of action.",
+        "A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque.",
+        "Use 2*{a}. A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque."
+      ],
+      "solution": "A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to torque & rotational leverage. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*sin(x)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\tau=rF\\sin\\theta",
+      "rule": "Definition / physical model",
+      "concept": "vectors"
+    },
+    {
+      "expression": "\\tau=rF\\sin\\theta",
+      "rule": "A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque.",
+      "concept": "vectors"
+    },
+    {
+      "expression": "\\text{Example: }12\\;N\\cdot m",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "torque"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque.",
+    "keywords": [
+      [
+        "angular"
+      ],
+      [
+        "application"
+      ]
+    ]
+  },
+  "summary": "A force turns an object most effectively when applied far from the axis and perpendicular to the lever arm. Torque records this rotational effect with a signed direction."
+}
+---
+
+## Intuition
+
+A force turns an object most effectively when applied far from the axis and perpendicular to the lever arm. Torque records this rotational effect with a signed direction.
+
+## Formalism
+
+$$\tau=rF\sin\theta$$
+
+A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque.
+
+[Explore vectors](concept:vectors). [Explore work](concept:work).
+
+## Worked example
+
+A perpendicular force 3 N acts at lever arm 4 m. Find torque magnitude.
+
+Start with the defining relationship. A small angular turn moves the application point by a tangential distance r dtheta. Work equals tangential force times that distance, so work per angle is torque. Substitute the given values: **`3*4` = 12 N*m**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Choose an axis and sign convention. Torque and energy share dimensions but have different physical meanings.
+
+A common trap is: **using the full lever length when force is radial**. Find the perpendicular distance from the axis to the force line of action.

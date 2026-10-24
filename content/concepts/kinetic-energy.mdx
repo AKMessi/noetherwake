@@ -1,0 +1,170 @@
+---
+{
+  "id": "kinetic-energy",
+  "title": "Kinetic energy from Newton law",
+  "prerequisites": [
+    "work",
+    "chain-rule"
+  ],
+  "domain": "physics",
+  "strand": "Energy",
+  "boundary": "Kinetic energy depends on reference frame and is a scalar. Relativistic speeds require a different expression.",
+  "softPrerequisites": [],
+  "difficulty": 0.6,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "kinetic-energy-gap",
+      "description": "Doubling speed doubles kinetic energy",
+      "remediation": "Compare the square of twice the speed with the original square."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Mass is {a} kg and speed {b} m/s. Find kinetic energy.",
+      "answer": "0.5*{a}*{b}^2",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "kinetic-energy-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.46,
+      "expectedSeconds": 45,
+      "hints": [
+        "Compare the square of twice the speed with the original square.",
+        "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints.",
+        "Use 0.5*{a}*{b}^2. Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints."
+      ],
+      "solution": "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "An object has kinetic energy {a} J. Its speed doubles. Find new kinetic energy.",
+      "answer": "4*{a}",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "kinetic-energy-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.59,
+      "expectedSeconds": 70,
+      "hints": [
+        "Compare the square of twice the speed with the original square.",
+        "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints.",
+        "Use 4*{a}. Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints."
+      ],
+      "solution": "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A {a} kg object speeds from 1 to {b} m/s. Find net work.",
+      "answer": "0.5*{a}*({b}^2-1)",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "kinetic-energy-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.72,
+      "expectedSeconds": 95,
+      "hints": [
+        "Compare the square of twice the speed with the original square.",
+        "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints.",
+        "Use 0.5*{a}*({b}^2-1). Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints."
+      ],
+      "solution": "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to kinetic energy from newton law. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x^2/2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "K=\\tfrac12mv^2,\\qquad W_{net}=\\Delta K",
+      "rule": "Definition / physical model",
+      "concept": "work"
+    },
+    {
+      "expression": "K=\\tfrac12mv^2,\\qquad W_{net}=\\Delta K",
+      "rule": "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints.",
+      "concept": "chain-rule"
+    },
+    {
+      "expression": "\\text{Example: }24\\;J",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "kinetic-energy"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints.",
+    "keywords": [
+      [
+        "integral"
+      ],
+      [
+        "becomes"
+      ]
+    ]
+  },
+  "summary": "The work needed to change speed grows with speed squared. This is why doubling speed requires four times the kinetic energy and makes stopping harder."
+}
+---
+
+## Intuition
+
+The work needed to change speed grows with speed squared. This is why doubling speed requires four times the kinetic energy and makes stopping harder.
+
+## Formalism
+
+$$K=\tfrac12mv^2,\qquad W_{net}=\Delta K$$
+
+Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints.
+
+[Explore work](concept:work). [Explore chain rule](concept:chain-rule).
+
+## Worked example
+
+Mass is 3 kg and speed 4 m/s. Find kinetic energy.
+
+Start with the defining relationship. Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. Substitute the given values: **`0.5*3*4^2` = 24 J**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Kinetic energy depends on reference frame and is a scalar. Relativistic speeds require a different expression.
+
+A common trap is: **doubling speed doubles kinetic energy**. Compare the square of twice the speed with the original square.

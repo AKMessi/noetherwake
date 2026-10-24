@@ -1,0 +1,170 @@
+---
+{
+  "id": "potential-energy",
+  "title": "Potential energy & conservative forces",
+  "prerequisites": [
+    "work",
+    "integral"
+  ],
+  "domain": "physics",
+  "strand": "Energy",
+  "boundary": "The zero of potential is arbitrary. A single-valued potential cannot represent dissipative friction over closed paths.",
+  "softPrerequisites": [],
+  "difficulty": 0.61,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "potential-energy-gap",
+      "description": "Treating the zero of potential as physically fixed",
+      "remediation": "Shift every potential value by one constant and check that all work predictions remain unchanged."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Use g=10. Raise {a} kg through {b} m. Find potential energy increase.",
+      "answer": "10*{a}*{b}",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "potential-energy-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.47,
+      "expectedSeconds": 45,
+      "hints": [
+        "Shift every potential value by one constant and check that all work predictions remain unchanged.",
+        "Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh.",
+        "Use 10*{a}*{b}. Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh."
+      ],
+      "solution": "Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For U(x)={a}x^2 J, find force at x={b} m.",
+      "answer": "-2*{a}*{b}",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "potential-energy-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.6,
+      "expectedSeconds": 70,
+      "hints": [
+        "Shift every potential value by one constant and check that all work predictions remain unchanged.",
+        "Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh.",
+        "Use -2*{a}*{b}. Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh."
+      ],
+      "solution": "Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A conservative force does {a} J work. Find potential energy change.",
+      "answer": "-{a}",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "potential-energy-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.73,
+      "expectedSeconds": 95,
+      "hints": [
+        "Shift every potential value by one constant and check that all work predictions remain unchanged.",
+        "Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh.",
+        "Use -{a}. Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh."
+      ],
+      "solution": "Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to potential energy & conservative forces. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\Delta U=-\\int\\mathbf F\\cdot d\\mathbf r,\\qquad F_x=-dU/dx",
+      "rule": "Definition / physical model",
+      "concept": "work"
+    },
+    {
+      "expression": "\\Delta U=-\\int\\mathbf F\\cdot d\\mathbf r,\\qquad F_x=-dU/dx",
+      "rule": "Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh.",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\text{Example: }120\\;J",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "potential-energy"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh.",
+    "keywords": [
+      [
+        "gravity"
+      ],
+      [
+        "downward"
+      ]
+    ]
+  },
+  "summary": "Potential energy records recoverable energy of an arrangement. Choose its change so that work done by a conservative force decreases potential energy by the same amount."
+}
+---
+
+## Intuition
+
+Potential energy records recoverable energy of an arrangement. Choose its change so that work done by a conservative force decreases potential energy by the same amount.
+
+## Formalism
+
+$$\Delta U=-\int\mathbf F\cdot d\mathbf r,\qquad F_x=-dU/dx$$
+
+Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh.
+
+[Explore work](concept:work). [Explore integral](concept:integral).
+
+## Worked example
+
+Use g=10. Raise 3 kg through 4 m. Find potential energy increase.
+
+Start with the defining relationship. Near Earth, gravity is downward and constant. Raising a mass by h makes gravitational work -mgh, so potential energy rises by mgh. Substitute the given values: **`10*3*4` = 120 J**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+The zero of potential is arbitrary. A single-valued potential cannot represent dissipative friction over closed paths.
+
+A common trap is: **treating the zero of potential as physically fixed**. Shift every potential value by one constant and check that all work predictions remain unchanged.

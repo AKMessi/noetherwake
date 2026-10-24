@@ -1,0 +1,170 @@
+---
+{
+  "id": "impulse",
+  "title": "Impulse: a force over time",
+  "prerequisites": [
+    "momentum",
+    "integral"
+  ],
+  "domain": "physics",
+  "strand": "Momentum",
+  "boundary": "Peak force can differ greatly from average force. A short collision still requires checking external impulse if the system is not isolated.",
+  "softPrerequisites": [],
+  "difficulty": 0.64,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "impulse-gap",
+      "description": "Confusing impulse with force",
+      "remediation": "Write force times time and compare the units with momentum."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "A constant {a} N force acts for {b} s. Find impulse.",
+      "answer": "{a}*{b}",
+      "unit": "N*s",
+      "kind": "numeric",
+      "id": "impulse-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.49,
+      "expectedSeconds": 45,
+      "hints": [
+        "Write force times time and compare the units with momentum.",
+        "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum.",
+        "Use {a}*{b}. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum."
+      ],
+      "solution": "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A {a} kg body changes velocity by {b} m/s. Find impulse.",
+      "answer": "{a}*{b}",
+      "unit": "kg*m/s",
+      "kind": "numeric",
+      "id": "impulse-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.62,
+      "expectedSeconds": 70,
+      "hints": [
+        "Write force times time and compare the units with momentum.",
+        "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum.",
+        "Use {a}*{b}. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum."
+      ],
+      "solution": "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "An impulse is {a} N*s over {b} s. Find average force.",
+      "answer": "{a}/{b}",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "impulse-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.75,
+      "expectedSeconds": 95,
+      "hints": [
+        "Write force times time and compare the units with momentum.",
+        "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum.",
+        "Use {a}/{b}. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum."
+      ],
+      "solution": "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to impulse: a force over time. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\mathbf J=\\int\\mathbf F\\,dt=\\Delta\\mathbf p",
+      "rule": "Definition / physical model",
+      "concept": "momentum"
+    },
+    {
+      "expression": "\\mathbf J=\\int\\mathbf F\\,dt=\\Delta\\mathbf p",
+      "rule": "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum.",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\text{Example: }12\\;N\\cdot s",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "impulse"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum.",
+    "keywords": [
+      [
+        "integrate"
+      ],
+      [
+        "momentum"
+      ]
+    ]
+  },
+  "summary": "Impulse accumulates force over time and gives the resulting momentum change. Spreading a required momentum change over longer time reduces the average force."
+}
+---
+
+## Intuition
+
+Impulse accumulates force over time and gives the resulting momentum change. Spreading a required momentum change over longer time reduces the average force.
+
+## Formalism
+
+$$\mathbf J=\int\mathbf F\,dt=\Delta\mathbf p$$
+
+Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum.
+
+[Explore momentum](concept:momentum). [Explore integral](concept:integral).
+
+## Worked example
+
+A constant 3 N force acts for 4 s. Find impulse.
+
+Start with the defining relationship. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. Substitute the given values: **`3*4` = 12 N*s**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Peak force can differ greatly from average force. A short collision still requires checking external impulse if the system is not isolated.
+
+A common trap is: **confusing impulse with force**. Write force times time and compare the units with momentum.

@@ -1,0 +1,170 @@
+---
+{
+  "id": "equations",
+  "title": "Equations as balanced constraints",
+  "prerequisites": [
+    "signed-numbers",
+    "ratios"
+  ],
+  "domain": "math",
+  "strand": "Algebra",
+  "boundary": "Dividing by an expression that could be zero can remove solutions. Multiplying both sides by zero loses information.",
+  "softPrerequisites": [],
+  "difficulty": 0.19,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "equations-gap",
+      "description": "Moving a term without an inverse operation",
+      "remediation": "Write the same subtraction explicitly on both sides before simplifying."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Solve {a}x + {b} = {a}*6 + {b}.",
+      "answer": "6",
+      "unit": "",
+      "kind": "numeric",
+      "id": "equations-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.15,
+      "expectedSeconds": 45,
+      "hints": [
+        "Write the same subtraction explicitly on both sides before simplifying.",
+        "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it.",
+        "Use 6. Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it."
+      ],
+      "solution": "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Solve {a}x = {b}.",
+      "answer": "{b}/{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "equations-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.28,
+      "expectedSeconds": 70,
+      "hints": [
+        "Write the same subtraction explicitly on both sides before simplifying.",
+        "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it.",
+        "Use {b}/{a}. Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it."
+      ],
+      "solution": "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Solve x/{a} - {b} = 2.",
+      "answer": "{a}*(2+{b})",
+      "unit": "",
+      "kind": "numeric",
+      "id": "equations-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.41,
+      "expectedSeconds": 95,
+      "hints": [
+        "Write the same subtraction explicitly on both sides before simplifying.",
+        "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it.",
+        "Use {a}*(2+{b}). Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it."
+      ],
+      "solution": "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to equations as balanced constraints. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x+2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "ax+b=c\\quad\\Rightarrow\\quad x=\\frac{c-b}{a}",
+      "rule": "Definition / physical model",
+      "concept": "signed-numbers"
+    },
+    {
+      "expression": "ax+b=c\\quad\\Rightarrow\\quad x=\\frac{c-b}{a}",
+      "rule": "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it.",
+      "concept": "ratios"
+    },
+    {
+      "expression": "\\text{Example: }6\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "equations"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it.",
+    "keywords": [
+      [
+        "addition"
+      ],
+      [
+        "multiplication"
+      ]
+    ]
+  },
+  "summary": "An equation says that two descriptions have the same value. Solving finds the value that makes the constraint true. A balance remains level when the same reversible operation is applied to both sides."
+}
+---
+
+## Intuition
+
+An equation says that two descriptions have the same value. Solving finds the value that makes the constraint true. A balance remains level when the same reversible operation is applied to both sides.
+
+## Formalism
+
+$$ax+b=c\quad\Rightarrow\quad x=\frac{c-b}{a}$$
+
+Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it.
+
+[Explore signed numbers](concept:signed-numbers). [Explore ratios](concept:ratios).
+
+## Worked example
+
+Solve 3x + 4 = 3*6 + 4.
+
+Start with the defining relationship. Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. Substitute the given values: **`6` = 6 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Dividing by an expression that could be zero can remove solutions. Multiplying both sides by zero loses information.
+
+A common trap is: **moving a term without an inverse operation**. Write the same subtraction explicitly on both sides before simplifying.

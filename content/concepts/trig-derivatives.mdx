@@ -1,0 +1,171 @@
+---
+{
+  "id": "trig-derivatives",
+  "title": "Rates on the unit circle",
+  "prerequisites": [
+    "trig",
+    "derivative",
+    "chain-rule"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "These rates use radians. Degrees introduce an extra pi/180 scale factor.",
+  "softPrerequisites": [],
+  "difficulty": 0.38,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "trig-derivatives-gap",
+      "description": "Forgetting the minus sign for cosine",
+      "remediation": "At a small positive angle cosine is decreasing, so its derivative must be negative."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "For f(x)=sin({a}x), find f prime at x=0.",
+      "answer": "{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "trig-derivatives-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.3,
+      "expectedSeconds": 45,
+      "hints": [
+        "At a small positive angle cosine is decreasing, so its derivative must be negative.",
+        "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates.",
+        "Use {a}. A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates."
+      ],
+      "solution": "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For f(x)=cos({a}x), find f prime at x=0.",
+      "answer": "0",
+      "unit": "",
+      "kind": "numeric",
+      "id": "trig-derivatives-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.43,
+      "expectedSeconds": 70,
+      "hints": [
+        "At a small positive angle cosine is decreasing, so its derivative must be negative.",
+        "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates.",
+        "Use 0. A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates."
+      ],
+      "solution": "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Find the derivative of sin(x) at x=pi.",
+      "answer": "-1",
+      "unit": "",
+      "kind": "numeric",
+      "id": "trig-derivatives-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.56,
+      "expectedSeconds": 95,
+      "hints": [
+        "At a small positive angle cosine is decreasing, so its derivative must be negative.",
+        "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates.",
+        "Use -1. A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates."
+      ],
+      "solution": "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to rates on the unit circle. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "sin(a*x)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "(\\sin x)\\prime=\\cos x,\\qquad(\\cos x)\\prime=-\\sin x",
+      "rule": "Definition / physical model",
+      "concept": "trig"
+    },
+    {
+      "expression": "(\\sin x)\\prime=\\cos x,\\qquad(\\cos x)\\prime=-\\sin x",
+      "rule": "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates.",
+      "concept": "derivative"
+    },
+    {
+      "expression": "\\text{Example: }3\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "trig-derivatives"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates.",
+    "keywords": [
+      [
+        "tangent"
+      ],
+      [
+        "direction"
+      ]
+    ]
+  },
+  "summary": "A point moving around a unit circle has a tangent velocity perpendicular to its radius. Its vertical coordinate is sine; the vertical component of the tangent is cosine."
+}
+---
+
+## Intuition
+
+A point moving around a unit circle has a tangent velocity perpendicular to its radius. Its vertical coordinate is sine; the vertical component of the tangent is cosine.
+
+## Formalism
+
+$$(\sin x)\prime=\cos x,\qquad(\cos x)\prime=-\sin x$$
+
+A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates.
+
+[Explore trig](concept:trig). [Explore derivative](concept:derivative). [Explore chain rule](concept:chain-rule).
+
+## Worked example
+
+For f(x)=sin(3x), find f prime at x=0.
+
+Start with the defining relationship. A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. Substitute the given values: **`3` = 3 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+These rates use radians. Degrees introduce an extra pi/180 scale factor.
+
+A common trap is: **forgetting the minus sign for cosine**. At a small positive angle cosine is decreasing, so its derivative must be negative.

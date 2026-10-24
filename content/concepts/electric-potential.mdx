@@ -1,0 +1,171 @@
+---
+{
+  "id": "electric-potential",
+  "title": "Electric potential & field work",
+  "prerequisites": [
+    "electric-field",
+    "potential-energy",
+    "integral"
+  ],
+  "domain": "physics",
+  "strand": "Electricity",
+  "boundary": "Potential has an arbitrary zero, while differences are observable. Time-varying magnetic fields can make electric work path-dependent.",
+  "softPrerequisites": [],
+  "difficulty": 0.74,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "electric-potential-gap",
+      "description": "Zero potential implies zero field",
+      "remediation": "A potential can cross zero while still having a nonzero slope; field depends on slope."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Uniform field is {a} N/C right. Move {b} m right. Find potential change.",
+      "answer": "-{a}*{b}",
+      "unit": "V",
+      "kind": "numeric",
+      "id": "electric-potential-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.58,
+      "expectedSeconds": 45,
+      "hints": [
+        "A potential can cross zero while still having a nonzero slope; field depends on slope.",
+        "Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral.",
+        "Use -{a}*{b}. Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral."
+      ],
+      "solution": "Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A {a} C charge is at potential {b} V. Find potential energy with that reference.",
+      "answer": "{a}*{b}",
+      "unit": "J",
+      "kind": "numeric",
+      "id": "electric-potential-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.71,
+      "expectedSeconds": 70,
+      "hints": [
+        "A potential can cross zero while still having a nonzero slope; field depends on slope.",
+        "Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral.",
+        "Use {a}*{b}. Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral."
+      ],
+      "solution": "Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Potential is V(x)={a}x volts. Find signed electric field.",
+      "answer": "-{a}",
+      "unit": "N/C",
+      "kind": "numeric",
+      "id": "electric-potential-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.84,
+      "expectedSeconds": 95,
+      "hints": [
+        "A potential can cross zero while still having a nonzero slope; field depends on slope.",
+        "Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral.",
+        "Use -{a}. Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral."
+      ],
+      "solution": "Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to electric potential & field work. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "-a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\Delta V=-\\int\\mathbf E\\cdot d\\mathbf l,\\qquad U=qV",
+      "rule": "Definition / physical model",
+      "concept": "electric-field"
+    },
+    {
+      "expression": "\\Delta V=-\\int\\mathbf E\\cdot d\\mathbf l,\\qquad U=qV",
+      "rule": "Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral.",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\text{Example: }-12\\;V",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "electric-potential"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral.",
+    "keywords": [
+      [
+        "conservative"
+      ],
+      [
+        "electric"
+      ]
+    ]
+  },
+  "summary": "Electric potential is potential energy per unit charge. It records how much work per positive charge is needed to move against the electric field between points."
+}
+---
+
+## Intuition
+
+Electric potential is potential energy per unit charge. It records how much work per positive charge is needed to move against the electric field between points.
+
+## Formalism
+
+$$\Delta V=-\int\mathbf E\cdot d\mathbf l,\qquad U=qV$$
+
+Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral.
+
+[Explore electric field](concept:electric-field). [Explore potential energy](concept:potential-energy). [Explore integral](concept:integral).
+
+## Worked example
+
+Uniform field is 3 N/C right. Move 4 m right. Find potential change.
+
+Start with the defining relationship. Divide conservative electric work by the moved charge. Since force is qE, the charge cancels and the potential difference depends on the field path integral. Substitute the given values: **`-3*4` = -12 V**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Potential has an arbitrary zero, while differences are observable. Time-varying magnetic fields can make electric work path-dependent.
+
+A common trap is: **zero potential implies zero field**. A potential can cross zero while still having a nonzero slope; field depends on slope.

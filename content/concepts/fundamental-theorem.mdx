@@ -1,0 +1,184 @@
+---
+{
+  "id": "fundamental-theorem",
+  "title": "The bridge between rate & accumulation",
+  "prerequisites": [
+    "integral",
+    "continuity",
+    "derivative"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "The first form needs continuity at the evaluation point; the evaluation formula requires a suitable antiderivative.",
+  "softPrerequisites": [],
+  "difficulty": 0.44,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "fundamental-theorem-gap",
+      "description": "Confusing an antiderivative with a definite total",
+      "remediation": "A definite integral is an endpoint difference; the arbitrary constant cancels."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "F(x)=x^2. Evaluate the integral of F prime from {a} to {b}.",
+      "answer": "{b}^2-{a}^2",
+      "unit": "",
+      "kind": "numeric",
+      "id": "fundamental-theorem-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.34,
+      "expectedSeconds": 45,
+      "hints": [
+        "A definite integral is an endpoint difference; the arbitrary constant cancels.",
+        "Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x).",
+        "Use {b}^2-{a}^2. Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x)."
+      ],
+      "solution": "Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x). The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "If A(x)=integral from 0 to x of t^2 dt, find A prime({a}).",
+      "answer": "{a}^2",
+      "unit": "",
+      "kind": "numeric",
+      "id": "fundamental-theorem-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.47,
+      "expectedSeconds": 70,
+      "hints": [
+        "A definite integral is an endpoint difference; the arbitrary constant cancels.",
+        "Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x).",
+        "Use {a}^2. Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x)."
+      ],
+      "solution": "Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x). The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Complete the argument: the average height over a shrinking interval approaches f(x) because of ___.",
+      "answer": "continuity",
+      "unit": "",
+      "kind": "proof",
+      "choices": [
+        {
+          "text": "continuity"
+        },
+        {
+          "text": "a positive slope",
+          "misconception": "fundamental-theorem-gap"
+        },
+        {
+          "text": "an arbitrary constant",
+          "misconception": "fundamental-theorem-gap"
+        }
+      ],
+      "id": "fundamental-theorem-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.6,
+      "expectedSeconds": 95,
+      "hints": [
+        "A definite integral is an endpoint difference; the arbitrary constant cancels.",
+        "Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x).",
+        "Use continuity. Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x)."
+      ],
+      "solution": "Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x). The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to the bridge between rate & accumulation. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "x^a/a",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\frac{d}{dx}\\int_a^x f(t)\\,dt=f(x),\\qquad\\int_a^b F\\prime=F(b)-F(a)",
+      "rule": "Definition / physical model",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\frac{d}{dx}\\int_a^x f(t)\\,dt=f(x),\\qquad\\int_a^b F\\prime=F(b)-F(a)",
+      "rule": "Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x).",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\text{Example: }7\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "fundamental-theorem"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x).",
+    "keywords": [
+      [
+        "interval"
+      ],
+      [
+        "contributes"
+      ]
+    ]
+  },
+  "summary": "Accumulating a continuous rate and then asking how fast the accumulated amount changes returns the original rate. Differentiation and integration undo each other under the right conditions."
+}
+---
+
+## Intuition
+
+Accumulating a continuous rate and then asking how fast the accumulated amount changes returns the original rate. Differentiation and integration undo each other under the right conditions.
+
+## Formalism
+
+$$\frac{d}{dx}\int_a^x f(t)\,dt=f(x),\qquad\int_a^b F\prime=F(b)-F(a)$$
+
+Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x).
+
+[Explore integral](concept:integral). [Explore continuity](concept:continuity). [Explore derivative](concept:derivative).
+
+## Worked example
+
+F(x)=x^2. Evaluate the integral of F prime from 3 to 4.
+
+Start with the defining relationship. Adding a short interval contributes approximately f(x) times its width. Divide by that width and shrink it; continuity forces the average height toward f(x). Substitute the given values: **`4^2-3^2` = 7 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+The first form needs continuity at the evaluation point; the evaluation formula requires a suitable antiderivative.
+
+A common trap is: **confusing an antiderivative with a definite total**. A definite integral is an endpoint difference; the arbitrary constant cancels.

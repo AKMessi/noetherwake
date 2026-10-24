@@ -1,0 +1,170 @@
+---
+{
+  "id": "substitution",
+  "title": "Substitution: accumulate through a new variable",
+  "prerequisites": [
+    "fundamental-theorem",
+    "chain-rule"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "For definite integrals, change the bounds too. A missing derivative factor makes a tempting substitution invalid.",
+  "softPrerequisites": [],
+  "difficulty": 0.45,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "substitution-gap",
+      "description": "Changing the integrand but keeping old bounds",
+      "remediation": "Label each bound with its variable; map both endpoints through u=g(x)."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Integrate 2x*(x^2+{a}) from 0 to 1.",
+      "answer": "{a}+0.5",
+      "unit": "",
+      "kind": "numeric",
+      "id": "substitution-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.35,
+      "expectedSeconds": 45,
+      "hints": [
+        "Label each bound with its variable; map both endpoints through u=g(x).",
+        "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together.",
+        "Use {a}+0.5. Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together."
+      ],
+      "solution": "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For u=x^2+{a}, find u when x={b}.",
+      "answer": "{b}^2+{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "substitution-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.48,
+      "expectedSeconds": 70,
+      "hints": [
+        "Label each bound with its variable; map both endpoints through u=g(x).",
+        "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together.",
+        "Use {b}^2+{a}. Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together."
+      ],
+      "solution": "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Integrate {a}*exp({a}x) from 0 to 1.",
+      "answer": "exp({a})-1",
+      "unit": "",
+      "kind": "numeric",
+      "id": "substitution-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.61,
+      "expectedSeconds": 95,
+      "hints": [
+        "Label each bound with its variable; map both endpoints through u=g(x).",
+        "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together.",
+        "Use exp({a})-1. Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together."
+      ],
+      "solution": "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to substitution: accumulate through a new variable. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "(x^2+a)^2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\int f(g(x))g\\prime(x)\\,dx=\\int f(u)\\,du",
+      "rule": "Definition / physical model",
+      "concept": "fundamental-theorem"
+    },
+    {
+      "expression": "\\int f(g(x))g\\prime(x)\\,dx=\\int f(u)\\,du",
+      "rule": "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together.",
+      "concept": "chain-rule"
+    },
+    {
+      "expression": "\\text{Example: }3.5\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "substitution"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together.",
+    "keywords": [
+      [
+        "differential"
+      ],
+      [
+        "includes"
+      ]
+    ]
+  },
+  "summary": "A change of variable renames the inner process and accounts for how its scale changes. It is the chain rule read backward."
+}
+---
+
+## Intuition
+
+A change of variable renames the inner process and accounts for how its scale changes. It is the chain rule read backward.
+
+## Formalism
+
+$$\int f(g(x))g\prime(x)\,dx=\int f(u)\,du$$
+
+Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together.
+
+[Explore fundamental theorem](concept:fundamental-theorem). [Explore chain rule](concept:chain-rule).
+
+## Worked example
+
+Integrate 2x*(x^2+3) from 0 to 1.
+
+Start with the defining relationship. Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. Substitute the given values: **`3+0.5` = 3.5 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+For definite integrals, change the bounds too. A missing derivative factor makes a tempting substitution invalid.
+
+A common trap is: **changing the integrand but keeping old bounds**. Label each bound with its variable; map both endpoints through u=g(x).

@@ -1,0 +1,170 @@
+---
+{
+  "id": "constant-acceleration",
+  "title": "Motion under constant acceleration",
+  "prerequisites": [
+    "acceleration",
+    "integral"
+  ],
+  "domain": "physics",
+  "strand": "Mechanics",
+  "boundary": "These formulas assume a is constant over the whole interval. They cannot be applied unchanged to drag or a spring.",
+  "softPrerequisites": [],
+  "difficulty": 0.52,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "constant-acceleration-gap",
+      "description": "Forgetting the one-half in displacement",
+      "remediation": "The added velocity builds from zero; its average over the interval is half its final value."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "From rest, acceleration is {a} m/s^2 for {b} s. Find final velocity.",
+      "answer": "{a}*{b}",
+      "unit": "m/s",
+      "kind": "numeric",
+      "id": "constant-acceleration-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.4,
+      "expectedSeconds": 45,
+      "hints": [
+        "The added velocity builds from zero; its average over the interval is half its final value.",
+        "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions.",
+        "Use {a}*{b}. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions."
+      ],
+      "solution": "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "From rest at x=0, accelerate at {a} m/s^2 for {b} s. Find displacement.",
+      "answer": "0.5*{a}*{b}^2",
+      "unit": "m",
+      "kind": "numeric",
+      "id": "constant-acceleration-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.53,
+      "expectedSeconds": 70,
+      "hints": [
+        "The added velocity builds from zero; its average over the interval is half its final value.",
+        "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions.",
+        "Use 0.5*{a}*{b}^2. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions."
+      ],
+      "solution": "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Initial velocity is {a} m/s; acceleration is 2 m/s^2. Find velocity after {b} s.",
+      "answer": "{a}+2*{b}",
+      "unit": "m/s",
+      "kind": "numeric",
+      "id": "constant-acceleration-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.66,
+      "expectedSeconds": 95,
+      "hints": [
+        "The added velocity builds from zero; its average over the interval is half its final value.",
+        "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions.",
+        "Use {a}+2*{b}. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions."
+      ],
+      "solution": "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "motion",
+    "prompt": "Change the parameter and connect the curve to motion under constant acceleration. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "x+a*x^2/2",
+    "xLabel": "t (s)",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "v=v_0+at,\\qquad x=x_0+v_0t+\\tfrac12at^2",
+      "rule": "Definition / physical model",
+      "concept": "acceleration"
+    },
+    {
+      "expression": "v=v_0+at,\\qquad x=x_0+v_0t+\\tfrac12at^2",
+      "rule": "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions.",
+      "concept": "integral"
+    },
+    {
+      "expression": "\\text{Example: }12\\;m/s",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "constant-acceleration"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions.",
+    "keywords": [
+      [
+        "integrate"
+      ],
+      [
+        "constant"
+      ]
+    ]
+  },
+  "summary": "Constant acceleration adds equal amounts of velocity in equal times. The velocity-time graph is a line, so displacement is the area of a rectangle plus a triangle."
+}
+---
+
+## Intuition
+
+Constant acceleration adds equal amounts of velocity in equal times. The velocity-time graph is a line, so displacement is the area of a rectangle plus a triangle.
+
+## Formalism
+
+$$v=v_0+at,\qquad x=x_0+v_0t+\tfrac12at^2$$
+
+Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions.
+
+[Explore acceleration](concept:acceleration). [Explore integral](concept:integral).
+
+## Worked example
+
+From rest, acceleration is 3 m/s^2 for 4 s. Find final velocity.
+
+Start with the defining relationship. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. Substitute the given values: **`3*4` = 12 m/s**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+These formulas assume a is constant over the whole interval. They cannot be applied unchanged to drag or a spring.
+
+A common trap is: **forgetting the one-half in displacement**. The added velocity builds from zero; its average over the interval is half its final value.

@@ -1,0 +1,167 @@
+---
+{
+  "id": "chain-rule",
+  "title": "Chain rule: linked rates",
+  "prerequisites": [
+    "composition",
+    "derivative"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "Both derivatives are evaluated at their own inputs. Omitting the inner rate gives the wrong units and the wrong scale.",
+  "softPrerequisites": [],
+  "difficulty": 0.36,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "chain-rule-gap",
+      "description": "Differentiating only the outside",
+      "remediation": "Name the intermediate variable u, then write output per u times u per x."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "For f(x)=({a}x+{b})^2, find f prime at x=0.",
+      "answer": "2*{a}*{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "chain-rule-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.28,
+      "expectedSeconds": 45,
+      "hints": [
+        "Name the intermediate variable u, then write output per u times u per x.",
+        "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change.",
+        "Use 2*{a}*{b}. The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change."
+      ],
+      "solution": "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Differentiate ({a}x+1)^2.",
+      "answer": "2*{a}*({a}*x+1)",
+      "unit": "",
+      "kind": "symbolic",
+      "id": "chain-rule-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.41,
+      "expectedSeconds": 70,
+      "hints": [
+        "Name the intermediate variable u, then write output per u times u per x.",
+        "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change.",
+        "Use 2*{a}*({a}*x+1). The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change."
+      ],
+      "solution": "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "If dy/du={a} and du/dx={b}, find dy/dx.",
+      "answer": "{a}*{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "chain-rule-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.54,
+      "expectedSeconds": 95,
+      "hints": [
+        "Name the intermediate variable u, then write output per u times u per x.",
+        "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change.",
+        "Use {a}*{b}. The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change."
+      ],
+      "solution": "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to chain rule: linked rates. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "(a*x+1)^2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\frac{d}{dx}f(g(x))=f\\prime(g(x))g\\prime(x)",
+      "rule": "Definition / physical model",
+      "concept": "composition"
+    },
+    {
+      "expression": "\\frac{d}{dx}f(g(x))=f\\prime(g(x))g\\prime(x)",
+      "rule": "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change.",
+      "concept": "derivative"
+    },
+    {
+      "expression": "\\text{Example: }24\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "chain-rule"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change.",
+    "keywords": [
+      [
+        "approximately"
+      ]
+    ]
+  },
+  "summary": "If one quantity changes because another changed, the total rate multiplies the two local conversion rates. Metres per turn times turns per second gives metres per second."
+}
+---
+
+## Intuition
+
+If one quantity changes because another changed, the total rate multiplies the two local conversion rates. Metres per turn times turns per second gives metres per second.
+
+## Formalism
+
+$$\frac{d}{dx}f(g(x))=f\prime(g(x))g\prime(x)$$
+
+The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change.
+
+[Explore composition](concept:composition). [Explore derivative](concept:derivative).
+
+## Worked example
+
+For f(x)=(3x+4)^2, find f prime at x=0.
+
+Start with the defining relationship. The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. Substitute the given values: **`2*3*4` = 24 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Both derivatives are evaluated at their own inputs. Omitting the inner rate gives the wrong units and the wrong scale.
+
+A common trap is: **differentiating only the outside**. Name the intermediate variable u, then write output per u times u per x.

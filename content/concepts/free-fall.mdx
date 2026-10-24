@@ -1,0 +1,170 @@
+---
+{
+  "id": "free-fall",
+  "title": "Free fall & gravitational acceleration",
+  "prerequisites": [
+    "constant-acceleration",
+    "newton-2"
+  ],
+  "domain": "physics",
+  "strand": "Mechanics",
+  "boundary": "Near-surface constant g and negligible air resistance are approximations. Different drag-to-mass ratios break the equal-fall prediction.",
+  "softPrerequisites": [],
+  "difficulty": 0.53,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "free-fall-gap",
+      "description": "Heavier objects fall faster in vacuum",
+      "remediation": "Write both the force mg and inertial factor m, then cancel the same nonzero mass."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Use g=10 m/s^2. Drop from rest for {a} s. Find downward distance.",
+      "answer": "5*{a}^2",
+      "unit": "m",
+      "kind": "numeric",
+      "id": "free-fall-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.41,
+      "expectedSeconds": 45,
+      "hints": [
+        "Write both the force mg and inertial factor m, then cancel the same nonzero mass.",
+        "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height.",
+        "Use 5*{a}^2. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height."
+      ],
+      "solution": "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Launch upward at {a}*10 m/s with g=10. Find time to the top.",
+      "answer": "{a}",
+      "unit": "s",
+      "kind": "numeric",
+      "id": "free-fall-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.54,
+      "expectedSeconds": 70,
+      "hints": [
+        "Write both the force mg and inertial factor m, then cancel the same nonzero mass.",
+        "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height.",
+        "Use {a}. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height."
+      ],
+      "solution": "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "With g=10, find maximum height for upward speed {a}*10 m/s.",
+      "answer": "5*{a}^2",
+      "unit": "m",
+      "kind": "numeric",
+      "id": "free-fall-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.67,
+      "expectedSeconds": 95,
+      "hints": [
+        "Write both the force mg and inertial factor m, then cancel the same nonzero mass.",
+        "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height.",
+        "Use 5*{a}^2. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height."
+      ],
+      "solution": "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to free fall & gravitational acceleration. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x-5*x^2",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "ma=-mg\\quad\\Rightarrow\\quad a=-g",
+      "rule": "Definition / physical model",
+      "concept": "constant-acceleration"
+    },
+    {
+      "expression": "ma=-mg\\quad\\Rightarrow\\quad a=-g",
+      "rule": "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height.",
+      "concept": "newton-2"
+    },
+    {
+      "expression": "\\text{Example: }45\\;m",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "free-fall"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height.",
+    "keywords": [
+      [
+        "positive"
+      ],
+      [
+        "gravitational"
+      ]
+    ]
+  },
+  "summary": "Without air resistance, near-Earth gravity accelerates all freely falling objects equally. Mass increases both gravitational force and resistance to acceleration, so it cancels."
+}
+---
+
+## Intuition
+
+Without air resistance, near-Earth gravity accelerates all freely falling objects equally. Mass increases both gravitational force and resistance to acceleration, so it cancels.
+
+## Formalism
+
+$$ma=-mg\quad\Rightarrow\quad a=-g$$
+
+Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height.
+
+[Explore constant acceleration](concept:constant-acceleration). [Explore newton 2](concept:newton-2).
+
+## Worked example
+
+Use g=10 m/s^2. Drop from rest for 3 s. Find downward distance.
+
+Start with the defining relationship. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. Substitute the given values: **`5*3^2` = 45 m**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Near-surface constant g and negligible air resistance are approximations. Different drag-to-mass ratios break the equal-fall prediction.
+
+A common trap is: **heavier objects fall faster in vacuum**. Write both the force mg and inertial factor m, then cancel the same nonzero mass.

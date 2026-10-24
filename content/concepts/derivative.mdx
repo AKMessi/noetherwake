@@ -1,0 +1,170 @@
+---
+{
+  "id": "derivative",
+  "title": "The derivative: change under a microscope",
+  "prerequisites": [
+    "limits",
+    "slope"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "A corner or jump can destroy the limit. A derivative is a rate at a point, not the total change across a wide interval.",
+  "softPrerequisites": [],
+  "difficulty": 0.34,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "derivative-gap",
+      "description": "Using f(x)/x as the derivative",
+      "remediation": "Compare two nearby outputs and divide their difference by the input difference."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "For f(x)=x^2, find the derivative at x={a}.",
+      "answer": "2*{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "derivative-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.27,
+      "expectedSeconds": 45,
+      "hints": [
+        "Compare two nearby outputs and divide their difference by the input difference.",
+        "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.",
+        "Use 2*{a}. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x."
+      ],
+      "solution": "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For f(x)={a}x+{b}, find its derivative.",
+      "answer": "{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "derivative-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.4,
+      "expectedSeconds": 70,
+      "hints": [
+        "Compare two nearby outputs and divide their difference by the input difference.",
+        "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.",
+        "Use {a}. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x."
+      ],
+      "solution": "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A position is x(t)={a}t^2 metres. Find instantaneous velocity at t=2 s.",
+      "answer": "4*{a}",
+      "unit": "m/s",
+      "kind": "numeric",
+      "id": "derivative-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.53,
+      "expectedSeconds": 95,
+      "hints": [
+        "Compare two nearby outputs and divide their difference by the input difference.",
+        "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.",
+        "Use 4*{a}. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x."
+      ],
+      "solution": "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to the derivative: change under a microscope. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "x^2*a",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "f\\prime(x)=\\lim_{h\\to0}\\frac{f(x+h)-f(x)}h",
+      "rule": "Definition / physical model",
+      "concept": "limits"
+    },
+    {
+      "expression": "f\\prime(x)=\\lim_{h\\to0}\\frac{f(x+h)-f(x)}h",
+      "rule": "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.",
+      "concept": "slope"
+    },
+    {
+      "expression": "\\text{Example: }6\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "derivative"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.",
+    "keywords": [
+      [
+        "squared"
+      ],
+      [
+        "quotient"
+      ]
+    ]
+  },
+  "summary": "Zoom into a smooth curve until it resembles a straight line. The derivative is the slope of that local line: output change per tiny input change. For position, that rate is velocity."
+}
+---
+
+## Intuition
+
+Zoom into a smooth curve until it resembles a straight line. The derivative is the slope of that local line: output change per tiny input change. For position, that rate is velocity.
+
+## Formalism
+
+$$f\prime(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}h$$
+
+For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.
+
+[Explore limits](concept:limits). [Explore slope](concept:slope).
+
+## Worked example
+
+For f(x)=x^2, find the derivative at x=3.
+
+Start with the defining relationship. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. Substitute the given values: **`2*3` = 6 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+A corner or jump can destroy the limit. A derivative is a rate at a point, not the total change across a wide interval.
+
+A common trap is: **using f(x)/x as the derivative**. Compare two nearby outputs and divide their difference by the input difference.

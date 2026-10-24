@@ -1,0 +1,170 @@
+---
+{
+  "id": "radians",
+  "title": "Radians: angle from arc length",
+  "prerequisites": [
+    "ratios",
+    "coordinates"
+  ],
+  "domain": "math",
+  "strand": "Trigonometry",
+  "boundary": "Calculus trigonometric rules assume radians. Degree inputs need a factor of pi/180.",
+  "softPrerequisites": [],
+  "difficulty": 0.29,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "radians-gap",
+      "description": "Using degrees inside derivative formulas",
+      "remediation": "Convert to arc length divided by radius before applying a calculus identity."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "An arc is {a} m long on radius {b} m. Find the angle in radians.",
+      "answer": "{a}/{b}",
+      "unit": "rad",
+      "kind": "numeric",
+      "id": "radians-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.22,
+      "expectedSeconds": 45,
+      "hints": [
+        "Convert to arc length divided by radius before applying a calculus identity.",
+        "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle.",
+        "Use {a}/{b}. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle."
+      ],
+      "solution": "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "What is the arc length for radius {a} m and angle {b} radians?",
+      "answer": "{a}*{b}",
+      "unit": "m",
+      "kind": "numeric",
+      "id": "radians-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.35,
+      "expectedSeconds": 70,
+      "hints": [
+        "Convert to arc length divided by radius before applying a calculus identity.",
+        "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle.",
+        "Use {a}*{b}. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle."
+      ],
+      "solution": "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Convert {a} complete turns to radians.",
+      "answer": "2*pi*{a}",
+      "unit": "rad",
+      "kind": "numeric",
+      "id": "radians-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.48,
+      "expectedSeconds": 95,
+      "hints": [
+        "Convert to arc length divided by radius before applying a calculus identity.",
+        "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle.",
+        "Use 2*pi*{a}. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle."
+      ],
+      "solution": "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to radians: angle from arc length. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\theta=s/r,\\qquad 2\\pi\\text{ radians per turn}",
+      "rule": "Definition / physical model",
+      "concept": "ratios"
+    },
+    {
+      "expression": "\\theta=s/r,\\qquad 2\\pi\\text{ radians per turn}",
+      "rule": "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle.",
+      "concept": "coordinates"
+    },
+    {
+      "expression": "\\text{Example: }0.75\\;rad",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "radians"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle.",
+    "keywords": [
+      [
+        "doubling"
+      ],
+      [
+        "doubles"
+      ]
+    ]
+  },
+  "summary": "An angle compares travelled arc length with radius. Measuring it this way makes a full turn the same number for every circle, and removes conversion factors from calculus."
+}
+---
+
+## Intuition
+
+An angle compares travelled arc length with radius. Measuring it this way makes a full turn the same number for every circle, and removes conversion factors from calculus.
+
+## Formalism
+
+$$\theta=s/r,\qquad 2\pi\text{ radians per turn}$$
+
+Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle.
+
+[Explore ratios](concept:ratios). [Explore coordinates](concept:coordinates).
+
+## Worked example
+
+An arc is 3 m long on radius 4 m. Find the angle in radians.
+
+Start with the defining relationship. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. Substitute the given values: **`3/4` = 0.75 rad**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Calculus trigonometric rules assume radians. Degree inputs need a factor of pi/180.
+
+A common trap is: **using degrees inside derivative formulas**. Convert to arc length divided by radius before applying a calculus identity.

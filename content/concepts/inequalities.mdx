@@ -1,0 +1,182 @@
+---
+{
+  "id": "inequalities",
+  "title": "Inequalities & order",
+  "prerequisites": [
+    "equations"
+  ],
+  "domain": "math",
+  "strand": "Algebra",
+  "boundary": "Squaring preserves order only with appropriate sign restrictions. The square function folds both sides of zero together.",
+  "softPrerequisites": [],
+  "difficulty": 0.2,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "inequalities-gap",
+      "description": "Keeping the inequality sign when dividing by a negative",
+      "remediation": "Place -2 and -5 on a number line; the reflected order explains the flip."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "For -{a}x < -{a}*{b}, what is the boundary value of x?",
+      "answer": "{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "inequalities-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.16,
+      "expectedSeconds": 45,
+      "hints": [
+        "Place -2 and -5 on a number line; the reflected order explains the flip.",
+        "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis.",
+        "Use {b}. Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis."
+      ],
+      "solution": "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Which direction is correct after dividing -2x < 6 by -2?",
+      "answer": "x > -3",
+      "unit": "",
+      "kind": "choice",
+      "choices": [
+        {
+          "text": "x > -3"
+        },
+        {
+          "text": "x < -3",
+          "misconception": "inequalities-gap"
+        },
+        {
+          "text": "x = -3",
+          "misconception": "inequalities-gap"
+        }
+      ],
+      "id": "inequalities-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.29,
+      "expectedSeconds": 70,
+      "hints": [
+        "Place -2 and -5 on a number line; the reflected order explains the flip.",
+        "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis.",
+        "Use x > -3. Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis."
+      ],
+      "solution": "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For x + {a} < {b}, find the boundary value.",
+      "answer": "{b}-{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "inequalities-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.42,
+      "expectedSeconds": 95,
+      "hints": [
+        "Place -2 and -5 on a number line; the reflected order explains the flip.",
+        "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis.",
+        "Use {b}-{a}. Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis."
+      ],
+      "solution": "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to inequalities & order. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "-a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "a<b\\;\\Rightarrow\\;-a>-b",
+      "rule": "Definition / physical model",
+      "concept": "equations"
+    },
+    {
+      "expression": "a<b\\;\\Rightarrow\\;-a>-b",
+      "rule": "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis.",
+      "concept": "equations"
+    },
+    {
+      "expression": "\\text{Example: }4\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "inequalities"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis.",
+    "keywords": [
+      [
+        "concrete"
+      ],
+      [
+        "numbers"
+      ]
+    ]
+  },
+  "summary": "An inequality names a region of possible values rather than one balance point. Multiplication by a negative number reflects the number line, reversing left and right."
+}
+---
+
+## Intuition
+
+An inequality names a region of possible values rather than one balance point. Multiplication by a negative number reflects the number line, reversing left and right.
+
+## Formalism
+
+$$a<b\;\Rightarrow\;-a>-b$$
+
+Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis.
+
+[Explore equations](concept:equations).
+
+## Worked example
+
+For -3x < -3*4, what is the boundary value of x?
+
+Start with the defining relationship. Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. Substitute the given values: **`4` = 4 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Squaring preserves order only with appropriate sign restrictions. The square function folds both sides of zero together.
+
+A common trap is: **keeping the inequality sign when dividing by a negative**. Place -2 and -5 on a number line; the reflected order explains the flip.

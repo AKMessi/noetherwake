@@ -1,0 +1,170 @@
+---
+{
+  "id": "slope",
+  "title": "Slope is a rate",
+  "prerequisites": [
+    "coordinates",
+    "ratios"
+  ],
+  "domain": "math",
+  "strand": "Algebra",
+  "boundary": "Vertical lines have no finite slope. A curved graph has different secant slopes on different intervals.",
+  "softPrerequisites": [],
+  "difficulty": 0.22,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "slope-gap",
+      "description": "Reversing rise and run",
+      "remediation": "Write the units of output divided by units of input before inserting numbers."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "y rises {a} while x rises {b}. Find slope.",
+      "answer": "{a}/{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "slope-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.17,
+      "expectedSeconds": 45,
+      "hints": [
+        "Write the units of output divided by units of input before inserting numbers.",
+        "For a straight line every right triangle along it is similar, so rise divided by run is constant.",
+        "Use {a}/{b}. For a straight line every right triangle along it is similar, so rise divided by run is constant."
+      ],
+      "solution": "For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A line has slope {a}. What is its change in y over a run of {b}?",
+      "answer": "{a}*{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "slope-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.3,
+      "expectedSeconds": 70,
+      "hints": [
+        "Write the units of output divided by units of input before inserting numbers.",
+        "For a straight line every right triangle along it is similar, so rise divided by run is constant.",
+        "Use {a}*{b}. For a straight line every right triangle along it is similar, so rise divided by run is constant."
+      ],
+      "solution": "For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Find slope from (1,{a}) to (3,{b}).",
+      "answer": "({b}-{a})/2",
+      "unit": "",
+      "kind": "numeric",
+      "id": "slope-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.43,
+      "expectedSeconds": 95,
+      "hints": [
+        "Write the units of output divided by units of input before inserting numbers.",
+        "For a straight line every right triangle along it is similar, so rise divided by run is constant.",
+        "Use ({b}-{a})/2. For a straight line every right triangle along it is similar, so rise divided by run is constant."
+      ],
+      "solution": "For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to slope is a rate. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "m=\\frac{\\Delta y}{\\Delta x}",
+      "rule": "Definition / physical model",
+      "concept": "coordinates"
+    },
+    {
+      "expression": "m=\\frac{\\Delta y}{\\Delta x}",
+      "rule": "For a straight line every right triangle along it is similar, so rise divided by run is constant.",
+      "concept": "ratios"
+    },
+    {
+      "expression": "\\text{Example: }0.75\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "slope"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: For a straight line every right triangle along it is similar, so rise divided by run is constant.",
+    "keywords": [
+      [
+        "straight"
+      ],
+      [
+        "triangle"
+      ]
+    ]
+  },
+  "summary": "Slope compares a vertical change with the horizontal change that produced it. A steep line changes output quickly. A position-time slope measures speed with direction."
+}
+---
+
+## Intuition
+
+Slope compares a vertical change with the horizontal change that produced it. A steep line changes output quickly. A position-time slope measures speed with direction.
+
+## Formalism
+
+$$m=\frac{\Delta y}{\Delta x}$$
+
+For a straight line every right triangle along it is similar, so rise divided by run is constant.
+
+[Explore coordinates](concept:coordinates). [Explore ratios](concept:ratios).
+
+## Worked example
+
+y rises 3 while x rises 4. Find slope.
+
+Start with the defining relationship. For a straight line every right triangle along it is similar, so rise divided by run is constant. Substitute the given values: **`3/4` = 0.75 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Vertical lines have no finite slope. A curved graph has different secant slopes on different intervals.
+
+A common trap is: **reversing rise and run**. Write the units of output divided by units of input before inserting numbers.

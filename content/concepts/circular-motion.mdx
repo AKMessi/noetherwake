@@ -1,0 +1,171 @@
+---
+{
+  "id": "circular-motion",
+  "title": "Circular motion & inward acceleration",
+  "prerequisites": [
+    "trig",
+    "acceleration",
+    "newton-2"
+  ],
+  "domain": "physics",
+  "strand": "Rotation",
+  "boundary": "Centripetal describes the net radial force, not an extra force to add. Variable speed can also require tangential acceleration.",
+  "softPrerequisites": [],
+  "difficulty": 0.65,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "circular-motion-gap",
+      "description": "Adding a separate centripetal force to tension or gravity",
+      "remediation": "Identify which real interaction supplies the inward resultant."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Speed is {a} m/s on radius {b} m. Find inward acceleration.",
+      "answer": "{a}^2/{b}",
+      "unit": "m/s^2",
+      "kind": "numeric",
+      "id": "circular-motion-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.51,
+      "expectedSeconds": 45,
+      "hints": [
+        "Identify which real interaction supplies the inward resultant.",
+        "Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius.",
+        "Use {a}^2/{b}. Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius."
+      ],
+      "solution": "Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Mass {a} kg moves at {b} m/s on radius 2 m. Find radial force.",
+      "answer": "{a}*{b}^2/2",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "circular-motion-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.64,
+      "expectedSeconds": 70,
+      "hints": [
+        "Identify which real interaction supplies the inward resultant.",
+        "Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius.",
+        "Use {a}*{b}^2/2. Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius."
+      ],
+      "solution": "Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A circular speed doubles at fixed radius. By what factor does inward acceleration change?",
+      "answer": "4",
+      "unit": "",
+      "kind": "numeric",
+      "id": "circular-motion-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.77,
+      "expectedSeconds": 95,
+      "hints": [
+        "Identify which real interaction supplies the inward resultant.",
+        "Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius.",
+        "Use 4. Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius."
+      ],
+      "solution": "Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to circular motion & inward acceleration. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*cos(x)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "a_c=v^2/r,\\qquad F_{radial}=mv^2/r",
+      "rule": "Definition / physical model",
+      "concept": "trig"
+    },
+    {
+      "expression": "a_c=v^2/r,\\qquad F_{radial}=mv^2/r",
+      "rule": "Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius.",
+      "concept": "newton-2"
+    },
+    {
+      "expression": "\\text{Example: }2.25\\;m/s^2",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "circular-motion"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius.",
+    "keywords": [
+      [
+        "velocity"
+      ],
+      [
+        "difference"
+      ]
+    ]
+  },
+  "summary": "Even at constant speed, a circular trajectory changes velocity because direction turns. The required acceleration points inward, toward the centre of curvature."
+}
+---
+
+## Intuition
+
+Even at constant speed, a circular trajectory changes velocity because direction turns. The required acceleration points inward, toward the centre of curvature.
+
+## Formalism
+
+$$a_c=v^2/r,\qquad F_{radial}=mv^2/r$$
+
+Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius.
+
+[Explore trig](concept:trig). [Explore acceleration](concept:acceleration). [Explore newton 2](concept:newton-2).
+
+## Worked example
+
+Speed is 3 m/s on radius 4 m. Find inward acceleration.
+
+Start with the defining relationship. Two nearby velocity arrows differ by the same small angle as their radius arrows. Their difference has magnitude v times the small angle; dividing by time gives v squared over radius. Substitute the given values: **`3^2/4` = 2.25 m/s^2**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Centripetal describes the net radial force, not an extra force to add. Variable speed can also require tangential acceleration.
+
+A common trap is: **adding a separate centripetal force to tension or gravity**. Identify which real interaction supplies the inward resultant.

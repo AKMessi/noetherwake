@@ -1,0 +1,170 @@
+---
+{
+  "id": "friction",
+  "title": "Friction: a constraint & a threshold",
+  "prerequisites": [
+    "free-body",
+    "inequalities"
+  ],
+  "domain": "physics",
+  "strand": "Mechanics",
+  "boundary": "The coefficients are empirical approximations; friction can depend on speed, surface condition and temperature.",
+  "softPrerequisites": [],
+  "difficulty": 0.58,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "friction-gap",
+      "description": "Static friction always equals its maximum",
+      "remediation": "Compute the force required for no slip before comparing against the ceiling."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "A surface has N={a}*10 N and kinetic coefficient 0.2. Find kinetic friction magnitude.",
+      "answer": "2*{a}",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "friction-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.45,
+      "expectedSeconds": 45,
+      "hints": [
+        "Compute the force required for no slip before comparing against the ceiling.",
+        "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established.",
+        "Use 2*{a}. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established."
+      ],
+      "solution": "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Maximum static friction is {a}+{b} N. A horizontal push of {a} N is balanced. Find actual friction magnitude.",
+      "answer": "{a}",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "friction-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.58,
+      "expectedSeconds": 70,
+      "hints": [
+        "Compute the force required for no slip before comparing against the ceiling.",
+        "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established.",
+        "Use {a}. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established."
+      ],
+      "solution": "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "N={a}*10 N and static coefficient 0.5. Find maximum static friction.",
+      "answer": "5*{a}",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "friction-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.71,
+      "expectedSeconds": 95,
+      "hints": [
+        "Compute the force required for no slip before comparing against the ceiling.",
+        "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established.",
+        "Use 5*{a}. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established."
+      ],
+      "solution": "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to friction: a constraint & a threshold. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x/10",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "|f_s|\\le\\mu_sN,\\qquad |f_k|=\\mu_kN",
+      "rule": "Definition / physical model",
+      "concept": "free-body"
+    },
+    {
+      "expression": "|f_s|\\le\\mu_sN,\\qquad |f_k|=\\mu_kN",
+      "rule": "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established.",
+      "concept": "inequalities"
+    },
+    {
+      "expression": "\\text{Example: }6\\;N",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "friction"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established.",
+    "keywords": [
+      [
+        "horizontal"
+      ],
+      [
+        "balance"
+      ]
+    ]
+  },
+  "summary": "Static friction supplies only the force needed to prevent relative slipping, up to a limit. Once surfaces slide, kinetic friction is often approximated by a fixed coefficient times normal force."
+}
+---
+
+## Intuition
+
+Static friction supplies only the force needed to prevent relative slipping, up to a limit. Once surfaces slide, kinetic friction is often approximated by a fixed coefficient times normal force.
+
+## Formalism
+
+$$|f_s|\le\mu_sN,\qquad |f_k|=\mu_kN$$
+
+Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established.
+
+[Explore free body](concept:free-body). [Explore inequalities](concept:inequalities).
+
+## Worked example
+
+A surface has N=3*10 N and kinetic coefficient 0.2. Find kinetic friction magnitude.
+
+Start with the defining relationship. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. Substitute the given values: **`2*3` = 6 N**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+The coefficients are empirical approximations; friction can depend on speed, surface condition and temperature.
+
+A common trap is: **static friction always equals its maximum**. Compute the force required for no slip before comparing against the ceiling.

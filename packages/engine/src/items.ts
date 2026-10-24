@@ -5,9 +5,10 @@ export function arithmetic(source:string,variables:Record<string,number>={}):num
  const normalized=source.replaceAll('π','pi').replaceAll('**','^');const tokens=normalized.match(/(?:\d*\.)?\d+(?:e[+-]?\d+)?|[a-zA-Z]+|[+\-*/^(),]/g)??[];
  if(tokens.join('')!==normalized.replace(/\s/g,''))throw Error('Use numbers and arithmetic operators.');let at=0;
  const functions:Record<string,(x:number)=>number>={sin:Math.sin,cos:Math.cos,tan:Math.tan,sqrt:Math.sqrt,exp:Math.exp,ln:Math.log,abs:Math.abs};
- function atom():number{const t=tokens[at++];if(t==='+')return atom();if(t==='-')return -atom();if(t==='('){const v=sum();if(tokens[at++]!==')')throw Error('Close the parenthesis.');return v;}if(t in functions){if(tokens[at++]!=='(')throw Error('Function needs parentheses.');const v=sum();if(tokens[at++]!==')')throw Error('Close the parenthesis.');return functions[t](v);}if(t==='pi')return Math.PI;if(t==='e')return Math.E;if(Object.hasOwn(variables,t))return variables[t];const n=Number(t);if(!t||!Number.isFinite(n))throw Error('Unknown value.');return n;}
- function power():number{const n=atom();return tokens[at]==='^'?(at++,n**power()):n;}
- function product():number{let v=power();while(tokens[at]==='*'||tokens[at]==='/'){const op=tokens[at++],b=power();v=op==='*'?v*b:v/b;}return v;}
+ function atom():number{const t=tokens[at++];if(t==='('){const v=sum();if(tokens[at++]!==')')throw Error('Close the parenthesis.');return v;}if(t in functions){if(tokens[at++]!=='(')throw Error('Function needs parentheses.');const v=sum();if(tokens[at++]!==')')throw Error('Close the parenthesis.');return functions[t](v);}if(t==='pi')return Math.PI;if(t==='e')return Math.E;if(Object.hasOwn(variables,t))return variables[t];const n=Number(t);if(!t||!Number.isFinite(n))throw Error('Unknown value.');return n;}
+ function power():number{const n=atom();return tokens[at]==='^'?(at++,n**unary()):n;}
+ function unary():number{if(tokens[at]==='+'){at++;return unary();}if(tokens[at]==='-'){at++;return -unary();}return power();}
+ function product():number{let v=unary();while(tokens[at]==='*'||tokens[at]==='/'){const op=tokens[at++],b=unary();v=op==='*'?v*b:v/b;}return v;}
  function sum():number{let v=product();while(tokens[at]==='+'||tokens[at]==='-'){const op=tokens[at++],b=product();v=op==='+'?v+b:v-b;}return v;}
  const value=sum();if(at!==tokens.length||!Number.isFinite(value))throw Error('Expression must be finite.');return value;
 }

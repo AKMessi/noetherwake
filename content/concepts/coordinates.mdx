@@ -1,0 +1,170 @@
+---
+{
+  "id": "coordinates",
+  "title": "Coordinates & distance",
+  "prerequisites": [
+    "signed-numbers",
+    "exponents"
+  ],
+  "domain": "math",
+  "strand": "Geometry",
+  "boundary": "This formula assumes flat Euclidean space and matching axis units. A map projection can distort physical distances.",
+  "softPrerequisites": [],
+  "difficulty": 0.21,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "coordinates-gap",
+      "description": "Adding coordinates instead of subtracting",
+      "remediation": "Translate both points by the same vector: their separation must stay unchanged."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Find the distance from (0,0) to ({a},{b}).",
+      "answer": "sqrt({a}^2+{b}^2)",
+      "unit": "",
+      "kind": "numeric",
+      "id": "coordinates-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.16,
+      "expectedSeconds": 45,
+      "hints": [
+        "Translate both points by the same vector: their separation must stay unchanged.",
+        "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance.",
+        "Use sqrt({a}^2+{b}^2). The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance."
+      ],
+      "solution": "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A point moves from x=-{a} to x={b}. Find its signed displacement.",
+      "answer": "{a}+{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "coordinates-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.29,
+      "expectedSeconds": 70,
+      "hints": [
+        "Translate both points by the same vector: their separation must stay unchanged.",
+        "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance.",
+        "Use {a}+{b}. The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance."
+      ],
+      "solution": "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "On the x-axis, place the point whose coordinate is {a}+{b}. Enter its x-coordinate.",
+      "answer": "{a}+{b}",
+      "unit": "",
+      "kind": "point",
+      "id": "coordinates-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.42,
+      "expectedSeconds": 95,
+      "hints": [
+        "Translate both points by the same vector: their separation must stay unchanged.",
+        "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance.",
+        "Use {a}+{b}. The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance."
+      ],
+      "solution": "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to coordinates & distance. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "sqrt(x^2+a^2)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}",
+      "rule": "Definition / physical model",
+      "concept": "signed-numbers"
+    },
+    {
+      "expression": "d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}",
+      "rule": "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance.",
+      "concept": "exponents"
+    },
+    {
+      "expression": "\\text{Example: }5\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "coordinates"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance.",
+    "keywords": [
+      [
+        "horizontal"
+      ],
+      [
+        "vertical"
+      ]
+    ]
+  },
+  "summary": "Coordinates turn location into numbers relative to an origin and axes. The distance between two points depends on the change along each axis, not their absolute addresses."
+}
+---
+
+## Intuition
+
+Coordinates turn location into numbers relative to an origin and axes. The distance between two points depends on the change along each axis, not their absolute addresses.
+
+## Formalism
+
+$$d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$$
+
+The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance.
+
+[Explore signed numbers](concept:signed-numbers). [Explore exponents](concept:exponents).
+
+## Worked example
+
+Find the distance from (0,0) to (3,4).
+
+Start with the defining relationship. The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. Substitute the given values: **`sqrt(3^2+4^2)` = 5 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+This formula assumes flat Euclidean space and matching axis units. A map projection can distort physical distances.
+
+A common trap is: **adding coordinates instead of subtracting**. Translate both points by the same vector: their separation must stay unchanged.

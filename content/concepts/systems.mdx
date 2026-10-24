@@ -1,0 +1,169 @@
+---
+{
+  "id": "systems",
+  "title": "Systems & intersecting constraints",
+  "prerequisites": [
+    "linear-functions"
+  ],
+  "domain": "math",
+  "strand": "Algebra",
+  "boundary": "Parallel distinct lines have no common solution; coincident lines have infinitely many. A numerical solver must detect both cases.",
+  "softPrerequisites": [],
+  "difficulty": 0.24,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "systems-gap",
+      "description": "Combining only one side of the equations",
+      "remediation": "Add the entire left sides and entire right sides as equal quantities."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Solve x+y={a}+{b}, x-y={a}-{b}. Enter x.",
+      "answer": "{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "systems-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.19,
+      "expectedSeconds": 45,
+      "hints": [
+        "Add the entire left sides and entire right sides as equal quantities.",
+        "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution.",
+        "Use {a}. Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution."
+      ],
+      "solution": "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Solve x+y={a}+{b}, x-y={a}-{b}. Enter y.",
+      "answer": "{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "systems-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.32,
+      "expectedSeconds": 70,
+      "hints": [
+        "Add the entire left sides and entire right sides as equal quantities.",
+        "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution.",
+        "Use {b}. Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution."
+      ],
+      "solution": "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "If 2x+y={a} and x+y={b}, find x.",
+      "answer": "{a}-{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "systems-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.45,
+      "expectedSeconds": 95,
+      "hints": [
+        "Add the entire left sides and entire right sides as equal quantities.",
+        "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution.",
+        "Use {a}-{b}. Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution."
+      ],
+      "solution": "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to systems & intersecting constraints. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a-x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "x+y=s,\\quad x-y=d\\quad\\Rightarrow\\quad x=\\frac{s+d}{2}",
+      "rule": "Definition / physical model",
+      "concept": "linear-functions"
+    },
+    {
+      "expression": "x+y=s,\\quad x-y=d\\quad\\Rightarrow\\quad x=\\frac{s+d}{2}",
+      "rule": "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution.",
+      "concept": "linear-functions"
+    },
+    {
+      "expression": "\\text{Example: }3\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "systems"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution.",
+    "keywords": [
+      [
+        "equations"
+      ],
+      [
+        "positive"
+      ]
+    ]
+  },
+  "summary": "Two equations constrain the same unknowns. Their common solution is where both stories are true at once. Elimination combines constraints so one unknown cancels."
+}
+---
+
+## Intuition
+
+Two equations constrain the same unknowns. Their common solution is where both stories are true at once. Elimination combines constraints so one unknown cancels.
+
+## Formalism
+
+$$x+y=s,\quad x-y=d\quad\Rightarrow\quad x=\frac{s+d}{2}$$
+
+Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution.
+
+[Explore linear functions](concept:linear-functions).
+
+## Worked example
+
+Solve x+y=3+4, x-y=3-4. Enter x.
+
+Start with the defining relationship. Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. Substitute the given values: **`3` = 3 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Parallel distinct lines have no common solution; coincident lines have infinitely many. A numerical solver must detect both cases.
+
+A common trap is: **combining only one side of the equations**. Add the entire left sides and entire right sides as equal quantities.

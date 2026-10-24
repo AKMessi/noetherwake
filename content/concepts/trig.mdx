@@ -1,0 +1,170 @@
+---
+{
+  "id": "trig",
+  "title": "Trigonometry as projection",
+  "prerequisites": [
+    "radians",
+    "coordinates"
+  ],
+  "domain": "math",
+  "strand": "Trigonometry",
+  "boundary": "Tangent is undefined when cosine is zero. Inverse trig functions return principal branches, not every possible angle.",
+  "softPrerequisites": [],
+  "difficulty": 0.3,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "trig-gap",
+      "description": "Swapping the adjacent and opposite sides",
+      "remediation": "Draw the angle against the horizontal axis and trace its horizontal shadow."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "A radius is {a} m. Find its vertical projection at pi/2 radians.",
+      "answer": "{a}",
+      "unit": "m",
+      "kind": "numeric",
+      "id": "trig-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.23,
+      "expectedSeconds": 45,
+      "hints": [
+        "Draw the angle against the horizontal axis and trace its horizontal shadow.",
+        "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle.",
+        "Use {a}. Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle."
+      ],
+      "solution": "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "A vector has magnitude {a}. Find its horizontal component at pi/3.",
+      "answer": "{a}/2",
+      "unit": "",
+      "kind": "numeric",
+      "id": "trig-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.36,
+      "expectedSeconds": 70,
+      "hints": [
+        "Draw the angle against the horizontal axis and trace its horizontal shadow.",
+        "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle.",
+        "Use {a}/2. Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle."
+      ],
+      "solution": "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Evaluate sin(pi)^2+cos(pi)^2.",
+      "answer": "1",
+      "unit": "",
+      "kind": "numeric",
+      "id": "trig-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.49,
+      "expectedSeconds": 95,
+      "hints": [
+        "Draw the angle against the horizontal axis and trace its horizontal shadow.",
+        "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle.",
+        "Use 1. Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle."
+      ],
+      "solution": "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to trigonometry as projection. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*sin(x)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "x=r\\cos\\theta,\\quad y=r\\sin\\theta,\\quad \\sin^2\\theta+\\cos^2\\theta=1",
+      "rule": "Definition / physical model",
+      "concept": "radians"
+    },
+    {
+      "expression": "x=r\\cos\\theta,\\quad y=r\\sin\\theta,\\quad \\sin^2\\theta+\\cos^2\\theta=1",
+      "rule": "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle.",
+      "concept": "coordinates"
+    },
+    {
+      "expression": "\\text{Example: }3\\;m",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "trig"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle.",
+    "keywords": [
+      [
+        "pythagoras"
+      ],
+      [
+        "applied"
+      ]
+    ]
+  },
+  "summary": "A rotating radius has horizontal and vertical shadows. Cosine and sine are those shadows divided by radius. The unit circle extends right-triangle ratios to every angle."
+}
+---
+
+## Intuition
+
+A rotating radius has horizontal and vertical shadows. Cosine and sine are those shadows divided by radius. The unit circle extends right-triangle ratios to every angle.
+
+## Formalism
+
+$$x=r\cos\theta,\quad y=r\sin\theta,\quad \sin^2\theta+\cos^2\theta=1$$
+
+Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle.
+
+[Explore radians](concept:radians). [Explore coordinates](concept:coordinates).
+
+## Worked example
+
+A radius is 3 m. Find its vertical projection at pi/2 radians.
+
+Start with the defining relationship. Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. Substitute the given values: **`3` = 3 m**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Tangent is undefined when cosine is zero. Inverse trig functions return principal branches, not every possible angle.
+
+A common trap is: **swapping the adjacent and opposite sides**. Draw the angle against the horizontal axis and trace its horizontal shadow.

@@ -1,0 +1,170 @@
+---
+{
+  "id": "inverse-functions",
+  "title": "Inverse functions & undoing",
+  "prerequisites": [
+    "functions",
+    "equations"
+  ],
+  "domain": "math",
+  "strand": "Functions",
+  "boundary": "The inverse of x squared requires a chosen branch. The notation f inverse does not mean the reciprocal 1/f.",
+  "softPrerequisites": [],
+  "difficulty": 0.28,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "inverse-functions-gap",
+      "description": "Confusing inverse and reciprocal",
+      "remediation": "Test whether applying your candidate after f returns the original input."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "f(x)={a}x+{b}. Find f inverse at {b}+{a}*3.",
+      "answer": "3",
+      "unit": "",
+      "kind": "numeric",
+      "id": "inverse-functions-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.22,
+      "expectedSeconds": 45,
+      "hints": [
+        "Test whether applying your candidate after f returns the original input.",
+        "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost.",
+        "Use 3. Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost."
+      ],
+      "solution": "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "f(x)=x/{a}. Find f inverse at {b}.",
+      "answer": "{a}*{b}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "inverse-functions-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.35,
+      "expectedSeconds": 70,
+      "hints": [
+        "Test whether applying your candidate after f returns the original input.",
+        "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost.",
+        "Use {a}*{b}. Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost."
+      ],
+      "solution": "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "On x>=0, f(x)=x^2. Find f inverse at {a}^2.",
+      "answer": "{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "inverse-functions-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.48,
+      "expectedSeconds": 95,
+      "hints": [
+        "Test whether applying your candidate after f returns the original input.",
+        "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost.",
+        "Use {a}. Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost."
+      ],
+      "solution": "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to inverse functions & undoing. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "(x-2)/a",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "f^{-1}(f(x))=x",
+      "rule": "Definition / physical model",
+      "concept": "functions"
+    },
+    {
+      "expression": "f^{-1}(f(x))=x",
+      "rule": "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost.",
+      "concept": "equations"
+    },
+    {
+      "expression": "\\text{Example: }3\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "inverse-functions"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost.",
+    "keywords": [
+      [
+        "relation"
+      ],
+      [
+        "restrict"
+      ]
+    ]
+  },
+  "summary": "An inverse reconstructs the input from an output. It exists as a function only when different allowed inputs do not collapse onto the same output."
+}
+---
+
+## Intuition
+
+An inverse reconstructs the input from an output. It exists as a function only when different allowed inputs do not collapse onto the same output.
+
+## Formalism
+
+$$f^{-1}(f(x))=x$$
+
+Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost.
+
+[Explore functions](concept:functions). [Explore equations](concept:equations).
+
+## Worked example
+
+f(x)=3x+4. Find f inverse at 4+3*3.
+
+Start with the defining relationship. Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. Substitute the given values: **`3` = 3 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+The inverse of x squared requires a chosen branch. The notation f inverse does not mean the reciprocal 1/f.
+
+A common trap is: **confusing inverse and reciprocal**. Test whether applying your candidate after f returns the original input.

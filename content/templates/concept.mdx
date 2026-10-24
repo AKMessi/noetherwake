@@ -1,0 +1,13 @@
+# Authoring guide
+
+Copy a nearby complete file from `content/concepts/`; preserve its YAML field structure and give all IDs new names. JSON is used as YAML-compatible frontmatter to make escaping explicit. Keep lessons as trusted MDX without arbitrary JSX components. Inline math is `$...$`; display math must occupy its own paragraph between `$$` delimiters. Use `concept:<id>` links.
+
+1. Write a concrete intuition, a mechanism, a formal equation and a real limitation. Physics must derive from a principle and link its math prerequisites.
+2. Create three different questions, with positive bounded integer parameters `a` and `b` or explicitly declare other names. Answers use safe arithmetic (`+ - * / ^ sqrt exp sin cos ln pi`) or symbolic expressions. Say if a physical constant is normalized; never silently set Coulomb constant to one.
+3. Define a named misconception, targeted remediation and nudge/partial/full hints. Choose multiple-choice distractors that each diagnose a known confusion.
+4. Set units, seconds and difficulty as priors. `N/C`, `m/s^2`, `kg*m/s` and common SI derived units work; see `dimension()` before inventing a unit.
+5. Author a parameter-linked formula `a,x` for the interactive; pick safe axes and ranges. Ask for a prediction that can be tested by varying `a`.
+6. Add rule-annotated derivation steps and exact prerequisite links. A proof-skeleton can assess structure but does not establish arbitrary proof validity.
+7. Run `npm run content:check` (1,000 seeds each), inspect the rendered lesson, solve all three tasks independently and request a subject-matter review. Automated checks cannot establish educational quality.
+
+`author-content.py` records the initial authored curriculum. Do not rerun it after hand-editing a concept; the `.mdx` file is authoritative. Its text is a bootstrap record, not a build dependency.

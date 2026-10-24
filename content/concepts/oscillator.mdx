@@ -1,0 +1,171 @@
+---
+{
+  "id": "oscillator",
+  "title": "Oscillations & restoring forces",
+  "prerequisites": [
+    "newton-2",
+    "differential-equations",
+    "trig-derivatives"
+  ],
+  "domain": "physics",
+  "strand": "Oscillations",
+  "boundary": "Hooke law is a small-deformation approximation. Damping changes amplitude and a driving force can supply energy.",
+  "softPrerequisites": [],
+  "difficulty": 0.68,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "oscillator-gap",
+      "description": "Larger amplitude always means a longer period",
+      "remediation": "For the linear equation, amplitude multiplies both sides and cancels from the frequency condition."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Spring stiffness is {a} N/m and mass {b} kg. Find angular frequency.",
+      "answer": "sqrt({a}/{b})",
+      "unit": "rad/s",
+      "kind": "numeric",
+      "id": "oscillator-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.53,
+      "expectedSeconds": 45,
+      "hints": [
+        "For the linear equation, amplitude multiplies both sides and cancels from the frequency condition.",
+        "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency.",
+        "Use sqrt({a}/{b}). Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency."
+      ],
+      "solution": "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Spring stiffness is {a} N/m and displacement {b} m. Find signed spring force.",
+      "answer": "-{a}*{b}",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "oscillator-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.66,
+      "expectedSeconds": 70,
+      "hints": [
+        "For the linear equation, amplitude multiplies both sides and cancels from the frequency condition.",
+        "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency.",
+        "Use -{a}*{b}. Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency."
+      ],
+      "solution": "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For mass {a} kg and stiffness {b} N/m, find period.",
+      "answer": "2*pi*sqrt({a}/{b})",
+      "unit": "s",
+      "kind": "numeric",
+      "id": "oscillator-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.79,
+      "expectedSeconds": 95,
+      "hints": [
+        "For the linear equation, amplitude multiplies both sides and cancels from the frequency condition.",
+        "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency.",
+        "Use 2*pi*sqrt({a}/{b}). Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency."
+      ],
+      "solution": "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to oscillations & restoring forces. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*cos(x)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "m\\ddot x=-kx,\\quad\\omega=\\sqrt{k/m},\\quad T=2\\pi\\sqrt{m/k}",
+      "rule": "Definition / physical model",
+      "concept": "newton-2"
+    },
+    {
+      "expression": "m\\ddot x=-kx,\\quad\\omega=\\sqrt{k/m},\\quad T=2\\pi\\sqrt{m/k}",
+      "rule": "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency.",
+      "concept": "newton-2"
+    },
+    {
+      "expression": "\\text{Example: }0.86603\\;rad/s",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "oscillator"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency.",
+    "keywords": [
+      [
+        "derivative"
+      ],
+      [
+        "frequency"
+      ]
+    ]
+  },
+  "summary": "A restoring force points back toward equilibrium. In an ideal spring it grows in proportion to displacement, producing an acceleration that opposes position and repeats in time."
+}
+---
+
+## Intuition
+
+A restoring force points back toward equilibrium. In an ideal spring it grows in proportion to displacement, producing an acceleration that opposes position and repeats in time.
+
+## Formalism
+
+$$m\ddot x=-kx,\quad\omega=\sqrt{k/m},\quad T=2\pi\sqrt{m/k}$$
+
+Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency.
+
+[Explore newton 2](concept:newton-2). [Explore differential equations](concept:differential-equations). [Explore trig derivatives](concept:trig-derivatives).
+
+## Worked example
+
+Spring stiffness is 3 N/m and mass 4 kg. Find angular frequency.
+
+Start with the defining relationship. Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. Substitute the given values: **`sqrt(3/4)` = 0.86603 rad/s**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Hooke law is a small-deformation approximation. Damping changes amplitude and a driving force can supply energy.
+
+A common trap is: **larger amplitude always means a longer period**. For the linear equation, amplitude multiplies both sides and cancels from the frequency condition.

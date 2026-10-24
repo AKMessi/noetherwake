@@ -1,0 +1,170 @@
+---
+{
+  "id": "newton-1",
+  "title": "Inertia & the meaning of net force",
+  "prerequisites": [
+    "velocity",
+    "vectors"
+  ],
+  "domain": "physics",
+  "strand": "Mechanics",
+  "boundary": "Accelerating frames need additional inertial terms. Zero velocity at an instant does not establish zero force.",
+  "softPrerequisites": [],
+  "difficulty": 0.55,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "newton-1-gap",
+      "description": "A moving object must have a forward net force",
+      "remediation": "Imagine friction removed: constant velocity has no changing momentum to explain."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "An object moves at {a} m/s with zero net force. Find velocity after {b} s.",
+      "answer": "{a}",
+      "unit": "m/s",
+      "kind": "numeric",
+      "id": "newton-1-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.43,
+      "expectedSeconds": 45,
+      "hints": [
+        "Imagine friction removed: constant velocity has no changing momentum to explain.",
+        "Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes.",
+        "Use {a}. Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes."
+      ],
+      "solution": "Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "An inertial object has zero net force. Find acceleration.",
+      "answer": "0",
+      "unit": "m/s^2",
+      "kind": "numeric",
+      "id": "newton-1-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.56,
+      "expectedSeconds": 70,
+      "hints": [
+        "Imagine friction removed: constant velocity has no changing momentum to explain.",
+        "Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes.",
+        "Use 0. Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes."
+      ],
+      "solution": "Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "Two opposite horizontal forces have equal magnitude {a} N. Find net horizontal force.",
+      "answer": "0",
+      "unit": "N",
+      "kind": "numeric",
+      "id": "newton-1-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.69,
+      "expectedSeconds": 95,
+      "hints": [
+        "Imagine friction removed: constant velocity has no changing momentum to explain.",
+        "Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes.",
+        "Use 0. Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes."
+      ],
+      "solution": "Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to inertia & the meaning of net force. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a*x",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "\\sum\\mathbf F=0\\quad\\Rightarrow\\quad\\mathbf v=\\text{constant}",
+      "rule": "Definition / physical model",
+      "concept": "velocity"
+    },
+    {
+      "expression": "\\sum\\mathbf F=0\\quad\\Rightarrow\\quad\\mathbf v=\\text{constant}",
+      "rule": "Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes.",
+      "concept": "vectors"
+    },
+    {
+      "expression": "\\text{Example: }3\\;m/s",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "newton-1"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes.",
+    "keywords": [
+      [
+        "defines"
+      ],
+      [
+        "inertial"
+      ]
+    ]
+  },
+  "summary": "Uniform motion does not need a continuing push. Net force measures the change in motion, not motion itself. Zero net force allows any constant velocity in an inertial frame."
+}
+---
+
+## Intuition
+
+Uniform motion does not need a continuing push. Net force measures the change in motion, not motion itself. Zero net force allows any constant velocity in an inertial frame.
+
+## Formalism
+
+$$\sum\mathbf F=0\quad\Rightarrow\quad\mathbf v=\text{constant}$$
+
+Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes.
+
+[Explore velocity](concept:velocity). [Explore vectors](concept:vectors).
+
+## Worked example
+
+An object moves at 3 m/s with zero net force. Find velocity after 4 s.
+
+Start with the defining relationship. Newton first law defines inertial frames: frames where force-free bodies maintain velocity. The second law preserves this condition when net force vanishes. Substitute the given values: **`3` = 3 m/s**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Accelerating frames need additional inertial terms. Zero velocity at an instant does not establish zero force.
+
+A common trap is: **a moving object must have a forward net force**. Imagine friction removed: constant velocity has no changing momentum to explain.

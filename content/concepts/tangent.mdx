@@ -1,0 +1,170 @@
+---
+{
+  "id": "tangent",
+  "title": "Tangent lines & local prediction",
+  "prerequisites": [
+    "derivative",
+    "linear-functions"
+  ],
+  "domain": "math",
+  "strand": "Calculus",
+  "boundary": "Approximation error grows with distance and curvature. A tangent is local information, not an exact global replacement.",
+  "softPrerequisites": [],
+  "difficulty": 0.41,
+  "representations": [
+    "symbolic",
+    "geometric",
+    "numeric",
+    "physical"
+  ],
+  "misconceptions": [
+    {
+      "id": "tangent-gap",
+      "description": "Using the slope without anchoring the line",
+      "remediation": "Start the tangent at (a,f(a)); only then add slope times displacement."
+    }
+  ],
+  "generators": [
+    {
+      "prompt": "Use the tangent to x^2 at x={a} to estimate f({a}+0.1).",
+      "answer": "{a}^2+0.2*{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "tangent-1",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.32,
+      "expectedSeconds": 45,
+      "hints": [
+        "Start the tangent at (a,f(a)); only then add slope times displacement.",
+        "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order.",
+        "Use {a}^2+0.2*{a}. The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order."
+      ],
+      "solution": "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "At x=0 a function is {b} with derivative {a}. Predict its tangent value at x=2.",
+      "answer": "{b}+2*{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "tangent-2",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.45,
+      "expectedSeconds": 70,
+      "hints": [
+        "Start the tangent at (a,f(a)); only then add slope times displacement.",
+        "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order.",
+        "Use {b}+2*{a}. The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order."
+      ],
+      "solution": "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above."
+    },
+    {
+      "prompt": "For x^2, what is the slope of the tangent at x={a}?",
+      "answer": "2*{a}",
+      "unit": "",
+      "kind": "numeric",
+      "id": "tangent-3",
+      "parameters": {
+        "a": [
+          2,
+          8
+        ],
+        "b": [
+          2,
+          9
+        ]
+      },
+      "difficulty": 0.58,
+      "expectedSeconds": 95,
+      "hints": [
+        "Start the tangent at (a,f(a)); only then add slope times displacement.",
+        "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order.",
+        "Use 2*{a}. The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order."
+      ],
+      "solution": "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above."
+    }
+  ],
+  "interactive": {
+    "kind": "curve",
+    "prompt": "Change the parameter and connect the curve to tangent lines & local prediction. Commit a prediction before seeing the changed curve.",
+    "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
+    "parameterLabel": "a",
+    "min": 1,
+    "max": 6,
+    "initial": 2,
+    "formula": "a^2+2*a*(x-a)",
+    "xLabel": "x",
+    "yLabel": "position / output"
+  },
+  "derivation": [
+    {
+      "expression": "f(a+h)\\approx f(a)+f\\prime(a)h",
+      "rule": "Definition / physical model",
+      "concept": "derivative"
+    },
+    {
+      "expression": "f(a+h)\\approx f(a)+f\\prime(a)h",
+      "rule": "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order.",
+      "concept": "derivative"
+    },
+    {
+      "expression": "\\text{Example: }9.6\\;",
+      "rule": "Substitute the given values and preserve dimensions.",
+      "concept": "tangent"
+    }
+  ],
+  "explanation": {
+    "prompt": "Explain why this works: The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order.",
+    "keywords": [
+      [
+        "derivative"
+      ],
+      [
+        "definition"
+      ]
+    ]
+  },
+  "summary": "A tangent line is the best first-order prediction near a known point. It keeps the known value and extends with the instantaneous slope."
+}
+---
+
+## Intuition
+
+A tangent line is the best first-order prediction near a known point. It keeps the known value and extends with the instantaneous slope.
+
+## Formalism
+
+$$f(a+h)\approx f(a)+f\prime(a)h$$
+
+The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order.
+
+[Explore derivative](concept:derivative). [Explore linear functions](concept:linear-functions).
+
+## Worked example
+
+Use the tangent to x^2 at x=3 to estimate f(3+0.1).
+
+Start with the defining relationship. The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. Substitute the given values: **`3^2+0.2*3` = 9.6 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+
+## Where it breaks
+
+Approximation error grows with distance and curvature. A tangent is local information, not an exact global replacement.
+
+A common trap is: **using the slope without anchoring the line**. Start the tangent at (a,f(a)); only then add slope times displacement.
