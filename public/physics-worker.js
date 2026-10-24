@@ -1,0 +1,2 @@
+// RK4 integration runs off the UI thread. Messages contain SI acceleration.
+self.onmessage=({data})=>{const a=Number(data.acceleration);if(!Number.isFinite(a))return;let x=0,v=1;const dt=5/180,points=[];for(let i=0;i<=180;i++){points.push({t:i*dt,x,v});const k1x=v,k1v=a,k2x=v+k1v*dt/2,k2v=a,k3x=v+k2v*dt/2,k3v=a,k4x=v+k3v*dt,k4v=a;x+=dt*(k1x+2*k2x+2*k3x+k4x)/6;v+=dt*(k1v+2*k2v+2*k3v+k4v)/6;}self.postMessage(points);};

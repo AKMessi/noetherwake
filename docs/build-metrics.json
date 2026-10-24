@@ -1,0 +1,10 @@
+{
+  "totalBytes": 3862070,
+  "gzippedJavaScriptBytes": 660872,
+  "maxGzippedChunkBytes": 159259,
+  "budgets": {
+    "total": 12000000,
+    "javascript": 2000000,
+    "chunk": 700000
+  }
+}

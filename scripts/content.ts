@@ -19,7 +19,7 @@ for(const c of graph){const body=bodies.get(c.id)!;for(const name of ['Intuition
  for(const d of c.derivation){if(!ids.has(d.concept))errors.push(`${c.id}: broken rule link`);try{katex.renderToString(d.expression,{throwOnError:true});}catch(e){errors.push(`${c.id}: bad derivation math ${e}`);}}
  for(const math of body.matchAll(/\$\$([\s\S]*?)\$\$|\$([^$\n]+)\$/g))try{katex.renderToString(math[1]??math[2],{throwOnError:true});}catch(e){errors.push(`${c.id}: bad math ${e}`);}
  try{await compile(body,{remarkPlugins:[remarkMath]});}catch(e){errors.push(`${c.id}: MDX failed ${e}`);}
- c.html=String(await unified().use(remarkParse).use(remarkMath).use(remarkRehype).use(rehypeKatex,{throwOnError:true}).use(rehypeStringify).process(body));
+ c.html=String(await unified().use(remarkParse).use(remarkMath).use(remarkRehype).use(rehypeKatex).use(rehypeStringify).process(body));
  for(const template of c.generators){dimension(template.unit);for(let seed=0;seed<variants;seed++){const item=generate(c,template,seed);if(/\{[a-z]+\}/.test(item.prompt+item.answer))errors.push(`${template.id}: unresolved parameter`);if(!['symbolic','choice','ordering','error','proof'].includes(item.kind)){const answer=arithmetic(item.answer);if(Math.abs(answer)>1e10)errors.push(`${template.id}: implausible magnitude`);}if(item.choices&&!item.choices.some(o=>o.text===item.answer))errors.push(`${template.id}: no correct choice`);count++;}}
  for(let a=c.interactive.min;a<=c.interactive.max;a++)for(let x=.1;x<=5;x+=.5)arithmetic(c.interactive.formula,{a,x});
 }

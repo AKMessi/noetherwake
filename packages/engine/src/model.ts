@@ -18,6 +18,7 @@ export function observe(state:Learner,e:Evidence,graph:Concept[]):Learner{
  if(e.hints>=3)w=0;
  const b=posterior(q,e.difficulty,e.correct,e.guess),z=logit(q)+w*(logit(b)-logit(q));let p=1/(1+Math.exp(-z));
  if(e.correct&&!e.diagnostic)p+=(1-p)*.025*w;
+ if(e.correct&&e.hints>0&&k.p<.8)p=Math.min(p,.79);
  const fluent=e.correct&&e.hints===0&&e.attempts===1&&e.seconds<=1.5*e.expectedSeconds;
  const next:Knowledge={...k,p:clamp(p),n:k.n+w,last:e.at,observations:k.observations+(w>0?1:0),fluent:k.fluent+(fluent?1:0),effortful:k.effortful+(e.correct&&!fluent?1:0),failures:e.correct?0:k.failures+1,suspicion:k.suspicion*.35,confidenceError:(k.confidenceError*k.observations+(e.confidence-Number(e.correct))**2)/(k.observations+1),stability:w===0?k.stability:e.correct?k.stability*(e.hints?1.08:1.6+.6*retrievability(k,e.at)):Math.max(.2,k.stability*.5)};
  const knowledge={...state.knowledge,[e.concept]:next};
