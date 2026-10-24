@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "State what quantity is measured and derive its unit from the defining ratio.",
-        "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.",
-        "Use 1000*{a}. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator."
+        "Translate this question into its relationship before evaluating: 1000*{a}. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above.",
+        "The complete answer is 1000*{a} m. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above."
       ],
       "solution": "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "State what quantity is measured and derive its unit from the defining ratio.",
-        "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.",
-        "Use {a}/{b}. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator."
+        "Translate this question into its relationship before evaluating: {a}/{b}. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/{b} m/s. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above."
       ],
       "solution": "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "State what quantity is measured and derive its unit from the defining ratio.",
-        "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.",
-        "Use {a}*{b}. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} N. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above."
       ],
       "solution": "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to units & dimensional arguments. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "[v]=LT^{-1},\\quad[a]=LT^{-2},\\quad[F]=MLT^{-2}",
-      "rule": "Definition / physical model",
-      "concept": "ratios"
-    },
-    {
-      "expression": "[v]=LT^{-1},\\quad[a]=LT^{-2},\\quad[F]=MLT^{-2}",
-      "rule": "Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.",
+      "expression": "[v]=[\\Delta x]/[\\Delta t]=L/T",
+      "rule": "Derive speed dimensions from displacement per time.",
       "concept": "exponents"
     },
     {
-      "expression": "\\text{Example: }3000\\;m",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "units"
+      "expression": "[a]=[\\Delta v]/[\\Delta t]=L/T^2",
+      "rule": "A change in rate introduces another time denominator.",
+      "concept": "exponents"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A unit is part of a measurement, not an annotation added afterward. A rate divid
 
 ## Formalism
 
-$$[v]=LT^{-1},\quad[a]=LT^{-2},\quad[F]=MLT^{-2}$$
+$$
+[v]=LT^{-1},\quad[a]=LT^{-2},\quad[F]=MLT^{-2}
+$$
 
 Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.
 

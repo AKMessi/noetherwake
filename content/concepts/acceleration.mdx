@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Compare the signs of velocity and acceleration: matching signs increase speed in one dimension.",
-        "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value.",
-        "Use ({b}-{a})/2. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value."
+        "Translate this question into its relationship before evaluating: ({b}-{a})/2. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above.",
+        "The complete answer is ({b}-{a})/2 m/s^2. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above."
       ],
       "solution": "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Compare the signs of velocity and acceleration: matching signs increase speed in one dimension.",
-        "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value.",
-        "Use 4*{a}. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value."
+        "Translate this question into its relationship before evaluating: 4*{a}. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above.",
+        "The complete answer is 4*{a} m/s^2. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above."
       ],
       "solution": "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above."
     },
@@ -95,39 +95,34 @@
       "expectedSeconds": 95,
       "hints": [
         "Compare the signs of velocity and acceleration: matching signs increase speed in one dimension.",
-        "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value.",
-        "Use 2*{a}. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value."
+        "Translate this question into its relationship before evaluating: 2*{a}. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a} m/s^2. Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above."
       ],
       "solution": "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "motion",
-    "prompt": "Change the parameter and connect the curve to acceleration & changing velocity. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=x+a*x^2/2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
     "max": 6,
     "initial": 2,
-    "formula": "a*x",
+    "formula": "x+a*x^2/2",
     "xLabel": "t (s)",
-    "yLabel": "position / output"
+    "yLabel": "position x (m)"
   },
   "derivation": [
     {
-      "expression": "a=\\frac{dv}{dt}=\\frac{d^2x}{dt^2}",
-      "rule": "Definition / physical model",
-      "concept": "velocity"
-    },
-    {
-      "expression": "a=\\frac{dv}{dt}=\\frac{d^2x}{dt^2}",
-      "rule": "Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value.",
+      "expression": "a_{avg}=\\frac{v(t+h)-v(t)}h",
+      "rule": "Compare nearby velocities rather than positions.",
       "concept": "derivative"
     },
     {
-      "expression": "\\text{Example: }0.5\\;m/s^2",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "acceleration"
+      "expression": "a(t)=v\\prime(t)=x\\prime\\prime(t)",
+      "rule": "Take the instantaneous limit and differentiate position twice.",
+      "concept": "derivative"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Acceleration measures the rate of velocity change. It can change direction, spee
 
 ## Formalism
 
-$$a=\frac{dv}{dt}=\frac{d^2x}{dt^2}$$
+$$
+a=\frac{dv}{dt}=\frac{d^2x}{dt^2}
+$$
 
 Apply the local-rate definition to velocity. Integrating acceleration reconstructs velocity up to its initial value.
 

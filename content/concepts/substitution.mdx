@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Label each bound with its variable; map both endpoints through u=g(x).",
-        "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together.",
-        "Use {a}+0.5. Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together."
+        "Translate this question into its relationship before evaluating: {a}+0.5. Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}+0.5 . Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above."
       ],
       "solution": "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Label each bound with its variable; map both endpoints through u=g(x).",
-        "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together.",
-        "Use {b}^2+{a}. Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together."
+        "Translate this question into its relationship before evaluating: {b}^2+{a}. Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b}^2+{a} . Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above."
       ],
       "solution": "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Label each bound with its variable; map both endpoints through u=g(x).",
-        "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together.",
-        "Use exp({a})-1. Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together."
+        "Translate this question into its relationship before evaluating: exp({a})-1. Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above.",
+        "The complete answer is exp({a})-1 . Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above."
       ],
       "solution": "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to substitution: accumulate through a new variable. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=(x^2+a)^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\int f(g(x))g\\prime(x)\\,dx=\\int f(u)\\,du",
-      "rule": "Definition / physical model",
-      "concept": "fundamental-theorem"
-    },
-    {
-      "expression": "\\int f(g(x))g\\prime(x)\\,dx=\\int f(u)\\,du",
-      "rule": "Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together.",
+      "expression": "u=g(x),\\quad du=g\\prime(x)\\,dx",
+      "rule": "Carry both the new variable and the scale of its interval.",
       "concept": "chain-rule"
     },
     {
-      "expression": "\\text{Example: }3.5\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "substitution"
+      "expression": "\\int_a^b f(g(x))g\\prime(x)\\,dx=\\int_{g(a)}^{g(b)}f(u)\\,du",
+      "rule": "Transform the interval endpoints along with the integrand.",
+      "concept": "chain-rule"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A change of variable renames the inner process and accounts for how its scale ch
 
 ## Formalism
 
-$$\int f(g(x))g\prime(x)\,dx=\int f(u)\,du$$
+$$
+\int f(g(x))g\prime(x)\,dx=\int f(u)\,du
+$$
 
 Set u=g(x). Its differential du includes the inner rate g prime times dx, so both the integrand and interval measure transform together.
 

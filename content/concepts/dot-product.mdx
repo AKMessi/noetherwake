@@ -44,8 +44,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Parallel vectors must have maximal positive dot product; test the angle-zero case.",
-        "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part.",
-        "Use {a}*{b}+6. Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part."
+        "Translate this question into its relationship before evaluating: {a}*{b}+6. Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b}+6 . Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above."
       ],
       "solution": "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above."
     },
@@ -69,8 +69,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Parallel vectors must have maximal positive dot product; test the angle-zero case.",
-        "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part.",
-        "Use 0. Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part."
+        "Translate this question into its relationship before evaluating: 0. Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above.",
+        "The complete answer is 0 . Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above."
       ],
       "solution": "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above."
     },
@@ -94,15 +94,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Parallel vectors must have maximal positive dot product; test the angle-zero case.",
-        "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part.",
-        "Use {a}^2+{b}^2. Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part."
+        "Translate this question into its relationship before evaluating: {a}^2+{b}^2. Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}^2+{b}^2 . Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above."
       ],
       "solution": "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to dot product & alignment. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -114,19 +114,14 @@
   },
   "derivation": [
     {
-      "expression": "\\mathbf a\\cdot\\mathbf b=a_xb_x+a_yb_y=|a||b|\\cos\\theta",
-      "rule": "Definition / physical model",
+      "expression": "b_{\\parallel}=|\\mathbf b|\\cos\\theta",
+      "rule": "Project b onto the direction of a.",
       "concept": "vectors"
     },
     {
-      "expression": "\\mathbf a\\cdot\\mathbf b=a_xb_x+a_yb_y=|a||b|\\cos\\theta",
-      "rule": "Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part.",
+      "expression": "\\mathbf a\\cdot\\mathbf b=|\\mathbf a|b_{\\parallel}",
+      "rule": "Multiply the aligned component by the first vector magnitude.",
       "concept": "vectors"
-    },
-    {
-      "expression": "\\text{Example: }18\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "dot-product"
     }
   ],
   "explanation": {
@@ -150,7 +145,9 @@ The dot product measures how much one vector points along another. A perpendicul
 
 ## Formalism
 
-$$\mathbf a\cdot\mathbf b=a_xb_x+a_yb_y=|a||b|\cos\theta$$
+$$
+\mathbf a\cdot\mathbf b=a_xb_x+a_yb_y=|a||b|\cos\theta
+$$
 
 Project one vector onto the direction of the other and multiply by its length. Component products encode that same aligned part.
 

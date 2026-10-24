@@ -21,6 +21,16 @@
       "id": "inequalities-gap",
       "description": "Keeping the inequality sign when dividing by a negative",
       "remediation": "Place -2 and -5 on a number line; the reflected order explains the flip."
+    },
+    {
+      "id": "inequalities-negative-scaling",
+      "description": "A negative scaling reverses order",
+      "remediation": "Reflect both test values on the number line before reading the order."
+    },
+    {
+      "id": "inequalities-boundary-only",
+      "description": "An inequality is a region, not just its boundary",
+      "remediation": "Test x=0 and x=-4 in the original inequality to identify the permitted side."
     }
   ],
   "generators": [
@@ -44,8 +54,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Place -2 and -5 on a number line; the reflected order explains the flip.",
-        "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis.",
-        "Use {b}. Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis."
+        "Translate this question into its relationship before evaluating: {b}. Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b} . Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above."
       ],
       "solution": "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above."
     },
@@ -60,11 +70,11 @@
         },
         {
           "text": "x < -3",
-          "misconception": "inequalities-gap"
+          "misconception": "inequalities-negative-scaling"
         },
         {
           "text": "x = -3",
-          "misconception": "inequalities-gap"
+          "misconception": "inequalities-boundary-only"
         }
       ],
       "id": "inequalities-2",
@@ -82,8 +92,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Place -2 and -5 on a number line; the reflected order explains the flip.",
-        "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis.",
-        "Use x > -3. Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis."
+        "Translate this question into its relationship before evaluating: x > -3. Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above.",
+        "The complete answer is x > -3 . Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above."
       ],
       "solution": "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above."
     },
@@ -107,15 +117,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Place -2 and -5 on a number line; the reflected order explains the flip.",
-        "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis.",
-        "Use {b}-{a}. Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis."
+        "Translate this question into its relationship before evaluating: {b}-{a}. Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b}-{a} . Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above."
       ],
       "solution": "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to inequalities & order. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=-a*x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -127,19 +137,14 @@
   },
   "derivation": [
     {
-      "expression": "a<b\\;\\Rightarrow\\;-a>-b",
-      "rule": "Definition / physical model",
+      "expression": "-2x<6\\quad\\Rightarrow\\quad 2x>-6",
+      "rule": "Reflect the number line by multiplying both sides by -1.",
       "concept": "equations"
     },
     {
-      "expression": "a<b\\;\\Rightarrow\\;-a>-b",
-      "rule": "Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis.",
+      "expression": "x>-3",
+      "rule": "Divide by positive 2, which preserves order.",
       "concept": "equations"
-    },
-    {
-      "expression": "\\text{Example: }4\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "inequalities"
     }
   ],
   "explanation": {
@@ -163,7 +168,9 @@ An inequality names a region of possible values rather than one balance point. M
 
 ## Formalism
 
-$$a<b\;\Rightarrow\;-a>-b$$
+$$
+a<b\;\Rightarrow\;-a>-b
+$$
 
 Test the order with two concrete numbers. Their negatives appear in the opposite order on the same axis.
 

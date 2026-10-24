@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Use a small right triangle on the position graph and compute its slope.",
-        "Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope.",
-        "Use 2*{a}*{b}. Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope."
+        "Translate this question into its relationship before evaluating: 2*{a}*{b}. Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a}*{b} m/s. Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope. The answer follows by substitution into the relationship above."
       ],
       "solution": "Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Use a small right triangle on the position graph and compute its slope.",
-        "Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope.",
-        "Use {a}/{b}. Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope."
+        "Translate this question into its relationship before evaluating: {a}/{b}. Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/{b} m/s. Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope. The answer follows by substitution into the relationship above."
       ],
       "solution": "Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Use a small right triangle on the position graph and compute its slope.",
-        "Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope.",
-        "Use {a}. Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope."
+        "Translate this question into its relationship before evaluating: {a}. Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} m/s. Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope. The answer follows by substitution into the relationship above."
       ],
       "solution": "Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to velocity is the derivative of position. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "v=\\frac{dx}{dt},\\qquad\\Delta x=\\int v\\,dt",
-      "rule": "Definition / physical model",
-      "concept": "position"
-    },
-    {
-      "expression": "v=\\frac{dx}{dt},\\qquad\\Delta x=\\int v\\,dt",
-      "rule": "Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope.",
+      "expression": "v_{avg}=\\frac{x(t+h)-x(t)}h",
+      "rule": "Compare nearby positions over their shared elapsed time.",
       "concept": "derivative"
     },
     {
-      "expression": "\\text{Example: }24\\;m/s",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "velocity"
+      "expression": "v(t)=\\lim_{h\\to0}v_{avg}=x\\prime(t)",
+      "rule": "The instantaneous velocity is the local position slope.",
+      "concept": "derivative"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Velocity tells how quickly location changes and in which direction. The slope of
 
 ## Formalism
 
-$$v=\frac{dx}{dt},\qquad\Delta x=\int v\,dt$$
+$$
+v=\frac{dx}{dt},\qquad\Delta x=\int v\,dt
+$$
 
 Average velocity is displacement divided by elapsed time. Shrinking the interval produces the position derivative, linking motion to local slope.
 

@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Track the sum of kinetic and potential terms between two chosen states.",
-        "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.",
-        "Use {a}. Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero."
+        "Translate this question into its relationship before evaluating: {a}. Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} J. Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above."
       ],
       "solution": "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Track the sum of kinetic and potential terms between two chosen states.",
-        "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.",
-        "Use sqrt(20*{a}). Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero."
+        "Translate this question into its relationship before evaluating: sqrt(20*{a}). Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above.",
+        "The complete answer is sqrt(20*{a}) m/s. Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above."
       ],
       "solution": "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Track the sum of kinetic and potential terms between two chosen states.",
-        "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.",
-        "Use {a}. Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero."
+        "Translate this question into its relationship before evaluating: {a}. Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} J. Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above."
       ],
       "solution": "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to conservation of mechanical energy. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a-0.5*x^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "K_i+U_i=K_f+U_f",
-      "rule": "Definition / physical model",
-      "concept": "kinetic-energy"
-    },
-    {
-      "expression": "K_i+U_i=K_f+U_f",
-      "rule": "Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.",
+      "expression": "\\Delta K=W_{net},\\quad W_{conservative}=-\\Delta U",
+      "rule": "Combine the work-energy theorem and potential definition.",
       "concept": "potential-energy"
     },
     {
-      "expression": "\\text{Example: }3\\;J",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "conservation-energy"
+      "expression": "\\Delta K+\\Delta U=0\\quad\\Rightarrow\\quad K_i+U_i=K_f+U_f",
+      "rule": "With only conservative work, total mechanical energy is unchanged.",
+      "concept": "potential-energy"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ When only conservative forces do work, kinetic and potential energy trade places
 
 ## Formalism
 
-$$K_i+U_i=K_f+U_f$$
+$$
+K_i+U_i=K_f+U_f
+$$
 
 Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.
 

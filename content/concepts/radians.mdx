@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Convert to arc length divided by radius before applying a calculus identity.",
-        "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle.",
-        "Use {a}/{b}. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle."
+        "Translate this question into its relationship before evaluating: {a}/{b}. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/{b} rad. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above."
       ],
       "solution": "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Convert to arc length divided by radius before applying a calculus identity.",
-        "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle.",
-        "Use {a}*{b}. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} m. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above."
       ],
       "solution": "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Convert to arc length divided by radius before applying a calculus identity.",
-        "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle.",
-        "Use 2*pi*{a}. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle."
+        "Translate this question into its relationship before evaluating: 2*pi*{a}. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*pi*{a} rad. Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above."
       ],
       "solution": "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to radians: angle from arc length. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\theta=s/r,\\qquad 2\\pi\\text{ radians per turn}",
-      "rule": "Definition / physical model",
-      "concept": "ratios"
-    },
-    {
-      "expression": "\\theta=s/r,\\qquad 2\\pi\\text{ radians per turn}",
-      "rule": "Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle.",
+      "expression": "s=r\\theta",
+      "rule": "For a fixed opening, arc length scales with radius.",
       "concept": "coordinates"
     },
     {
-      "expression": "\\text{Example: }0.75\\;rad",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "radians"
+      "expression": "\\theta=s/r,\\qquad s=2\\pi r\\Rightarrow\\theta=2\\pi",
+      "rule": "Normalize arc length by radius; apply the circumference for a full turn.",
+      "concept": "coordinates"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ An angle compares travelled arc length with radius. Measuring it this way makes 
 
 ## Formalism
 
-$$\theta=s/r,\qquad 2\pi\text{ radians per turn}$$
+$$
+\theta=s/r,\qquad 2\pi\text{ radians per turn}
+$$
 
 Doubling the radius doubles the arc for the same opening. Their ratio depends only on the angle.
 

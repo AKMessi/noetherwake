@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Track one marked point of the medium and a separate marked crest.",
-        "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period.",
-        "Use {a}*{b}. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} m/s. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above."
       ],
       "solution": "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Track one marked point of the medium and a separate marked crest.",
-        "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period.",
-        "Use 1/{a}. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period."
+        "Translate this question into its relationship before evaluating: 1/{a}. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above.",
+        "The complete answer is 1/{a} Hz. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above."
       ],
       "solution": "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Track one marked point of the medium and a separate marked crest.",
-        "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period.",
-        "Use {a}/{b}. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period."
+        "Translate this question into its relationship before evaluating: {a}/{b}. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/{b} m/s. Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above."
       ],
       "solution": "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to waves: a pattern that travels. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*sin(x). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "y(x,t)=A\\sin(kx-\\omega t),\\quad v=\\omega/k=f\\lambda",
-      "rule": "Definition / physical model",
-      "concept": "oscillator"
-    },
-    {
-      "expression": "y(x,t)=A\\sin(kx-\\omega t),\\quad v=\\omega/k=f\\lambda",
-      "rule": "Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period.",
+      "expression": "kx-\\omega t=\\text{constant}",
+      "rule": "Follow a fixed phase such as one crest.",
       "concept": "functions"
     },
     {
-      "expression": "\\text{Example: }12\\;m/s",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "waves"
+      "expression": "k\\frac{dx}{dt}-\\omega=0\\Rightarrow v=\\omega/k=f\\lambda",
+      "rule": "Differentiate fixed phase and use k=2pi/lambda, omega=2pi f.",
+      "concept": "functions"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A travelling wave shifts the same shape across space. Individual pieces of a med
 
 ## Formalism
 
-$$y(x,t)=A\sin(kx-\omega t),\quad v=\omega/k=f\lambda$$
+$$
+y(x,t)=A\sin(kx-\omega t),\quad v=\omega/k=f\lambda
+$$
 
 Hold the phase kx-omega t constant to follow one crest. Its position changes at omega/k; one cycle travels one wavelength in one period.
 

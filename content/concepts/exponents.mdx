@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Expand two small powers into repeated factors before using the rule.",
-        "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts.",
-        "Use 2^{a}. Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts."
+        "Translate this question into its relationship before evaluating: 2^{a}. Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2^{a} . Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above."
       ],
       "solution": "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Expand two small powers into repeated factors before using the rule.",
-        "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts.",
-        "Use {a}^5. Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts."
+        "Translate this question into its relationship before evaluating: {a}^5. Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}^5 . Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above."
       ],
       "solution": "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Expand two small powers into repeated factors before using the rule.",
-        "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts.",
-        "Use 1/{a}^2. Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts."
+        "Translate this question into its relationship before evaluating: 1/{a}^2. Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above.",
+        "The complete answer is 1/{a}^2 . Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above."
       ],
       "solution": "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to powers & scaling. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=x^a. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "x^m x^n=x^{m+n}",
-      "rule": "Definition / physical model",
-      "concept": "signed-numbers"
-    },
-    {
-      "expression": "x^m x^n=x^{m+n}",
-      "rule": "Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts.",
+      "expression": "x^2x^3=(xx)(xxx)",
+      "rule": "Expand positive integer powers into their factors.",
       "concept": "ratios"
     },
     {
-      "expression": "\\text{Example: }8\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "exponents"
+      "expression": "x^2x^3=x^5",
+      "rule": "Count the five joined factors.",
+      "concept": "ratios"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A power records repeated multiplication, so it describes repeated scaling. Squar
 
 ## Formalism
 
-$$x^m x^n=x^{m+n}$$
+$$
+x^m x^n=x^{m+n}
+$$
 
 Count the factors of x in each group. Joining the groups adds factor counts; taking a power of a power multiplies those counts.
 

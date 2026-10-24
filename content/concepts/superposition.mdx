@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Draw each source field arrow at the observation point and give components signs.",
-        "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field.",
-        "Use {a}-{b}. Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field."
+        "Translate this question into its relationship before evaluating: {a}-{b}. Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}-{b} N/C. Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above."
       ],
       "solution": "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Draw each source field arrow at the observation point and give components signs.",
-        "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field.",
-        "Use sqrt({a}^2+{b}^2). Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field."
+        "Translate this question into its relationship before evaluating: sqrt({a}^2+{b}^2). Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above.",
+        "The complete answer is sqrt({a}^2+{b}^2) N/C. Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above."
       ],
       "solution": "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Draw each source field arrow at the observation point and give components signs.",
-        "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field.",
-        "Use 0. Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field."
+        "Translate this question into its relationship before evaluating: 0. Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above.",
+        "The complete answer is 0 N/C. Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above."
       ],
       "solution": "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to superposition & adding fields. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a-x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "\\mathbf E_{total}=\\sum_i\\mathbf E_i",
-      "rule": "Definition / physical model",
-      "concept": "electric-field"
-    },
-    {
-      "expression": "\\mathbf E_{total}=\\sum_i\\mathbf E_i",
-      "rule": "Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field.",
+      "expression": "\\mathbf F_{total}=q_{test}\\mathbf E_1+q_{test}\\mathbf E_2",
+      "rule": "Each source contributes independently to the probe force.",
       "concept": "vectors"
     },
     {
-      "expression": "\\text{Example: }-1\\;N/C",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "superposition"
+      "expression": "\\mathbf E_{total}=\\mathbf F_{total}/q_{test}=\\mathbf E_1+\\mathbf E_2",
+      "rule": "Divide the total force by the common nonzero probe charge.",
+      "concept": "vectors"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ Each electrostatic source contributes a vector field. The field at a point is th
 
 ## Formalism
 
-$$\mathbf E_{total}=\sum_i\mathbf E_i$$
+$$
+\mathbf E_{total}=\sum_i\mathbf E_i
+$$
 
 Electric force is linear in the source charges in this model. Divide the summed test-charge forces by the same probe charge to obtain a summed field.
 

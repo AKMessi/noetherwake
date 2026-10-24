@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Choose an axis, give each velocity a sign, and sum mass times velocity.",
-        "Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum.",
-        "Use {a}*{b}. Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} kg*m/s. Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum. The answer follows by substitution into the relationship above."
       ],
       "solution": "Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Choose an axis, give each velocity a sign, and sum mass times velocity.",
-        "Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum.",
-        "Use 0. Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum."
+        "Translate this question into its relationship before evaluating: 0. Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum. The answer follows by substitution into the relationship above.",
+        "The complete answer is 0 kg*m/s. Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum. The answer follows by substitution into the relationship above."
       ],
       "solution": "Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Choose an axis, give each velocity a sign, and sum mass times velocity.",
-        "Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum.",
-        "Use {b}. Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum."
+        "Translate this question into its relationship before evaluating: {b}. Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b} m/s. Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum. The answer follows by substitution into the relationship above."
       ],
       "solution": "Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to momentum & systems. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\mathbf p=m\\mathbf v,\\qquad\\frac{d\\mathbf P}{dt}=\\mathbf F_{ext}",
-      "rule": "Definition / physical model",
-      "concept": "newton-2"
+      "expression": "\\frac{d\\mathbf P}{dt}=\\sum\\mathbf F_{ext}+\\sum\\mathbf F_{internal}",
+      "rule": "Add the momentum-rate equations for every system body.",
+      "concept": "vectors"
     },
     {
-      "expression": "\\mathbf p=m\\mathbf v,\\qquad\\frac{d\\mathbf P}{dt}=\\mathbf F_{ext}",
-      "rule": "Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum.",
-      "concept": "newton-2"
-    },
-    {
-      "expression": "\\text{Example: }12\\;kg\\cdot m/s",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "momentum"
+      "expression": "\\sum\\mathbf F_{internal}=0\\Rightarrow\\dot{\\mathbf P}=\\mathbf F_{ext}",
+      "rule": "Internal third-law pairs cancel from the system sum.",
+      "concept": "vectors"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Momentum combines mass and velocity into the quantity force changes. In a collec
 
 ## Formalism
 
-$$\mathbf p=m\mathbf v,\qquad\frac{d\mathbf P}{dt}=\mathbf F_{ext}$$
+$$
+\mathbf p=m\mathbf v,\qquad\frac{d\mathbf P}{dt}=\mathbf F_{ext}
+$$
 
 Add Newton equations for every body. Equal and opposite internal forces vanish from the sum, so an isolated system has constant total momentum.
 

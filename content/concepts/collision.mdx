@@ -22,6 +22,16 @@
       "id": "collision-gap",
       "description": "Assuming every collision conserves kinetic energy",
       "remediation": "Compute kinetic energy before and after the common-velocity solution; missing mechanical energy changes form."
+    },
+    {
+      "id": "collision-isolated-momentum",
+      "description": "Dissipation confused with momentum loss",
+      "remediation": "Internal deformation changes energy form; with negligible external impulse, total signed momentum remains fixed."
+    },
+    {
+      "id": "collision-shared-velocity",
+      "description": "Sticking confused with separate final motions",
+      "remediation": "A perfectly inelastic model binds both bodies, so their final velocity is common."
     }
   ],
   "generators": [
@@ -45,8 +55,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Compute kinetic energy before and after the common-velocity solution; missing mechanical energy changes form.",
-        "Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out.",
-        "Use {b}/2. Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out."
+        "Translate this question into its relationship before evaluating: {b}/2. Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b}/2 m/s. Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out. The answer follows by substitution into the relationship above."
       ],
       "solution": "Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +80,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Compute kinetic energy before and after the common-velocity solution; missing mechanical energy changes form.",
-        "Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out.",
-        "Use 2*{a}/({a}+{b}). Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out."
+        "Translate this question into its relationship before evaluating: 2*{a}/({a}+{b}). Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a}/({a}+{b}) m/s. Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out. The answer follows by substitution into the relationship above."
       ],
       "solution": "Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out. The answer follows by substitution into the relationship above."
     },
@@ -86,11 +96,11 @@
         },
         {
           "text": "Momentum is conserved",
-          "misconception": "collision-gap"
+          "misconception": "collision-isolated-momentum"
         },
         {
           "text": "The joined bodies share a velocity",
-          "misconception": "collision-gap"
+          "misconception": "collision-shared-velocity"
         }
       ],
       "id": "collision-3",
@@ -108,15 +118,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Compute kinetic energy before and after the common-velocity solution; missing mechanical energy changes form.",
-        "Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out.",
-        "Use Kinetic energy is conserved. Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out."
+        "Translate this question into its relationship before evaluating: Kinetic energy is conserved. Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out. The answer follows by substitution into the relationship above.",
+        "The complete answer is Kinetic energy is conserved . Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out. The answer follows by substitution into the relationship above."
       ],
       "solution": "Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to collisions & what is conserved. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x/(a+2). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -128,19 +138,14 @@
   },
   "derivation": [
     {
-      "expression": "v_f=\\frac{m_1v_1+m_2v_2}{m_1+m_2}",
-      "rule": "Definition / physical model",
-      "concept": "momentum"
-    },
-    {
-      "expression": "v_f=\\frac{m_1v_1+m_2v_2}{m_1+m_2}",
-      "rule": "Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out.",
+      "expression": "m_1v_1+m_2v_2=m_1v_f+m_2v_f",
+      "rule": "Conserve total momentum when the bodies stick and external impulse is negligible.",
       "concept": "kinetic-energy"
     },
     {
-      "expression": "\\text{Example: }2\\;m/s",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "collision"
+      "expression": "v_f=\\frac{m_1v_1+m_2v_2}{m_1+m_2}",
+      "rule": "Factor the common velocity and divide by total mass.",
+      "concept": "kinetic-energy"
     }
   ],
   "explanation": {
@@ -164,7 +169,9 @@ Momentum can remain conserved even when kinetic energy becomes heat or deformati
 
 ## Formalism
 
-$$v_f=\frac{m_1v_1+m_2v_2}{m_1+m_2}$$
+$$
+v_f=\frac{m_1v_1+m_2v_2}{m_1+m_2}
+$$
 
 Choose both colliding bodies as the system and neglect external impulse. Equate total momentum before and after; common final velocity factors out.
 

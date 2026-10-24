@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Define direction with a positive test charge, then apply the sign of the actual charge.",
-        "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.",
-        "Use {b}/{a}. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position."
+        "Translate this question into its relationship before evaluating: {b}/{a}. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b}/{a} N/C. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above."
       ],
       "solution": "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Define direction with a positive test charge, then apply the sign of the actual charge.",
-        "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.",
-        "Use -{a}*{b}. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position."
+        "Translate this question into its relationship before evaluating: -{a}*{b}. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above.",
+        "The complete answer is -{a}*{b} N. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above."
       ],
       "solution": "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Define direction with a positive test charge, then apply the sign of the actual charge.",
-        "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.",
-        "Use {a}*{b}/2. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position."
+        "Translate this question into its relationship before evaluating: {a}*{b}/2. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b}/2 m/s^2. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above."
       ],
       "solution": "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to electric field: force per charge. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a/(x+1)^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "\\mathbf E=\\mathbf F/q_{test},\\qquad\\mathbf F=q\\mathbf E",
-      "rule": "Definition / physical model",
-      "concept": "coulomb"
+      "expression": "\\mathbf F=\\frac{k_eq_{source}q_{test}}{r^2}\\hat{\\mathbf r}",
+      "rule": "Apply the signed Coulomb interaction to a test charge.",
+      "concept": "vectors"
     },
     {
-      "expression": "\\mathbf E=\\mathbf F/q_{test},\\qquad\\mathbf F=q\\mathbf E",
-      "rule": "Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.",
-      "concept": "newton-2"
-    },
-    {
-      "expression": "\\text{Example: }1.3333\\;N/C",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "electric-field"
+      "expression": "\\mathbf E=\\mathbf F/q_{test}=\\frac{k_eq_{source}}{r^2}\\hat{\\mathbf r}",
+      "rule": "Divide out the probe dependence to define a source field.",
+      "concept": "vectors"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ An electric field describes what force a small positive test charge would feel a
 
 ## Formalism
 
-$$\mathbf E=\mathbf F/q_{test},\qquad\mathbf F=q\mathbf E$$
+$$
+\mathbf E=\mathbf F/q_{test},\qquad\mathbf F=q\mathbf E
+$$
 
 Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.
 

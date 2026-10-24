@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Neutrality is equal total positive and negative charge, not absence of either.",
-        "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged.",
-        "Use {a}-{b}. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged."
+        "Translate this question into its relationship before evaluating: {a}-{b}. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}-{b} C. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above."
       ],
       "solution": "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Neutrality is equal total positive and negative charge, not absence of either.",
-        "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged.",
-        "Use {a}. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged."
+        "Translate this question into its relationship before evaluating: {a}. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} C. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above."
       ],
       "solution": "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Neutrality is equal total positive and negative charge, not absence of either.",
-        "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged.",
-        "Use {a}*{b}. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} C. Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above."
       ],
       "solution": "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to charge & conservation. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a-x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "Q_{total}=\\sum_i q_i",
-      "rule": "Definition / physical model",
-      "concept": "ratios"
-    },
-    {
-      "expression": "Q_{total}=\\sum_i q_i",
-      "rule": "Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged.",
+      "expression": "\\Delta Q_1=-\\Delta Q_2",
+      "rule": "An internal charge transfer changes the two parts oppositely.",
       "concept": "units"
     },
     {
-      "expression": "\\text{Example: }-1\\;C",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "charge"
+      "expression": "\\Delta Q_{total}=\\Delta Q_1+\\Delta Q_2=0",
+      "rule": "Add the changes to recover isolated-system charge conservation.",
+      "concept": "units"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ Electric charge is a signed property that determines electric interaction. Posit
 
 ## Formalism
 
-$$Q_{total}=\sum_i q_i$$
+$$
+Q_{total}=\sum_i q_i
+$$
 
 Count charge entering and leaving a chosen boundary. Equal internal transfers change two parts oppositely, leaving the system total unchanged.
 

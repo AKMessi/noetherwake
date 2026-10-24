@@ -1,2 +1,42 @@
-import type {Concept} from '../src/types';
-export function fixture(count=24):Concept[]{return Array.from({length:count},(_,i)=>({id:`n${i}`,title:`Concept ${i}`,domain:i>15?'physics':'math',strand:'test',prerequisites:i%8?[`n${i-1}`]:[],softPrerequisites:[],difficulty:.2+i%8*.07,representations:['symbolic','geometric','numeric'],misconceptions:[],generators:[0,1,2].map(j=>({id:`t${i}-${j}`,kind:'numeric',prompt:'{a}+{b}',answer:'{a}+{b}',parameters:{a:[1,8],b:[2,9]},unit:'',difficulty:.2+j*.2,expectedSeconds:60,hints:['Recall addition','Combine quantities','Add the two values'],solution:'Add the quantities.'})),interactive:{kind:'curve',prompt:'Compare',prediction:'Rises',parameterLabel:'a',min:1,max:5,initial:2,formula:'a*x',xLabel:'x',yLabel:'y'},derivation:[],explanation:{prompt:'Why?',keywords:[['sum']]},summary:'Test fixture only',boundary:'Fixture'}));}
+import type { Concept } from '../src/types';
+export function fixture(count = 24): Concept[] {
+  return Array.from({ length: count }, (_, i) => ({
+    id: `n${i}`,
+    title: `Concept ${i}`,
+    domain: i > 15 ? 'physics' : 'math',
+    strand: 'test',
+    prerequisites: i % 8 ? [`n${i - 1}`] : [],
+    softPrerequisites: [],
+    difficulty: 0.2 + (i % 8) * 0.07,
+    representations: ['symbolic', 'geometric', 'numeric'],
+    misconceptions: [],
+    generators: [0, 1, 2].map((j) => ({
+      id: `t${i}-${j}`,
+      kind: 'numeric',
+      prompt: '{a}+{b}',
+      answer: '{a}+{b}',
+      parameters: { a: [1, 8], b: [2, 9] },
+      unit: '',
+      difficulty: 0.2 + j * 0.2,
+      expectedSeconds: 60,
+      hints: ['Recall addition', 'Combine quantities', 'Add the two values'],
+      solution: 'Add the quantities.',
+    })),
+    interactive: {
+      kind: 'curve',
+      prompt: 'Compare',
+      prediction: 'Rises',
+      parameterLabel: 'a',
+      min: 1,
+      max: 5,
+      initial: 2,
+      formula: 'a*x',
+      xLabel: 'x',
+      yLabel: 'y',
+    },
+    derivation: [],
+    explanation: { prompt: 'Why?', keywords: [['sum']] },
+    summary: 'Test fixture only',
+    boundary: 'Fixture',
+  }));
+}

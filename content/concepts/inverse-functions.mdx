@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Test whether applying your candidate after f returns the original input.",
-        "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost.",
-        "Use 3. Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost."
+        "Translate this question into its relationship before evaluating: 3. Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above.",
+        "The complete answer is 3 . Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above."
       ],
       "solution": "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Test whether applying your candidate after f returns the original input.",
-        "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost.",
-        "Use {a}*{b}. Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} . Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above."
       ],
       "solution": "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Test whether applying your candidate after f returns the original input.",
-        "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost.",
-        "Use {a}. Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost."
+        "Translate this question into its relationship before evaluating: {a}. Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} . Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above."
       ],
       "solution": "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to inverse functions & undoing. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=(x-2)/a. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "f^{-1}(f(x))=x",
-      "rule": "Definition / physical model",
-      "concept": "functions"
-    },
-    {
-      "expression": "f^{-1}(f(x))=x",
-      "rule": "Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost.",
+      "expression": "y=ax+b\\quad\\Rightarrow\\quad y-b=ax",
+      "rule": "Undo addition while retaining the old input and output roles.",
       "concept": "equations"
     },
     {
-      "expression": "\\text{Example: }3\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "inverse-functions"
+      "expression": "x=(y-b)/a",
+      "rule": "Undo nonzero scaling; this rule reconstructs the input.",
+      "concept": "equations"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ An inverse reconstructs the input from an output. It exists as a function only w
 
 ## Formalism
 
-$$f^{-1}(f(x))=x$$
+$$
+f^{-1}(f(x))=x
+$$
 
 Swap the input and output roles, then solve the original relation for the old input. Restrict a domain if information was lost.
 

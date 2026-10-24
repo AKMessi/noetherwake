@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Separate horizontal and vertical forces before writing component acceleration.",
-        "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component.",
-        "Use {a}*{b}. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} m. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above."
       ],
       "solution": "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Separate horizontal and vertical forces before writing component acceleration.",
-        "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component.",
-        "Use 2*{a}. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component."
+        "Translate this question into its relationship before evaluating: 2*{a}. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a} s. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above."
       ],
       "solution": "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Separate horizontal and vertical forces before writing component acceleration.",
-        "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component.",
-        "Use 45. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component."
+        "Translate this question into its relationship before evaluating: 45. Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above.",
+        "The complete answer is 45 . Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above."
       ],
       "solution": "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to projectile motion & independent components. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x-0.5*x^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "x=v_0\\cos\\theta\\,t,\\qquad y=v_0\\sin\\theta\\,t-\\tfrac12gt^2",
-      "rule": "Definition / physical model",
-      "concept": "free-fall"
+      "expression": "a_x=0,\\quad a_y=-g",
+      "rule": "Gravity alone acts vertically in this ideal model.",
+      "concept": "trig"
     },
     {
-      "expression": "x=v_0\\cos\\theta\\,t,\\qquad y=v_0\\sin\\theta\\,t-\\tfrac12gt^2",
-      "rule": "Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component.",
-      "concept": "vectors"
-    },
-    {
-      "expression": "\\text{Example: }12\\;m",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "projectile"
+      "expression": "x=v_0\\cos\\theta\\,t,\\quad y=v_0\\sin\\theta\\,t-gt^2/2",
+      "rule": "Resolve the initial velocity, then integrate the two component equations.",
+      "concept": "trig"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ A projectile combines horizontal motion with vertical free fall. Gravity changes
 
 ## Formalism
 
-$$x=v_0\cos\theta\,t,\qquad y=v_0\sin\theta\,t-\tfrac12gt^2$$
+$$
+x=v_0\cos\theta\,t,\qquad y=v_0\sin\theta\,t-\tfrac12gt^2
+$$
 
 Project the launch velocity onto two axes. Apply zero acceleration horizontally and negative g vertically, then integrate each component.
 

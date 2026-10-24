@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Plot current against voltage and check whether the slope stays fixed.",
-        "Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI.",
-        "Use {b}/{a}. Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI."
+        "Translate this question into its relationship before evaluating: {b}/{a}. Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b}/{a} A. Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI. The answer follows by substitution into the relationship above."
       ],
       "solution": "Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Plot current against voltage and check whether the slope stays fixed.",
-        "Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI.",
-        "Use {a}*{b}. Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} V. Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI. The answer follows by substitution into the relationship above."
       ],
       "solution": "Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Plot current against voltage and check whether the slope stays fixed.",
-        "Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI.",
-        "Use {a}^2*{b}. Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI."
+        "Translate this question into its relationship before evaluating: {a}^2*{b}. Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}^2*{b} W. Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI. The answer follows by substitution into the relationship above."
       ],
       "solution": "Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to resistance & the ohmic model. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=x/a. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "V=IR,\\qquad P=VI=I^2R",
-      "rule": "Definition / physical model",
-      "concept": "voltage"
-    },
-    {
-      "expression": "V=IR,\\qquad P=VI=I^2R",
-      "rule": "Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI.",
+      "expression": "P=\\frac{dU}{dt}=V\\frac{dQ}{dt}=VI",
+      "rule": "Energy per charge times charge per time is power.",
       "concept": "ratios"
     },
     {
-      "expression": "\\text{Example: }1.3333\\;A",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "resistance"
+      "expression": "V=IR\\Rightarrow P=I^2R",
+      "rule": "Insert the empirical ohmic relation at fixed conditions.",
+      "concept": "ratios"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ In an ohmic element, a larger voltage difference drives proportionally more curr
 
 ## Formalism
 
-$$V=IR,\qquad P=VI=I^2R$$
+$$
+V=IR,\qquad P=VI=I^2R
+$$
 
 Ohm law is an empirical constitutive relation. Each coulomb loses V joules and I coulombs pass per second, so dissipated power is VI.
 

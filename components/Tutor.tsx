@@ -1,56 +1,1650 @@
 'use client';
-import {useEffect,useRef,useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import {ArrowRight,ArrowUpRight,BookOpen,Check,ChevronDown,ChevronLeft,ChevronRight,Clock3,Compass,Download,Flag,Focus,Gauge,Home,Layers3,Lightbulb,LockKeyhole,Map,Menu,Monitor,Moon,MoveUpRight,NotebookPen,Search,Settings2,ShieldCheck,SlidersHorizontal,Sun,Target,Upload,WifiOff,X} from 'lucide-react';
-import {ancestors,createLearner,diagnosticNext,dueAt,effective,estimateFrontier,generate,getKnowledge,interval,missing,observe,plan,routeToReady,selectTemplate,sessionPlan,stage,type Concept,type Evidence,type Item,type Learner,type SessionRecord} from '@noetherwake/engine';
-import {catalog,concept,goals} from '@/lib/catalog';
-import {learnerSchema,parseImport,readState,saveState} from '@/lib/store';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BookOpen,
+  Check,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Clock3,
+  Compass,
+  Download,
+  Flag,
+  Focus,
+  Gauge,
+  Home,
+  Layers3,
+  Lightbulb,
+  LockKeyhole,
+  Map,
+  Menu,
+  Monitor,
+  Moon,
+  MoveUpRight,
+  NotebookPen,
+  Search,
+  Settings2,
+  ShieldCheck,
+  SlidersHorizontal,
+  Sun,
+  Target,
+  Upload,
+  WifiOff,
+  X,
+} from 'lucide-react';
+import {
+  ancestors,
+  createLearner,
+  diagnosticNext,
+  dueAt,
+  effective,
+  estimateFrontier,
+  generate,
+  getKnowledge,
+  interval,
+  missing,
+  observe,
+  plan,
+  routeToReady,
+  selectTemplate,
+  sessionPlan,
+  sessionStreak,
+  stage,
+  type Concept,
+  type Evidence,
+  type Item,
+  type Learner,
+  type SessionRecord,
+} from '@noetherwake/engine';
+import { catalog, concept, goals } from '@/lib/catalog';
+import { learnerSchema, parseImport, readState, saveState } from '@/lib/store';
 import ConceptMap from './ConceptMap';
 import Assessment from './Assessment';
 import MathText from './Math';
-const Interactive=dynamic(()=>import('./Interactive'),{loading:()=> <div className="interactive-card">Preparing the learning instrument…</div>});
-type View='today'|'map'|'curriculum'|'journal'|'settings'|'lesson'|'diagnostic'|'session'|'summary'|'placement';
-const nav=[{id:'today',label:'Today',icon:Home},{id:'map',label:'Knowledge map',icon:Map},{id:'curriculum',label:'The curriculum',icon:BookOpen},{id:'journal',label:'Learning journal',icon:NotebookPen}] as const;
-function Brand(){return <span className="brand"><svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="20" rx="16" ry="7" transform="rotate(-48 20 20)"/><ellipse cx="20" cy="20" rx="16" ry="7" transform="rotate(48 20 20)"/><circle cx="20" cy="20" r="2"/></svg>Noetherwake<span className="brand-period">.</span></span>;}
-function GoalDialog({state,onClose,onStart,onSkip}:{state:Learner;onClose:()=>void;onStart:(goal:string)=>void;onSkip:(goal:string)=>void}){const dialog=useRef<HTMLDialogElement>(null),[goal,setGoal]=useState(state.goal);useEffect(()=>{dialog.current?.showModal();},[]);return <dialog ref={dialog} className="goal-dialog" aria-labelledby="goal-title" onCancel={onClose}><button className="icon-button dialog-close" onClick={onClose} aria-label="Close goal selection"><X size={20}/></button><span className="eyebrow">A PATH THAT STARTS WITH YOU</span><h2 id="goal-title">Where would you<br/>like to go?</h2><p>Your goal gives the engine a direction. A few questions will find your starting point.</p><fieldset className="goal-options"><legend className="sr-only">Choose a learning goal</legend>{goals.map(g=><label className={`goal-option ${goal===g.id?'selected':''}`} key={g.id}><input type="radio" name="goal" value={g.id} checked={goal===g.id} onChange={()=>setGoal(g.id)}/><div><span className="eyebrow">{g.label}</span><strong>{g.title}</strong><p>{g.description}</p></div><span className="radio-circle">{goal===g.id&&<Check size={12}/>}</span></label>)}</fieldset><button className="primary full" onClick={()=>onStart(goal)}>Find my starting point <ArrowRight size={17}/></button><span className="dialog-note"><Clock3 size={13}/> 12–18 adaptive questions · roughly 10–20 minutes</span><button className="text-button centered" onClick={()=>onSkip(goal)}>Skip placement; learn from my practice</button><p className="fine-print">Skipping keeps uncertainty high. The engine will start at the foundations and adjust from your responses.</p></dialog>;}
-export default function Tutor(){
- const [state,setState]=useState<Learner|null>(null),[view,setView]=useState<View>('today'),[selected,setSelected]=useState<string|null>(null),[lessonId,setLessonId]=useState('fractions'),[item,setItem]=useState<Item|null>(null),[onboarding,setOnboarding]=useState(false),[mobileNav,setMobileNav]=useState(false),[notice,setNotice]=useState(''),[storageError,setStorageError]=useState(''),[search,setSearch]=useState(''),[domain,setDomain]=useState('all'),[reflection,setReflection]=useState(''),[lastSession,setLastSession]=useState<SessionRecord|null>(null),[online,setOnline]=useState(true),[offlineReady,setOfflineReady]=useState(false);
- const hydrated=useRef(false),session=useRef<{start:number;initial:Record<string,number>;events:Evidence[];minutes:5|15|30}|null>(null),main=useRef<HTMLElement>(null),fileInput=useRef<HTMLInputElement>(null);
- useEffect(()=>{let live=true;readState().then(s=>{if(live){setState(s?learnerSchema.parse(s):createLearner(Date.now(),'conservation-energy'));hydrated.current=true;}}).catch(()=>{if(live){setState(createLearner(Date.now(),'conservation-energy'));setStorageError('Device storage is unavailable. Export your progress before closing this tab.');hydrated.current=true;}});setOnline(navigator.onLine);const on=()=>setOnline(true),off=()=>setOnline(false);window.addEventListener('online',on);window.addEventListener('offline',off);if('serviceWorker'in navigator&&process.env.NODE_ENV==='production'){navigator.serviceWorker.register('/sw.js').then(()=>navigator.serviceWorker.ready).then(()=>{navigator.serviceWorker.addEventListener('message',e=>{if(e.data==='OFFLINE_READY')setOfflineReady(true);});setOfflineReady(!!navigator.serviceWorker.controller);}).catch(()=>setNotice('Offline installation did not finish. Reopen online to retry.'));}return()=>{live=false;window.removeEventListener('online',on);window.removeEventListener('offline',off);};},[]);
- useEffect(()=>{if(!state||!hydrated.current)return;saveState(state).catch(()=>setStorageError('Progress could not be saved. Export a backup before closing.'));document.documentElement.dataset.theme=state.theme;document.documentElement.dataset.reading=state.accessibleFont?'accessible':'standard';},[state]);
- function navigate(next:View){setView(next);setMobileNav(false);setNotice('');requestAnimationFrame(()=>{main.current?.focus();window.scrollTo({top:0,behavior:'instant'});});}
- if(!state)return <div className="loading-screen"><Brand/><p>Opening your learning observatory…</p></div>;
- const now=Date.now(),recommendations=plan(catalog,state,now),next=recommendations[0],nextConcept=next?concept(next.concept):null,goal=concept(state.goal),target=ancestors(catalog,state.goal),due=catalog.filter(c=>{const k=getKnowledge(state,c.id,now);return k.observations>0&&dueAt(k)<now;}),assessed=catalog.filter(c=>getKnowledge(state,c.id,now).observations>0),strong=assessed.filter(c=>effective(getKnowledge(state,c.id,now),now)>=.8),ready=catalog.filter(c=>missing(catalog,state,c.id,now).length===0&&effective(getKnowledge(state,c.id,now),now)<.8),lesson=concept(lessonId),gaps=missing(catalog,state,lessonId,now),frontier=estimateFrontier(catalog,state);
- function itemFor(id:string,s:Learner,diagnostic=false){const c=concept(id);const template=diagnostic?c.generators[0]:selectTemplate(c,s,Date.now());setLessonId(id);setItem(generate(c,template,(s.history.length+1)*7919+catalog.indexOf(c)*101));}
- function startSession(id?:string,s=state!){if(!s.onboarded){setOnboarding(true);return;}session.current={start:Date.now(),initial:Object.fromEntries(catalog.map(c=>[c.id,getKnowledge(s,c.id,Date.now()).p])),events:[],minutes:s.minutes};const action=id??sessionPlan(catalog,s,Date.now())[0]?.concept??plan(catalog,s,Date.now())[0]?.concept;if(!action){setNotice('Your current evidence is strong. Return when a review is due or choose a new goal in settings.');return;}const routed=routeToReady(catalog,s,action,Date.now());itemFor(routed,s);navigate('session');}
- function openLesson(id:string){setLessonId(id);navigate('lesson');}
- function beginDiagnostic(goalId:string){const s={...state!,goal:goalId,onboarded:true,diagnostic:[],history:state!.history.filter(e=>!e.diagnostic)};setState(s);setOnboarding(false);const c=diagnosticNext(catalog,s,Date.now());if(c){itemFor(c.id,s,true);navigate('diagnostic');}}
- function skipDiagnostic(goalId:string){const s={...state!,goal:goalId,onboarded:true};setState(s);setOnboarding(false);startSession(undefined,s);}
- function evidence(e:Evidence){setState(s=>s?observe(s,e,catalog):s);if(!e.diagnostic)session.current?.events.push(e);}
- function finishSession(){const run=session.current;if(!run)return;const record:SessionRecord={at:Date.now(),concepts:[...new Set(run.events.map(e=>e.concept))],correct:run.events.filter(e=>e.correct).length,total:run.events.length,minutes:Math.max(1,Math.round((Date.now()-run.start)/60000)),reflection:'',changes:Object.fromEntries([...new Set(run.events.map(e=>e.concept))].map(id=>[id,getKnowledge(state!,id,Date.now()).p-(run.initial[id]??.25)]))};setLastSession(record);setReflection('');setState(s=>s?{...s,sessions:[...s.sessions,record].slice(-1000)}:s);navigate('summary');}
- function nextQuestion(){if(view==='diagnostic'){if(state!.diagnostic.length>=18){navigate('placement');return;}const c=diagnosticNext(catalog,state!,Date.now());if(c)itemFor(c.id,state!,true);else navigate('placement');return;}const run=session.current;if(run&&(run.events.length>=Math.max(3,Math.floor(run.minutes/1.5))||Date.now()-run.start>run.minutes*60000)){finishSession();return;}const a=plan(catalog,state!,Date.now())[0];if(a)itemFor(a.concept,state!);else finishSession();}
- function exportState(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`noetherwake-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);setNotice('Your progress was exported. Keep the JSON file somewhere safe.');}
- async function importState(file?:File){if(!file)return;try{const s=parseImport(await file.text(),new Set(catalog.map(c=>c.id)));await saveState(s);setState(s);setNotice('Backup restored. Your route now uses the imported evidence.');}catch(e){setNotice(`Import did not change your progress: ${e instanceof Error?e.message:'Invalid file'}`);}if(fileInput.current)fileInput.current.value='';}
- const activeView=['lesson','session','diagnostic','placement','summary'].includes(view)?'today':view;
- return <div className="app-shell"><a className="skip-link" href="#main-content">Skip to content</a>
- <aside className={`sidebar ${mobileNav?'open':''}`}><a className="brand-link" href="#today" onClick={e=>{e.preventDefault();navigate('today');}} aria-label="Noetherwake home"><Brand/></a><div className="workspace-label">YOUR LEARNING SPACE</div><nav aria-label="Main navigation">{nav.map(n=><button key={n.id} className={`nav-item ${activeView===n.id?'active':''}`} aria-current={activeView===n.id?'page':undefined} onClick={()=>navigate(n.id)}><n.icon size={18} strokeWidth={1.7}/>{n.label}{n.id==='today'&&<span className="nav-dot"/>}</button>)}</nav><div className="sidebar-goal"><span className="eyebrow">YOUR NORTH STAR</span><div><Target size={16}/><span>{goals.find(g=>g.id===state.goal)?.title??goal.title}</span></div><div className="goal-progress"><span style={{width:`${strong.filter(c=>target.has(c.id)).length/target.size*100}%`}}/></div><small>{strong.filter(c=>target.has(c.id)).length} of {target.size} ideas with strong evidence</small></div><div className="sidebar-bottom"><div className="local-note"><ShieldCheck size={16}/><div>Yours. On this device.<small>No account. No tracking.</small></div></div><button className={`nav-item ${view==='settings'?'active':''}`} onClick={()=>navigate('settings')} aria-current={view==='settings'?'page':undefined}><Settings2 size={17}/> Preferences</button><div className="version-label">NOETHERWAKE <span>v0.1 / offline first</span></div></div></aside>
- {mobileNav&&<button className="nav-backdrop" aria-label="Close menu" onClick={()=>setMobileNav(false)}/>}
- <div className="workspace"><header className="topbar"><div className="topbar-left"><button className="icon-button mobile-menu" aria-label="Open navigation" onClick={()=>setMobileNav(!mobileNav)}><Menu size={20}/></button><span className="breadcrumb">Your workspace <ChevronRight size={13}/> <b>{view==='today'?'Today':view==='map'?'Knowledge map':view==='curriculum'?'Curriculum':view==='journal'?'Journal':view==='settings'?'Preferences':view==='diagnostic'?'Finding your frontier':'Your learning session'}</b></span></div><div className="topbar-right"><span className="connection"><i/>{!online?'Offline':offlineReady?'Offline ready':'Local first'}</span><span className="topbar-divider"/><button className="icon-button theme-toggle" aria-label={state.theme==='dark'?'Use light theme':'Use dark theme'} onClick={()=>setState({...state,theme:state.theme==='dark'?'light':'dark'})}>{state.theme==='dark'?<Sun size={17}/>:<Moon size={17}/>}</button><span className="user-mark" aria-label="Local learner">N</span></div></header>
- <main id="main-content" ref={main} tabIndex={-1} className={`main-content view-${view}`}>
- {(notice||storageError)&&<div className="notice" role="status">{storageError||notice}<button className="icon-button" aria-label="Dismiss notice" onClick={()=>{setNotice('');if(!storageError)setStorageError('');}}><X size={14}/></button></div>}
- {view==='today'&&<><div className="page-heading"><div><span className="eyebrow">SMALL STEPS. DEEP UNDERSTANDING.</span><h1>A little further.<br/><em>A little clearer.</em></h1><p>You bring the curiosity. We’ll find the next right question.</p></div><span className="date-label">{new Intl.DateTimeFormat('en',{weekday:'long',month:'short',day:'numeric'}).format(now)}<span><span className="tiny-square"/> A good day to understand something.</span></span></div>
- <div className="today-grid"><section className="next-card"><div className="next-card-top"><span className="eyebrow"><span className="pulse-dot"/> {state.onboarded?'YOUR NEXT BEST STEP':'YOUR JOURNEY STARTS HERE'}</span><span className="pill">{state.minutes} min session</span></div><div className="next-illustration" aria-hidden="true"><svg viewBox="0 0 240 160"><g fill="none" stroke="currentColor"><path d="M20 130H225M45 145V15" opacity=".2"/><path d="M45 130C100 130 130 120 150 90S175 30 220 20" strokeWidth="1.5"/><path d="M45 130L220 20" strokeDasharray="3 5" opacity=".25"/><circle cx="150" cy="90" r="6" fill="currentColor"/><circle cx="150" cy="90" r="15" opacity=".25"/><path d="M115 135L185 45" opacity=".5"/></g></svg><span>Δ understanding &gt; 0</span></div><div className="next-card-content"><span className="lesson-path">{state.onboarded?`${nextConcept?.strand??'Spaced retrieval'} / ${next?.kind==='repair'?'Prerequisite repair':next?.kind==='review'?'A timely return':'The next connection'}`:'MATH + PHYSICS / ADAPTIVE LEARNING'}</span><h2>{state.onboarded?(nextConcept?.title??'Let your learning settle.'):< >Find your footing.<br/>Then build from there.</>}</h2><p className="next-description">{state.onboarded?(nextConcept?.summary.split('. ').slice(0,2).join('. ')+'.'):'A few thoughtful questions reveal what you know, what’s uncertain, and where a new idea can take root.'}</p><button className="continue-button" onClick={()=>state.onboarded?startSession():setOnboarding(true)}>{state.onboarded?'Continue learning':'Find my starting point'} <ArrowRight size={19}/></button><div className="why-line"><Lightbulb size={15}/><p>{state.onboarded?next?.why??'Strong evidence deserves some space. Choose a new goal or return for a review.':'Why start here? A useful path begins with what you actually understand.'}</p></div></div><div className="session-duration"><span><Clock3 size={13}/> A little time, well spent</span><div aria-label="Session length">{([5,15,30] as const).map(m=><button key={m} className={state.minutes===m?'selected':''} aria-pressed={state.minutes===m} onClick={()=>setState({...state,minutes:m})}>{m}m</button>)}</div></div></section>
- <section className="frontier-card"><div className="panel-heading"><div><span className="eyebrow">THE BIG PICTURE</span><h2>Your learning frontier</h2></div><button className="icon-button" aria-label="Open full knowledge map" onClick={()=>navigate('map')}><ArrowUpRight size={20}/></button></div><p>Every idea connects. This is where yours begin.</p><ConceptMap state={state} compact onSelect={id=>{setSelected(id);navigate('map');}}/><div className="frontier-note"><Focus size={16}/><p>{assessed.length?`${assessed.length} ideas assessed. Your next step follows the evidence.`:'The dashed edges are honest: we haven’t met your knowledge yet.'}</p></div></section></div>
- <div className="today-bottom"><section className="session-outline"><div className="section-title"><Layers3 size={17}/><h2>A session with a purpose</h2><span>Not a playlist. A learning loop.</span></div><div className="session-steps">{[{n:'01',title:'Retrieve',copy:'Wake up an idea you know.'},{n:'02',title:'Connect',copy:'Build one new piece of intuition.'},{n:'03',title:'Test',copy:'Try it without the scaffolding.'},{n:'04',title:'Reflect',copy:'Keep what matters. Space the rest.'}].map(s=><div key={s.n}><span className="step-number">{s.n}</span><div><h3>{s.title}</h3><p>{s.copy}</p></div></div>)}</div></section><section className="review-note"><div className="review-icon"><Clock3 size={22}/></div><div><h3>{due.length?`${due.length} idea${due.length===1?'':'s'} ready to revisit`:'Room for things to settle.'}</h3><p>{due.length?'Your next session includes timely retrieval.':assessed.length?'The scheduler will bring ideas back before they fade.':'Reviews will appear once you’ve started learning. No catching up required.'}</p></div><span className="review-count mono">{String(due.length).padStart(2,'0')}</span></section></div><footer className="home-footer"><span><span className="tiny-square"/> UNDERSTANDING, NOT JUST ANSWERS.</span><span>67 connected ideas <i/> Math ↔ Physics <i/> Entirely yours</span></footer></>}
- {view==='map'&&<><div className="standard-heading"><span className="eyebrow">WHERE YOU ARE. WHERE YOU CAN GO.</span><h1>The connections matter.</h1><p>Follow the green path toward {goal.title.toLowerCase()}. Dashed rings mean uncertainty; double rings mark your frontier.</p></div><div className="map-page-layout"><section className="full-map-card"><div className="panel-heading"><h2>Your knowledge, connected</h2><span className="pill light">{catalog.length} ideas · {catalog.filter(c=>c.domain==='physics').length} physics</span></div><ConceptMap state={state} selected={selected??undefined} onSelect={setSelected}/></section><aside className="map-detail">{selected?(()=>{const c=concept(selected),k=getKnowledge(state,selected,now),gap=missing(catalog,state,selected,now),range=interval(k);return <><span className="eyebrow">{c.domain} / {c.strand}</span><h2>{c.title}</h2><p>{c.summary}</p><div className="mastery-detail"><span>{k.observations?'Estimated mastery':'Prior · not yet assessed'}</span><strong className="mono">{Math.round(effective(k,now)*100)}<small>%</small></strong><div className="probability-track"><span style={{width:`${k.p*100}%`}}/></div><p className="mono">Uncertainty: {Math.round(range[0]*100)}–{Math.round(range[1]*100)}%</p></div>{gap.length?<><h3><LockKeyhole size={14}/> Build these first</h3>{gap.map(id=><button className="prerequisite-link" key={id} onClick={()=>setSelected(id)}>{concept(id).title}<ChevronRight size={14}/></button>)}<button className="primary full" onClick={()=>openLesson(routeToReady(catalog,state,selected,now))}>Take me there <ArrowRight size={15}/></button></>:<button className="primary full" onClick={()=>openLesson(selected)}>Explore this idea <ArrowRight size={15}/></button>}</>;})():<><Compass size={32}/><h2>Choose an idea.<br/>See the path.</h2><p>Select any node to see its evidence, prerequisites and connections.</p><div className="map-facts"><span><b>{ready.length}</b> ready to explore</span><span><b>{assessed.length}</b> assessed so far</span><span><b>{strong.length}</b> with strong evidence</span></div></>}</aside></div></>}
- {view==='curriculum'&&<><div className="standard-heading"><span className="eyebrow">CONCRETE FIRST. ABSTRACT SECOND.</span><h1>A connected curriculum.</h1><p>67 complete lessons. Three generated problem families per idea. One continuous path from foundations to fields.</p></div><div className="library-toolbar"><label className="search-field"><Search size={17}/><input aria-label="Search concepts" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Find an idea, not a chapter…"/></label><div className="segmented">{['all','math','physics'].map(d=><button key={d} className={domain===d?'selected':''} onClick={()=>setDomain(d)}>{d==='all'?'All ideas':d==='math'?'Mathematics':'Physics'}</button>)}</div></div><div className="curriculum-list">{catalog.filter(c=>(domain==='all'||c.domain===domain)&&`${c.title} ${c.strand} ${c.summary}`.toLowerCase().includes(search.toLowerCase())).map(c=>{const gap=missing(catalog,state,c.id,now),k=getKnowledge(state,c.id,now);return <button className="curriculum-item" key={c.id} onClick={()=>openLesson(c.id)}><span className={`domain-icon ${c.domain}`}>{c.domain==='math'?<span>ƒ</span>:<span>φ</span>}</span><div><span className="eyebrow">{c.strand}</span><h2>{c.title}</h2><p>{c.summary.split('. ')[0]}.</p></div><span className="curriculum-status">{gap.length?<><LockKeyhole size={13}/>{gap.length} prerequisite{gap.length===1?'':'s'}</>:k.observations?`${Math.round(k.p*100)}% · estimated`:'Ready to explore'}</span><ArrowUpRight size={17}/></button>;})}</div></>}
- {view==='journal'&&<><div className="standard-heading"><span className="eyebrow">EVIDENCE, NOT EXPERIENCE POINTS.</span><h1>Watch understanding grow.</h1><p>Your locally stored sessions, reflections and confidence calibration.</p></div><div className="journal-stats"><div><span>Ideas assessed</span><strong className="mono">{assessed.length}</strong></div><div><span>Independent fluent responses</span><strong className="mono">{Object.values(state.knowledge).reduce((n,k)=>n+k.fluent,0)}</strong></div><div><span>Confidence Brier error · lower is better</span><strong className="mono">{state.history.length?(state.history.reduce((n,e)=>n+(e.confidence-Number(e.correct))**2,0)/state.history.length).toFixed(3):'—'}</strong></div></div>{state.sessions.length?<div className="journal-list">{[...state.sessions].reverse().map((s,i)=><article className="journal-entry" key={`${s.at}-${i}`}><span className="eyebrow">{new Date(s.at).toLocaleDateString(undefined,{month:'long',day:'numeric'})} · {s.minutes} MINUTES</span><h2>{s.concepts.map(id=>concept(id).title).join(' · ')}</h2><p>{s.correct} of {s.total} responses correct. {s.reflection||'No reflection recorded.'}</p>{Object.entries(s.changes).map(([id,d])=><span className="delta-chip" key={id}>{concept(id).title}: {d>=0?'+':''}{(d*100).toFixed(1)} percentage points</span>)}</article>)}</div>:<div className="empty-state"><NotebookPen size={34}/><h2>Your story starts with a question.</h2><p>Complete a session to record what changed, what felt difficult and what deserves another look.</p><button className="primary" onClick={()=>startSession()}>Begin a session <ArrowRight size={15}/></button></div>}</>}
- {view==='settings'&&<><div className="standard-heading"><span className="eyebrow">A TOOL THAT ADAPTS TO YOU.</span><h1>Make space for learning.</h1><p>Your preferences and your progress stay on this device.</p></div><div className="settings-grid"><section className="settings-card"><h2><SlidersHorizontal size={19}/> Your environment</h2><fieldset><legend>Appearance</legend><div className="setting-options">{[{id:'system',label:'System',icon:Monitor},{id:'light',label:'Light',icon:Sun},{id:'dark',label:'Dark',icon:Moon}].map(t=><button key={t.id} className={state.theme===t.id?'selected':''} onClick={()=>setState({...state,theme:t.id as Learner['theme']})} aria-pressed={state.theme===t.id}><t.icon size={18}/>{t.label}</button>)}</div></fieldset><label className="toggle-row"><div><strong>Accessible reading font</strong><span>Clear sans serif, wider spacing and generous lines.</span></div><input type="checkbox" checked={state.accessibleFont} onChange={e=>setState({...state,accessibleFont:e.target.checked})}/></label><label className="field-label" htmlFor="session-length">Time for a typical session</label><select id="session-length" value={state.minutes} onChange={e=>setState({...state,minutes:Number(e.target.value) as 5|15|30})}><option value="5">5 minutes · a small foothold</option><option value="15">15 minutes · one good connection</option><option value="30">30 minutes · room to go deeper</option></select><label className="field-label" htmlFor="goal-setting">Your learning direction</label><select id="goal-setting" value={state.goal} onChange={e=>setState({...state,goal:e.target.value})}>{goals.map(g=><option key={g.id} value={g.id}>{g.title}</option>)}</select><button className="text-button" onClick={()=>setOnboarding(true)}>Revisit placement <ArrowUpRight size={14}/></button></section><section className="settings-card"><h2><ShieldCheck size={19}/> Your data belongs to you</h2><p>All answers, mastery estimates and reflections live in IndexedDB in this browser. Clearing browser storage removes them. A backup lets you restore or move to another device.</p><button className="secondary full" onClick={exportState}><Download size={17}/> Export progress as JSON</button><label className="import-label"><Upload size={17}/><span>Import a progress backup</span><input ref={fileInput} type="file" accept="application/json,.json" onChange={e=>void importState(e.target.files?.[0])}/></label><p className="fine-print">A valid import replaces the local learner state. Invalid files leave your progress unchanged.</p><div className="privacy-note"><WifiOff size={18}/><div><strong>Fully deterministic. No AI required.</strong><p>No API keys, analytics, remote grading or hidden uploads. Offline lessons are available after the production cache finishes installing.</p></div></div></section></div></>}
- {(view==='lesson'||view==='session')&&<><button className="text-button back-button" onClick={()=>navigate('today')}><ChevronLeft size={16}/> Back to today</button>{gaps.length&&view==='lesson'?<section className="locked-card"><LockKeyhole size={30}/><span className="eyebrow">A CONNECTION TO BUILD FIRST</span><h1>{lesson.title}</h1><p>This idea rests on the following prerequisites. Practice a ready foundation first, and the engine will bring you back when the evidence supports it.</p><div>{gaps.map(id=><button className="prerequisite-link" key={id} onClick={()=>openLesson(id)}>{concept(id).title}<ArrowRight size={14}/></button>)}</div><button className="primary" onClick={()=>openLesson(routeToReady(catalog,state,lesson.id,now))}>Take me to the first ready step <ArrowRight size={17}/></button></section>:<><div className="lesson-heading"><span className="eyebrow">{lesson.domain} / {lesson.strand}{view==='session'?` / SESSION ${String((session.current?.events.length??0)+1).padStart(2,'0')}`:''}</span><h1>{lesson.title}</h1><p>{view==='session'?(plan(catalog,state,now).find(a=>a.concept===lesson.id)?.why??'A ready connection, chosen from your evidence.'):'Intuition first. A precise relationship. Then a test of your own.'}</p></div><div className="lesson-layout"><div>{view==='lesson'||stage(state,lesson.id,now)==='worked'?<article className="lesson-prose" onClick={e=>{const a=(e.target as HTMLElement).closest('a');if(a?.getAttribute('href')?.startsWith('concept:')){e.preventDefault();openLesson(a.getAttribute('href')!.slice(8));}}} dangerouslySetInnerHTML={{__html:lesson.html??''}}/>:null}<section className="derivation"><span className="eyebrow">FOLLOW THE REASONING</span>{lesson.derivation.map((d,i)=><details key={i}><summary><span className="mono">0{i+1}</span><MathText value={d.expression}/><ChevronDown size={15}/></summary><p>{d.rule}</p><button className="text-button" onClick={()=>openLesson(d.concept)}>Underlying idea: {concept(d.concept).title}<ArrowUpRight size={13}/></button></details>)}</section>{view==='session'&&item?<Assessment key={item.id} item={item} concept={lesson} faded={stage(state,lesson.id,now)!=='independent'} onEvidence={evidence} onNext={nextQuestion}/>:<div className="lesson-practice"><h2>Can you reconstruct it?</h2><p>Reading makes an idea familiar. Retrieval tells us what is yours.</p>{effective(getKnowledge(state,lesson.id,now),now)>.93&&dueAt(getKnowledge(state,lesson.id,now))>now?<p className="hint-box">Your evidence is already strong. Give this idea some space; the scheduler will bring it back.</p>:<button className="primary" onClick={()=>startSession(lesson.id)}>Try the idea <ArrowRight size={16}/></button>}</div>}</div><aside className="lesson-aside"><Interactive key={lesson.id} concept={lesson}/>{view==='session'&&<button className="text-button centered" onClick={finishSession}>Finish this session</button>}</aside></div></>}</>}
- {view==='diagnostic'&&item&&<><div className="diagnostic-heading"><span className="eyebrow">FINDING YOUR FRONTIER</span><div><h1>Let’s find the edges<br/>of what you know.</h1><span className="mono">{state.diagnostic.length+1}<small> / 18</small></span></div><p>This isn’t a grade. Uncertain answers are useful evidence, too.</p><div className="diagnostic-progress"><span style={{width:`${state.diagnostic.length/18*100}%`}}/></div></div><div className="diagnostic-body"><span className="pill light">{lesson.strand} · {lesson.title}</span><Assessment key={item.id} item={item} concept={lesson} diagnostic onEvidence={evidence} onNext={nextQuestion}/><button className="text-button" onClick={()=>navigate('placement')}>{state.diagnostic.length>=12?'Finish placement':'Pause placement and use the evidence so far'} <ArrowRight size={14}/></button></div></>}
- {view==='placement'&&<section className="result-page"><span className="result-icon"><Focus size={29}/></span><span className="eyebrow">A STARTING POINT, NOT A LABEL.</span><h1>Here’s where we begin.</h1><p>You explored {state.diagnostic.length} questions. {frontier.uncertain?'There is still broad uncertainty, so the engine will be careful about the first steps.':`The diagnostic places your frontier near depth ${frontier.depth} of ${frontier.max}. This is a noisy estimate; individual prerequisite checks guide your route.`}</p><div className="placement-evidence">{state.history.filter(e=>e.diagnostic).map((e,i)=><div key={i}><span>{concept(e.concept).title}</span><span className={e.correct?'evidence-yes':'evidence-no'}>{e.correct?'Supporting evidence':'Worth a closer look'}</span></div>)}</div><div className="summary-next"><span className="eyebrow">YOUR NEXT CONNECTION</span><h2>{nextConcept?.title??'Spaced review'}</h2><p>{next?.why}</p><button className="primary" onClick={()=>startSession()}>Start my first session <ArrowRight size={16}/></button><button className="text-button" onClick={()=>navigate('map')}>See my frontier map <ArrowUpRight size={14}/></button></div></section>}
- {view==='summary'&&lastSession&&<section className="result-page"><span className="result-icon"><Check size={30}/></span><span className="eyebrow">THAT’S A GOOD PLACE TO PAUSE.</span><h1>A little clearer<br/>than before.</h1><p>{lastSession.total} responses. {lastSession.concepts.length} connected idea{lastSession.concepts.length===1?'':'s'}. Evidence collected, with room for uncertainty.</p><div className="session-changes">{Object.entries(lastSession.changes).map(([id,d])=>{const k=getKnowledge(state,id,now);return <div key={id}><div><h3>{concept(id).title}</h3><p>Next recall: {new Date(dueAt(k)).toLocaleString(undefined,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}</p></div><span className="mono">{d>=0?'+':''}{(d*100).toFixed(1)} pp<small>estimated mastery</small></span></div>;})}</div><label className="field-label" htmlFor="reflection">What clicked? What still feels uncertain?</label><textarea id="reflection" rows={3} value={reflection} onChange={e=>setReflection(e.target.value.slice(0,4000))}/><button className="secondary" onClick={()=>{setState({...state,sessions:state.sessions.map(s=>s.at===lastSession.at?{...s,reflection}:s),reflection});setNotice('Reflection saved on this device.');}}>Save reflection <NotebookPen size={14}/></button><div className="summary-next"><span className="eyebrow">WHEN YOU RETURN</span><h2>{nextConcept?.title??'A well-timed review'}</h2><p>{next?.why??'The next review will appear when memory needs a return.'}</p><button className="primary" onClick={()=>navigate('today')}>Back to my learning space <ArrowRight size={15}/></button></div></section>}
- </main><div className="mobile-bottom-nav">{nav.slice(0,3).map(n=><button key={n.id} onClick={()=>navigate(n.id)} aria-label={n.label} aria-current={activeView===n.id?'page':undefined}><n.icon size={19}/><span>{n.id==='map'?'Map':n.id==='curriculum'?'Explore':'Today'}</span></button>)}<button onClick={()=>navigate('settings')} aria-label="Preferences"><Settings2 size={19}/><span>Preferences</span></button></div></div>
- {onboarding&&<GoalDialog state={state} onClose={()=>setOnboarding(false)} onStart={beginDiagnostic} onSkip={skipDiagnostic}/>}
- </div>;
+const Interactive = dynamic(() => import('./Interactive'), {
+  loading: () => (
+    <div className="interactive-card">Preparing the learning instrument…</div>
+  ),
+});
+type View =
+  | 'today'
+  | 'map'
+  | 'curriculum'
+  | 'journal'
+  | 'settings'
+  | 'lesson'
+  | 'diagnostic'
+  | 'session'
+  | 'summary'
+  | 'placement';
+const nav = [
+  { id: 'today', label: 'Today', icon: Home },
+  { id: 'map', label: 'Knowledge map', icon: Map },
+  { id: 'curriculum', label: 'The curriculum', icon: BookOpen },
+  { id: 'journal', label: 'Learning journal', icon: NotebookPen },
+] as const;
+function Brand() {
+  return (
+    <span className="brand">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <ellipse cx="20" cy="20" rx="16" ry="7" transform="rotate(-48 20 20)" />
+        <ellipse cx="20" cy="20" rx="16" ry="7" transform="rotate(48 20 20)" />
+        <circle cx="20" cy="20" r="2" />
+      </svg>
+      Noetherwake<span className="brand-period">.</span>
+    </span>
+  );
+}
+function GoalDialog({
+  state,
+  onClose,
+  onStart,
+  onSkip,
+}: {
+  state: Learner;
+  onClose: () => void;
+  onStart: (goal: string) => void;
+  onSkip: (goal: string) => void;
+}) {
+  const dialog = useRef<HTMLDialogElement>(null),
+    [goal, setGoal] = useState(state.goal);
+  useEffect(() => {
+    dialog.current?.showModal();
+  }, []);
+  return (
+    <dialog
+      ref={dialog}
+      className="goal-dialog"
+      aria-labelledby="goal-title"
+      onCancel={onClose}
+    >
+      <button
+        className="icon-button dialog-close"
+        onClick={onClose}
+        aria-label="Close goal selection"
+      >
+        <X size={20} />
+      </button>
+      <span className="eyebrow">A PATH THAT STARTS WITH YOU</span>
+      <h2 id="goal-title">
+        Where would you
+        <br />
+        like to go?
+      </h2>
+      <p>
+        Your goal gives the engine a direction. A few questions will find your
+        starting point.
+      </p>
+      <fieldset className="goal-options">
+        <legend className="sr-only">Choose a learning goal</legend>
+        {goals.map((g) => (
+          <label
+            className={`goal-option ${goal === g.id ? 'selected' : ''}`}
+            key={g.id}
+          >
+            <input
+              type="radio"
+              name="goal"
+              value={g.id}
+              checked={goal === g.id}
+              onChange={() => setGoal(g.id)}
+            />
+            <div>
+              <span className="eyebrow">{g.label}</span>
+              <strong>{g.title}</strong>
+              <p>{g.description}</p>
+            </div>
+            <span className="radio-circle">
+              {goal === g.id && <Check size={12} />}
+            </span>
+          </label>
+        ))}
+      </fieldset>
+      <button className="primary full" onClick={() => onStart(goal)}>
+        Find my starting point <ArrowRight size={17} />
+      </button>
+      <span className="dialog-note">
+        <Clock3 size={13} /> 12–18 adaptive questions · roughly 10–20 minutes
+      </span>
+      <button className="text-button centered" onClick={() => onSkip(goal)}>
+        Skip placement; learn from my practice
+      </button>
+      <p className="fine-print">
+        Skipping keeps uncertainty high. The engine will start at the
+        foundations and adjust from your responses.
+      </p>
+    </dialog>
+  );
+}
+export default function Tutor() {
+  const [state, setState] = useState<Learner | null>(() =>
+      createLearner(0, 'conservation-energy'),
+    ),
+    [view, setView] = useState<View>('today'),
+    [selected, setSelected] = useState<string | null>(null),
+    [lessonId, setLessonId] = useState('fractions'),
+    [item, setItem] = useState<Item | null>(null),
+    [onboarding, setOnboarding] = useState(false),
+    [mobileNav, setMobileNav] = useState(false),
+    [notice, setNotice] = useState(''),
+    [storageError, setStorageError] = useState(''),
+    [search, setSearch] = useState(''),
+    [domain, setDomain] = useState('all'),
+    [reflection, setReflection] = useState(''),
+    [lastSession, setLastSession] = useState<SessionRecord | null>(null),
+    [online, setOnline] = useState(true),
+    [offlineReady, setOfflineReady] = useState(false);
+  const hydrated = useRef(false),
+    session = useRef<{
+      start: number;
+      initial: Record<string, number>;
+      events: Evidence[];
+      minutes: 5 | 15 | 30;
+    } | null>(null),
+    main = useRef<HTMLElement>(null),
+    fileInput = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    let live = true;
+    readState()
+      .then((s) => {
+        if (live) {
+          setState(
+            s
+              ? learnerSchema.parse(s)
+              : createLearner(Date.now(), 'conservation-energy'),
+          );
+          hydrated.current = true;
+        }
+      })
+      .catch(() => {
+        if (live) {
+          setState(createLearner(Date.now(), 'conservation-energy'));
+          setStorageError(
+            'Device storage is unavailable. Export your progress before closing this tab.',
+          );
+          hydrated.current = true;
+        }
+      });
+    setOnline(navigator.onLine);
+    const on = () => setOnline(true),
+      off = () => setOnline(false);
+    window.addEventListener('online', on);
+    window.addEventListener('offline', off);
+    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then(() => navigator.serviceWorker.ready)
+        .then(() => {
+          navigator.serviceWorker.addEventListener('message', (e) => {
+            if (e.data === 'OFFLINE_READY') setOfflineReady(true);
+          });
+          setOfflineReady(!!navigator.serviceWorker.controller);
+        })
+        .catch(() =>
+          setNotice(
+            'Offline installation did not finish. Reopen online to retry.',
+          ),
+        );
+    }
+    return () => {
+      live = false;
+      window.removeEventListener('online', on);
+      window.removeEventListener('offline', off);
+    };
+  }, []);
+  useEffect(() => {
+    if (!state || !hydrated.current) return;
+    saveState(state).catch(() =>
+      setStorageError(
+        'Progress could not be saved. Export a backup before closing.',
+      ),
+    );
+    document.documentElement.dataset.theme = state.theme;
+    document.documentElement.dataset.reading = state.accessibleFont
+      ? 'accessible'
+      : 'standard';
+  }, [state]);
+  function navigate(next: View) {
+    setView(next);
+    setMobileNav(false);
+    setNotice('');
+    requestAnimationFrame(() => {
+      main.current?.focus();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+  }
+  if (!state)
+    return (
+      <div className="loading-screen">
+        <Brand />
+        <p>Opening your learning observatory…</p>
+      </div>
+    );
+  const now = Date.now(),
+    recommendations = plan(catalog, state, now),
+    next = recommendations[0],
+    nextConcept = next ? concept(next.concept) : null,
+    goal = concept(state.goal),
+    target = ancestors(catalog, state.goal),
+    due = catalog.filter((c) => {
+      const k = getKnowledge(state, c.id, now);
+      return k.observations > 0 && dueAt(k) < now;
+    }),
+    assessed = catalog.filter(
+      (c) => getKnowledge(state, c.id, now).observations > 0,
+    ),
+    strong = assessed.filter(
+      (c) => effective(getKnowledge(state, c.id, now), now) >= 0.8,
+    ),
+    ready = catalog.filter(
+      (c) =>
+        missing(catalog, state, c.id, now).length === 0 &&
+        effective(getKnowledge(state, c.id, now), now) < 0.8,
+    ),
+    lesson = concept(lessonId),
+    gaps = missing(catalog, state, lessonId, now),
+    frontier = estimateFrontier(catalog, state);
+  function itemFor(id: string, s: Learner, diagnostic = false) {
+    const c = concept(id);
+    const template = diagnostic
+      ? c.generators[0]
+      : selectTemplate(c, s, Date.now());
+    setLessonId(id);
+    setItem(
+      generate(
+        c,
+        template,
+        ((s.history.length + 1) * 7919 +
+          ((s.history.at(-1)?.at ?? 0) % 10_000_000) * 101 +
+          catalog.indexOf(c) * 101) >>>
+          0,
+      ),
+    );
+  }
+  function startSession(id?: string, s = state!) {
+    if (!s.onboarded) {
+      setOnboarding(true);
+      return;
+    }
+    session.current = {
+      start: Date.now(),
+      initial: Object.fromEntries(
+        catalog.map((c) => [c.id, getKnowledge(s, c.id, Date.now()).p]),
+      ),
+      events: [],
+      minutes: s.minutes,
+    };
+    const action =
+      id ??
+      sessionPlan(catalog, s, Date.now())[0]?.concept ??
+      plan(catalog, s, Date.now())[0]?.concept;
+    if (!action) {
+      setNotice(
+        'Your current evidence is strong. Return when a review is due or choose a new goal in settings.',
+      );
+      return;
+    }
+    const routed = routeToReady(catalog, s, action, Date.now());
+    itemFor(routed, s);
+    navigate('session');
+  }
+  function openLesson(id: string) {
+    setLessonId(id);
+    navigate('lesson');
+  }
+  function beginDiagnostic(goalId: string) {
+    const s = {
+      ...state!,
+      goal: goalId,
+      onboarded: true,
+      diagnostic: [],
+      history: state!.history.filter((e) => !e.diagnostic),
+    };
+    setState(s);
+    setOnboarding(false);
+    const c = diagnosticNext(catalog, s, Date.now());
+    if (c) {
+      itemFor(c.id, s, true);
+      navigate('diagnostic');
+    }
+  }
+  function skipDiagnostic(goalId: string) {
+    const s = { ...state!, goal: goalId, onboarded: true };
+    setState(s);
+    setOnboarding(false);
+    startSession(undefined, s);
+  }
+  function evidence(e: Evidence) {
+    setState((s) => (s ? observe(s, e, catalog) : s));
+    if (!e.diagnostic) session.current?.events.push(e);
+  }
+  function finishSession() {
+    const run = session.current;
+    if (!run) return;
+    if (!run.events.length) {
+      navigate('today');
+      setNotice(
+        'No responses were recorded. Come back when you have a little time.',
+      );
+      return;
+    }
+    const record: SessionRecord = {
+      at: Date.now(),
+      concepts: [...new Set(run.events.map((e) => e.concept))],
+      correct: run.events.filter((e) => e.correct).length,
+      total: run.events.length,
+      minutes: Math.max(1, Math.round((Date.now() - run.start) / 60000)),
+      reflection: '',
+      changes: Object.fromEntries(
+        [...new Set(run.events.map((e) => e.concept))].map((id) => [
+          id,
+          getKnowledge(state!, id, Date.now()).p - (run.initial[id] ?? 0.25),
+        ]),
+      ),
+    };
+    setLastSession(record);
+    setReflection('');
+    setState((s) =>
+      s ? { ...s, sessions: [...s.sessions, record].slice(-1000) } : s,
+    );
+    navigate('summary');
+  }
+  function nextQuestion() {
+    if (view === 'diagnostic') {
+      if (state!.diagnostic.length >= 18) {
+        navigate('placement');
+        return;
+      }
+      const c = diagnosticNext(catalog, state!, Date.now());
+      if (c) itemFor(c.id, state!, true);
+      else navigate('placement');
+      return;
+    }
+    const run = session.current;
+    if (
+      run &&
+      (run.events.length >= Math.max(3, Math.floor(run.minutes / 1.5)) ||
+        Date.now() - run.start > run.minutes * 60000)
+    ) {
+      finishSession();
+      return;
+    }
+    const a = plan(catalog, state!, Date.now())[0];
+    if (a) itemFor(a.concept, state!);
+    else finishSession();
+  }
+  function exportState() {
+    const blob = new Blob([JSON.stringify(state, null, 2)], {
+        type: 'application/json',
+      }),
+      url = URL.createObjectURL(blob),
+      a = document.createElement('a');
+    a.href = url;
+    a.download = `noetherwake-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setNotice('Your progress was exported. Keep the JSON file somewhere safe.');
+  }
+  async function importState(file?: File) {
+    if (!file) return;
+    try {
+      const s = parseImport(
+        await file.text(),
+        new Set(catalog.map((c) => c.id)),
+      );
+      await saveState(s);
+      setState(s);
+      setNotice('Backup restored. Your route now uses the imported evidence.');
+    } catch (e) {
+      setNotice(
+        `Import did not change your progress: ${e instanceof Error ? e.message : 'Invalid file'}`,
+      );
+    }
+    if (fileInput.current) fileInput.current.value = '';
+  }
+  const activeView = [
+    'lesson',
+    'session',
+    'diagnostic',
+    'placement',
+    'summary',
+  ].includes(view)
+    ? 'today'
+    : view;
+  return (
+    <div className="app-shell">
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
+      <aside className={`sidebar ${mobileNav ? 'open' : ''}`}>
+        <a
+          className="brand-link"
+          href="#today"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate('today');
+          }}
+          aria-label="Noetherwake home"
+        >
+          <Brand />
+        </a>
+        <div className="workspace-label">YOUR LEARNING SPACE</div>
+        <nav aria-label="Main navigation">
+          {nav.map((n) => (
+            <button
+              key={n.id}
+              className={`nav-item ${activeView === n.id ? 'active' : ''}`}
+              aria-current={activeView === n.id ? 'page' : undefined}
+              onClick={() => navigate(n.id)}
+            >
+              <n.icon size={18} strokeWidth={1.7} />
+              {n.label}
+              {n.id === 'today' && <span className="nav-dot" />}
+            </button>
+          ))}
+        </nav>
+        <div className="sidebar-goal">
+          <span className="eyebrow">YOUR NORTH STAR</span>
+          <div>
+            <Target size={16} />
+            <span>
+              {goals.find((g) => g.id === state.goal)?.title ?? goal.title}
+            </span>
+          </div>
+          <div className="goal-progress">
+            <span
+              style={{
+                width: `${(strong.filter((c) => target.has(c.id)).length / target.size) * 100}%`,
+              }}
+            />
+          </div>
+          <small>
+            {strong.filter((c) => target.has(c.id)).length} of {target.size}{' '}
+            ideas with strong evidence
+          </small>
+        </div>
+        <div className="sidebar-bottom">
+          <div className="local-note">
+            <ShieldCheck size={16} />
+            <div>
+              Yours. On this device.<small>No account. No tracking.</small>
+            </div>
+          </div>
+          <button
+            className={`nav-item ${view === 'settings' ? 'active' : ''}`}
+            onClick={() => navigate('settings')}
+            aria-current={view === 'settings' ? 'page' : undefined}
+          >
+            <Settings2 size={17} /> Preferences
+          </button>
+          <div className="version-label">
+            NOETHERWAKE <span>v0.1 / offline first</span>
+          </div>
+        </div>
+      </aside>
+      {mobileNav && (
+        <button
+          className="nav-backdrop"
+          aria-label="Close menu"
+          onClick={() => setMobileNav(false)}
+        />
+      )}
+      <div className="workspace">
+        <header className="topbar">
+          <div className="topbar-left">
+            <button
+              className="icon-button mobile-menu"
+              aria-label="Open navigation"
+              onClick={() => setMobileNav(!mobileNav)}
+            >
+              <Menu size={20} />
+            </button>
+            <span className="breadcrumb">
+              Your workspace <ChevronRight size={13} />{' '}
+              <b>
+                {view === 'today'
+                  ? 'Today'
+                  : view === 'map'
+                    ? 'Knowledge map'
+                    : view === 'curriculum'
+                      ? 'Curriculum'
+                      : view === 'journal'
+                        ? 'Journal'
+                        : view === 'settings'
+                          ? 'Preferences'
+                          : view === 'diagnostic'
+                            ? 'Finding your frontier'
+                            : 'Your learning session'}
+              </b>
+            </span>
+          </div>
+          <div className="topbar-right">
+            <span className="connection">
+              <i />
+              {!online
+                ? 'Offline'
+                : offlineReady
+                  ? 'Offline ready'
+                  : 'Local first'}
+            </span>
+            <span className="topbar-divider" />
+            <button
+              className="icon-button theme-toggle"
+              aria-label={
+                state.theme === 'dark' ? 'Use light theme' : 'Use dark theme'
+              }
+              onClick={() =>
+                setState({
+                  ...state,
+                  theme: state.theme === 'dark' ? 'light' : 'dark',
+                })
+              }
+            >
+              {state.theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+            </button>
+            <span className="user-mark" aria-label="Local learner">
+              N
+            </span>
+          </div>
+        </header>
+        <main
+          id="main-content"
+          ref={main}
+          tabIndex={-1}
+          className={`main-content view-${view}`}
+        >
+          {(notice || storageError) && (
+            <div className="notice" role="status">
+              {storageError || notice}
+              <button
+                className="icon-button"
+                aria-label="Dismiss notice"
+                onClick={() => {
+                  setNotice('');
+                  if (!storageError) setStorageError('');
+                }}
+              >
+                <X size={14} />
+              </button>
+            </div>
+          )}
+          {view === 'today' && (
+            <>
+              <div className="page-heading">
+                <div>
+                  <span className="eyebrow">
+                    SMALL STEPS. DEEP UNDERSTANDING.
+                  </span>
+                  <h1>
+                    A little further.
+                    <br />
+                    <em>A little clearer.</em>
+                  </h1>
+                  <p>
+                    You bring the curiosity. We’ll find the next right question.
+                  </p>
+                </div>
+                <span className="date-label" suppressHydrationWarning>
+                  {new Intl.DateTimeFormat('en', {
+                    weekday: 'long',
+                    month: 'short',
+                    day: 'numeric',
+                  }).format(now)}
+                  <span>
+                    <span className="tiny-square" /> A good day to understand
+                    something.
+                  </span>
+                </span>
+              </div>
+              <div className="today-grid">
+                <section className="next-card">
+                  <div className="next-card-top">
+                    <span className="eyebrow">
+                      <span className="pulse-dot" />{' '}
+                      {state.onboarded
+                        ? 'YOUR NEXT BEST STEP'
+                        : 'YOUR JOURNEY STARTS HERE'}
+                    </span>
+                    <span className="pill">{state.minutes} min session</span>
+                  </div>
+                  <div className="next-illustration" aria-hidden="true">
+                    <svg viewBox="0 0 240 160">
+                      <g fill="none" stroke="currentColor">
+                        <path d="M20 130H225M45 145V15" opacity=".2" />
+                        <path
+                          d="M45 130C100 130 130 120 150 90S175 30 220 20"
+                          strokeWidth="1.5"
+                        />
+                        <path
+                          d="M45 130L220 20"
+                          strokeDasharray="3 5"
+                          opacity=".25"
+                        />
+                        <circle cx="150" cy="90" r="6" fill="currentColor" />
+                        <circle cx="150" cy="90" r="15" opacity=".25" />
+                        <path d="M115 135L185 45" opacity=".5" />
+                      </g>
+                    </svg>
+                    <span>Δ understanding &gt; 0</span>
+                  </div>
+                  <div className="next-card-content">
+                    <span className="lesson-path">
+                      {state.onboarded
+                        ? `${nextConcept?.strand ?? 'Spaced retrieval'} / ${next?.kind === 'repair' ? 'Prerequisite repair' : next?.kind === 'review' ? 'A timely return' : 'The next connection'}`
+                        : 'MATH + PHYSICS / ADAPTIVE LEARNING'}
+                    </span>
+                    <h2>
+                      {state.onboarded ? (
+                        (nextConcept?.title ?? 'Let your learning settle.')
+                      ) : (
+                        <>
+                          Find your footing.
+                          <br />
+                          Then build from there.
+                        </>
+                      )}
+                    </h2>
+                    <p className="next-description">
+                      {state.onboarded
+                        ? nextConcept?.summary
+                            .split('. ')
+                            .slice(0, 2)
+                            .join('. ') + '.'
+                        : 'A few thoughtful questions reveal what you know, what’s uncertain, and where a new idea can take root.'}
+                    </p>
+                    <button
+                      className="continue-button"
+                      onClick={() =>
+                        state.onboarded ? startSession() : setOnboarding(true)
+                      }
+                    >
+                      {state.onboarded
+                        ? 'Continue learning'
+                        : 'Find my starting point'}{' '}
+                      <ArrowRight size={19} />
+                    </button>
+                    <div className="why-line">
+                      <Lightbulb size={15} />
+                      <p>
+                        {state.onboarded
+                          ? (next?.why ??
+                            'Strong evidence deserves some space. Choose a new goal or return for a review.')
+                          : 'Why start here? A useful path begins with what you actually understand.'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="session-duration">
+                    <span>
+                      <Clock3 size={13} /> A little time, well spent
+                    </span>
+                    <div aria-label="Session length">
+                      {([5, 15, 30] as const).map((m) => (
+                        <button
+                          key={m}
+                          className={state.minutes === m ? 'selected' : ''}
+                          aria-pressed={state.minutes === m}
+                          onClick={() => setState({ ...state, minutes: m })}
+                        >
+                          {m}m
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+                <section className="frontier-card">
+                  <div className="panel-heading">
+                    <div>
+                      <span className="eyebrow">THE BIG PICTURE</span>
+                      <h2>Your learning frontier</h2>
+                    </div>
+                    <button
+                      className="icon-button"
+                      aria-label="Open full knowledge map"
+                      onClick={() => navigate('map')}
+                    >
+                      <ArrowUpRight size={20} />
+                    </button>
+                  </div>
+                  <p>Every idea connects. This is where yours begin.</p>
+                  <ConceptMap
+                    state={state}
+                    compact
+                    onSelect={(id) => {
+                      setSelected(id);
+                      navigate('map');
+                    }}
+                  />
+                  <div className="frontier-note">
+                    <Focus size={16} />
+                    <p>
+                      {assessed.length
+                        ? `${assessed.length} ideas assessed. Your next step follows the evidence.`
+                        : 'The dashed edges are honest: we haven’t met your knowledge yet.'}
+                    </p>
+                  </div>
+                </section>
+              </div>
+              <div className="today-bottom">
+                <section className="session-outline">
+                  <div className="section-title">
+                    <Layers3 size={17} />
+                    <h2>A session with a purpose</h2>
+                    <span>Not a playlist. A learning loop.</span>
+                  </div>
+                  <div className="session-steps">
+                    {[
+                      {
+                        n: '01',
+                        title: 'Retrieve',
+                        copy: 'Wake up an idea you know.',
+                      },
+                      {
+                        n: '02',
+                        title: 'Connect',
+                        copy: 'Build one new piece of intuition.',
+                      },
+                      {
+                        n: '03',
+                        title: 'Test',
+                        copy: 'Try it without the scaffolding.',
+                      },
+                      {
+                        n: '04',
+                        title: 'Reflect',
+                        copy: 'Keep what matters. Space the rest.',
+                      },
+                    ].map((s) => (
+                      <div key={s.n}>
+                        <span className="step-number">{s.n}</span>
+                        <div>
+                          <h3>{s.title}</h3>
+                          <p>{s.copy}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+                <section className="review-note">
+                  <div className="review-icon">
+                    <Clock3 size={22} />
+                  </div>
+                  <div>
+                    <h3>
+                      {due.length
+                        ? `${due.length} idea${due.length === 1 ? '' : 's'} ready to revisit`
+                        : 'Room for things to settle.'}
+                    </h3>
+                    <p>
+                      {due.length
+                        ? 'Your next session includes timely retrieval.'
+                        : assessed.length
+                          ? 'The scheduler will bring ideas back before they fade.'
+                          : 'Reviews will appear once you’ve started learning. No catching up required.'}
+                    </p>
+                  </div>
+                  <span className="review-count mono">
+                    {String(due.length).padStart(2, '0')}
+                  </span>
+                </section>
+              </div>
+              <footer className="home-footer">
+                <span>
+                  <span className="tiny-square" /> UNDERSTANDING, NOT JUST
+                  ANSWERS.
+                </span>
+                <span>
+                  67 connected ideas <i /> Math ↔ Physics <i /> Entirely yours
+                </span>
+              </footer>
+            </>
+          )}
+          {view === 'map' && (
+            <>
+              <div className="standard-heading">
+                <span className="eyebrow">
+                  WHERE YOU ARE. WHERE YOU CAN GO.
+                </span>
+                <h1>The connections matter.</h1>
+                <p>
+                  Follow the green path toward {goal.title.toLowerCase()}.
+                  Dashed rings mean uncertainty; double rings mark your
+                  frontier.
+                </p>
+              </div>
+              <div className="map-page-layout">
+                <section className="full-map-card">
+                  <div className="panel-heading">
+                    <h2>Your knowledge, connected</h2>
+                    <span className="pill light">
+                      {catalog.length} ideas ·{' '}
+                      {catalog.filter((c) => c.domain === 'physics').length}{' '}
+                      physics
+                    </span>
+                  </div>
+                  <ConceptMap
+                    state={state}
+                    selected={selected ?? undefined}
+                    onSelect={setSelected}
+                  />
+                </section>
+                <aside className="map-detail">
+                  {selected ? (
+                    (() => {
+                      const c = concept(selected),
+                        k = getKnowledge(state, selected, now),
+                        gap = missing(catalog, state, selected, now),
+                        range = interval(k);
+                      return (
+                        <>
+                          <span className="eyebrow">
+                            {c.domain} / {c.strand}
+                          </span>
+                          <h2>{c.title}</h2>
+                          <p>{c.summary}</p>
+                          <div className="mastery-detail">
+                            <span>
+                              {k.observations
+                                ? 'Estimated mastery'
+                                : 'Prior · not yet assessed'}
+                            </span>
+                            <strong className="mono">
+                              {Math.round(effective(k, now) * 100)}
+                              <small>%</small>
+                            </strong>
+                            <div className="probability-track">
+                              <span style={{ width: `${k.p * 100}%` }} />
+                            </div>
+                            <p className="mono">
+                              Uncertainty: {Math.round(range[0] * 100)}–
+                              {Math.round(range[1] * 100)}%
+                            </p>
+                          </div>
+                          {gap.length ? (
+                            <>
+                              <h3>
+                                <LockKeyhole size={14} /> Build these first
+                              </h3>
+                              {gap.map((id) => (
+                                <button
+                                  className="prerequisite-link"
+                                  key={id}
+                                  onClick={() => setSelected(id)}
+                                >
+                                  {concept(id).title}
+                                  <ChevronRight size={14} />
+                                </button>
+                              ))}
+                              <button
+                                className="primary full"
+                                onClick={() =>
+                                  openLesson(
+                                    routeToReady(catalog, state, selected, now),
+                                  )
+                                }
+                              >
+                                Take me there <ArrowRight size={15} />
+                              </button>
+                            </>
+                          ) : (
+                            <button
+                              className="primary full"
+                              onClick={() => openLesson(selected)}
+                            >
+                              Explore this idea <ArrowRight size={15} />
+                            </button>
+                          )}
+                        </>
+                      );
+                    })()
+                  ) : (
+                    <>
+                      <Compass size={32} />
+                      <h2>
+                        Choose an idea.
+                        <br />
+                        See the path.
+                      </h2>
+                      <p>
+                        Select any node to see its evidence, prerequisites and
+                        connections.
+                      </p>
+                      <div className="map-facts">
+                        <span>
+                          <b>{ready.length}</b> ready to explore
+                        </span>
+                        <span>
+                          <b>{assessed.length}</b> assessed so far
+                        </span>
+                        <span>
+                          <b>{strong.length}</b> with strong evidence
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </aside>
+              </div>
+            </>
+          )}
+          {view === 'curriculum' && (
+            <>
+              <div className="standard-heading">
+                <span className="eyebrow">
+                  CONCRETE FIRST. ABSTRACT SECOND.
+                </span>
+                <h1>A connected curriculum.</h1>
+                <p>
+                  67 complete lessons. Three generated problem families per
+                  idea. One continuous path from foundations to fields.
+                </p>
+              </div>
+              <div className="library-toolbar">
+                <label className="search-field">
+                  <Search size={17} />
+                  <input
+                    aria-label="Search concepts"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Find an idea, not a chapter…"
+                  />
+                </label>
+                <div className="segmented">
+                  {['all', 'math', 'physics'].map((d) => (
+                    <button
+                      key={d}
+                      className={domain === d ? 'selected' : ''}
+                      onClick={() => setDomain(d)}
+                    >
+                      {d === 'all'
+                        ? 'All ideas'
+                        : d === 'math'
+                          ? 'Mathematics'
+                          : 'Physics'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="curriculum-list">
+                {catalog
+                  .filter(
+                    (c) =>
+                      (domain === 'all' || c.domain === domain) &&
+                      `${c.title} ${c.strand} ${c.summary}`
+                        .toLowerCase()
+                        .includes(search.toLowerCase()),
+                  )
+                  .map((c) => {
+                    const gap = missing(catalog, state, c.id, now),
+                      k = getKnowledge(state, c.id, now);
+                    return (
+                      <button
+                        className="curriculum-item"
+                        key={c.id}
+                        onClick={() => openLesson(c.id)}
+                      >
+                        <span className={`domain-icon ${c.domain}`}>
+                          {c.domain === 'math' ? (
+                            <span>ƒ</span>
+                          ) : (
+                            <span>φ</span>
+                          )}
+                        </span>
+                        <div>
+                          <span className="eyebrow">{c.strand}</span>
+                          <h2>{c.title}</h2>
+                          <p>{c.summary.split('. ')[0]}.</p>
+                        </div>
+                        <span className="curriculum-status">
+                          {gap.length ? (
+                            <>
+                              <LockKeyhole size={13} />
+                              {gap.length} prerequisite
+                              {gap.length === 1 ? '' : 's'}
+                            </>
+                          ) : k.observations ? (
+                            `${Math.round(k.p * 100)}% · estimated`
+                          ) : (
+                            'Ready to explore'
+                          )}
+                        </span>
+                        <ArrowUpRight size={17} />
+                      </button>
+                    );
+                  })}
+              </div>
+            </>
+          )}
+          {view === 'journal' && (
+            <>
+              <div className="standard-heading">
+                <span className="eyebrow">
+                  EVIDENCE, NOT EXPERIENCE POINTS.
+                </span>
+                <h1>Watch understanding grow.</h1>
+                <p>
+                  Your locally stored sessions, reflections and confidence
+                  calibration.
+                </p>
+              </div>
+              <div className="journal-stats">
+                <div>
+                  <span>Ideas assessed</span>
+                  <strong className="mono">{assessed.length}</strong>
+                </div>
+                <div>
+                  <span>Independent fluent responses</span>
+                  <strong className="mono">
+                    {Object.values(state.knowledge).reduce(
+                      (n, k) => n + k.fluent,
+                      0,
+                    )}
+                  </strong>
+                </div>
+                <div>
+                  <span>Confidence Brier error · lower is better</span>
+                  <strong className="mono">
+                    {state.history.length
+                      ? (
+                          state.history.reduce(
+                            (n, e) =>
+                              n + (e.confidence - Number(e.correct)) ** 2,
+                            0,
+                          ) / state.history.length
+                        ).toFixed(3)
+                      : '—'}
+                  </strong>
+                </div>
+              </div>
+              {state.sessions.length ? (
+                <div className="journal-list">
+                  {[...state.sessions].reverse().map((s, i) => (
+                    <article className="journal-entry" key={`${s.at}-${i}`}>
+                      <span className="eyebrow">
+                        {new Date(s.at).toLocaleDateString(undefined, {
+                          month: 'long',
+                          day: 'numeric',
+                        })}{' '}
+                        · {s.minutes} MINUTES
+                      </span>
+                      <h2>
+                        {s.concepts.map((id) => concept(id).title).join(' · ')}
+                      </h2>
+                      <p>
+                        {s.correct} of {s.total} responses correct.{' '}
+                        {s.reflection || 'No reflection recorded.'}
+                      </p>
+                      {Object.entries(s.changes).map(([id, d]) => (
+                        <span className="delta-chip" key={id}>
+                          {concept(id).title}: {d >= 0 ? '+' : ''}
+                          {(d * 100).toFixed(1)} percentage points
+                        </span>
+                      ))}
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <div className="empty-state">
+                  <NotebookPen size={34} />
+                  <h2>Your story starts with a question.</h2>
+                  <p>
+                    Complete a session to record what changed, what felt
+                    difficult and what deserves another look.
+                  </p>
+                  <button className="primary" onClick={() => startSession()}>
+                    Begin a session <ArrowRight size={15} />
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+          {view === 'settings' && (
+            <>
+              <div className="standard-heading">
+                <span className="eyebrow">A TOOL THAT ADAPTS TO YOU.</span>
+                <h1>Make space for learning.</h1>
+                <p>Your preferences and your progress stay on this device.</p>
+              </div>
+              <div className="settings-grid">
+                <section className="settings-card">
+                  <h2>
+                    <SlidersHorizontal size={19} /> Your environment
+                  </h2>
+                  <fieldset>
+                    <legend>Appearance</legend>
+                    <div className="setting-options">
+                      {[
+                        { id: 'system', label: 'System', icon: Monitor },
+                        { id: 'light', label: 'Light', icon: Sun },
+                        { id: 'dark', label: 'Dark', icon: Moon },
+                      ].map((t) => (
+                        <button
+                          key={t.id}
+                          className={state.theme === t.id ? 'selected' : ''}
+                          onClick={() =>
+                            setState({
+                              ...state,
+                              theme: t.id as Learner['theme'],
+                            })
+                          }
+                          aria-pressed={state.theme === t.id}
+                        >
+                          <t.icon size={18} />
+                          {t.label}
+                        </button>
+                      ))}
+                    </div>
+                  </fieldset>
+                  <label className="toggle-row">
+                    <div>
+                      <strong>Accessible reading font</strong>
+                      <span>
+                        Clear sans serif, wider spacing and generous lines.
+                      </span>
+                    </div>
+                    <input
+                      type="checkbox"
+                      checked={state.accessibleFont}
+                      onChange={(e) =>
+                        setState({ ...state, accessibleFont: e.target.checked })
+                      }
+                    />
+                  </label>
+                  <label className="field-label" htmlFor="session-length">
+                    Time for a typical session
+                  </label>
+                  <select
+                    id="session-length"
+                    value={state.minutes}
+                    onChange={(e) =>
+                      setState({
+                        ...state,
+                        minutes: Number(e.target.value) as 5 | 15 | 30,
+                      })
+                    }
+                  >
+                    <option value="5">5 minutes · a small foothold</option>
+                    <option value="15">15 minutes · one good connection</option>
+                    <option value="30">30 minutes · room to go deeper</option>
+                  </select>
+                  <label className="field-label" htmlFor="goal-setting">
+                    Your learning direction
+                  </label>
+                  <select
+                    id="goal-setting"
+                    value={state.goal}
+                    onChange={(e) =>
+                      setState({ ...state, goal: e.target.value })
+                    }
+                  >
+                    {goals.map((g) => (
+                      <option key={g.id} value={g.id}>
+                        {g.title}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    className="text-button"
+                    onClick={() => setOnboarding(true)}
+                  >
+                    Revisit placement <ArrowUpRight size={14} />
+                  </button>
+                </section>
+                <section className="settings-card">
+                  <h2>
+                    <ShieldCheck size={19} /> Your data belongs to you
+                  </h2>
+                  <p>
+                    All answers, mastery estimates and reflections live in
+                    IndexedDB in this browser. Clearing browser storage removes
+                    them. A backup lets you restore or move to another device.
+                  </p>
+                  <button className="secondary full" onClick={exportState}>
+                    <Download size={17} /> Export progress as JSON
+                  </button>
+                  <label className="import-label">
+                    <Upload size={17} />
+                    <span>Import a progress backup</span>
+                    <input
+                      ref={fileInput}
+                      type="file"
+                      accept="application/json,.json"
+                      onChange={(e) => void importState(e.target.files?.[0])}
+                    />
+                  </label>
+                  <p className="fine-print">
+                    A valid import replaces the local learner state. Invalid
+                    files leave your progress unchanged.
+                  </p>
+                  <div className="privacy-note">
+                    <WifiOff size={18} />
+                    <div>
+                      <strong>Fully deterministic. No AI required.</strong>
+                      <p>
+                        No API keys, analytics, remote grading or hidden
+                        uploads. Offline lessons are available after the
+                        production cache finishes installing.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </>
+          )}
+          {(view === 'lesson' || view === 'session') && (
+            <>
+              <button
+                className="text-button back-button"
+                onClick={() => navigate('today')}
+              >
+                <ChevronLeft size={16} /> Back to today
+              </button>
+              {gaps.length && view === 'lesson' ? (
+                <section className="locked-card">
+                  <LockKeyhole size={30} />
+                  <span className="eyebrow">A CONNECTION TO BUILD FIRST</span>
+                  <h1>{lesson.title}</h1>
+                  <p>
+                    This idea rests on the following prerequisites. Practice a
+                    ready foundation first, and the engine will bring you back
+                    when the evidence supports it.
+                  </p>
+                  <div>
+                    {gaps.map((id) => (
+                      <button
+                        className="prerequisite-link"
+                        key={id}
+                        onClick={() => openLesson(id)}
+                      >
+                        {concept(id).title}
+                        <ArrowRight size={14} />
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    className="primary"
+                    onClick={() =>
+                      openLesson(routeToReady(catalog, state, lesson.id, now))
+                    }
+                  >
+                    Take me to the first ready step <ArrowRight size={17} />
+                  </button>
+                </section>
+              ) : (
+                <>
+                  <div className="lesson-heading">
+                    <span className="eyebrow">
+                      {lesson.domain} / {lesson.strand}
+                      {view === 'session'
+                        ? ` / SESSION ${String((session.current?.events.length ?? 0) + 1).padStart(2, '0')}`
+                        : ''}
+                    </span>
+                    <h1>{lesson.title}</h1>
+                    <p>
+                      {view === 'session'
+                        ? (plan(catalog, state, now).find(
+                            (a) => a.concept === lesson.id,
+                          )?.why ??
+                          'A ready connection, chosen from your evidence.')
+                        : 'Intuition first. A precise relationship. Then a test of your own.'}
+                    </p>
+                  </div>
+                  <div className="lesson-layout">
+                    <div>
+                      {view === 'lesson' ||
+                      stage(state, lesson.id, now) === 'worked' ? (
+                        <article
+                          className="lesson-prose"
+                          onClick={(e) => {
+                            const a = (e.target as HTMLElement).closest('a');
+                            if (
+                              a?.getAttribute('href')?.startsWith('concept:')
+                            ) {
+                              e.preventDefault();
+                              openLesson(a.getAttribute('href')!.slice(8));
+                            }
+                          }}
+                          dangerouslySetInnerHTML={{
+                            __html: lesson.html ?? '',
+                          }}
+                        />
+                      ) : null}
+                      <section className="derivation">
+                        <span className="eyebrow">FOLLOW THE REASONING</span>
+                        {lesson.derivation.map((d, i) => (
+                          <details key={i}>
+                            <summary>
+                              <span className="mono">0{i + 1}</span>
+                              <MathText value={d.expression} />
+                              <ChevronDown size={15} />
+                            </summary>
+                            <p>{d.rule}</p>
+                            <button
+                              className="text-button"
+                              onClick={() => openLesson(d.concept)}
+                            >
+                              Underlying idea: {concept(d.concept).title}
+                              <ArrowUpRight size={13} />
+                            </button>
+                          </details>
+                        ))}
+                      </section>
+                      {view === 'session' && item ? (
+                        <Assessment
+                          key={item.id}
+                          item={item}
+                          concept={lesson}
+                          faded={stage(state, lesson.id, now) !== 'independent'}
+                          onEvidence={evidence}
+                          onNext={nextQuestion}
+                        />
+                      ) : (
+                        <div className="lesson-practice">
+                          <h2>Can you reconstruct it?</h2>
+                          <p>
+                            Reading makes an idea familiar. Retrieval tells us
+                            what is yours.
+                          </p>
+                          {effective(getKnowledge(state, lesson.id, now), now) >
+                            0.93 &&
+                          dueAt(getKnowledge(state, lesson.id, now)) > now ? (
+                            <p className="hint-box">
+                              Your evidence is already strong. Give this idea
+                              some space; the scheduler will bring it back.
+                            </p>
+                          ) : (
+                            <button
+                              className="primary"
+                              onClick={() => startSession(lesson.id)}
+                            >
+                              Try the idea <ArrowRight size={16} />
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <aside className="lesson-aside">
+                      <Interactive key={lesson.id} concept={lesson} />
+                      {view === 'session' && (
+                        <button
+                          className="text-button centered"
+                          onClick={finishSession}
+                        >
+                          Finish this session
+                        </button>
+                      )}
+                    </aside>
+                  </div>
+                </>
+              )}
+            </>
+          )}
+          {view === 'diagnostic' && item && (
+            <>
+              <div className="diagnostic-heading">
+                <span className="eyebrow">FINDING YOUR FRONTIER</span>
+                <div>
+                  <h1>
+                    Let’s find the edges
+                    <br />
+                    of what you know.
+                  </h1>
+                  <span className="mono">
+                    {state.diagnostic.length + 1}
+                    <small> / 18</small>
+                  </span>
+                </div>
+                <p>
+                  This isn’t a grade. Uncertain answers are useful evidence,
+                  too.
+                </p>
+                <div className="diagnostic-progress">
+                  <span
+                    style={{
+                      width: `${(state.diagnostic.length / 18) * 100}%`,
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="diagnostic-body">
+                <span className="pill light">
+                  {lesson.strand} · {lesson.title}
+                </span>
+                <Assessment
+                  key={item.id}
+                  item={item}
+                  concept={lesson}
+                  diagnostic
+                  onEvidence={evidence}
+                  onNext={nextQuestion}
+                />
+                <button
+                  className="text-button"
+                  onClick={() => navigate('placement')}
+                >
+                  {state.diagnostic.length >= 12
+                    ? 'Finish placement'
+                    : 'Pause placement and use the evidence so far'}{' '}
+                  <ArrowRight size={14} />
+                </button>
+              </div>
+            </>
+          )}
+          {view === 'placement' && (
+            <section className="result-page">
+              <span className="result-icon">
+                <Focus size={29} />
+              </span>
+              <span className="eyebrow">A STARTING POINT, NOT A LABEL.</span>
+              <h1>Here’s where we begin.</h1>
+              <p>
+                You explored {state.diagnostic.length} questions.{' '}
+                {frontier.uncertain
+                  ? 'There is still broad uncertainty, so the engine will be careful about the first steps.'
+                  : `The diagnostic places your frontier near depth ${frontier.depth} of ${frontier.max}. This is a noisy estimate; individual prerequisite checks guide your route.`}
+              </p>
+              <div className="placement-evidence">
+                {state.history
+                  .filter((e) => e.diagnostic)
+                  .map((e, i) => (
+                    <div key={i}>
+                      <span>{concept(e.concept).title}</span>
+                      <span
+                        className={e.correct ? 'evidence-yes' : 'evidence-no'}
+                      >
+                        {e.correct
+                          ? 'Supporting evidence'
+                          : 'Worth a closer look'}
+                      </span>
+                    </div>
+                  ))}
+              </div>
+              <div className="summary-next">
+                <span className="eyebrow">YOUR NEXT CONNECTION</span>
+                <h2>{nextConcept?.title ?? 'Spaced review'}</h2>
+                <p>{next?.why}</p>
+                <button className="primary" onClick={() => startSession()}>
+                  Start my first session <ArrowRight size={16} />
+                </button>
+                <button className="text-button" onClick={() => navigate('map')}>
+                  See my frontier map <ArrowUpRight size={14} />
+                </button>
+              </div>
+            </section>
+          )}
+          {view === 'summary' && lastSession && (
+            <section className="result-page">
+              <span className="result-icon">
+                <Check size={30} />
+              </span>
+              <span className="eyebrow">THAT’S A GOOD PLACE TO PAUSE.</span>
+              <h1>
+                A little clearer
+                <br />
+                than before.
+              </h1>
+              <p>
+                {lastSession.total} responses. {lastSession.concepts.length}{' '}
+                connected idea{lastSession.concepts.length === 1 ? '' : 's'}.
+                Evidence collected, with room for uncertainty.
+              </p>
+              <div className="session-changes">
+                {Object.entries(lastSession.changes).map(([id, d]) => {
+                  const k = getKnowledge(state, id, now);
+                  return (
+                    <div key={id}>
+                      <div>
+                        <h3>{concept(id).title}</h3>
+                        <p>
+                          Next recall:{' '}
+                          {new Date(dueAt(k)).toLocaleString(undefined, {
+                            month: 'short',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })}
+                        </p>
+                      </div>
+                      <span className="mono">
+                        {d >= 0 ? '+' : ''}
+                        {(d * 100).toFixed(1)} pp
+                        <small>estimated mastery</small>
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+              <label className="field-label" htmlFor="reflection">
+                What clicked? What still feels uncertain?
+              </label>
+              <textarea
+                id="reflection"
+                rows={3}
+                value={reflection}
+                onChange={(e) => setReflection(e.target.value.slice(0, 4000))}
+              />
+              <button
+                className="secondary"
+                onClick={() => {
+                  setState({
+                    ...state,
+                    sessions: state.sessions.map((s) =>
+                      s.at === lastSession.at ? { ...s, reflection } : s,
+                    ),
+                    reflection,
+                  });
+                  setNotice('Reflection saved on this device.');
+                }}
+              >
+                Save reflection <NotebookPen size={14} />
+              </button>
+              <div className="summary-next">
+                <span className="eyebrow">WHEN YOU RETURN</span>
+                <h2>{nextConcept?.title ?? 'A well-timed review'}</h2>
+                <p>
+                  {next?.why ??
+                    'The next review will appear when memory needs a return.'}
+                </p>
+                <button className="primary" onClick={() => navigate('today')}>
+                  Back to my learning space <ArrowRight size={15} />
+                </button>
+              </div>
+            </section>
+          )}
+        </main>
+        <div className="mobile-bottom-nav">
+          {nav.slice(0, 3).map((n) => (
+            <button
+              key={n.id}
+              onClick={() => navigate(n.id)}
+              aria-label={n.label}
+              aria-current={activeView === n.id ? 'page' : undefined}
+            >
+              <n.icon size={19} />
+              <span>
+                {n.id === 'map'
+                  ? 'Map'
+                  : n.id === 'curriculum'
+                    ? 'Explore'
+                    : 'Today'}
+              </span>
+            </button>
+          ))}
+          <button onClick={() => navigate('settings')} aria-label="Preferences">
+            <Settings2 size={19} />
+            <span>Preferences</span>
+          </button>
+        </div>
+      </div>
+      {onboarding && (
+        <GoalDialog
+          state={state}
+          onClose={() => setOnboarding(false)}
+          onStart={beginDiagnostic}
+          onSkip={skipDiagnostic}
+        />
+      )}
+    </div>
+  );
 }

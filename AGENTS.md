@@ -25,3 +25,18 @@ Use explicit units, bounded probabilities, stable IDs and seeded generators. Pre
 
 ## Definition of done
 A milestone needs working behavior, appropriate automated checks, documentation and a commit. Engine changes include reproducible synthetic evidence and limitations. Every concept has valid hard/soft links, three answerable templates, an intuition/formalism/boundary lesson, worked derivation, misconceptions and a teaching interactive. Production build must fail on invalid content. User state survives reload; offline navigation and export/import work. UI tests cover diagnostic, session, missing-prerequisite reroute and review. Never claim synthetic results prove learning effectiveness in humans. Record actual failures and unverified budgets.
+
+## Current delivery state
+All five milestones have implementations and reproducible verification. See docs/FINAL_REPORT.md and docs/VERIFICATION.md for measured checks and limitations. Keep the 67-node source and generated catalog in sync with the content command. Root fractions and Newton-law hints have item-specific nudge/setup/full steps; all generated answers are rechecked by the deterministic grader during content validation.
+
+The original NTFS workspace stalled in kernel MFT allocation during dependency installation. Canonical durable checkout: `/home/akmessi/noetherwake`. Use Linux storage for dependencies/builds; do not repeat package installation on the stalled mount. The stack remains the requested Next.js/local-first stack; the SVG layout exception is justified in ENGINE.md.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

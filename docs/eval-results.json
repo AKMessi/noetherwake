@@ -1,4 +1,57 @@
 {
+  "authoredPolicies": {
+    "conservation-energy": {
+      "planner": {
+        "meanSteps": 295.625,
+        "medianSteps": 294,
+        "goalRate": 1
+      },
+      "linear": {
+        "meanSteps": 343.8333333333333,
+        "medianSteps": 322,
+        "goalRate": 0.9166666666666666
+      },
+      "random": {
+        "meanSteps": 1000,
+        "medianSteps": 1000,
+        "goalRate": 0
+      }
+    },
+    "substitution": {
+      "planner": {
+        "meanSteps": 190.75,
+        "medianSteps": 164,
+        "goalRate": 0.9583333333333334
+      },
+      "linear": {
+        "meanSteps": 213.125,
+        "medianSteps": 181,
+        "goalRate": 0.9166666666666666
+      },
+      "random": {
+        "meanSteps": 966.25,
+        "medianSteps": 1000,
+        "goalRate": 0.3333333333333333
+      }
+    },
+    "capacitance": {
+      "planner": {
+        "meanSteps": 301.625,
+        "medianSteps": 296,
+        "goalRate": 1
+      },
+      "linear": {
+        "meanSteps": 357.625,
+        "medianSteps": 337,
+        "goalRate": 0.9583333333333334
+      },
+      "random": {
+        "meanSteps": 1000,
+        "medianSteps": 1000,
+        "goalRate": 0
+      }
+    }
+  },
   "seedRange": [
     1,
     160

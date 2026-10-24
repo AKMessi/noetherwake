@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "es2022"
-    ],
+    "lib": ["dom", "dom.iterable", "es2022"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,12 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@noetherwake/engine": [
-        "./packages/engine/src/index.ts"
-      ]
+      "@/*": ["./*"],
+      "@noetherwake/engine": ["./packages/engine/src/index.ts"]
     }
   },
   "include": [
@@ -37,8 +29,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "out"
-  ]
+  "exclude": ["node_modules", "out"]
 }

@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Label the object receiving each force; third-law partners act on different bodies.",
-        "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis.",
-        "Use 10*{a}. Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis."
+        "Translate this question into its relationship before evaluating: 10*{a}. Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above.",
+        "The complete answer is 10*{a} N. Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above."
       ],
       "solution": "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Label the object receiving each force; third-law partners act on different bodies.",
-        "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis.",
-        "Use {a}*(10+{b}). Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis."
+        "Translate this question into its relationship before evaluating: {a}*(10+{b}). Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*(10+{b}) N. Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above."
       ],
       "solution": "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Label the object receiving each force; third-law partners act on different bodies.",
-        "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis.",
-        "Use B,A,C. Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis."
+        "Translate this question into its relationship before evaluating: B,A,C. Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above.",
+        "The complete answer is B,A,C . Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above."
       ],
       "solution": "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to free-body diagrams & force balance. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\sum F_x=ma_x,\\qquad\\sum F_y=ma_y",
-      "rule": "Definition / physical model",
-      "concept": "newton-2"
+      "expression": "N-mg=ma_y",
+      "rule": "Isolate the body and assign upward positive.",
+      "concept": "vectors"
     },
     {
-      "expression": "\\sum F_x=ma_x,\\qquad\\sum F_y=ma_y",
-      "rule": "Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis.",
-      "concept": "newton-2"
-    },
-    {
-      "expression": "\\text{Example: }30\\;N",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "free-body"
+      "expression": "N=m(g+a_y)",
+      "rule": "Solve the vertical force balance; only zero vertical acceleration gives N=mg.",
+      "concept": "vectors"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A free-body diagram isolates one object and lists interactions acting on it. Con
 
 ## Formalism
 
-$$\sum F_x=ma_x,\qquad\sum F_y=ma_y$$
+$$
+\sum F_x=ma_x,\qquad\sum F_y=ma_y
+$$
 
 Choose the body and axes, identify external interactions, resolve components, and apply Newton second law separately along each axis.
 

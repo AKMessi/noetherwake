@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Write both the force mg and inertial factor m, then cancel the same nonzero mass.",
-        "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height.",
-        "Use 5*{a}^2. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height."
+        "Translate this question into its relationship before evaluating: 5*{a}^2. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above.",
+        "The complete answer is 5*{a}^2 m. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above."
       ],
       "solution": "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Write both the force mg and inertial factor m, then cancel the same nonzero mass.",
-        "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height.",
-        "Use {a}. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height."
+        "Translate this question into its relationship before evaluating: {a}. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} s. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above."
       ],
       "solution": "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Write both the force mg and inertial factor m, then cancel the same nonzero mass.",
-        "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height.",
-        "Use 5*{a}^2. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height."
+        "Translate this question into its relationship before evaluating: 5*{a}^2. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above.",
+        "The complete answer is 5*{a}^2 m. Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above."
       ],
       "solution": "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to free fall & gravitational acceleration. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x-5*x^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "ma=-mg\\quad\\Rightarrow\\quad a=-g",
-      "rule": "Definition / physical model",
-      "concept": "constant-acceleration"
-    },
-    {
-      "expression": "ma=-mg\\quad\\Rightarrow\\quad a=-g",
-      "rule": "Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height.",
+      "expression": "\\sum F_y=-mg=ma_y",
+      "rule": "Combine gravitational force with the constant-mass Newton law.",
       "concept": "newton-2"
     },
     {
-      "expression": "\\text{Example: }45\\;m",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "free-fall"
+      "expression": "a_y=-g,\\quad v_y=v_{0y}-gt",
+      "rule": "Cancel nonzero mass and integrate constant acceleration.",
+      "concept": "newton-2"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Without air resistance, near-Earth gravity accelerates all freely falling object
 
 ## Formalism
 
-$$ma=-mg\quad\Rightarrow\quad a=-g$$
+$$
+ma=-mg\quad\Rightarrow\quad a=-g
+$$
 
 Choose upward positive. Gravitational force points downward, so Newton second law gives negative acceleration. Integrate that constant rate for velocity and height.
 

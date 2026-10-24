@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Substitute t=0 into the proposed trajectory as a separate check.",
-        "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value.",
-        "Use 2*{a}. The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value."
+        "Translate this question into its relationship before evaluating: 2*{a}. The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a} . The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above."
       ],
       "solution": "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Substitute t=0 into the proposed trajectory as a separate check.",
-        "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value.",
-        "Use 2*{a}+{b}. The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value."
+        "Translate this question into its relationship before evaluating: 2*{a}+{b}. The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a}+{b} . The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above."
       ],
       "solution": "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Substitute t=0 into the proposed trajectory as a separate check.",
-        "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value.",
-        "Use {a}*exp(1). The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value."
+        "Translate this question into its relationship before evaluating: {a}*exp(1). The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*exp(1) . The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above."
       ],
       "solution": "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to dynamics as a rate law. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*exp(x/3). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\dot y=ky,\\qquad y(0)=y_0\\quad\\Rightarrow\\quad y=y_0e^{kt}",
-      "rule": "Definition / physical model",
-      "concept": "exponential"
-    },
-    {
-      "expression": "\\dot y=ky,\\qquad y(0)=y_0\\quad\\Rightarrow\\quad y=y_0e^{kt}",
-      "rule": "The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value.",
+      "expression": "y(t)=Ce^{kt}\\quad\\Rightarrow\\quad y\\prime=ky",
+      "rule": "Verify the rate law using the derivative of an exponential.",
       "concept": "integral"
     },
     {
-      "expression": "\\text{Example: }6\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "differential-equations"
+      "expression": "y(0)=C=y_0",
+      "rule": "The initial condition fixes the free constant.",
+      "concept": "integral"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A differential equation specifies how a state changes rather than listing every 
 
 ## Formalism
 
-$$\dot y=ky,\qquad y(0)=y_0\quad\Rightarrow\quad y=y_0e^{kt}$$
+$$
+\dot y=ky,\qquad y(0)=y_0\quad\Rightarrow\quad y=y_0e^{kt}
+$$
 
 The exponential has exactly the required proportional rate; the initial value fixes its multiplier. Verify both the rate equation and the starting value.
 

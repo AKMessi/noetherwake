@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Write the same subtraction explicitly on both sides before simplifying.",
-        "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it.",
-        "Use 6. Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it."
+        "Translate this question into its relationship before evaluating: 6. Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above.",
+        "The complete answer is 6 . Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above."
       ],
       "solution": "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Write the same subtraction explicitly on both sides before simplifying.",
-        "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it.",
-        "Use {b}/{a}. Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it."
+        "Translate this question into its relationship before evaluating: {b}/{a}. Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b}/{a} . Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above."
       ],
       "solution": "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Write the same subtraction explicitly on both sides before simplifying.",
-        "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it.",
-        "Use {a}*(2+{b}). Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it."
+        "Translate this question into its relationship before evaluating: {a}*(2+{b}). Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*(2+{b}) . Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above."
       ],
       "solution": "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to equations as balanced constraints. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x+2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "ax+b=c\\quad\\Rightarrow\\quad x=\\frac{c-b}{a}",
-      "rule": "Definition / physical model",
-      "concept": "signed-numbers"
-    },
-    {
-      "expression": "ax+b=c\\quad\\Rightarrow\\quad x=\\frac{c-b}{a}",
-      "rule": "Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it.",
+      "expression": "ax+b=c\\quad\\Rightarrow\\quad ax=c-b",
+      "rule": "Subtract the same b from both sides.",
       "concept": "ratios"
     },
     {
-      "expression": "\\text{Example: }6\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "equations"
+      "expression": "x=(c-b)/a,\\quad a\\ne0",
+      "rule": "Divide both sides by the same nonzero a.",
+      "concept": "ratios"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ An equation says that two descriptions have the same value. Solving finds the va
 
 ## Formalism
 
-$$ax+b=c\quad\Rightarrow\quad x=\frac{c-b}{a}$$
+$$
+ax+b=c\quad\Rightarrow\quad x=\frac{c-b}{a}
+$$
 
 Undo addition first, then undo multiplication. Substitute the candidate into the original constraint to verify it.
 

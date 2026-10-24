@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Name the intermediate variable u, then write output per u times u per x.",
-        "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change.",
-        "Use 2*{a}*{b}. The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change."
+        "Translate this question into its relationship before evaluating: 2*{a}*{b}. The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a}*{b} . The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above."
       ],
       "solution": "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Name the intermediate variable u, then write output per u times u per x.",
-        "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change.",
-        "Use 2*{a}*({a}*x+1). The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change."
+        "Translate this question into its relationship before evaluating: 2*{a}*({a}*x+1). The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a}*({a}*x+1) . The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above."
       ],
       "solution": "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Name the intermediate variable u, then write output per u times u per x.",
-        "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change.",
-        "Use {a}*{b}. The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change."
+        "Translate this question into its relationship before evaluating: {a}*{b}. The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} . The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above."
       ],
       "solution": "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to chain rule: linked rates. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=(a*x+1)^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\frac{d}{dx}f(g(x))=f\\prime(g(x))g\\prime(x)",
-      "rule": "Definition / physical model",
-      "concept": "composition"
-    },
-    {
-      "expression": "\\frac{d}{dx}f(g(x))=f\\prime(g(x))g\\prime(x)",
-      "rule": "The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change.",
+      "expression": "\\frac{\\Delta y}{\\Delta x}=\\frac{\\Delta y}{\\Delta u}\\frac{\\Delta u}{\\Delta x}",
+      "rule": "Split the total conversion through an intermediate variable.",
       "concept": "derivative"
     },
     {
-      "expression": "\\text{Example: }24\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "chain-rule"
+      "expression": "\\frac{dy}{dx}=\\frac{dy}{du}\\frac{du}{dx}",
+      "rule": "Take compatible local-rate limits; differentiability justifies the chain rule.",
+      "concept": "derivative"
     }
   ],
   "explanation": {
@@ -148,7 +143,9 @@ If one quantity changes because another changed, the total rate multiplies the t
 
 ## Formalism
 
-$$\frac{d}{dx}f(g(x))=f\prime(g(x))g\prime(x)$$
+$$
+\frac{d}{dx}f(g(x))=f\prime(g(x))g\prime(x)
+$$
 
 The inner change is approximately g prime times the input change. The outer change is f prime times that inner change. Divide by the original input change.
 

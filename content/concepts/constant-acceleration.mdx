@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "The added velocity builds from zero; its average over the interval is half its final value.",
-        "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions.",
-        "Use {a}*{b}. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} m/s. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above."
       ],
       "solution": "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "The added velocity builds from zero; its average over the interval is half its final value.",
-        "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions.",
-        "Use 0.5*{a}*{b}^2. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions."
+        "Translate this question into its relationship before evaluating: 0.5*{a}*{b}^2. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above.",
+        "The complete answer is 0.5*{a}*{b}^2 m. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above."
       ],
       "solution": "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "The added velocity builds from zero; its average over the interval is half its final value.",
-        "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions.",
-        "Use {a}+2*{b}. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions."
+        "Translate this question into its relationship before evaluating: {a}+2*{b}. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}+2*{b} m/s. Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above."
       ],
       "solution": "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "motion",
-    "prompt": "Change the parameter and connect the curve to motion under constant acceleration. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=x+a*x^2/2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -111,23 +111,18 @@
     "initial": 2,
     "formula": "x+a*x^2/2",
     "xLabel": "t (s)",
-    "yLabel": "position / output"
+    "yLabel": "position x (m)"
   },
   "derivation": [
     {
-      "expression": "v=v_0+at,\\qquad x=x_0+v_0t+\\tfrac12at^2",
-      "rule": "Definition / physical model",
-      "concept": "acceleration"
-    },
-    {
-      "expression": "v=v_0+at,\\qquad x=x_0+v_0t+\\tfrac12at^2",
-      "rule": "Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions.",
+      "expression": "v(t)-v_0=\\int_0^t a\\,ds=at",
+      "rule": "Integrate the constant acceleration using the initial velocity.",
       "concept": "integral"
     },
     {
-      "expression": "\\text{Example: }12\\;m/s",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "constant-acceleration"
+      "expression": "x(t)-x_0=\\int_0^t(v_0+as)\\,ds=v_0t+\\tfrac12at^2",
+      "rule": "Integrate the resulting linear velocity.",
+      "concept": "integral"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Constant acceleration adds equal amounts of velocity in equal times. The velocit
 
 ## Formalism
 
-$$v=v_0+at,\qquad x=x_0+v_0t+\tfrac12at^2$$
+$$
+v=v_0+at,\qquad x=x_0+v_0t+\tfrac12at^2
+$$
 
 Integrate the constant rate once to get velocity. Integrate that linear velocity again to get position, retaining both initial conditions.
 

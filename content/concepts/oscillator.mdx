@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "For the linear equation, amplitude multiplies both sides and cancels from the frequency condition.",
-        "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency.",
-        "Use sqrt({a}/{b}). Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency."
+        "Translate this question into its relationship before evaluating: sqrt({a}/{b}). Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above.",
+        "The complete answer is sqrt({a}/{b}) rad/s. Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above."
       ],
       "solution": "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "For the linear equation, amplitude multiplies both sides and cancels from the frequency condition.",
-        "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency.",
-        "Use -{a}*{b}. Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency."
+        "Translate this question into its relationship before evaluating: -{a}*{b}. Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above.",
+        "The complete answer is -{a}*{b} N. Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above."
       ],
       "solution": "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "For the linear equation, amplitude multiplies both sides and cancels from the frequency condition.",
-        "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency.",
-        "Use 2*pi*sqrt({a}/{b}). Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency."
+        "Translate this question into its relationship before evaluating: 2*pi*sqrt({a}/{b}). Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*pi*sqrt({a}/{b}) s. Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above."
       ],
       "solution": "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to oscillations & restoring forces. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*cos(x). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "m\\ddot x=-kx,\\quad\\omega=\\sqrt{k/m},\\quad T=2\\pi\\sqrt{m/k}",
-      "rule": "Definition / physical model",
-      "concept": "newton-2"
+      "expression": "m\\ddot x=-kx,\\quad x=A\\cos(\\omega t+\\phi)",
+      "rule": "Combine spring force with Newton law and propose a sinusoid.",
+      "concept": "trig-derivatives"
     },
     {
-      "expression": "m\\ddot x=-kx,\\quad\\omega=\\sqrt{k/m},\\quad T=2\\pi\\sqrt{m/k}",
-      "rule": "Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency.",
-      "concept": "newton-2"
-    },
-    {
-      "expression": "\\text{Example: }0.86603\\;rad/s",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "oscillator"
+      "expression": "-m\\omega^2x=-kx\\Rightarrow\\omega=\\sqrt{k/m}",
+      "rule": "Substitute its second derivative and match the position coefficients.",
+      "concept": "trig-derivatives"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ A restoring force points back toward equilibrium. In an ideal spring it grows in
 
 ## Formalism
 
-$$m\ddot x=-kx,\quad\omega=\sqrt{k/m},\quad T=2\pi\sqrt{m/k}$$
+$$
+m\ddot x=-kx,\quad\omega=\sqrt{k/m},\quad T=2\pi\sqrt{m/k}
+$$
 
 Apply Newton second law to Hooke force. A cosine has second derivative minus its frequency squared times itself; matching coefficients fixes the frequency.
 

@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Compare derivative signs on both sides of the candidate.",
-        "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left.",
-        "Use {a}. If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left."
+        "Translate this question into its relationship before evaluating: {a}. If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} . If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above."
       ],
       "solution": "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Compare derivative signs on both sides of the candidate.",
-        "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left.",
-        "Use {b}. If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left."
+        "Translate this question into its relationship before evaluating: {b}. If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b} . If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above."
       ],
       "solution": "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Compare derivative signs on both sides of the candidate.",
-        "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left.",
-        "Use ({a}+{b})/2. If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left."
+        "Translate this question into its relationship before evaluating: ({a}+{b})/2. If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above.",
+        "The complete answer is ({a}+{b})/2 . If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above."
       ],
       "solution": "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to optimization & the shape of change. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=-(x-a)^2+8. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "f\\prime(x_*)=0\\quad\\text{at an interior differentiable extremum}",
-      "rule": "Definition / physical model",
-      "concept": "power-rule"
-    },
-    {
-      "expression": "f\\prime(x_*)=0\\quad\\text{at an interior differentiable extremum}",
-      "rule": "If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left.",
+      "expression": "A(x)=x(P-x)=Px-x^2",
+      "rule": "Express the objective in one variable under the fixed-sum constraint.",
       "concept": "inequalities"
     },
     {
-      "expression": "\\text{Example: }3\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "optimization"
+      "expression": "A\\prime=P-2x=0\\Rightarrow x=P/2,\\quad A\\prime\\prime=-2<0",
+      "rule": "A zero rate gives a candidate; negative curvature confirms a maximum.",
+      "concept": "inequalities"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ At an interior smooth maximum or minimum, a function stops increasing before cha
 
 ## Formalism
 
-$$f\prime(x_*)=0\quad\text{at an interior differentiable extremum}$$
+$$
+f\prime(x_*)=0\quad\text{at an interior differentiable extremum}
+$$
 
 If the derivative were positive at a supposed interior maximum, a small step right would increase the value. A negative derivative would allow a step left.
 

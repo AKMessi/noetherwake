@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Mark the endpoints separately from the path taken between them.",
-        "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset.",
-        "Use {a}+{b}. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset."
+        "Translate this question into its relationship before evaluating: {a}+{b}. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}+{b} m. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above."
       ],
       "solution": "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Mark the endpoints separately from the path taken between them.",
-        "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset.",
-        "Use 0. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset."
+        "Translate this question into its relationship before evaluating: 0. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above.",
+        "The complete answer is 0 m. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above."
       ],
       "solution": "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Mark the endpoints separately from the path taken between them.",
-        "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset.",
-        "Use {a}-{b}. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset."
+        "Translate this question into its relationship before evaluating: {a}-{b}. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}-{b} m. Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above."
       ],
       "solution": "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to position, displacement & a reference frame. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a+x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\Delta x=x_f-x_i",
-      "rule": "Definition / physical model",
-      "concept": "coordinates"
-    },
-    {
-      "expression": "\\Delta x=x_f-x_i",
-      "rule": "Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset.",
+      "expression": "x_i\\mapsto x_i+c,\\quad x_f\\mapsto x_f+c",
+      "rule": "Shift the coordinate origin consistently for both events.",
       "concept": "units"
     },
     {
-      "expression": "\\text{Example: }7\\;m",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "position"
+      "expression": "(x_f+c)-(x_i+c)=x_f-x_i",
+      "rule": "The arbitrary offset cancels from displacement.",
+      "concept": "units"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Position names where an object is relative to a chosen origin. Displacement comp
 
 ## Formalism
 
-$$\Delta x=x_f-x_i$$
+$$
+\Delta x=x_f-x_i
+$$
 
 Write final and initial coordinates in the same frame. Their difference cancels the arbitrary origin offset.
 

@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Test ln(1+1) against ln(1)+ln(1); the right side is zero.",
-        "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x.",
-        "Use 1/{a}. Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x."
+        "Translate this question into its relationship before evaluating: 1/{a}. Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above.",
+        "The complete answer is 1/{a} . Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above."
       ],
       "solution": "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Test ln(1+1) against ln(1)+ln(1); the right side is zero.",
-        "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x.",
-        "Use {a}. Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x."
+        "Translate this question into its relationship before evaluating: {a}. Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} . Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above."
       ],
       "solution": "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Test ln(1+1) against ln(1)+ln(1); the right side is zero.",
-        "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x.",
-        "Use 1/{b}. Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x."
+        "Translate this question into its relationship before evaluating: 1/{b}. Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above.",
+        "The complete answer is 1/{b} . Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above."
       ],
       "solution": "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to logarithms & relative change. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=ln(x+a). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\ln(ab)=\\ln a+\\ln b,\\qquad(\\ln x)\\prime=1/x",
-      "rule": "Definition / physical model",
-      "concept": "inverse-functions"
-    },
-    {
-      "expression": "\\ln(ab)=\\ln a+\\ln b,\\qquad(\\ln x)\\prime=1/x",
-      "rule": "Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x.",
+      "expression": "e^{\\ln x}=x,\\quad x>0",
+      "rule": "Natural logarithm is the inverse of the exponential.",
       "concept": "exponential"
     },
     {
-      "expression": "\\text{Example: }0.33333\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "logarithms"
+      "expression": "e^{\\ln x}(\\ln x)\\prime=1\\quad\\Rightarrow\\quad(\\ln x)\\prime=1/x",
+      "rule": "Differentiate the identity by the chain rule, then divide by x.",
+      "concept": "exponential"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A logarithm counts multiplicative growth steps. Because it undoes exponentiation
 
 ## Formalism
 
-$$\ln(ab)=\ln a+\ln b,\qquad(\ln x)\prime=1/x$$
+$$
+\ln(ab)=\ln a+\ln b,\qquad(\ln x)\prime=1/x
+$$
 
 Differentiate exp(ln x)=x with the chain rule: exp(ln x) times the unknown derivative is 1. Since exp(ln x)=x, the rate is 1/x.
 

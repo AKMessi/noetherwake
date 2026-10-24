@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Draw the angle against the horizontal axis and trace its horizontal shadow.",
-        "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle.",
-        "Use {a}. Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle."
+        "Translate this question into its relationship before evaluating: {a}. Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} m. Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above."
       ],
       "solution": "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Draw the angle against the horizontal axis and trace its horizontal shadow.",
-        "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle.",
-        "Use {a}/2. Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle."
+        "Translate this question into its relationship before evaluating: {a}/2. Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/2 . Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above."
       ],
       "solution": "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Draw the angle against the horizontal axis and trace its horizontal shadow.",
-        "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle.",
-        "Use 1. Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle."
+        "Translate this question into its relationship before evaluating: 1. Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above.",
+        "The complete answer is 1 . Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above."
       ],
       "solution": "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to trigonometry as projection. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*sin(x). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "x=r\\cos\\theta,\\quad y=r\\sin\\theta,\\quad \\sin^2\\theta+\\cos^2\\theta=1",
-      "rule": "Definition / physical model",
-      "concept": "radians"
-    },
-    {
-      "expression": "x=r\\cos\\theta,\\quad y=r\\sin\\theta,\\quad \\sin^2\\theta+\\cos^2\\theta=1",
-      "rule": "Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle.",
+      "expression": "x/r=\\cos\\theta,\\quad y/r=\\sin\\theta",
+      "rule": "Define sine and cosine as the normalized projections.",
       "concept": "coordinates"
     },
     {
-      "expression": "\\text{Example: }3\\;m",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "trig"
+      "expression": "\\cos^2\\theta+\\sin^2\\theta=(x^2+y^2)/r^2=1",
+      "rule": "Divide the Pythagorean identity by radius squared.",
+      "concept": "coordinates"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A rotating radius has horizontal and vertical shadows. Cosine and sine are those
 
 ## Formalism
 
-$$x=r\cos\theta,\quad y=r\sin\theta,\quad \sin^2\theta+\cos^2\theta=1$$
+$$
+x=r\cos\theta,\quad y=r\sin\theta,\quad \sin^2\theta+\cos^2\theta=1
+$$
 
 Pythagoras applied to the two projections gives the identity. Signs follow the quadrant, not a memorized triangle.
 

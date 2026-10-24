@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Check both +r and -r in x squared equals r squared.",
-        "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared.",
-        "Use {a}^2. A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared."
+        "Translate this question into its relationship before evaluating: {a}^2. A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}^2 . A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above."
       ],
       "solution": "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Check both +r and -r in x squared equals r squared.",
-        "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared.",
-        "Use {a}. A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared."
+        "Translate this question into its relationship before evaluating: {a}. A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} . A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above."
       ],
       "solution": "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Check both +r and -r in x squared equals r squared.",
-        "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared.",
-        "Use {a}. A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared."
+        "Translate this question into its relationship before evaluating: {a}. A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} . A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above."
       ],
       "solution": "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to quadratics & completing a square. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=x^2+a*x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "x^2+2hx+h^2=(x+h)^2",
-      "rule": "Definition / physical model",
-      "concept": "exponents"
-    },
-    {
-      "expression": "x^2+2hx+h^2=(x+h)^2",
-      "rule": "A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared.",
+      "expression": "(x+h)^2=x^2+hx+hx+h^2",
+      "rule": "Distribute each side of the product.",
       "concept": "equations"
     },
     {
-      "expression": "\\text{Example: }9\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "quadratics"
+      "expression": "x^2+2hx=(x+h)^2-h^2",
+      "rule": "Collect equal cross terms and isolate the original expression.",
+      "concept": "equations"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A square grows by more with each equal step away from its minimum. Completing a 
 
 ## Formalism
 
-$$x^2+2hx+h^2=(x+h)^2$$
+$$
+x^2+2hx+h^2=(x+h)^2
+$$
 
 A square of side x+h contains an x-square, two rectangles of area hx and a corner of area h squared.
 

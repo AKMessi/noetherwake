@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Compare the square of twice the speed with the original square.",
-        "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints.",
-        "Use 0.5*{a}*{b}^2. Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints."
+        "Translate this question into its relationship before evaluating: 0.5*{a}*{b}^2. Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above.",
+        "The complete answer is 0.5*{a}*{b}^2 J. Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above."
       ],
       "solution": "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Compare the square of twice the speed with the original square.",
-        "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints.",
-        "Use 4*{a}. Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints."
+        "Translate this question into its relationship before evaluating: 4*{a}. Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above.",
+        "The complete answer is 4*{a} J. Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above."
       ],
       "solution": "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Compare the square of twice the speed with the original square.",
-        "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints.",
-        "Use 0.5*{a}*({b}^2-1). Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints."
+        "Translate this question into its relationship before evaluating: 0.5*{a}*({b}^2-1). Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above.",
+        "The complete answer is 0.5*{a}*({b}^2-1) J. Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above."
       ],
       "solution": "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to kinetic energy from newton law. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x^2/2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "K=\\tfrac12mv^2,\\qquad W_{net}=\\Delta K",
-      "rule": "Definition / physical model",
-      "concept": "work"
-    },
-    {
-      "expression": "K=\\tfrac12mv^2,\\qquad W_{net}=\\Delta K",
-      "rule": "Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints.",
+      "expression": "W_{net}=\\int m\\frac{dv}{dt}v\\,dt=\\int mv\\,dv",
+      "rule": "Substitute Newton law and dx=v dt into the work integral.",
       "concept": "chain-rule"
     },
     {
-      "expression": "\\text{Example: }24\\;J",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "kinetic-energy"
+      "expression": "W_{net}=\\tfrac12mv_f^2-\\tfrac12mv_i^2=\\Delta K",
+      "rule": "Integrate the velocity variable between the two speeds.",
+      "concept": "chain-rule"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ The work needed to change speed grows with speed squared. This is why doubling s
 
 ## Formalism
 
-$$K=\tfrac12mv^2,\qquad W_{net}=\Delta K$$
+$$
+K=\tfrac12mv^2,\qquad W_{net}=\Delta K
+$$
 
 Use F=m dv/dt and dx=v dt in work. The integral becomes the integral of mv dv, giving one-half mv squared at the endpoints.
 

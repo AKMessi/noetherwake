@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Add each component first, then take the length of the resulting vector.",
-        "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.",
-        "Use {a}+{b}. Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements."
+        "Translate this question into its relationship before evaluating: {a}+{b}. Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}+{b} . Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above."
       ],
       "solution": "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Add each component first, then take the length of the resulting vector.",
-        "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.",
-        "Use sqrt({a}^2+{b}^2). Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements."
+        "Translate this question into its relationship before evaluating: sqrt({a}^2+{b}^2). Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above.",
+        "The complete answer is sqrt({a}^2+{b}^2) . Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above."
       ],
       "solution": "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Add each component first, then take the length of the resulting vector.",
-        "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.",
-        "Use -2*{b}. Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements."
+        "Translate this question into its relationship before evaluating: -2*{b}. Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above.",
+        "The complete answer is -2*{b} . Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above."
       ],
       "solution": "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to vectors & components. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=sqrt(x^2+a^2). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\mathbf a+\\mathbf b=(a_x+b_x,a_y+b_y)",
-      "rule": "Definition / physical model",
-      "concept": "trig"
-    },
-    {
-      "expression": "\\mathbf a+\\mathbf b=(a_x+b_x,a_y+b_y)",
-      "rule": "Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.",
+      "expression": "\\Delta x=a_x+b_x,\\quad\\Delta y=a_y+b_y",
+      "rule": "Combine the independent axis displacements.",
       "concept": "signed-numbers"
     },
     {
-      "expression": "\\text{Example: }7\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "vectors"
+      "expression": "|\\mathbf a+\\mathbf b|=\\sqrt{(a_x+b_x)^2+(a_y+b_y)^2}",
+      "rule": "Take the length only after summing components.",
+      "concept": "signed-numbers"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A vector carries both size and direction. Components record independent changes 
 
 ## Formalism
 
-$$\mathbf a+\mathbf b=(a_x+b_x,a_y+b_y)$$
+$$
+\mathbf a+\mathbf b=(a_x+b_x,a_y+b_y)
+$$
 
 Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.
 

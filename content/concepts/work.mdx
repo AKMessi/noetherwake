@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Use the force component along the displacement, including its sign.",
-        "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral.",
-        "Use {a}*{b}. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral."
+        "Translate this question into its relationship before evaluating: {a}*{b}. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} J. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above."
       ],
       "solution": "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Use the force component along the displacement, including its sign.",
-        "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral.",
-        "Use 0. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral."
+        "Translate this question into its relationship before evaluating: 0. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above.",
+        "The complete answer is 0 J. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above."
       ],
       "solution": "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Use the force component along the displacement, including its sign.",
-        "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral.",
-        "Use {a}*{b}^2/2. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral."
+        "Translate this question into its relationship before evaluating: {a}*{b}^2/2. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b}^2/2 J. A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above."
       ],
       "solution": "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to work: force accumulated along a path. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "W=\\int\\mathbf F\\cdot d\\mathbf r",
-      "rule": "Definition / physical model",
-      "concept": "dot-product"
+      "expression": "\\Delta W_i\\approx F_{\\parallel,i}\\Delta s_i",
+      "rule": "Only force along a displacement transfers work.",
+      "concept": "newton-2"
     },
     {
-      "expression": "W=\\int\\mathbf F\\cdot d\\mathbf r",
-      "rule": "A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral.",
-      "concept": "integral"
-    },
-    {
-      "expression": "\\text{Example: }12\\;J",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "work"
+      "expression": "W=\\lim\\sum_i\\mathbf F_i\\cdot\\Delta\\mathbf r_i=\\int\\mathbf F\\cdot d\\mathbf r",
+      "rule": "Sum projected contributions and refine the path.",
+      "concept": "newton-2"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ Work measures energy transferred by a force along displacement. Only the aligned
 
 ## Formalism
 
-$$W=\int\mathbf F\cdot d\mathbf r$$
+$$
+W=\int\mathbf F\cdot d\mathbf r
+$$
 
 A small aligned push transfers force times displacement. Divide a path into short segments, project the force on each, then sum and refine to an integral.
 

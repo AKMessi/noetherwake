@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Compare the area of a sphere at r and 2r; it grows by four.",
-        "Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale.",
-        "Use {a}*{b}/4. Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale."
+        "Translate this question into its relationship before evaluating: {a}*{b}/4. Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b}/4 N. Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale. The answer follows by substitution into the relationship above."
       ],
       "solution": "Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Compare the area of a sphere at r and 2r; it grows by four.",
-        "Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale.",
-        "Use {a}/4. Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale."
+        "Translate this question into its relationship before evaluating: {a}/4. Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/4 N. Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale. The answer follows by substitution into the relationship above."
       ],
       "solution": "Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Compare the area of a sphere at r and 2r; it grows by four.",
-        "Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale.",
-        "Use 4. Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale."
+        "Translate this question into its relationship before evaluating: 4. Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale. The answer follows by substitution into the relationship above.",
+        "The complete answer is 4 . Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale. The answer follows by substitution into the relationship above."
       ],
       "solution": "Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to coulomb law & inverse-square spreading. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a/(x+1)^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "F=k_e\\frac{|q_1q_2|}{r^2}",
-      "rule": "Definition / physical model",
-      "concept": "charge"
+      "expression": "4\\pi r^2E=\\frac{q}{\\varepsilon_0}",
+      "rule": "Gauss electrostatic flux law plus spherical symmetry fixes the inverse-square field.",
+      "concept": "exponents"
     },
     {
-      "expression": "F=k_e\\frac{|q_1q_2|}{r^2}",
-      "rule": "Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale.",
-      "concept": "vectors"
-    },
-    {
-      "expression": "\\text{Example: }3\\;N",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "coulomb"
+      "expression": "E=\\frac{q}{4\\pi\\varepsilon_0r^2},\\quad|F|=|q_{test}E|",
+      "rule": "Divide by sphere area and multiply by the test charge. Flux law is a physical premise, not derived from geometry alone.",
+      "concept": "exponents"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ A point charge influences space in every direction. In three dimensions, spheric
 
 ## Formalism
 
-$$F=k_e\frac{|q_1q_2|}{r^2}$$
+$$
+F=k_e\frac{|q_1q_2|}{r^2}
+$$
 
 Coulomb law is an empirical electrostatic law consistent with spherical symmetry and flux conservation. The signs determine attraction or repulsion; the magnitude follows the inverse-square scale.
 

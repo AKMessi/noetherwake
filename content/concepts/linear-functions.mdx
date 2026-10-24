@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Read f(0) first, then compare f(1) with f(0).",
-        "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments.",
-        "Use 3*{a}+{b}. Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments."
+        "Translate this question into its relationship before evaluating: 3*{a}+{b}. Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above.",
+        "The complete answer is 3*{a}+{b} . Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above."
       ],
       "solution": "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Read f(0) first, then compare f(1) with f(0).",
-        "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments.",
-        "Use 2*{a}+{b}. Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments."
+        "Translate this question into its relationship before evaluating: 2*{a}+{b}. Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a}+{b} . Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above."
       ],
       "solution": "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Read f(0) first, then compare f(1) with f(0).",
-        "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments.",
-        "Use 4. Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments."
+        "Translate this question into its relationship before evaluating: 4. Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above.",
+        "The complete answer is 4 . Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above."
       ],
       "solution": "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to linear models & intercepts. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x+3. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "f(x)=mx+b",
-      "rule": "Definition / physical model",
-      "concept": "slope"
-    },
-    {
-      "expression": "f(x)=mx+b",
-      "rule": "Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments.",
+      "expression": "f(x)-f(0)=mx",
+      "rule": "A constant rate accumulates m per input step.",
       "concept": "equations"
     },
     {
-      "expression": "\\text{Example: }13\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "linear-functions"
+      "expression": "f(x)=mx+b,\\quad b=f(0)",
+      "rule": "Add the initial output back to the change.",
+      "concept": "equations"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A linear model combines a starting value with a constant rate of change. The int
 
 ## Formalism
 
-$$f(x)=mx+b$$
+$$
+f(x)=mx+b
+$$
 
 Start at b when x is zero, then add m for each unit of input. Equal input increments produce equal output increments.
 

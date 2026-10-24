@@ -1,0 +1,28 @@
+# Noetherwake
+
+A local-first learning observatory for mathematics and physics. One evidence-based next step, a prerequisite map, retrieval with confidence calibration, and a scheduler that brings ideas back.
+
+```bash
+npm i
+npm run dev
+```
+
+Use Node 22+ (npm 10+ recommended by Compute Engine). Open http://localhost:3000. No account, backend, API key, external fonts, or analytics. Every learning decision and grade works offline without a language model.
+
+The 67-concept vertical slice links fractions, algebra, functions, calculus, mechanics and initial electricity/circuits. Each concept has authored MDX, three deterministic generators, a prediction-first linked instrument, worked reasoning and misconception remediation. This is a substantial prototype with measured checks, not a claim of validated human learning efficacy or a complete undergraduate curriculum.
+
+```bash
+npm run verify       # strict TS, unit tests, synthetic eval, full content fuzzing, production build + budgets
+npm run build        # 201,000 generated variants validated; static files go to out/
+npm run start        # serve the production build on port 3000
+npx playwright install chromium
+npm run test:e2e     # full browser journeys, offline reload, axe and throttled LCP gate
+```
+
+Deploy `out/` to any HTTPS static host, or deploy the repository to Vercel with `npm run build` and output directory `out`. Static export configuration follows the [Next.js documentation](https://nextjs.org/docs/app/guides/static-exports). The production build generates a versioned service-worker cache of all app assets, lessons and math fonts. Offline availability starts once installation finishes; look for “Offline ready”. Development mode does not install a worker. Reviews are in-app reminders when opened, not push notifications.
+
+Progress lives in Dexie/IndexedDB. Preferences offers validated JSON import/export; an import replaces local state. Clearing browser data removes progress, so keep a backup. No learner data is uploaded. The engine package is portable TypeScript; see [the mathematical specification](docs/ENGINE.md), [content authoring contract](docs/CONTENT_SCHEMA.md), [measured synthetic evaluation](docs/EVAL.md), [verification report](docs/VERIFICATION.md) and [ranked roadmap](docs/ROADMAP.md).
+
+## Workspace storage incident
+
+The original `/run/media/.../math and physics self learning engine` NTFS mount stalled in kernel `ntfs_look_free_mft` during dependency installation. The durable, complete repository is `/home/akmessi/noetherwake`; verification ran from `/tmp/noetherwake-source` with dependencies outside NTFS. The first documentation commit exists in the original workspace; subsequent commits are preserved in the durable repository. Do not install this dependency tree on the stalled mount. This is a storage-location exception, not a stack substitution.

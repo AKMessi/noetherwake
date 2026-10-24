@@ -12,3 +12,7 @@ Run `npm run content:check` to validate schema, DAG, reachability, all links, Ka
 
 ## Validation limitations
 Generator fuzzing detects runtime failures, not whether the physics model fits every context. Units are explicit and dimension-checked; an author must still review derivations, misconceptions and parameter realism. Independent subject-matter review remains a release requirement for classroom deployment. Domain restrictions and finite precision must appear beside formulas.
+
+Runtime item metadata also includes `concepts` (the focus node and its hard prerequisites), `misconceptionTags`, and the seed. Choice distractors resolve to individual named causes with different remediation. The initial curriculum has all eight declared item kinds; graph-point tasks currently use a one-dimensional number line, simulation assessment uses level-ground projectile range, and proof completion is a constrained skeleton. The content bank has bounded parameter ranges and repeated seeded draws, not infinitely many distinct contexts. Wider variant/context coverage requires authored templates and review.
+
+The initial authoring scripts are a bootstrap record. `refine-content.py` adds intermediate derivation equations and distractor-specific remediation; neither bootstrap script runs during builds. The editable MDX files are the final source of truth.

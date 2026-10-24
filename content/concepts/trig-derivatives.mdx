@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "At a small positive angle cosine is decreasing, so its derivative must be negative.",
-        "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates.",
-        "Use {a}. A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates."
+        "Translate this question into its relationship before evaluating: {a}. A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} . A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above."
       ],
       "solution": "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "At a small positive angle cosine is decreasing, so its derivative must be negative.",
-        "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates.",
-        "Use 0. A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates."
+        "Translate this question into its relationship before evaluating: 0. A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above.",
+        "The complete answer is 0 . A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above."
       ],
       "solution": "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "At a small positive angle cosine is decreasing, so its derivative must be negative.",
-        "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates.",
-        "Use -1. A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates."
+        "Translate this question into its relationship before evaluating: -1. A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above.",
+        "The complete answer is -1 . A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above."
       ],
       "solution": "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to rates on the unit circle. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=sin(a*x). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "(\\sin x)\\prime=\\cos x,\\qquad(\\cos x)\\prime=-\\sin x",
-      "rule": "Definition / physical model",
-      "concept": "trig"
+      "expression": "(x,y)=(\\cos\\theta,\\sin\\theta)",
+      "rule": "Parametrize a point on the unit circle.",
+      "concept": "chain-rule"
     },
     {
-      "expression": "(\\sin x)\\prime=\\cos x,\\qquad(\\cos x)\\prime=-\\sin x",
-      "rule": "A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates.",
-      "concept": "derivative"
-    },
-    {
-      "expression": "\\text{Example: }3\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "trig-derivatives"
+      "expression": "\\frac{d}{d\\theta}(x,y)=(-\\sin\\theta,\\cos\\theta)",
+      "rule": "A unit-speed radian tangent is the radius rotated by a quarter turn.",
+      "concept": "chain-rule"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ A point moving around a unit circle has a tangent velocity perpendicular to its 
 
 ## Formalism
 
-$$(\sin x)\prime=\cos x,\qquad(\cos x)\prime=-\sin x$$
+$$
+(\sin x)\prime=\cos x,\qquad(\cos x)\prime=-\sin x
+$$
 
 A small radian angle sweeps an arc nearly equal to its chord. The tangent direction turns the radius by a quarter turn, giving the component rates.
 

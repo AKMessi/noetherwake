@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Compare charge entering and leaving the resistor in steady state; energy changes, not net charge.",
-        "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish.",
-        "Use {a}/{b}. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish."
+        "Translate this question into its relationship before evaluating: {a}/{b}. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/{b} A. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above."
       ],
       "solution": "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Compare charge entering and leaving the resistor in steady state; energy changes, not net charge.",
-        "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish.",
-        "Use 2*{a}*{b}. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish."
+        "Translate this question into its relationship before evaluating: 2*{a}*{b}. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a}*{b} A. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above."
       ],
       "solution": "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Compare charge entering and leaving the resistor in steady state; energy changes, not net charge.",
-        "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish.",
-        "Use {b}. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish."
+        "Translate this question into its relationship before evaluating: {b}. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b} A. Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above."
       ],
       "solution": "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to current & charge continuity. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "I=\\frac{dQ}{dt},\\qquad\\sum I_{in}=\\sum I_{out}",
-      "rule": "Definition / physical model",
-      "concept": "charge"
-    },
-    {
-      "expression": "I=\\frac{dQ}{dt},\\qquad\\sum I_{in}=\\sum I_{out}",
-      "rule": "Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish.",
+      "expression": "\\frac{dQ_{stored}}{dt}=\\sum I_{in}-\\sum I_{out}",
+      "rule": "Conservation balances charge accumulation against current flow.",
       "concept": "derivative"
     },
     {
-      "expression": "\\text{Example: }0.75\\;A",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "current"
+      "expression": "dQ_{stored}/dt=0\\Rightarrow\\sum I_{in}=\\sum I_{out}",
+      "rule": "At steady state, no net charge accumulates at the junction.",
+      "concept": "derivative"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Current measures charge crossing a section per time. In steady state, charge can
 
 ## Formalism
 
-$$I=\frac{dQ}{dt},\qquad\sum I_{in}=\sum I_{out}$$
+$$
+I=\frac{dQ}{dt},\qquad\sum I_{in}=\sum I_{out}
+$$
 
 Apply charge conservation to a tiny region around a junction. Zero rate of stored charge forces the difference between inflow and outflow to vanish.
 

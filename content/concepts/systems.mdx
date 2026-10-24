@@ -44,8 +44,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Add the entire left sides and entire right sides as equal quantities.",
-        "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution.",
-        "Use {a}. Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution."
+        "Translate this question into its relationship before evaluating: {a}. Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} . Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above."
       ],
       "solution": "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above."
     },
@@ -69,8 +69,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Add the entire left sides and entire right sides as equal quantities.",
-        "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution.",
-        "Use {b}. Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution."
+        "Translate this question into its relationship before evaluating: {b}. Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b} . Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above."
       ],
       "solution": "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above."
     },
@@ -94,15 +94,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Add the entire left sides and entire right sides as equal quantities.",
-        "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution.",
-        "Use {a}-{b}. Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution."
+        "Translate this question into its relationship before evaluating: {a}-{b}. Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}-{b} . Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above."
       ],
       "solution": "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to systems & intersecting constraints. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a-x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -114,19 +114,14 @@
   },
   "derivation": [
     {
-      "expression": "x+y=s,\\quad x-y=d\\quad\\Rightarrow\\quad x=\\frac{s+d}{2}",
-      "rule": "Definition / physical model",
+      "expression": "(x+y)+(x-y)=s+d",
+      "rule": "Add both sides of the two valid equalities.",
       "concept": "linear-functions"
     },
     {
-      "expression": "x+y=s,\\quad x-y=d\\quad\\Rightarrow\\quad x=\\frac{s+d}{2}",
-      "rule": "Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution.",
+      "expression": "2x=s+d\\quad\\Rightarrow\\quad x=(s+d)/2",
+      "rule": "The opposite y terms cancel; divide by two.",
       "concept": "linear-functions"
-    },
-    {
-      "expression": "\\text{Example: }3\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "systems"
     }
   ],
   "explanation": {
@@ -150,7 +145,9 @@ Two equations constrain the same unknowns. Their common solution is where both s
 
 ## Formalism
 
-$$x+y=s,\quad x-y=d\quad\Rightarrow\quad x=\frac{s+d}{2}$$
+$$
+x+y=s,\quad x-y=d\quad\Rightarrow\quad x=\frac{s+d}{2}
+$$
 
 Add the equations: positive y and negative y cancel, leaving twice x. Recover y by substitution.
 

@@ -425,6 +425,6 @@ for idx,r in enumerate(rows):
  words=[w.lower() for w in re.findall(r'[A-Za-z]+',mechanism) if len(w)>6 and w.lower() not in ['between','because','therefore','through','original','another']]
  r['explanation']['keywords']=[[w] for w in list(dict.fromkeys(words))[:2]] or [['change']]
  links=' '.join(f"[Explore {p.replace('-',' ')}](concept:{p})." for p in parents)
- body=f"## Intuition\n\n{intuition}\n\n## Formalism\n\n$${law}$$\n\n{mechanism}\n\n{links}\n\n## Worked example\n\n{prompt}\n\nStart with the defining relationship. {mechanism} Substitute the given values: **`{expression}` = {value:.5g} {ex['unit']}**. Keep the unit through the calculation and check whether the sign and scale fit the situation.\n\n## Where it breaks\n\n{r['boundary']}\n\nA common trap is: **{misconception.lower()}**. {repair}\n"
+ body=f"## Intuition\n\n{intuition}\n\n## Formalism\n\n$$\n{law}\n$$\n\n{mechanism}\n\n{links}\n\n## Worked example\n\n{prompt}\n\nStart with the defining relationship. {mechanism} Substitute the given values: **`{expression}` = {value:.5g} {ex['unit']}**. Keep the unit through the calculation and check whether the sign and scale fit the situation.\n\n## Where it breaks\n\n{r['boundary']}\n\nA common trap is: **{misconception.lower()}**. {repair}\n"
  (root/(r['id']+'.mdx')).write_text('---\n'+json.dumps(r,indent=2)+'\n---\n\n'+body)
 print(f'Authored {len(rows)} connected concepts, {len(rows)*3} generators.')

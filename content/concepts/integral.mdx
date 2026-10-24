@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Check dimensions: a rate must be multiplied by an input interval before it becomes a total.",
-        "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.",
-        "Use {a}*{b}. Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} . Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above."
       ],
       "solution": "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Check dimensions: a rate must be multiplied by an input interval before it becomes a total.",
-        "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.",
-        "Use {a}*{b}^2/2. Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs."
+        "Translate this question into its relationship before evaluating: {a}*{b}^2/2. Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b}^2/2 . Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above."
       ],
       "solution": "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Check dimensions: a rate must be multiplied by an input interval before it becomes a total.",
-        "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.",
-        "Use {a}^3/3. Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs."
+        "Translate this question into its relationship before evaluating: {a}^3/3. Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}^3/3 . Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above."
       ],
       "solution": "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to integration: adding continuous change. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\int_a^b f(x)\\,dx=\\lim_{n\\to\\infty}\\sum f(x_i)\\Delta x",
-      "rule": "Definition / physical model",
-      "concept": "limits"
-    },
-    {
-      "expression": "\\int_a^b f(x)\\,dx=\\lim_{n\\to\\infty}\\sum f(x_i)\\Delta x",
-      "rule": "Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.",
+      "expression": "\\Delta Q_i\\approx f(x_i)\\Delta x",
+      "rule": "Local rate times a small interval is a local contribution.",
       "concept": "power-rule"
     },
     {
-      "expression": "\\text{Example: }12\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "integral"
+      "expression": "Q=\\lim_{\\Delta x\\to0}\\sum_i f(x_i)\\Delta x",
+      "rule": "Add the contributions and refine the partition.",
+      "concept": "power-rule"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ An integral accumulates many tiny contributions. A velocity-time strip has heigh
 
 ## Formalism
 
-$$\int_a^b f(x)\,dx=\lim_{n\to\infty}\sum f(x_i)\Delta x$$
+$$
+\int_a^b f(x)\,dx=\lim_{n\to\infty}\sum f(x_i)\Delta x
+$$
 
 Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.
 

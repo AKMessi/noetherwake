@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "The voltage rises from zero during charging; its average is half the final value for constant C.",
-        "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C.",
-        "Use {a}*{b}. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} C. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above."
       ],
       "solution": "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "The voltage rises from zero during charging; its average is half the final value for constant C.",
-        "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C.",
-        "Use {a}*{b}^2/2. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C."
+        "Translate this question into its relationship before evaluating: {a}*{b}^2/2. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b}^2/2 J. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above."
       ],
       "solution": "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "The voltage rises from zero during charging; its average is half the final value for constant C.",
-        "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C.",
-        "Use {a}/{b}. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C."
+        "Translate this question into its relationship before evaluating: {a}/{b}. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/{b} V. Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above."
       ],
       "solution": "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to capacitance & stored field energy. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x^2/2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "Q=CV,\\qquad U=\\tfrac12CV^2",
-      "rule": "Definition / physical model",
-      "concept": "voltage"
+      "expression": "dW=V\\,dq=\\frac qC\\,dq",
+      "rule": "The charging voltage rises with accumulated charge for constant C.",
+      "concept": "electric-field"
     },
     {
-      "expression": "Q=CV,\\qquad U=\\tfrac12CV^2",
-      "rule": "Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C.",
-      "concept": "integral"
-    },
-    {
-      "expression": "\\text{Example: }12\\;C",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "capacitance"
+      "expression": "U=\\int_0^Q\\frac qC\\,dq=\\frac{Q^2}{2C}=\\tfrac12CV^2",
+      "rule": "Integrate the incremental charging work and substitute Q=CV.",
+      "concept": "electric-field"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ A capacitor stores separated charge, and therefore field energy. Adding charge b
 
 ## Formalism
 
-$$Q=CV,\qquad U=\tfrac12CV^2$$
+$$
+Q=CV,\qquad U=\tfrac12CV^2
+$$
 
 Move a small charge dq when the voltage is q/C. The incremental work is (q/C)dq. Integrate from zero to Q to obtain Q squared over 2C.
 

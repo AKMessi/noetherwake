@@ -1,0 +1,8 @@
+{
+  "lcpMs": 564,
+  "cpuSlowdown": 4,
+  "latencyMs": 60,
+  "bandwidthKbps": 1600,
+  "viewport": "390x844",
+  "hardware": "synthetic Chromium throttling, not a physical phone"
+}

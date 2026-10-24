@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Write the units of output divided by units of input before inserting numbers.",
-        "For a straight line every right triangle along it is similar, so rise divided by run is constant.",
-        "Use {a}/{b}. For a straight line every right triangle along it is similar, so rise divided by run is constant."
+        "Translate this question into its relationship before evaluating: {a}/{b}. For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/{b} . For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above."
       ],
       "solution": "For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Write the units of output divided by units of input before inserting numbers.",
-        "For a straight line every right triangle along it is similar, so rise divided by run is constant.",
-        "Use {a}*{b}. For a straight line every right triangle along it is similar, so rise divided by run is constant."
+        "Translate this question into its relationship before evaluating: {a}*{b}. For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} . For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above."
       ],
       "solution": "For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Write the units of output divided by units of input before inserting numbers.",
-        "For a straight line every right triangle along it is similar, so rise divided by run is constant.",
-        "Use ({b}-{a})/2. For a straight line every right triangle along it is similar, so rise divided by run is constant."
+        "Translate this question into its relationship before evaluating: ({b}-{a})/2. For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above.",
+        "The complete answer is ({b}-{a})/2 . For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above."
       ],
       "solution": "For a straight line every right triangle along it is similar, so rise divided by run is constant. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to slope is a rate. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "m=\\frac{\\Delta y}{\\Delta x}",
-      "rule": "Definition / physical model",
-      "concept": "coordinates"
-    },
-    {
-      "expression": "m=\\frac{\\Delta y}{\\Delta x}",
-      "rule": "For a straight line every right triangle along it is similar, so rise divided by run is constant.",
+      "expression": "\\Delta y=y_2-y_1,\\quad\\Delta x=x_2-x_1",
+      "rule": "Use changes measured in the same direction.",
       "concept": "ratios"
     },
     {
-      "expression": "\\text{Example: }0.75\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "slope"
+      "expression": "m=\\Delta y/\\Delta x,\\quad\\Delta x\\ne0",
+      "rule": "Normalize the rise to one unit of run.",
+      "concept": "ratios"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Slope compares a vertical change with the horizontal change that produced it. A 
 
 ## Formalism
 
-$$m=\frac{\Delta y}{\Delta x}$$
+$$
+m=\frac{\Delta y}{\Delta x}
+$$
 
 For a straight line every right triangle along it is similar, so rise divided by run is constant.
 

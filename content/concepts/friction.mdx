@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Compute the force required for no slip before comparing against the ceiling.",
-        "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established.",
-        "Use 2*{a}. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established."
+        "Translate this question into its relationship before evaluating: 2*{a}. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a} N. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above."
       ],
       "solution": "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Compute the force required for no slip before comparing against the ceiling.",
-        "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established.",
-        "Use {a}. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established."
+        "Translate this question into its relationship before evaluating: {a}. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} N. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above."
       ],
       "solution": "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Compute the force required for no slip before comparing against the ceiling.",
-        "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established.",
-        "Use 5*{a}. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established."
+        "Translate this question into its relationship before evaluating: 5*{a}. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above.",
+        "The complete answer is 5*{a} N. Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above."
       ],
       "solution": "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to friction: a constraint & a threshold. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x/10. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "|f_s|\\le\\mu_sN,\\qquad |f_k|=\\mu_kN",
-      "rule": "Definition / physical model",
-      "concept": "free-body"
-    },
-    {
-      "expression": "|f_s|\\le\\mu_sN,\\qquad |f_k|=\\mu_kN",
-      "rule": "Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established.",
+      "expression": "F_{push}-f_s=0\\Rightarrow f_s=F_{push}",
+      "rule": "No slip requires the actual static friction to balance the push.",
       "concept": "inequalities"
     },
     {
-      "expression": "\\text{Example: }6\\;N",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "friction"
+      "expression": "F_{push}\\le\\mu_sN",
+      "rule": "Check the required friction against its available maximum.",
+      "concept": "inequalities"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Static friction supplies only the force needed to prevent relative slipping, up 
 
 ## Formalism
 
-$$|f_s|\le\mu_sN,\qquad |f_k|=\mu_kN$$
+$$
+|f_s|\le\mu_sN,\qquad |f_k|=\mu_kN
+$$
 
 Use horizontal force balance to find required static friction, then compare it with its maximum. Use the kinetic model only after slipping is established.
 

@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Start the tangent at (a,f(a)); only then add slope times displacement.",
-        "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order.",
-        "Use {a}^2+0.2*{a}. The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order."
+        "Translate this question into its relationship before evaluating: {a}^2+0.2*{a}. The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}^2+0.2*{a} . The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above."
       ],
       "solution": "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Start the tangent at (a,f(a)); only then add slope times displacement.",
-        "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order.",
-        "Use {b}+2*{a}. The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order."
+        "Translate this question into its relationship before evaluating: {b}+2*{a}. The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b}+2*{a} . The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above."
       ],
       "solution": "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Start the tangent at (a,f(a)); only then add slope times displacement.",
-        "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order.",
-        "Use 2*{a}. The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order."
+        "Translate this question into its relationship before evaluating: 2*{a}. The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a} . The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above."
       ],
       "solution": "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to tangent lines & local prediction. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a^2+2*a*(x-a). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "f(a+h)\\approx f(a)+f\\prime(a)h",
-      "rule": "Definition / physical model",
-      "concept": "derivative"
+      "expression": "f(a+h)-f(a)=f\\prime(a)h+o(h)",
+      "rule": "The derivative captures the first-order output change.",
+      "concept": "linear-functions"
     },
     {
-      "expression": "f(a+h)\\approx f(a)+f\\prime(a)h",
-      "rule": "The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order.",
-      "concept": "derivative"
-    },
-    {
-      "expression": "\\text{Example: }9.6\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "tangent"
+      "expression": "L(x)=f(a)+f\\prime(a)(x-a)",
+      "rule": "Keep the linear term and anchor the line at the known point.",
+      "concept": "linear-functions"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A tangent line is the best first-order prediction near a known point. It keeps t
 
 ## Formalism
 
-$$f(a+h)\approx f(a)+f\prime(a)h$$
+$$
+f(a+h)\approx f(a)+f\prime(a)h
+$$
 
 The derivative definition makes the error smaller than the input change as that change tends to zero. The line captures what survives at first order.
 

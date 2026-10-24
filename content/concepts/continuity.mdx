@@ -21,6 +21,16 @@
       "id": "continuity-gap",
       "description": "Assuming continuity guarantees smoothness",
       "remediation": "Compare the left and right slopes at the corner of an absolute-value graph."
+    },
+    {
+      "id": "continuity-corner-smoothness",
+      "description": "Continuity confused with differentiability",
+      "remediation": "The graph of abs(x) has no jump but its slopes disagree at zero."
+    },
+    {
+      "id": "continuity-sign-smoothness",
+      "description": "Input sign mistaken for smoothness",
+      "remediation": "Shift an absolute-value corner to x=2; a positive input still need not have a derivative."
     }
   ],
   "generators": [
@@ -44,8 +54,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Compare the left and right slopes at the corner of an absolute-value graph.",
-        "Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity.",
-        "Use 2*{a}+{b}. Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity."
+        "Translate this question into its relationship before evaluating: 2*{a}+{b}. Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a}+{b} . Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity. The answer follows by substitution into the relationship above."
       ],
       "solution": "Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity. The answer follows by substitution into the relationship above."
     },
@@ -69,8 +79,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Compare the left and right slopes at the corner of an absolute-value graph.",
-        "Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity.",
-        "Use 2*{a}. Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity."
+        "Translate this question into its relationship before evaluating: 2*{a}. Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a} . Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity. The answer follows by substitution into the relationship above."
       ],
       "solution": "Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity. The answer follows by substitution into the relationship above."
     },
@@ -85,11 +95,11 @@
         },
         {
           "text": "Yes",
-          "misconception": "continuity-gap"
+          "misconception": "continuity-corner-smoothness"
         },
         {
           "text": "Only for positive values",
-          "misconception": "continuity-gap"
+          "misconception": "continuity-sign-smoothness"
         }
       ],
       "id": "continuity-3",
@@ -107,15 +117,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Compare the left and right slopes at the corner of an absolute-value graph.",
-        "Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity.",
-        "Use No. Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity."
+        "Translate this question into its relationship before evaluating: No. Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity. The answer follows by substitution into the relationship above.",
+        "The complete answer is No . Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity. The answer follows by substitution into the relationship above."
       ],
       "solution": "Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to continuity & unbroken local change. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=abs(x-a). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -127,19 +137,14 @@
   },
   "derivation": [
     {
-      "expression": "\\lim_{x\\to a}f(x)=f(a)",
-      "rule": "Definition / physical model",
+      "expression": "\\lim_{x\\to a}f(x)=L",
+      "rule": "First establish a shared nearby destination.",
       "concept": "limits"
     },
     {
-      "expression": "\\lim_{x\\to a}f(x)=f(a)",
-      "rule": "Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity.",
+      "expression": "f(a)=L",
+      "rule": "Match the actual value to the limit to close a removable hole.",
       "concept": "limits"
-    },
-    {
-      "expression": "\\text{Example: }10\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "continuity"
     }
   ],
   "explanation": {
@@ -163,7 +168,9 @@ Continuity means that nearby inputs produce outputs near the output at the point
 
 ## Formalism
 
-$$\lim_{x\to a}f(x)=f(a)$$
+$$
+\lim_{x\to a}f(x)=f(a)
+$$
 
 Existence of the nearby limit and equality with the actual value are separate checks. Filling a removable hole with its limit restores continuity.
 

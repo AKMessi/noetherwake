@@ -41,9 +41,9 @@
       "difficulty": 0.12,
       "expectedSeconds": 45,
       "hints": [
-        "Rename both fractions with one common denominator, then add only the numerators.",
-        "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.",
-        "Use ({a}+{b})/4. Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged."
+        "The pieces have the same size: quarters. What should you count?",
+        "Keep denominator 4 and add the piece counts: ({a}+{b})/4.",
+        "The complete answer is ({a}+{b})/4 m. Adding denominators would change the pieces."
       ],
       "solution": "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged. The answer follows by substitution into the relationship above."
     },
@@ -66,9 +66,9 @@
       "difficulty": 0.25,
       "expectedSeconds": 70,
       "hints": [
-        "Rename both fractions with one common denominator, then add only the numerators.",
-        "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.",
-        "Use {a}*{b}/3. Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged."
+        "The word \u201cof\u201d asks you to multiply by the fraction.",
+        "Each unit contributes {a}/3, so {b} units contribute {b}*{a}/3.",
+        "The complete dimensionless answer is {a}*{b}/3. A fraction can scale a quantity above or below one."
       ],
       "solution": "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged. The answer follows by substitution into the relationship above."
     },
@@ -91,16 +91,16 @@
       "difficulty": 0.38,
       "expectedSeconds": 95,
       "hints": [
-        "Rename both fractions with one common denominator, then add only the numerators.",
-        "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.",
-        "Use {b}/{a}. Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged."
+        "The denominator counts how many equal pieces make one whole.",
+        "There are {a} pieces per whole and you have {b} pieces. Divide pieces by pieces per whole.",
+        "The complete fraction is {b}/{a}. If the numerator exceeds the denominator, you have more than one whole."
       ],
       "solution": "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to fractions & the whole. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x/4. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -112,18 +112,13 @@
   },
   "derivation": [
     {
-      "expression": "\\frac a b+\\frac c b=\\frac{a+c}{b}",
-      "rule": "Definition / physical model",
+      "expression": "\\frac a b=\\frac{ad}{bd},\\quad\\frac c d=\\frac{bc}{bd}",
+      "rule": "Equal scaling preserves a fraction.",
       "concept": "fractions"
     },
     {
-      "expression": "\\frac a b+\\frac c b=\\frac{a+c}{b}",
-      "rule": "Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.",
-      "concept": "fractions"
-    },
-    {
-      "expression": "\\text{Example: }1.75\\;m",
-      "rule": "Substitute the given values and preserve dimensions.",
+      "expression": "\\frac a b+\\frac c d=\\frac{ad+bc}{bd}",
+      "rule": "Count equal-sized pieces; do not add piece sizes.",
       "concept": "fractions"
     }
   ],
@@ -148,7 +143,9 @@ A fraction counts equal pieces of a specified whole. Three quarters of a metre a
 
 ## Formalism
 
-$$\frac a b+\frac c b=\frac{a+c}{b}$$
+$$
+\frac a b+\frac c b=\frac{a+c}{b}
+$$
 
 Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.
 

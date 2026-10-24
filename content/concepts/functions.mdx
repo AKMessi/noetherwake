@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Locate denominators and roots before evaluating; ask which inputs make them undefined.",
-        "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input.",
-        "Use {b}^2+{a}. A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input."
+        "Translate this question into its relationship before evaluating: {b}^2+{a}. A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above.",
+        "The complete answer is {b}^2+{a} . A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above."
       ],
       "solution": "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Locate denominators and roots before evaluating; ask which inputs make them undefined.",
-        "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input.",
-        "Use {a}. A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input."
+        "Translate this question into its relationship before evaluating: {a}. A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} . A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above."
       ],
       "solution": "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Locate denominators and roots before evaluating; ask which inputs make them undefined.",
-        "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input.",
-        "Use -{a}. A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input."
+        "Translate this question into its relationship before evaluating: -{a}. A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above.",
+        "The complete answer is -{a} . A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above."
       ],
       "solution": "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to functions & domains. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "f:A\\to B,\\qquad x\\mapsto f(x)",
-      "rule": "Definition / physical model",
-      "concept": "linear-functions"
-    },
-    {
-      "expression": "f:A\\to B,\\qquad x\\mapsto f(x)",
-      "rule": "A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input.",
+      "expression": "f(x)=x^2+3\\quad\\Rightarrow\\quad f(2)=2^2+3",
+      "rule": "Replace every input occurrence by the same value.",
       "concept": "quadratics"
     },
     {
-      "expression": "\\text{Example: }19\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "functions"
+      "expression": "f(2)=7",
+      "rule": "Evaluate the operations in their defined order.",
+      "concept": "quadratics"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A function is a rule assigning exactly one output to each allowed input. The dom
 
 ## Formalism
 
-$$f:A\to B,\qquad x\mapsto f(x)$$
+$$
+f:A\to B,\qquad x\mapsto f(x)
+$$
 
 A machine view helps separate a symbol for an input from the value currently placed in the machine. Substitution replaces every occurrence of that input.
 

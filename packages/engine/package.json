@@ -1,0 +1,1 @@
+{"name":"@noetherwake/engine","version":"0.1.0","private":true,"type":"module","exports":"./src/index.ts","description":"Deterministic portable tutor engine. No UI, persistence or network dependencies.","dependencies":{"@cortex-js/compute-engine":"^0.30.2"}}

@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Compare equal time intervals: differences are fixed for linear growth, ratios for exponential growth.",
-        "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential.",
-        "Use {a}. The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential."
+        "Translate this question into its relationship before evaluating: {a}. The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} . The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above."
       ],
       "solution": "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Compare equal time intervals: differences are fixed for linear growth, ratios for exponential growth.",
-        "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential.",
-        "Use {a}*2^{b}. The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential."
+        "Translate this question into its relationship before evaluating: {a}*2^{b}. The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*2^{b} . The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above."
       ],
       "solution": "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Compare equal time intervals: differences are fixed for linear growth, ratios for exponential growth.",
-        "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential.",
-        "Use {a}*{b}. The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential."
+        "Translate this question into its relationship before evaluating: {a}*{b}. The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} . The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above."
       ],
       "solution": "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to exponential change & natural growth. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=exp(a*x/4). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\frac{d}{dx}e^{kx}=ke^{kx}",
-      "rule": "Definition / physical model",
-      "concept": "exponents"
-    },
-    {
-      "expression": "\\frac{d}{dx}e^{kx}=ke^{kx}",
-      "rule": "The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential.",
+      "expression": "y\\prime=ky,\\qquad y=y_0e^{kt}",
+      "rule": "The proportional-rate law asks for a function whose rate tracks its value.",
       "concept": "chain-rule"
     },
     {
-      "expression": "\\text{Example: }3\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "exponential"
+      "expression": "(y_0e^{kt})\\prime=ky_0e^{kt}=ky",
+      "rule": "Use the chain rule to verify the proposed trajectory.",
+      "concept": "chain-rule"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Exponential growth changes in proportion to what is already present. Equal time 
 
 ## Formalism
 
-$$\frac{d}{dx}e^{kx}=ke^{kx}$$
+$$
+\frac{d}{dx}e^{kx}=ke^{kx}
+$$
 
 The growth law y prime equals ky says each small interval adds k times the current amount times the interval length. Repeated small multiplications converge to an exponential.
 

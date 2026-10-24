@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Sketch the two thin area strips; each retains one original side.",
-        "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit.",
-        "Use 2*{b}+3*{a}. Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit."
+        "Translate this question into its relationship before evaluating: 2*{b}+3*{a}. Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{b}+3*{a} . Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above."
       ],
       "solution": "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Sketch the two thin area strips; each retains one original side.",
-        "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit.",
-        "Use 2*x+{a}. Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit."
+        "Translate this question into its relationship before evaluating: 2*x+{a}. Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*x+{a} . Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above."
       ],
       "solution": "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Sketch the two thin area strips; each retains one original side.",
-        "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit.",
-        "Use 5. Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit."
+        "Translate this question into its relationship before evaluating: 5. Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above.",
+        "The complete answer is 5 . Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above."
       ],
       "solution": "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to product rule: two changing factors. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=x*(x+a). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "(uv)\\prime=u\\prime v+uv\\prime",
-      "rule": "Definition / physical model",
-      "concept": "derivative"
+      "expression": "\\Delta(uv)=v\\Delta u+u\\Delta v+\\Delta u\\Delta v",
+      "rule": "Distribute the product of the changed factors.",
+      "concept": "quadratics"
     },
     {
-      "expression": "(uv)\\prime=u\\prime v+uv\\prime",
-      "rule": "Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit.",
-      "concept": "derivative"
-    },
-    {
-      "expression": "\\text{Example: }17\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "product-rule"
+      "expression": "(uv)\\prime=vu\\prime+uv\\prime",
+      "rule": "Divide by the input change; the second-order corner vanishes.",
+      "concept": "quadratics"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ The area of a rectangle changes when either side changes. Two thin strips contri
 
 ## Formalism
 
-$$(uv)\prime=u\prime v+uv\prime$$
+$$
+(uv)\prime=u\prime v+uv\prime
+$$
 
 Expand (u+du)(v+dv)-uv. The terms v du and u dv survive division by the input step; du dv vanishes in the derivative limit.
 

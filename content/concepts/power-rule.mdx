@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Count which of the n factors supplied the one small change.",
-        "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit.",
-        "Use 12*{a}. Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit."
+        "Translate this question into its relationship before evaluating: 12*{a}. Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above.",
+        "The complete answer is 12*{a} . Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above."
       ],
       "solution": "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Count which of the n factors supplied the one small change.",
-        "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit.",
-        "Use 2*{a}*x. Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit."
+        "Translate this question into its relationship before evaluating: 2*{a}*x. Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a}*x . Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above."
       ],
       "solution": "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Count which of the n factors supplied the one small change.",
-        "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit.",
-        "Use {a}. Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit."
+        "Translate this question into its relationship before evaluating: {a}. Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} . Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above."
       ],
       "solution": "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to power rule & local scaling. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x^3. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\frac{d}{dx}x^n=nx^{n-1}",
-      "rule": "Definition / physical model",
-      "concept": "derivative"
+      "expression": "(x+h)^n=x^n+nx^{n-1}h+O(h^2)",
+      "rule": "Choose the one changed factor in a product of n factors.",
+      "concept": "exponents"
     },
     {
-      "expression": "\\frac{d}{dx}x^n=nx^{n-1}",
-      "rule": "Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit.",
-      "concept": "derivative"
-    },
-    {
-      "expression": "\\text{Example: }36\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "power-rule"
+      "expression": "\\lim_{h\\to0}\\frac{(x+h)^n-x^n}{h}=nx^{n-1}",
+      "rule": "Subtract the original value, divide by h, and let higher orders vanish.",
+      "concept": "exponents"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ When a power changes a little, each repeated factor contributes one leading-orde
 
 ## Formalism
 
-$$\frac{d}{dx}x^n=nx^{n-1}$$
+$$
+\frac{d}{dx}x^n=nx^{n-1}
+$$
 
 Expand (x+h) to the nth power. After subtracting x to the nth power and dividing by h, only the term with one h survives the limit.
 

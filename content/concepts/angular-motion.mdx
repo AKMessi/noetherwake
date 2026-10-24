@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Compare identical masses at radius r and 2r; the latter contributes four times the inertia.",
-        "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha.",
-        "Use {a}*{b}^2. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha."
+        "Translate this question into its relationship before evaluating: {a}*{b}^2. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b}^2 kg*m^2. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above."
       ],
       "solution": "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Compare identical masses at radius r and 2r; the latter contributes four times the inertia.",
-        "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha.",
-        "Use {a}/{b}. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha."
+        "Translate this question into its relationship before evaluating: {a}/{b}. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/{b} rad/s^2. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above."
       ],
       "solution": "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Compare identical masses at radius r and 2r; the latter contributes four times the inertia.",
-        "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha.",
-        "Use {a}*{b}^2/2. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha."
+        "Translate this question into its relationship before evaluating: {a}*{b}^2/2. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b}^2/2 J. Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above."
       ],
       "solution": "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to rotational inertia & angular dynamics. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "I=\\sum m_ir_i^2,\\quad\\tau=I\\alpha,\\quad K_{rot}=\\tfrac12I\\omega^2",
-      "rule": "Definition / physical model",
-      "concept": "torque"
-    },
-    {
-      "expression": "I=\\sum m_ir_i^2,\\quad\\tau=I\\alpha,\\quad K_{rot}=\\tfrac12I\\omega^2",
-      "rule": "Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha.",
+      "expression": "\\tau_i=r_i(m_ir_i\\alpha)=m_ir_i^2\\alpha",
+      "rule": "Apply the tangential Newton law to each point mass.",
       "concept": "integral"
     },
     {
-      "expression": "\\text{Example: }48\\;kg\\cdot m^2",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "angular-motion"
+      "expression": "\\tau=\\left(\\sum_i m_ir_i^2\\right)\\alpha=I\\alpha",
+      "rule": "Sum all torques about the fixed axis.",
+      "concept": "integral"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ Mass farther from an axis is harder to angularly accelerate because the same ang
 
 ## Formalism
 
-$$I=\sum m_ir_i^2,\quad\tau=I\alpha,\quad K_{rot}=\tfrac12I\omega^2$$
+$$
+I=\sum m_ir_i^2,\quad\tau=I\alpha,\quad K_{rot}=\tfrac12I\omega^2
+$$
 
 Each mass needs tangential acceleration r alpha and hence force m r alpha. Its torque is m r squared alpha; summing gives I alpha.
 

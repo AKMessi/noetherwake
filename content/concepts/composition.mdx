@@ -44,8 +44,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Draw two machines in sequence and label the intermediate value.",
-        "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression.",
-        "Use ({a}+{b})^2. Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression."
+        "Translate this question into its relationship before evaluating: ({a}+{b})^2. Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above.",
+        "The complete answer is ({a}+{b})^2 . Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above."
       ],
       "solution": "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above."
     },
@@ -69,8 +69,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Draw two machines in sequence and label the intermediate value.",
-        "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression.",
-        "Use 2*{a}+{b}. Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression."
+        "Translate this question into its relationship before evaluating: 2*{a}+{b}. Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a}+{b} . Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above."
       ],
       "solution": "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above."
     },
@@ -94,15 +94,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Draw two machines in sequence and label the intermediate value.",
-        "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression.",
-        "Use 3*{b}+{a}. Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression."
+        "Translate this question into its relationship before evaluating: 3*{b}+{a}. Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above.",
+        "The complete answer is 3*{b}+{a} . Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above."
       ],
       "solution": "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to composition: one change inside another. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=(a*x+1)^2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -114,19 +114,14 @@
   },
   "derivation": [
     {
-      "expression": "(f\\circ g)(x)=f(g(x))",
-      "rule": "Definition / physical model",
+      "expression": "g(2)=2+a",
+      "rule": "Run the inner machine first for g(x)=x+a.",
       "concept": "functions"
     },
     {
-      "expression": "(f\\circ g)(x)=f(g(x))",
-      "rule": "Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression.",
+      "expression": "f(g(2))=(2+a)^2",
+      "rule": "Feed the entire inner output into f(x)=x squared.",
       "concept": "functions"
-    },
-    {
-      "expression": "\\text{Example: }49\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "composition"
     }
   ],
   "explanation": {
@@ -150,7 +145,9 @@ Composition feeds the output of one process into another. Order matters: warming
 
 ## Formalism
 
-$$(f\circ g)(x)=f(g(x))$$
+$$
+(f\circ g)(x)=f(g(x))
+$$
 
 Evaluate the inner function, then treat that result as the outer function input. Keep parentheses around the whole inner expression.
 

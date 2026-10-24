@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Factor the expression away from the excluded point, then approach without substituting into zero divided by zero.",
-        "For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined.",
-        "Use 2*{a}+{b}. For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined."
+        "Translate this question into its relationship before evaluating: 2*{a}+{b}. For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a}+{b} . For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined. The answer follows by substitution into the relationship above."
       ],
       "solution": "For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Factor the expression away from the excluded point, then approach without substituting into zero divided by zero.",
-        "For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined.",
-        "Use 2*{a}. For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined."
+        "Translate this question into its relationship before evaluating: 2*{a}. For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a} . For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined. The answer follows by substitution into the relationship above."
       ],
       "solution": "For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Factor the expression away from the excluded point, then approach without substituting into zero divided by zero.",
-        "For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined.",
-        "Use {a}^2+{b}. For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined."
+        "Translate this question into its relationship before evaluating: {a}^2+{b}. For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}^2+{b} . For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined. The answer follows by substitution into the relationship above."
       ],
       "solution": "For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to limits: a local destination. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=(x+a). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\lim_{x\\to a}f(x)=L",
-      "rule": "Definition / physical model",
-      "concept": "functions"
-    },
-    {
-      "expression": "\\lim_{x\\to a}f(x)=L",
-      "rule": "For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined.",
+      "expression": "\\frac{x^2-a^2}{x-a}=\\frac{(x-a)(x+a)}{x-a}=x+a,\\quad x\\ne a",
+      "rule": "Factor and cancel only away from the excluded point.",
       "concept": "inequalities"
     },
     {
-      "expression": "\\text{Example: }10\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "limits"
+      "expression": "\\lim_{x\\to a}\\frac{x^2-a^2}{x-a}=2a",
+      "rule": "Nearby values agree with a continuous linear function.",
+      "concept": "inequalities"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ A limit asks where outputs head as inputs approach a point. It deliberately sepa
 
 ## Formalism
 
-$$\lim_{x\to a}f(x)=L$$
+$$
+\lim_{x\to a}f(x)=L
+$$
 
 For a polynomial, each arithmetic operation preserves small changes, so approaching a forces the output toward its substituted value. A removable hole can have a limit despite being undefined.
 

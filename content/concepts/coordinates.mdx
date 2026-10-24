@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Translate both points by the same vector: their separation must stay unchanged.",
-        "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance.",
-        "Use sqrt({a}^2+{b}^2). The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance."
+        "Translate this question into its relationship before evaluating: sqrt({a}^2+{b}^2). The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above.",
+        "The complete answer is sqrt({a}^2+{b}^2) . The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above."
       ],
       "solution": "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Translate both points by the same vector: their separation must stay unchanged.",
-        "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance.",
-        "Use {a}+{b}. The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance."
+        "Translate this question into its relationship before evaluating: {a}+{b}. The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}+{b} . The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above."
       ],
       "solution": "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Translate both points by the same vector: their separation must stay unchanged.",
-        "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance.",
-        "Use {a}+{b}. The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance."
+        "Translate this question into its relationship before evaluating: {a}+{b}. The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}+{b} . The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above."
       ],
       "solution": "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to coordinates & distance. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=sqrt(x^2+a^2). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}",
-      "rule": "Definition / physical model",
-      "concept": "signed-numbers"
-    },
-    {
-      "expression": "d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}",
-      "rule": "The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance.",
+      "expression": "\\Delta x=x_2-x_1,\\quad\\Delta y=y_2-y_1",
+      "rule": "Form a right triangle from coordinate differences.",
       "concept": "exponents"
     },
     {
-      "expression": "\\text{Example: }5\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "coordinates"
+      "expression": "d^2=(\\Delta x)^2+(\\Delta y)^2",
+      "rule": "Pythagorean theorem gives the squared hypotenuse.",
+      "concept": "exponents"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Coordinates turn location into numbers relative to an origin and axes. The dista
 
 ## Formalism
 
-$$d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$$
+$$
+d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}
+$$
 
 The horizontal and vertical differences form perpendicular sides of a right triangle. Pythagoras supplies the straight-line distance.
 

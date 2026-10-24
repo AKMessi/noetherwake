@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Compare two nearby outputs and divide their difference by the input difference.",
-        "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.",
-        "Use 2*{a}. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x."
+        "Translate this question into its relationship before evaluating: 2*{a}. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above.",
+        "The complete answer is 2*{a} . For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above."
       ],
       "solution": "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Compare two nearby outputs and divide their difference by the input difference.",
-        "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.",
-        "Use {a}. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x."
+        "Translate this question into its relationship before evaluating: {a}. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a} . For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above."
       ],
       "solution": "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Compare two nearby outputs and divide their difference by the input difference.",
-        "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.",
-        "Use 4*{a}. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x."
+        "Translate this question into its relationship before evaluating: 4*{a}. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above.",
+        "The complete answer is 4*{a} m/s. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above."
       ],
       "solution": "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to the derivative: change under a microscope. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=x^2*a. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "f\\prime(x)=\\lim_{h\\to0}\\frac{f(x+h)-f(x)}h",
-      "rule": "Definition / physical model",
-      "concept": "limits"
-    },
-    {
-      "expression": "f\\prime(x)=\\lim_{h\\to0}\\frac{f(x+h)-f(x)}h",
-      "rule": "For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.",
+      "expression": "\\frac{(x+h)^2-x^2}{h}=2x+h,\\quad h\\ne0",
+      "rule": "Expand the square and cancel the common factor h.",
       "concept": "slope"
     },
     {
-      "expression": "\\text{Example: }6\\;",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "derivative"
+      "expression": "\\lim_{h\\to0}(2x+h)=2x",
+      "rule": "Take the limit after simplifying the secant quotient.",
+      "concept": "slope"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Zoom into a smooth curve until it resembles a straight line. The derivative is t
 
 ## Formalism
 
-$$f\prime(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}h$$
+$$
+f\prime(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}h
+$$
 
 For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.
 

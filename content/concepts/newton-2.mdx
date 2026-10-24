@@ -45,9 +45,9 @@
       "difficulty": 0.43,
       "expectedSeconds": 45,
       "hints": [
-        "Add signed force components first, then divide by the mass.",
-        "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.",
-        "Use {a}/{b}. Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma."
+        "Identify net force and mass before considering velocity.",
+        "Use acceleration = net force / mass: {a}/{b}.",
+        "The complete acceleration is {a}/{b} m/s^2, along the net force."
       ],
       "solution": "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma. The answer follows by substitution into the relationship above."
     },
@@ -70,9 +70,9 @@
       "difficulty": 0.56,
       "expectedSeconds": 70,
       "hints": [
-        "Add signed force components first, then divide by the mass.",
-        "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.",
-        "Use {a}*{b}. Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma."
+        "A force describes momentum change per time. For constant mass, use mass times acceleration.",
+        "Multiply mass {a} kg by acceleration {b} m/s^2.",
+        "The complete force is {a}*{b} N. A newton is one kg*m/s^2."
       ],
       "solution": "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma. The answer follows by substitution into the relationship above."
     },
@@ -95,40 +95,35 @@
       "difficulty": 0.69,
       "expectedSeconds": 95,
       "hints": [
-        "Add signed force components first, then divide by the mass.",
-        "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.",
-        "Use ({a}-{b})/2. Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma."
+        "Choose right positive and combine opposing forces first.",
+        "The net force is {a}-{b} N. The mass is 2 kg.",
+        "The complete acceleration is ({a}-{b})/2 m/s^2. Its sign carries the direction."
       ],
       "solution": "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "motion",
-    "prompt": "Change the parameter and connect the curve to force, mass & the rate of change. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=x+a*x^2/2. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
     "max": 6,
     "initial": 2,
-    "formula": "a*x^2/2",
+    "formula": "x+a*x^2/2",
     "xLabel": "t (s)",
-    "yLabel": "position / output"
+    "yLabel": "position x (m)"
   },
   "derivation": [
     {
-      "expression": "\\sum\\mathbf F=m\\mathbf a",
-      "rule": "Definition / physical model",
-      "concept": "newton-1"
-    },
-    {
-      "expression": "\\sum\\mathbf F=m\\mathbf a",
-      "rule": "Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.",
+      "expression": "\\mathbf F_{net}=d\\mathbf p/dt,\\quad\\mathbf p=m\\mathbf v",
+      "rule": "Start from the momentum-rate form of the law.",
       "concept": "equations"
     },
     {
-      "expression": "\\text{Example: }0.75\\;m/s^2",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "newton-2"
+      "expression": "\\mathbf F_{net}=m\\frac{d\\mathbf v}{dt}=m\\mathbf a",
+      "rule": "With fixed mass, take it outside the derivative.",
+      "concept": "equations"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ Force changes momentum. For a constant mass, it changes velocity at a rate propo
 
 ## Formalism
 
-$$\sum\mathbf F=m\mathbf a$$
+$$
+\sum\mathbf F=m\mathbf a
+$$
 
 Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.
 

@@ -45,8 +45,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Write force times time and compare the units with momentum.",
-        "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum.",
-        "Use {a}*{b}. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} N*s. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above."
       ],
       "solution": "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above."
     },
@@ -70,8 +70,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Write force times time and compare the units with momentum.",
-        "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum.",
-        "Use {a}*{b}. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum."
+        "Translate this question into its relationship before evaluating: {a}*{b}. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b} kg*m/s. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above."
       ],
       "solution": "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above."
     },
@@ -95,15 +95,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Write force times time and compare the units with momentum.",
-        "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum.",
-        "Use {a}/{b}. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum."
+        "Translate this question into its relationship before evaluating: {a}/{b}. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/{b} N. Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above."
       ],
       "solution": "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to impulse: a force over time. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=a*x. The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -115,19 +115,14 @@
   },
   "derivation": [
     {
-      "expression": "\\mathbf J=\\int\\mathbf F\\,dt=\\Delta\\mathbf p",
-      "rule": "Definition / physical model",
-      "concept": "momentum"
-    },
-    {
-      "expression": "\\mathbf J=\\int\\mathbf F\\,dt=\\Delta\\mathbf p",
-      "rule": "Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum.",
+      "expression": "\\int_{t_i}^{t_f}\\mathbf F\\,dt=\\int_{t_i}^{t_f}\\frac{d\\mathbf p}{dt}\\,dt",
+      "rule": "Accumulate the momentum-rate law over the interaction time.",
       "concept": "integral"
     },
     {
-      "expression": "\\text{Example: }12\\;N\\cdot s",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "impulse"
+      "expression": "\\mathbf J=\\mathbf p_f-\\mathbf p_i",
+      "rule": "The integral of a derivative is its endpoint difference.",
+      "concept": "integral"
     }
   ],
   "explanation": {
@@ -151,7 +146,9 @@ Impulse accumulates force over time and gives the resulting momentum change. Spr
 
 ## Formalism
 
-$$\mathbf J=\int\mathbf F\,dt=\Delta\mathbf p$$
+$$
+\mathbf J=\int\mathbf F\,dt=\Delta\mathbf p
+$$
 
 Integrate the momentum-rate form of Newton second law. The left side sums force-time strips; the right side telescopes to final minus initial momentum.
 

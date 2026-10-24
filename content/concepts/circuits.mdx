@@ -46,8 +46,8 @@
       "expectedSeconds": 45,
       "hints": [
         "Parallel gives an extra route for charge, so equivalent resistance must be smaller than either positive branch.",
-        "Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances.",
-        "Use {a}+{b}. Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances."
+        "Translate this question into its relationship before evaluating: {a}+{b}. Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}+{b} ohm. Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances. The answer follows by substitution into the relationship above."
       ],
       "solution": "Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances. The answer follows by substitution into the relationship above."
     },
@@ -71,8 +71,8 @@
       "expectedSeconds": 70,
       "hints": [
         "Parallel gives an extra route for charge, so equivalent resistance must be smaller than either positive branch.",
-        "Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances.",
-        "Use {a}*{b}/({a}+{b}). Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances."
+        "Translate this question into its relationship before evaluating: {a}*{b}/({a}+{b}). Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}*{b}/({a}+{b}) ohm. Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances. The answer follows by substitution into the relationship above."
       ],
       "solution": "Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances. The answer follows by substitution into the relationship above."
     },
@@ -96,15 +96,15 @@
       "expectedSeconds": 95,
       "hints": [
         "Parallel gives an extra route for charge, so equivalent resistance must be smaller than either positive branch.",
-        "Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances.",
-        "Use {a}/(2*{b}). Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances."
+        "Translate this question into its relationship before evaluating: {a}/(2*{b}). Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances. The answer follows by substitution into the relationship above.",
+        "The complete answer is {a}/(2*{b}) A. Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances. The answer follows by substitution into the relationship above."
       ],
       "solution": "Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances. The answer follows by substitution into the relationship above."
     }
   ],
   "interactive": {
     "kind": "curve",
-    "prompt": "Change the parameter and connect the curve to circuits & conservation constraints. Commit a prediction before seeing the changed curve.",
+    "prompt": "Vary a in f(x)=x/(a+2). The solid curve will show the new output; the dashed curve retains a=2. Link the changed scale or shape to the relationship in this lesson.",
     "prediction": "What changes when the parameter doubles? Use the relationship in this lesson to predict the direction or scale.",
     "parameterLabel": "a",
     "min": 1,
@@ -116,19 +116,14 @@
   },
   "derivation": [
     {
-      "expression": "R_{series}=\\sum R_i,\\qquad\\frac1{R_{parallel}}=\\sum\\frac1{R_i}",
-      "rule": "Definition / physical model",
-      "concept": "resistance"
-    },
-    {
-      "expression": "R_{series}=\\sum R_i,\\qquad\\frac1{R_{parallel}}=\\sum\\frac1{R_i}",
-      "rule": "Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances.",
+      "expression": "V=IR_1+IR_2=I(R_1+R_2)",
+      "rule": "Series elements share current; loop energy conservation adds their voltage drops.",
       "concept": "conservation-energy"
     },
     {
-      "expression": "\\text{Example: }7\\;ohm",
-      "rule": "Substitute the given values and preserve dimensions.",
-      "concept": "circuits"
+      "expression": "I=V/R_1+V/R_2\\Rightarrow1/R_{eq}=1/R_1+1/R_2",
+      "rule": "Parallel elements share voltage; junction charge conservation adds their currents.",
+      "concept": "conservation-energy"
     }
   ],
   "explanation": {
@@ -152,7 +147,9 @@ Circuit equations join charge conservation at junctions with energy conservation
 
 ## Formalism
 
-$$R_{series}=\sum R_i,\qquad\frac1{R_{parallel}}=\sum\frac1{R_i}$$
+$$
+R_{series}=\sum R_i,\qquad\frac1{R_{parallel}}=\sum\frac1{R_i}
+$$
 
 Series elements share current, so their voltage drops add to I times the sum of resistances. Parallel elements share voltage, so their currents add to V times the sum of conductances.
 

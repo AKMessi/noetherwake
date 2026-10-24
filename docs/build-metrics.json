@@ -1,7 +1,7 @@
 {
-  "totalBytes": 3862070,
-  "gzippedJavaScriptBytes": 660872,
-  "maxGzippedChunkBytes": 159259,
+  "totalBytes": 3926126,
+  "gzippedJavaScriptBytes": 668205,
+  "maxGzippedChunkBytes": 158939,
   "budgets": {
     "total": 12000000,
     "javascript": 2000000,
