@@ -1,0 +1,27 @@
+{
+  "seedRange": [
+    1,
+    160
+  ],
+  "students": 160,
+  "estimatorMAE": 0.002914869280579474,
+  "estimatorBrier": 0.00025541591382347186,
+  "diagnosticNormalizedDepthMAE": 0.02499999999999999,
+  "policies": {
+    "planner": {
+      "meanSteps": 51.8125,
+      "medianSteps": 51,
+      "goalRate": 1
+    },
+    "linear": {
+      "meanSteps": 125.81875,
+      "medianSteps": 117,
+      "goalRate": 0.9375
+    },
+    "random": {
+      "meanSteps": 359.55,
+      "medianSteps": 400,
+      "goalRate": 0.3875
+    }
+  }
+}
