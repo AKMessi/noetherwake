@@ -1,5 +1,7 @@
 # Noetherwake
 
+Live: [noetherwake.vercel.app](https://noetherwake.vercel.app). Deployment details: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
 A local-first learning observatory for mathematics and physics. One evidence-based next step, a prerequisite map, retrieval with confidence calibration, and a scheduler that brings ideas back.
 
 ```bash
