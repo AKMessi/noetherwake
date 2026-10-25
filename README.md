@@ -26,3 +26,7 @@ Progress lives in Dexie/IndexedDB. Preferences offers validated JSON import/expo
 ## Workspace storage incident
 
 The original `/run/media/.../math and physics self learning engine` NTFS mount stalled in kernel `ntfs_look_free_mft` during dependency installation. The durable, complete repository is `/home/akmessi/noetherwake`; verification ran from `/tmp/noetherwake-source` with dependencies outside NTFS. The first documentation commit exists in the original workspace; subsequent commits are preserved in the durable repository. Do not install this dependency tree on the stalled mount. This is a storage-location exception, not a stack substitution.
+
+## Vercel CLI deployment
+
+The Vercel project uses the static export from `npm run build`; `vercel.json` explicitly selects `out/` so the generated offline worker is deployed with the app. From the linked Linux checkout run `vercel deploy --prod --yes`. `.vercelignore` excludes dependency/build caches, other hosting metadata, and local environment files. Project linkage and CLI credentials remain untracked.
