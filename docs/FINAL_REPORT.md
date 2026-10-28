@@ -27,3 +27,6 @@ Random unlocked practice completes 0%, 33.3%, 0% respectively within the cap. Me
 See [VERIFICATION.md](VERIFICATION.md) for final test counts, performance measurements and browser coverage. Static assets total about 3.9 MB, including the cached math fonts and deferred checker. The original NTFS workspace stalled; the complete durable repository and milestone commits are in `/home/akmessi/noetherwake`.
 
 This is a working vertical slice, not the entire requested undergraduate catalog or a proven optimal tutor. Independent content review, a human retention/transfer pilot, calibrated parameters, richer diagnostics and bespoke instruments remain necessary. Graph-point assessment is one-dimensional; proof assessment is a constrained skeleton; some visuals are general relation plots. Full advanced physics, real analysis, optional AI, telemetry and push reminders are absent and not presented as working features. The ranked top ten next steps are in [ROADMAP.md](ROADMAP.md).
+
+## Field Atlas redesign
+The local presentation has been rebuilt around the learning desk, goal-derived atlas, linked instruments, authored light/dark themes and responsive reading sequence. See [DESIGN_VERIFICATION.md](DESIGN_VERIFICATION.md) for current screenshots, passing checks and browser-performance limitations. The existing deployed release is unchanged.

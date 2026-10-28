@@ -43,3 +43,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Field Atlas presentation
 See docs/DESIGN.md for the authored design system and redesign verification contract. Blue ink, warm paper and copper annotations use semantic theme tokens. Fonts are bundled under public/fonts. The atlas layout is presentation-only; preserve engine readiness and evidence semantics, IndexedDB v1 and the Vercel static/offline setup.
+
+Field Atlas verification: `TEST_BROWSER=webkit npm run test:e2e` selects the installed alternative browser; default remains Chromium in CI. Only the Chromium/CDP LCP check skips on WebKit. `npx tsx scripts/design-review.ts` captures disposable local practice at three viewport sizes against the production preview. See docs/DESIGN_VERIFICATION.md for actual results; do not reuse historical performance measurements as redesigned-build measurements.

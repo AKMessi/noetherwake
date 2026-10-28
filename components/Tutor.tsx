@@ -801,6 +801,32 @@ export default function Tutor() {
                   </div>
                 </section>
               </div>
+              {state.history.length > 0 && (
+                <section
+                  className="evidence-ledger"
+                  aria-label="Recent learning evidence"
+                >
+                  <span className="eyebrow">RECENT OBSERVATIONS</span>
+                  <div>
+                    {state.history
+                      .slice(-3)
+                      .reverse()
+                      .map((e, i) => (
+                        <button key={i} onClick={() => openLesson(e.concept)}>
+                          <span>{concept(e.concept).title}</span>
+                          <small>
+                            {e.correct
+                              ? e.hints
+                                ? "Recalled with support"
+                                : "Independent recall"
+                              : "Needs another look"}{" "}
+                            · {e.diagnostic ? "Placement" : "Practice"}
+                          </small>
+                        </button>
+                      ))}
+                  </div>
+                </section>
+              )}
               <div className="today-bottom">
                 <section className="session-outline">
                   <div className="section-title">
@@ -934,6 +960,42 @@ export default function Tutor() {
                           </span>
                           <h2>{c.title}</h2>
                           <p>{c.summary}</p>
+                          {c.domain === "physics" &&
+                            c.prerequisites.some(
+                              (id) => concept(id).domain === "math",
+                            ) && (
+                              <div className="math-foundation">
+                                <span className="eyebrow">
+                                  MATHEMATICS USED HERE
+                                </span>
+                                {c.prerequisites
+                                  .filter((id) => concept(id).domain === "math")
+                                  .map((id) => (
+                                    <button
+                                      key={id}
+                                      className="prerequisite-link"
+                                      onClick={() => setSelected(id)}
+                                    >
+                                      {concept(id).title}
+                                      <ArrowUpRight size={14} />
+                                    </button>
+                                  ))}
+                              </div>
+                            )}
+                          {k.observations > 0 && (
+                            <p className="evidence-timestamp">
+                              Last evidence:{" "}
+                              {new Date(k.last).toLocaleDateString()}
+                              <br />
+                              Next retrieval:{" "}
+                              {new Date(dueAt(k)).toLocaleString(undefined, {
+                                month: "short",
+                                day: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}
+                            </p>
+                          )}
                           <div className="mastery-detail">
                             <span>
                               {k.observations

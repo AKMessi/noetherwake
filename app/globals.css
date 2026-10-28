@@ -4138,3 +4138,41 @@ select {
     font-size: 12px;
   }
 }
+.evidence-ledger {
+  margin-top: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.evidence-ledger > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 12px;
+}
+.evidence-ledger button {
+  text-align: left;
+  border-left: 2px solid var(--ochre);
+  padding: 5px 15px;
+  font-size: 15px;
+}
+.evidence-ledger small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 6px;
+}
+.math-foundation {
+  margin: 20px 0;
+  padding: 16px 0;
+  border-block: 1px solid var(--border);
+}
+.evidence-timestamp {
+  margin-top: 14px;
+  font-size: 12px !important;
+}
+@media (max-width: 760px) {
+  .evidence-ledger > div {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

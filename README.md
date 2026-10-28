@@ -32,3 +32,5 @@ The original `/run/media/.../math and physics self learning engine` NTFS mount s
 ## Vercel CLI deployment
 
 The Vercel project uses the static export from `npm run build`; `vercel.json` explicitly selects `out/` so the generated offline worker is deployed with the app. From the linked Linux checkout run `vercel deploy --prod --yes`. `.vercelignore` excludes dependency/build caches, other hosting metadata, and local environment files. Project linkage and CLI credentials remain untracked.
+
+The current local redesign is **Field Atlas**. Its design contract is in [docs/DESIGN.md](docs/DESIGN.md); rendered screenshots and verification limits are in [docs/DESIGN_VERIFICATION.md](docs/DESIGN_VERIFICATION.md). Start the production preview with `npm run start` after building. Reproduce the visual review with `npx tsx scripts/design-review.ts` (Playwright WebKit required). The existing public Vercel deployment is unchanged until a deployment is requested.

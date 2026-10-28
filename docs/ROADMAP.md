@@ -28,3 +28,9 @@ Deferred breadth: multivariable calculus, linear algebra, ODE systems, probabili
 The memory parameters, difficulty priors and displayed uncertainty intervals are engineering choices without human calibration. Sessions have an item/time budget, not a promise that every learner finishes at the same second. The diagnostic uses goal-biased graph depth, not a full joint posterior over every prerequisite. Every concept has a parameter-linked visual instrument, but many are general relationship plots rather than bespoke physical simulations. The proof and point tasks are constrained. Free-text explanations use keyword groups and never award mastery. Optional AI, aggregate-data upload, push notifications and cross-device sync are deliberately absent. Automated axe and throttled desktop performance checks do not certify every WCAG criterion or physical-device frame rate.
 
 Source storage exception: the original NTFS mount became blocked in the kernel during package installation. The durable repository is `/home/akmessi/noetherwake`; the original workspace AGENTS.md points there. Dependencies, verification and commits were preserved outside the stalled mount.
+
+## Field Atlas presentation refinements
+- Optimize dense atlas crossings further and add pointer/pinch panning; current zoom, scroll, search and neighborhood views are functional.
+- Consider a mobile inspector drawer after observing learners using the current focused inline inspector.
+- Re-measure Chromium LCP for the redesigned build; the local browser download stalled, while WebKit behavioral and accessibility checks pass. Keep the existing Chromium CI performance gate.
+- Validate the new typography and instruments with manual assistive-technology and physical-phone testing.

@@ -436,3 +436,66 @@ test("math keyboard inserts at selection and feedback receives focus", async ({
   await expect(page.locator(".feedback")).toBeVisible();
   await expect(page.locator(".feedback")).toBeFocused();
 });
+
+test("tablet and mobile atlas, diagnostic and completed session stay accessible", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 768, height: 1024 });
+  await page.goto("/");
+  await page
+    .getByRole("button", { name: "Find my starting point", exact: true })
+    .waitFor();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page
+    .getByRole("button", { name: "Find my starting point", exact: true })
+    .click();
+  await page
+    .getByRole("dialog")
+    .getByRole("button", { name: "Find my starting point", exact: true })
+    .click();
+  expect(
+    (
+      await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+        .analyze()
+    ).violations,
+  ).toEqual([]);
+  await page
+    .getByRole("button", {
+      name: "Pause placement and use the evidence so far",
+    })
+    .click();
+  await page.getByRole("button", { name: "Start my first session" }).click();
+  await firstResponse(page);
+  await page
+    .getByRole("button", { name: "Finish this session", exact: true })
+    .click();
+  expect(
+    (
+      await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+        .analyze()
+    ).violations,
+  ).toEqual([]);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page
+    .getByRole("button", { name: "Knowledge map", exact: true })
+    .last()
+    .click();
+  expect(
+    (
+      await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+        .analyze()
+    ).violations,
+  ).toEqual([]);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+});
