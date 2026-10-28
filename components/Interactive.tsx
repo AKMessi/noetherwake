@@ -1,7 +1,8 @@
-'use client';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Play, RotateCcw, ArrowRight } from 'lucide-react';
-import { arithmetic, type Concept } from '@noetherwake/engine';
+"use client";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Play, RotateCcw, ArrowRight } from "lucide-react";
+import MathText from "./Math";
+import { arithmetic, type Concept } from "@noetherwake/engine";
 interface Point {
   t: number;
   x: number;
@@ -10,15 +11,16 @@ interface Point {
 export default function Interactive({ concept }: { concept: Concept }) {
   const spec = concept.interactive,
     [a, setA] = useState(spec.initial),
-    [prediction, setPrediction] = useState(''),
+    [prediction, setPrediction] = useState(""),
     [committed, setCommitted] = useState(false),
     [revealed, setRevealed] = useState(false),
     [points, setPoints] = useState<Point[]>([]),
     [frame, setFrame] = useState(0),
+    [probe, setProbe] = useState(2),
     worker = useRef<Worker | null>(null);
   useEffect(() => {
-    if (spec.kind !== 'motion') return;
-    worker.current = new Worker('/physics-worker.js');
+    if (spec.kind !== "motion") return;
+    worker.current = new Worker("/physics-worker.js");
     worker.current.onmessage = (e) => setPoints(e.data);
     return () => worker.current?.terminate();
   }, [spec.kind]);
@@ -26,7 +28,7 @@ export default function Interactive({ concept }: { concept: Concept }) {
     worker.current?.postMessage({ acceleration: a });
   }, [a]);
   useEffect(() => {
-    if (!revealed || spec.kind !== 'motion') return;
+    if (!revealed || spec.kind !== "motion") return;
     let handle = 0,
       start = 0;
     const run = (time: number) => {
@@ -34,7 +36,7 @@ export default function Interactive({ concept }: { concept: Concept }) {
       setFrame(Math.min(180, Math.floor((time - start) / 17)));
       if (time - start < 3060) handle = requestAnimationFrame(run);
     };
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches)
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
       handle = requestAnimationFrame(run);
     else setFrame(180);
     return () => cancelAnimationFrame(handle);
@@ -57,14 +59,21 @@ export default function Interactive({ concept }: { concept: Concept }) {
     const map = (p: { x: number; y: number }) =>
       `${35 + (p.x / 5) * 300},${185 - ((p.y - lo) / (hi - lo)) * 145}`;
     return {
-      path: values.map((p, i) => `${i ? 'L' : 'M'}${map(p)}`).join(' '),
-      old: old.map((p, i) => `${i ? 'L' : 'M'}${map(p)}`).join(' '),
+      path: values.map((p, i) => `${i ? "L" : "M"}${map(p)}`).join(" "),
+      marker: map({
+        x: probe,
+        y: arithmetic(spec.formula, {
+          a: revealed ? a : spec.initial,
+          x: probe,
+        }),
+      }),
+      old: old.map((p, i) => `${i ? "L" : "M"}${map(p)}`).join(" "),
       lo,
       hi,
       values,
     };
-  }, [a, revealed, spec]);
-  const last = spec.kind === 'motion' ? points[frame] : undefined;
+  }, [a, revealed, spec, probe]);
+  const last = spec.kind === "motion" ? points[frame] : undefined;
   return (
     <section className="interactive-card" aria-labelledby="interactive-title">
       <div className="eyebrow">
@@ -72,6 +81,10 @@ export default function Interactive({ concept }: { concept: Concept }) {
       </div>
       <h3 id="interactive-title">Predict. Change. Observe.</h3>
       <p>{spec.prompt}</p>
+      <div className="instrument-formula">
+        <MathText value={"f(x)=" + spec.formula} />
+        <span className="mono">{revealed ? "OBSERVED" : "BASELINE"}</span>
+      </div>
       <svg
         viewBox="0 0 370 225"
         role="img"
@@ -113,6 +126,16 @@ export default function Interactive({ concept }: { concept: Concept }) {
           stroke="var(--green)"
           strokeWidth="2.5"
         />
+        {revealed && (
+          <circle
+            cx={curves.marker.split(",")[0]}
+            cy={curves.marker.split(",")[1]}
+            r="5"
+            fill="var(--ochre)"
+            stroke="var(--surface)"
+            strokeWidth="2"
+          />
+        )}
         <text
           x="335"
           y="210"
@@ -133,7 +156,9 @@ export default function Interactive({ concept }: { concept: Concept }) {
         </text>
       </svg>
       <div className="parameter-head">
-        <label htmlFor="parameter">Parameter {spec.parameterLabel}</label>
+        <label htmlFor="parameter">
+          {revealed ? "Observed" : "Proposed"} parameter {spec.parameterLabel}
+        </label>
         <output className="mono">{a.toFixed(1)}</output>
       </div>
       <input
@@ -185,6 +210,30 @@ export default function Interactive({ concept }: { concept: Concept }) {
           <span className="mono">
             f(2) = {arithmetic(spec.formula, { a, x: 2 }).toFixed(3)}
           </span>
+          <label className="field-label" htmlFor="probe">
+            Compare at input x = {probe.toFixed(2)}
+          </label>
+          <input
+            id="probe"
+            type="range"
+            min="0.05"
+            max="5"
+            step="0.05"
+            value={probe}
+            onChange={(e) => setProbe(Number(e.target.value))}
+          />
+          <div className="instrument-probe">
+            <div>
+              <small>Baseline · a={spec.initial}</small>
+              {arithmetic(spec.formula, { a: spec.initial, x: probe }).toFixed(
+                3,
+              )}
+            </div>
+            <div>
+              <small>Observed · a={a}</small>
+              {arithmetic(spec.formula, { a, x: probe }).toFixed(3)}
+            </div>
+          </div>
           <p>
             Solid curve: a={a}. Dashed curve: a={spec.initial}. Compare a fixed
             input before comparing the whole shape.

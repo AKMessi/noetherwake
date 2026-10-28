@@ -1,5 +1,5 @@
-'use client';
-import { useRef, useState } from 'react';
+"use client";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   Lightbulb,
@@ -8,7 +8,7 @@ import {
   HelpCircle,
   ChevronLeft,
   ChevronRight,
-} from 'lucide-react';
+} from "lucide-react";
 import {
   check,
   explainCheck,
@@ -16,7 +16,7 @@ import {
   type Evidence,
   type Item,
   type CheckResult,
-} from '@noetherwake/engine';
+} from "@noetherwake/engine";
 interface Props {
   item: Item;
   concept: Concept;
@@ -34,20 +34,20 @@ export default function Assessment({
   onNext,
 }: Props) {
   const [answer, setAnswer] = useState(
-      item.kind === 'simulation'
-        ? '20'
-        : item.kind === 'point'
-          ? '0'
-          : item.kind === 'ordering'
-            ? 'A,B,C'
-            : '',
+      item.kind === "simulation"
+        ? "20"
+        : item.kind === "point"
+          ? "0"
+          : item.kind === "ordering"
+            ? "A,B,C"
+            : "",
     ),
-    [unit, setUnit] = useState(''),
+    [unit, setUnit] = useState(""),
     [confidence, setConfidence] = useState<number | null>(null),
     [hints, setHints] = useState(faded ? 1 : 0),
     [result, setResult] = useState<CheckResult | null>(null),
     [busy, setBusy] = useState(false),
-    [explanation, setExplanation] = useState(''),
+    [explanation, setExplanation] = useState(""),
     [rubric, setRubric] = useState<boolean | null>(null),
     [keyboard, setKeyboard] = useState(false);
   const start = useRef(Date.now()),
@@ -78,20 +78,34 @@ export default function Assessment({
       setBusy(false);
     }
   }
-  const misconception =
-    concept.misconceptions.find((m) => m.id === result?.misconception) ??
-    (result && !result.correct && !result.indeterminate
-      ? concept.misconceptions[0]
-      : undefined);
+  const feedbackRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (result) feedbackRef.current?.focus();
+  }, [result]);
+  const misconception = concept.misconceptions.find(
+    (m) => m.id === result?.misconception,
+  );
+  function insertKey(key: string) {
+    const field = input.current;
+    const start = field?.selectionStart ?? answer.length;
+    const end = field?.selectionEnd ?? start;
+    const left = key === "⌫" && start === end ? Math.max(0, start - 1) : start;
+    const text = key === "⌫" ? "" : key;
+    setAnswer(answer.slice(0, left) + text + answer.slice(end));
+    requestAnimationFrame(() => {
+      field?.focus();
+      field?.setSelectionRange(left + text.length, left + text.length);
+    });
+  }
   return (
     <section className="assessment" aria-labelledby="question-title">
       <div className="eyebrow">
         <span className="tiny-square" />
         {diagnostic
-          ? 'ADAPTIVE PLACEMENT'
+          ? "ADAPTIVE PLACEMENT"
           : faded
-            ? 'FADED EXAMPLE · COMPLETE THE LAST STEP'
-            : 'RETRIEVAL PRACTICE'}
+            ? "FADED EXAMPLE · COMPLETE THE LAST STEP"
+            : "RETRIEVAL PRACTICE"}
       </div>
       <h2 id="question-title">{item.prompt}</h2>
       <form
@@ -100,9 +114,9 @@ export default function Assessment({
           void submit();
         }}
       >
-        {(item.kind === 'simulation' || item.kind === 'point') && (
+        {(item.kind === "simulation" || item.kind === "point") && (
           <div className="item-instrument">
-            {item.kind === 'simulation' ? (
+            {item.kind === "simulation" ? (
               <>
                 <svg
                   viewBox="0 0 360 210"
@@ -121,8 +135,8 @@ export default function Assessment({
                       time = (2 * vy) / 10;
                     const path = Array.from({ length: 60 }, (_, i) => {
                       const t = (i * time) / 59;
-                      return `${i ? 'L' : 'M'}${20 + vx * t * 30},${180 - (vy * t - 5 * t * t) * 30}`;
-                    }).join(' ');
+                      return `${i ? "L" : "M"}${20 + vx * t * 30},${180 - (vy * t - 5 * t * t) * 30}`;
+                    }).join(" ");
                     return (
                       <path
                         d={path}
@@ -156,10 +170,10 @@ export default function Assessment({
                   disabled={!!result}
                 />
                 <p>
-                  Range:{' '}
+                  Range:{" "}
                   {(
                     10 * Math.sin((2 * Number(answer) * Math.PI) / 180)
-                  ).toFixed(3)}{' '}
+                  ).toFixed(3)}{" "}
                   m
                 </p>
               </>
@@ -227,12 +241,12 @@ export default function Assessment({
             )}
           </div>
         )}
-        {item.kind === 'ordering' && (
+        {item.kind === "ordering" && (
           <div
             className="ordering-control"
             aria-label="Reorder the derivation steps"
           >
-            {answer.split(',').map((step, i, steps) => (
+            {answer.split(",").map((step, i, steps) => (
               <div key={step}>
                 <button
                   type="button"
@@ -240,7 +254,7 @@ export default function Assessment({
                   aria-label={`Move step ${step} earlier`}
                   onClick={() => {
                     [steps[i - 1], steps[i]] = [steps[i], steps[i - 1]];
-                    setAnswer(steps.join(','));
+                    setAnswer(steps.join(","));
                   }}
                 >
                   <ChevronLeft size={14} />
@@ -252,7 +266,7 @@ export default function Assessment({
                   aria-label={`Move step ${step} later`}
                   onClick={() => {
                     [steps[i + 1], steps[i]] = [steps[i], steps[i + 1]];
-                    setAnswer(steps.join(','));
+                    setAnswer(steps.join(","));
                   }}
                 >
                   <ChevronRight size={14} />
@@ -267,7 +281,7 @@ export default function Assessment({
             {item.choices.map((c, i) => (
               <label
                 key={c.text}
-                className={answer === c.text ? 'choice selected' : 'choice'}
+                className={answer === c.text ? "choice selected" : "choice"}
               >
                 <input
                   type="radio"
@@ -289,9 +303,9 @@ export default function Assessment({
             <div className="answer-row">
               <div className="answer-field">
                 <label htmlFor="answer">
-                  {item.kind === 'ordering'
-                    ? 'Step order (e.g. B,A,C)'
-                    : 'Your answer'}
+                  {item.kind === "ordering"
+                    ? "Step order (e.g. B,A,C)"
+                    : "Your answer"}
                 </label>
                 <input
                   id="answer"
@@ -300,12 +314,12 @@ export default function Assessment({
                   onChange={(e) => setAnswer(e.target.value)}
                   autoComplete="off"
                   spellCheck={false}
-                  inputMode={item.kind === 'numeric' ? 'decimal' : 'text'}
+                  inputMode={item.kind === "numeric" ? "decimal" : "text"}
                   disabled={!!result}
                   placeholder={
-                    item.kind === 'symbolic'
-                      ? 'An expression in x'
-                      : 'Type a value or expression'
+                    item.kind === "symbolic"
+                      ? "An expression in x"
+                      : "Type a value or expression"
                   }
                 />
               </div>
@@ -328,25 +342,34 @@ export default function Assessment({
               className="text-button keyboard-toggle"
               onClick={() => setKeyboard(!keyboard)}
             >
-              Math keyboard {keyboard ? '−' : '+'}
+              Math keyboard {keyboard ? "−" : "+"}
             </button>
             {keyboard && (
               <div className="math-keyboard">
-                {['x', '^', '(', ')', '/', '*', 'sqrt(', 'pi', '-', '.'].map(
-                  (key) => (
-                    <button
-                      key={key}
-                      type="button"
-                      disabled={!!result}
-                      onClick={() => {
-                        setAnswer(answer + key);
-                        input.current?.focus();
-                      }}
-                    >
-                      {key}
-                    </button>
-                  ),
-                )}
+                {[
+                  "x",
+                  "^",
+                  "(",
+                  ")",
+                  "/",
+                  "*",
+                  "sqrt(",
+                  "pi",
+                  "-",
+                  ".",
+                  "⌫",
+                ].map((key) => (
+                  <button
+                    key={key}
+                    type="button"
+                    disabled={!!result}
+                    onClick={() => {
+                      insertKey(key);
+                    }}
+                  >
+                    {key}
+                  </button>
+                ))}
               </div>
             )}
           </>
@@ -358,16 +381,16 @@ export default function Assessment({
             </legend>
             <div>
               {[
-                { label: 'Still guessing', value: 0.35 },
-                { label: 'Fairly sure', value: 0.65 },
-                { label: 'Very sure', value: 0.9 },
+                { label: "Still guessing", value: 0.35 },
+                { label: "Fairly sure", value: 0.65 },
+                { label: "Very sure", value: 0.9 },
               ].map((c) => (
                 <button
                   key={c.value}
                   className={
                     confidence === c.value
-                      ? 'confidence-button selected'
-                      : 'confidence-button'
+                      ? "confidence-button selected"
+                      : "confidence-button"
                   }
                   type="button"
                   onClick={() => setConfidence(c.value)}
@@ -384,7 +407,15 @@ export default function Assessment({
           <div className="hint-box">
             <Lightbulb size={16} />
             <div>
-              <b>Hint {hints} of 3</b>
+              <b>
+                {["", "Nudge", "Partial step", "Full solution"][hints]} ·{" "}
+                {hints} of 3
+              </b>
+              <p>
+                {hints === 3
+                  ? "Full support: this answer adds no mastery evidence."
+                  : "Supported recall receives less mastery credit."}
+              </p>
               <p>{item.hints[hints - 1]}</p>
             </div>
           </div>
@@ -396,7 +427,7 @@ export default function Assessment({
               className="primary"
               disabled={!answer.trim() || confidence === null || busy}
             >
-              {busy ? 'Checking…' : 'Check my reasoning'}
+              {busy ? "Checking…" : "Check my reasoning"}
               <CornerDownLeft size={15} />
             </button>
             {!diagnostic && hints < 3 && (
@@ -405,8 +436,8 @@ export default function Assessment({
                 className="text-button"
                 onClick={() => setHints(hints + 1)}
               >
-                <Lightbulb size={15} />{' '}
-                {hints ? 'Another hint' : 'A small hint'}
+                <Lightbulb size={15} />{" "}
+                {hints ? "Another hint" : "A small hint"}
               </button>
             )}
           </div>
@@ -414,25 +445,35 @@ export default function Assessment({
       </form>
       {result && (
         <div
-          className={`feedback ${result.correct ? 'correct' : 'needs-work'}`}
+          ref={feedbackRef}
+          tabIndex={-1}
+          className={`feedback ${result.indeterminate ? "indeterminate" : result.correct ? "correct" : "needs-work"}`}
           role="status"
         >
           <div className="feedback-title">
             {result.correct ? <Check size={18} /> : <Lightbulb size={18} />}
             <strong>
-              {result.correct
-                ? 'That holds together.'
-                : 'A useful place to look closer.'}
+              {result.indeterminate
+                ? "Let’s check another form."
+                : result.correct
+                  ? "That holds together."
+                  : "A useful place to look closer."}
             </strong>
           </div>
           <p>
             {result.feedback}
             {result.indeterminate
-              ? ' No mastery evidence was recorded; try another form.'
-              : ''}
+              ? " No mastery evidence was recorded; try another form."
+              : ""}
           </p>
           {result.indeterminate && (
-            <button className="secondary" onClick={() => setResult(null)}>
+            <button
+              className="secondary"
+              onClick={() => {
+                setResult(null);
+                requestAnimationFrame(() => input.current?.focus());
+              }}
+            >
               Try another form
             </button>
           )}
@@ -470,8 +511,8 @@ export default function Assessment({
               {rubric !== null && (
                 <p>
                   {rubric
-                    ? 'Your explanation includes the key mechanisms.'
-                    : `Try connecting these ideas: ${concept.explanation.keywords.map((g) => g.join(' or ')).join('; ')}.`}{' '}
+                    ? "Your explanation includes the key mechanisms."
+                    : `Try connecting these ideas: ${concept.explanation.keywords.map((g) => g.join(" or ")).join("; ")}.`}{" "}
                   This is a formative keyword check.
                 </p>
               )}
@@ -479,7 +520,7 @@ export default function Assessment({
           )}
           {!result.indeterminate && (
             <button className="primary" onClick={onNext}>
-              {diagnostic ? 'Next placement question' : 'Continue the session'}{' '}
+              {diagnostic ? "Next placement question" : "Continue the session"}{" "}
               <ArrowRight size={16} />
             </button>
           )}

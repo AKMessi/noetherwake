@@ -1,6 +1,7 @@
-'use client';
-import { useEffect, useRef, useState } from 'react';
-import dynamic from 'next/dynamic';
+"use client";
+import LessonReading from "./LessonReading";
+import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -34,7 +35,7 @@ import {
   Upload,
   WifiOff,
   X,
-} from 'lucide-react';
+} from "lucide-react";
 import {
   ancestors,
   createLearner,
@@ -58,33 +59,33 @@ import {
   type Item,
   type Learner,
   type SessionRecord,
-} from '@noetherwake/engine';
-import { catalog, concept, goals } from '@/lib/catalog';
-import { learnerSchema, parseImport, readState, saveState } from '@/lib/store';
-import ConceptMap from './ConceptMap';
-import Assessment from './Assessment';
-import MathText from './Math';
-const Interactive = dynamic(() => import('./Interactive'), {
+} from "@noetherwake/engine";
+import { catalog, concept, goals } from "@/lib/catalog";
+import { learnerSchema, parseImport, readState, saveState } from "@/lib/store";
+import ConceptMap from "./ConceptMap";
+import Assessment from "./Assessment";
+import MathText from "./Math";
+const Interactive = dynamic(() => import("./Interactive"), {
   loading: () => (
     <div className="interactive-card">Preparing the learning instrument…</div>
   ),
 });
 type View =
-  | 'today'
-  | 'map'
-  | 'curriculum'
-  | 'journal'
-  | 'settings'
-  | 'lesson'
-  | 'diagnostic'
-  | 'session'
-  | 'summary'
-  | 'placement';
+  | "today"
+  | "map"
+  | "curriculum"
+  | "journal"
+  | "settings"
+  | "lesson"
+  | "diagnostic"
+  | "session"
+  | "summary"
+  | "placement";
 const nav = [
-  { id: 'today', label: 'Today', icon: Home },
-  { id: 'map', label: 'Knowledge map', icon: Map },
-  { id: 'curriculum', label: 'The curriculum', icon: BookOpen },
-  { id: 'journal', label: 'Learning journal', icon: NotebookPen },
+  { id: "today", label: "Today", icon: Home },
+  { id: "map", label: "Knowledge map", icon: Map },
+  { id: "curriculum", label: "The curriculum", icon: BookOpen },
+  { id: "journal", label: "Learning journal", icon: NotebookPen },
 ] as const;
 function Brand() {
   return (
@@ -142,7 +143,7 @@ function GoalDialog({
         <legend className="sr-only">Choose a learning goal</legend>
         {goals.map((g) => (
           <label
-            className={`goal-option ${goal === g.id ? 'selected' : ''}`}
+            className={`goal-option ${goal === g.id ? "selected" : ""}`}
             key={g.id}
           >
             <input
@@ -181,19 +182,19 @@ function GoalDialog({
 }
 export default function Tutor() {
   const [state, setState] = useState<Learner | null>(() =>
-      createLearner(0, 'conservation-energy'),
+      createLearner(0, "conservation-energy"),
     ),
-    [view, setView] = useState<View>('today'),
+    [view, setView] = useState<View>("today"),
     [selected, setSelected] = useState<string | null>(null),
-    [lessonId, setLessonId] = useState('fractions'),
+    [lessonId, setLessonId] = useState("fractions"),
     [item, setItem] = useState<Item | null>(null),
     [onboarding, setOnboarding] = useState(false),
     [mobileNav, setMobileNav] = useState(false),
-    [notice, setNotice] = useState(''),
-    [storageError, setStorageError] = useState(''),
-    [search, setSearch] = useState(''),
-    [domain, setDomain] = useState('all'),
-    [reflection, setReflection] = useState(''),
+    [notice, setNotice] = useState(""),
+    [storageError, setStorageError] = useState(""),
+    [search, setSearch] = useState(""),
+    [domain, setDomain] = useState("all"),
+    [reflection, setReflection] = useState(""),
     [lastSession, setLastSession] = useState<SessionRecord | null>(null),
     [online, setOnline] = useState(true),
     [offlineReady, setOfflineReady] = useState(false);
@@ -214,16 +215,16 @@ export default function Tutor() {
           setState(
             s
               ? learnerSchema.parse(s)
-              : createLearner(Date.now(), 'conservation-energy'),
+              : createLearner(Date.now(), "conservation-energy"),
           );
           hydrated.current = true;
         }
       })
       .catch(() => {
         if (live) {
-          setState(createLearner(Date.now(), 'conservation-energy'));
+          setState(createLearner(Date.now(), "conservation-energy"));
           setStorageError(
-            'Device storage is unavailable. Export your progress before closing this tab.',
+            "Device storage is unavailable. Export your progress before closing this tab.",
           );
           hydrated.current = true;
         }
@@ -231,49 +232,51 @@ export default function Tutor() {
     setOnline(navigator.onLine);
     const on = () => setOnline(true),
       off = () => setOnline(false);
-    window.addEventListener('online', on);
-    window.addEventListener('offline', off);
-    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+    window.addEventListener("online", on);
+    window.addEventListener("offline", off);
+    if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
       navigator.serviceWorker
-        .register('/sw.js')
+        .register("/sw.js")
         .then(() => navigator.serviceWorker.ready)
         .then(() => {
-          navigator.serviceWorker.addEventListener('message', (e) => {
-            if (e.data === 'OFFLINE_READY') setOfflineReady(true);
+          navigator.serviceWorker.addEventListener("message", (e) => {
+            if (e.data === "OFFLINE_READY") setOfflineReady(true);
           });
           setOfflineReady(!!navigator.serviceWorker.controller);
         })
         .catch(() =>
           setNotice(
-            'Offline installation did not finish. Reopen online to retry.',
+            "Offline installation did not finish. Reopen online to retry.",
           ),
         );
     }
     return () => {
       live = false;
-      window.removeEventListener('online', on);
-      window.removeEventListener('offline', off);
+      window.removeEventListener("online", on);
+      window.removeEventListener("offline", off);
     };
   }, []);
   useEffect(() => {
     if (!state || !hydrated.current) return;
     saveState(state).catch(() =>
       setStorageError(
-        'Progress could not be saved. Export a backup before closing.',
+        "Progress could not be saved. Export a backup before closing.",
       ),
     );
     document.documentElement.dataset.theme = state.theme;
     document.documentElement.dataset.reading = state.accessibleFont
-      ? 'accessible'
-      : 'standard';
+      ? "accessible"
+      : "standard";
   }, [state]);
   function navigate(next: View) {
+    if (next === "map" && !selected && state)
+      setSelected(plan(catalog, state, Date.now())[0]?.concept ?? state.goal);
     setView(next);
     setMobileNav(false);
-    setNotice('');
+    setNotice("");
     requestAnimationFrame(() => {
       main.current?.focus();
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      window.scrollTo({ top: 0, behavior: "instant" });
     });
   }
   if (!state)
@@ -343,17 +346,17 @@ export default function Tutor() {
       plan(catalog, s, Date.now())[0]?.concept;
     if (!action) {
       setNotice(
-        'Your current evidence is strong. Return when a review is due or choose a new goal in settings.',
+        "Your current evidence is strong. Return when a review is due or choose a new goal in settings.",
       );
       return;
     }
     const routed = routeToReady(catalog, s, action, Date.now());
     itemFor(routed, s);
-    navigate('session');
+    navigate("session");
   }
   function openLesson(id: string) {
     setLessonId(id);
-    navigate('lesson');
+    navigate("lesson");
   }
   function beginDiagnostic(goalId: string) {
     const s = {
@@ -368,7 +371,7 @@ export default function Tutor() {
     const c = diagnosticNext(catalog, s, Date.now());
     if (c) {
       itemFor(c.id, s, true);
-      navigate('diagnostic');
+      navigate("diagnostic");
     }
   }
   function skipDiagnostic(goalId: string) {
@@ -385,9 +388,9 @@ export default function Tutor() {
     const run = session.current;
     if (!run) return;
     if (!run.events.length) {
-      navigate('today');
+      navigate("today");
       setNotice(
-        'No responses were recorded. Come back when you have a little time.',
+        "No responses were recorded. Come back when you have a little time.",
       );
       return;
     }
@@ -397,7 +400,7 @@ export default function Tutor() {
       correct: run.events.filter((e) => e.correct).length,
       total: run.events.length,
       minutes: Math.max(1, Math.round((Date.now() - run.start) / 60000)),
-      reflection: '',
+      reflection: "",
       changes: Object.fromEntries(
         [...new Set(run.events.map((e) => e.concept))].map((id) => [
           id,
@@ -406,21 +409,21 @@ export default function Tutor() {
       ),
     };
     setLastSession(record);
-    setReflection('');
+    setReflection("");
     setState((s) =>
       s ? { ...s, sessions: [...s.sessions, record].slice(-1000) } : s,
     );
-    navigate('summary');
+    navigate("summary");
   }
   function nextQuestion() {
-    if (view === 'diagnostic') {
+    if (view === "diagnostic") {
       if (state!.diagnostic.length >= 18) {
-        navigate('placement');
+        navigate("placement");
         return;
       }
       const c = diagnosticNext(catalog, state!, Date.now());
       if (c) itemFor(c.id, state!, true);
-      else navigate('placement');
+      else navigate("placement");
       return;
     }
     const run = session.current;
@@ -438,15 +441,15 @@ export default function Tutor() {
   }
   function exportState() {
     const blob = new Blob([JSON.stringify(state, null, 2)], {
-        type: 'application/json',
+        type: "application/json",
       }),
       url = URL.createObjectURL(blob),
-      a = document.createElement('a');
+      a = document.createElement("a");
     a.href = url;
     a.download = `noetherwake-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-    setNotice('Your progress was exported. Keep the JSON file somewhere safe.');
+    setNotice("Your progress was exported. Keep the JSON file somewhere safe.");
   }
   async function importState(file?: File) {
     if (!file) return;
@@ -457,35 +460,35 @@ export default function Tutor() {
       );
       await saveState(s);
       setState(s);
-      setNotice('Backup restored. Your route now uses the imported evidence.');
+      setNotice("Backup restored. Your route now uses the imported evidence.");
     } catch (e) {
       setNotice(
-        `Import did not change your progress: ${e instanceof Error ? e.message : 'Invalid file'}`,
+        `Import did not change your progress: ${e instanceof Error ? e.message : "Invalid file"}`,
       );
     }
-    if (fileInput.current) fileInput.current.value = '';
+    if (fileInput.current) fileInput.current.value = "";
   }
   const activeView = [
-    'lesson',
-    'session',
-    'diagnostic',
-    'placement',
-    'summary',
+    "lesson",
+    "session",
+    "diagnostic",
+    "placement",
+    "summary",
   ].includes(view)
-    ? 'today'
+    ? "today"
     : view;
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <aside className={`sidebar ${mobileNav ? 'open' : ''}`}>
+      <aside className={`sidebar ${mobileNav ? "open" : ""}`}>
         <a
           className="brand-link"
           href="#today"
           onClick={(e) => {
             e.preventDefault();
-            navigate('today');
+            navigate("today");
           }}
           aria-label="Noetherwake home"
         >
@@ -497,13 +500,21 @@ export default function Tutor() {
             <button
               key={n.id}
               aria-label={n.label}
-              className={`nav-item ${activeView === n.id ? 'active' : ''}`}
-              aria-current={activeView === n.id ? 'page' : undefined}
+              className={`nav-item ${activeView === n.id ? "active" : ""}`}
+              aria-current={activeView === n.id ? "page" : undefined}
               onClick={() => navigate(n.id)}
             >
               <n.icon size={18} strokeWidth={1.7} />
-              <span>{n.id === 'map' ? 'Atlas' : n.id === 'curriculum' ? 'Library' : n.id === 'journal' ? 'Journal' : n.label}</span>
-              {n.id === 'today' && <span className="nav-dot" />}
+              <span>
+                {n.id === "map"
+                  ? "Atlas"
+                  : n.id === "curriculum"
+                    ? "Library"
+                    : n.id === "journal"
+                      ? "Journal"
+                      : n.label}
+              </span>
+              {n.id === "today" && <span className="nav-dot" />}
             </button>
           ))}
         </nav>
@@ -523,7 +534,7 @@ export default function Tutor() {
             />
           </div>
           <small>
-            {strong.filter((c) => target.has(c.id)).length} of {target.size}{' '}
+            {strong.filter((c) => target.has(c.id)).length} of {target.size}{" "}
             ideas with strong evidence
           </small>
         </div>
@@ -535,9 +546,9 @@ export default function Tutor() {
             </div>
           </div>
           <button
-            className={`nav-item ${view === 'settings' ? 'active' : ''}`}
-            onClick={() => navigate('settings')}
-            aria-current={view === 'settings' ? 'page' : undefined}
+            className={`nav-item ${view === "settings" ? "active" : ""}`}
+            onClick={() => navigate("settings")}
+            aria-current={view === "settings" ? "page" : undefined}
           >
             <Settings2 size={17} /> Preferences
           </button>
@@ -564,21 +575,21 @@ export default function Tutor() {
               <Menu size={20} />
             </button>
             <span className="breadcrumb">
-              Your workspace <ChevronRight size={13} />{' '}
+              Your workspace <ChevronRight size={13} />{" "}
               <b>
-                {view === 'today'
-                  ? 'Today'
-                  : view === 'map'
-                    ? 'Knowledge map'
-                    : view === 'curriculum'
-                      ? 'Curriculum'
-                      : view === 'journal'
-                        ? 'Journal'
-                        : view === 'settings'
-                          ? 'Preferences'
-                          : view === 'diagnostic'
-                            ? 'Finding your frontier'
-                            : 'Your learning session'}
+                {view === "today"
+                  ? "Today"
+                  : view === "map"
+                    ? "Knowledge map"
+                    : view === "curriculum"
+                      ? "Curriculum"
+                      : view === "journal"
+                        ? "Journal"
+                        : view === "settings"
+                          ? "Preferences"
+                          : view === "diagnostic"
+                            ? "Finding your frontier"
+                            : "Your learning session"}
               </b>
             </span>
           </div>
@@ -586,25 +597,25 @@ export default function Tutor() {
             <span className="connection">
               <i />
               {!online
-                ? 'Offline'
+                ? "Offline"
                 : offlineReady
-                  ? 'Offline ready'
-                  : 'Local first'}
+                  ? "Offline ready"
+                  : "Local first"}
             </span>
             <span className="topbar-divider" />
             <button
               className="icon-button theme-toggle"
               aria-label={
-                state.theme === 'dark' ? 'Use light theme' : 'Use dark theme'
+                state.theme === "dark" ? "Use light theme" : "Use dark theme"
               }
               onClick={() =>
                 setState({
                   ...state,
-                  theme: state.theme === 'dark' ? 'light' : 'dark',
+                  theme: state.theme === "dark" ? "light" : "dark",
                 })
               }
             >
-              {state.theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+              {state.theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
             </button>
             <span className="user-mark" aria-label="Local learner">
               N
@@ -624,15 +635,15 @@ export default function Tutor() {
                 className="icon-button"
                 aria-label="Dismiss notice"
                 onClick={() => {
-                  setNotice('');
-                  if (!storageError) setStorageError('');
+                  setNotice("");
+                  if (!storageError) setStorageError("");
                 }}
               >
                 <X size={14} />
               </button>
             </div>
           )}
-          {view === 'today' && (
+          {view === "today" && (
             <>
               <div className="page-heading">
                 <div>
@@ -644,14 +655,16 @@ export default function Tutor() {
                     <em> connection.</em>
                   </h1>
                   <p>
-                    Your direction: {goals.find((g) => g.id === state.goal)?.title ?? goal.title}
+                    Your direction:{" "}
+                    {goals.find((g) => g.id === state.goal)?.title ??
+                      goal.title}
                   </p>
                 </div>
                 <span className="date-label" suppressHydrationWarning>
-                  {new Intl.DateTimeFormat('en', {
-                    weekday: 'long',
-                    month: 'short',
-                    day: 'numeric',
+                  {new Intl.DateTimeFormat("en", {
+                    weekday: "long",
+                    month: "short",
+                    day: "numeric",
                   }).format(now)}
                   <span>
                     <span className="tiny-square" /> A good day to understand
@@ -663,10 +676,10 @@ export default function Tutor() {
                 <section className="next-card">
                   <div className="next-card-top">
                     <span className="eyebrow">
-                      <span className="pulse-dot" />{' '}
+                      <span className="pulse-dot" />{" "}
                       {state.onboarded
-                        ? 'YOUR NEXT BEST STEP'
-                        : 'YOUR JOURNEY STARTS HERE'}
+                        ? "YOUR NEXT BEST STEP"
+                        : "YOUR JOURNEY STARTS HERE"}
                     </span>
                     <span className="pill">{state.minutes} min session</span>
                   </div>
@@ -693,12 +706,12 @@ export default function Tutor() {
                   <div className="next-card-content">
                     <span className="lesson-path">
                       {state.onboarded
-                        ? `${nextConcept?.strand ?? 'Spaced retrieval'} / ${next?.kind === 'repair' ? 'Prerequisite repair' : next?.kind === 'review' ? 'A timely return' : 'The next connection'}`
-                        : 'MATH + PHYSICS / ADAPTIVE LEARNING'}
+                        ? `${nextConcept?.strand ?? "Spaced retrieval"} / ${next?.kind === "repair" ? "Prerequisite repair" : next?.kind === "review" ? "A timely return" : "The next connection"}`
+                        : "MATH + PHYSICS / ADAPTIVE LEARNING"}
                     </span>
                     <h2>
                       {state.onboarded ? (
-                        (nextConcept?.title ?? 'Let your learning settle.')
+                        (nextConcept?.title ?? "Let your learning settle.")
                       ) : (
                         <>
                           Begin with what
@@ -709,8 +722,9 @@ export default function Tutor() {
                     </h2>
                     <p className="next-description">
                       {state.onboarded
-                        ? (nextConcept?.summary ?? 'Your next review will appear when it is useful.')
-                        : 'A few thoughtful questions reveal what you know, what’s uncertain, and where a new idea can take root.'}
+                        ? (nextConcept?.summary ??
+                          "Your next review will appear when it is useful.")
+                        : "A few thoughtful questions reveal what you know, what’s uncertain, and where a new idea can take root."}
                     </p>
                     <button
                       className="continue-button"
@@ -719,8 +733,8 @@ export default function Tutor() {
                       }
                     >
                       {state.onboarded
-                        ? 'Continue learning'
-                        : 'Find my starting point'}{' '}
+                        ? "Continue learning"
+                        : "Find my starting point"}{" "}
                       <ArrowRight size={19} />
                     </button>
                     <div className="why-line">
@@ -728,8 +742,8 @@ export default function Tutor() {
                       <p>
                         {state.onboarded
                           ? (next?.why ??
-                            'Strong evidence deserves some space. Choose a new goal or return for a review.')
-                          : 'Why start here? A useful path begins with what you actually understand.'}
+                            "Strong evidence deserves some space. Choose a new goal or return for a review.")
+                          : "Why start here? A useful path begins with what you actually understand."}
                       </p>
                     </div>
                   </div>
@@ -741,7 +755,7 @@ export default function Tutor() {
                       {([5, 15, 30] as const).map((m) => (
                         <button
                           key={m}
-                          className={state.minutes === m ? 'selected' : ''}
+                          className={state.minutes === m ? "selected" : ""}
                           aria-pressed={state.minutes === m}
                           onClick={() => setState({ ...state, minutes: m })}
                         >
@@ -760,18 +774,21 @@ export default function Tutor() {
                     <button
                       className="icon-button"
                       aria-label="Open full knowledge map"
-                      onClick={() => navigate('map')}
+                      onClick={() => navigate("map")}
                     >
                       <ArrowUpRight size={20} />
                     </button>
                   </div>
-                  <p>Your goal dependencies. Select an idea to trace its foundations.</p>
+                  <p>
+                    Your goal dependencies. Select an idea to trace its
+                    foundations.
+                  </p>
                   <ConceptMap
                     state={state}
                     compact
                     onSelect={(id) => {
                       setSelected(id);
-                      navigate('map');
+                      navigate("map");
                     }}
                   />
                   <div className="frontier-note">
@@ -779,7 +796,7 @@ export default function Tutor() {
                     <p>
                       {assessed.length
                         ? `${assessed.length} ideas assessed. Your next step follows the evidence.`
-                        : 'The dashed edges are honest: we haven’t met your knowledge yet.'}
+                        : "The dashed edges are honest: we haven’t met your knowledge yet."}
                     </p>
                   </div>
                 </section>
@@ -794,24 +811,24 @@ export default function Tutor() {
                   <div className="session-steps">
                     {[
                       {
-                        n: '01',
-                        title: 'Retrieve',
-                        copy: 'Wake up an idea you know.',
+                        n: "01",
+                        title: "Retrieve",
+                        copy: "Wake up an idea you know.",
                       },
                       {
-                        n: '02',
-                        title: 'Connect',
-                        copy: 'Build one new piece of intuition.',
+                        n: "02",
+                        title: "Connect",
+                        copy: "Build one new piece of intuition.",
                       },
                       {
-                        n: '03',
-                        title: 'Test',
-                        copy: 'Try it without the scaffolding.',
+                        n: "03",
+                        title: "Test",
+                        copy: "Try it without the scaffolding.",
                       },
                       {
-                        n: '04',
-                        title: 'Reflect',
-                        copy: 'Keep what matters. Space the rest.',
+                        n: "04",
+                        title: "Reflect",
+                        copy: "Keep what matters. Space the rest.",
                       },
                     ].map((s) => (
                       <div key={s.n}>
@@ -831,19 +848,19 @@ export default function Tutor() {
                   <div>
                     <h3>
                       {due.length
-                        ? `${due.length} idea${due.length === 1 ? '' : 's'} ready to revisit`
-                        : 'Room for things to settle.'}
+                        ? `${due.length} idea${due.length === 1 ? "" : "s"} ready to revisit`
+                        : "Room for things to settle."}
                     </h3>
                     <p>
                       {due.length
-                        ? 'Your next session includes timely retrieval.'
+                        ? "Your next session includes timely retrieval."
                         : assessed.length
-                          ? 'The scheduler will bring ideas back before they fade.'
-                          : 'Reviews will appear once you’ve started learning. No catching up required.'}
+                          ? "The scheduler will bring ideas back before they fade."
+                          : "Reviews will appear once you’ve started learning. No catching up required."}
                     </p>
                   </div>
                   <span className="review-count mono">
-                    {String(due.length).padStart(2, '0')}
+                    {String(due.length).padStart(2, "0")}
                   </span>
                 </section>
               </div>
@@ -858,7 +875,7 @@ export default function Tutor() {
               </footer>
             </>
           )}
-          {view === 'map' && (
+          {view === "map" && (
             <>
               <div className="standard-heading">
                 <span className="eyebrow">
@@ -866,9 +883,9 @@ export default function Tutor() {
                 </span>
                 <h1>The connections matter.</h1>
                 <p>
-                  Follow the highlighted dependencies toward {goal.title.toLowerCase()}.
-                  Dashed rings mean uncertainty; double rings mark your
-                  frontier.
+                  Follow the highlighted dependencies toward{" "}
+                  {goal.title.toLowerCase()}. Dashed rings mean uncertainty;
+                  double rings mark your frontier.
                 </p>
               </div>
               <div className="map-page-layout">
@@ -876,18 +893,34 @@ export default function Tutor() {
                   <div className="panel-heading">
                     <h2>Your knowledge, connected</h2>
                     <span className="pill light">
-                      {catalog.length} ideas ·{' '}
-                      {catalog.filter((c) => c.domain === 'physics').length}{' '}
+                      {catalog.length} ideas ·{" "}
+                      {catalog.filter((c) => c.domain === "physics").length}{" "}
                       physics
                     </span>
                   </div>
                   <ConceptMap
                     state={state}
                     selected={selected ?? undefined}
-                    onSelect={setSelected}
+                    onSelect={(id) => {
+                      setSelected(id);
+                      if (window.innerWidth <= 760)
+                        requestAnimationFrame(() => {
+                          const panel =
+                            document.querySelector<HTMLElement>(".map-detail");
+                          panel?.focus();
+                          panel?.scrollIntoView({
+                            block: "start",
+                            behavior: "instant",
+                          });
+                        });
+                    }}
                   />
                 </section>
-                <aside className="map-detail">
+                <aside
+                  className="map-detail"
+                  tabIndex={-1}
+                  aria-label="Concept evidence and prerequisites"
+                >
                   {selected ? (
                     (() => {
                       const c = concept(selected),
@@ -904,17 +937,22 @@ export default function Tutor() {
                           <div className="mastery-detail">
                             <span>
                               {k.observations
-                                ? 'Estimated mastery'
-                                : 'Prior · not yet assessed'}
+                                ? "Estimated mastery"
+                                : "Prior · not yet assessed"}
                             </span>
                             <strong className="mono">
                               {Math.round(effective(k, now) * 100)}
                               <small>%</small>
                             </strong>
                             <div className="probability-track">
-                              <span style={{ width: `${effective(k, now) * 100}%` }} />
+                              <span
+                                style={{ width: `${effective(k, now) * 100}%` }}
+                              />
                             </div>
-                            <p>{k.observations} direct observations · {k.fluent} fluent responses</p>
+                            <p>
+                              {k.observations} direct observations · {k.fluent}{" "}
+                              fluent responses
+                            </p>
                             <p className="mono">
                               Model uncertainty: {Math.round(range[0] * 100)}–
                               {Math.round(range[1] * 100)}%
@@ -986,7 +1024,7 @@ export default function Tutor() {
               </div>
             </>
           )}
-          {view === 'curriculum' && (
+          {view === "curriculum" && (
             <>
               <div className="standard-heading">
                 <span className="eyebrow">
@@ -1009,17 +1047,17 @@ export default function Tutor() {
                   />
                 </label>
                 <div className="segmented">
-                  {['all', 'math', 'physics'].map((d) => (
+                  {["all", "math", "physics"].map((d) => (
                     <button
                       key={d}
-                      className={domain === d ? 'selected' : ''}
+                      className={domain === d ? "selected" : ""}
                       onClick={() => setDomain(d)}
                     >
-                      {d === 'all'
-                        ? 'All ideas'
-                        : d === 'math'
-                          ? 'Mathematics'
-                          : 'Physics'}
+                      {d === "all"
+                        ? "All ideas"
+                        : d === "math"
+                          ? "Mathematics"
+                          : "Physics"}
                     </button>
                   ))}
                 </div>
@@ -1028,7 +1066,7 @@ export default function Tutor() {
                 {catalog
                   .filter(
                     (c) =>
-                      (domain === 'all' || c.domain === domain) &&
+                      (domain === "all" || c.domain === domain) &&
                       `${c.title} ${c.strand} ${c.summary}`
                         .toLowerCase()
                         .includes(search.toLowerCase()),
@@ -1043,7 +1081,7 @@ export default function Tutor() {
                         onClick={() => openLesson(c.id)}
                       >
                         <span className={`domain-icon ${c.domain}`}>
-                          {c.domain === 'math' ? (
+                          {c.domain === "math" ? (
                             <span>ƒ</span>
                           ) : (
                             <span>φ</span>
@@ -1052,19 +1090,19 @@ export default function Tutor() {
                         <div>
                           <span className="eyebrow">{c.strand}</span>
                           <h2>{c.title}</h2>
-                          <p>{c.summary.split('. ')[0]}.</p>
+                          <p>{c.summary.split(". ")[0]}.</p>
                         </div>
                         <span className="curriculum-status">
                           {gap.length ? (
                             <>
                               <LockKeyhole size={13} />
                               {gap.length} prerequisite
-                              {gap.length === 1 ? '' : 's'}
+                              {gap.length === 1 ? "" : "s"}
                             </>
                           ) : k.observations ? (
                             `${Math.round(k.p * 100)}% · estimated`
                           ) : (
-                            'Ready to explore'
+                            "Ready to explore"
                           )}
                         </span>
                         <ArrowUpRight size={17} />
@@ -1074,7 +1112,7 @@ export default function Tutor() {
               </div>
             </>
           )}
-          {view === 'journal' && (
+          {view === "journal" && (
             <>
               <div className="standard-heading">
                 <span className="eyebrow">
@@ -1111,7 +1149,7 @@ export default function Tutor() {
                             0,
                           ) / state.history.length
                         ).toFixed(3)
-                      : '—'}
+                      : "—"}
                   </strong>
                 </div>
               </div>
@@ -1121,21 +1159,21 @@ export default function Tutor() {
                     <article className="journal-entry" key={`${s.at}-${i}`}>
                       <span className="eyebrow">
                         {new Date(s.at).toLocaleDateString(undefined, {
-                          month: 'long',
-                          day: 'numeric',
-                        })}{' '}
+                          month: "long",
+                          day: "numeric",
+                        })}{" "}
                         · {s.minutes} MINUTES
                       </span>
                       <h2>
-                        {s.concepts.map((id) => concept(id).title).join(' · ')}
+                        {s.concepts.map((id) => concept(id).title).join(" · ")}
                       </h2>
                       <p>
-                        {s.correct} of {s.total} responses correct.{' '}
-                        {s.reflection || 'No reflection recorded.'}
+                        {s.correct} of {s.total} responses correct.{" "}
+                        {s.reflection || "No reflection recorded."}
                       </p>
                       {Object.entries(s.changes).map(([id, d]) => (
                         <span className="delta-chip" key={id}>
-                          {concept(id).title}: {d >= 0 ? '+' : ''}
+                          {concept(id).title}: {d >= 0 ? "+" : ""}
                           {(d * 100).toFixed(1)} percentage points
                         </span>
                       ))}
@@ -1157,7 +1195,7 @@ export default function Tutor() {
               )}
             </>
           )}
-          {view === 'settings' && (
+          {view === "settings" && (
             <>
               <div className="standard-heading">
                 <span className="eyebrow">A TOOL THAT ADAPTS TO YOU.</span>
@@ -1173,17 +1211,17 @@ export default function Tutor() {
                     <legend>Appearance</legend>
                     <div className="setting-options">
                       {[
-                        { id: 'system', label: 'System', icon: Monitor },
-                        { id: 'light', label: 'Light', icon: Sun },
-                        { id: 'dark', label: 'Dark', icon: Moon },
+                        { id: "system", label: "System", icon: Monitor },
+                        { id: "light", label: "Light", icon: Sun },
+                        { id: "dark", label: "Dark", icon: Moon },
                       ].map((t) => (
                         <button
                           key={t.id}
-                          className={state.theme === t.id ? 'selected' : ''}
+                          className={state.theme === t.id ? "selected" : ""}
                           onClick={() =>
                             setState({
                               ...state,
-                              theme: t.id as Learner['theme'],
+                              theme: t.id as Learner["theme"],
                             })
                           }
                           aria-pressed={state.theme === t.id}
@@ -1290,15 +1328,15 @@ export default function Tutor() {
               </div>
             </>
           )}
-          {(view === 'lesson' || view === 'session') && (
+          {(view === "lesson" || view === "session") && (
             <>
               <button
                 className="text-button back-button"
-                onClick={() => navigate('today')}
+                onClick={() => navigate("today")}
               >
                 <ChevronLeft size={16} /> Back to today
               </button>
-              {gaps.length && view === 'lesson' ? (
+              {gaps.length && view === "lesson" ? (
                 <section className="locked-card">
                   <LockKeyhole size={30} />
                   <span className="eyebrow">A CONNECTION TO BUILD FIRST</span>
@@ -1334,38 +1372,27 @@ export default function Tutor() {
                   <div className="lesson-heading">
                     <span className="eyebrow">
                       {lesson.domain} / {lesson.strand}
-                      {view === 'session'
-                        ? ` / SESSION ${String((session.current?.events.length ?? 0) + 1).padStart(2, '0')}`
-                        : ''}
+                      {view === "session"
+                        ? ` / SESSION ${String((session.current?.events.length ?? 0) + 1).padStart(2, "0")}`
+                        : ""}
                     </span>
                     <h1>{lesson.title}</h1>
                     <p>
-                      {view === 'session'
+                      {view === "session"
                         ? (plan(catalog, state, now).find(
                             (a) => a.concept === lesson.id,
                           )?.why ??
-                          'A ready connection, chosen from your evidence.')
-                        : 'Intuition first. A precise relationship. Then a test of your own.'}
+                          "A ready connection, chosen from your evidence.")
+                        : "Intuition first. A precise relationship. Then a test of your own."}
                     </p>
                   </div>
                   <div className="lesson-layout">
                     <div>
-                      {view === 'lesson' ||
-                      stage(state, lesson.id, now) === 'worked' ? (
-                        <article
-                          className="lesson-prose"
-                          onClick={(e) => {
-                            const a = (e.target as HTMLElement).closest('a');
-                            if (
-                              a?.getAttribute('href')?.startsWith('concept:')
-                            ) {
-                              e.preventDefault();
-                              openLesson(a.getAttribute('href')!.slice(8));
-                            }
-                          }}
-                          dangerouslySetInnerHTML={{
-                            __html: lesson.html ?? '',
-                          }}
+                      {view === "lesson" ||
+                      stage(state, lesson.id, now) === "worked" ? (
+                        <LessonReading
+                          html={lesson.html ?? ""}
+                          onConcept={openLesson}
                         />
                       ) : null}
                       <section className="derivation">
@@ -1388,12 +1415,12 @@ export default function Tutor() {
                           </details>
                         ))}
                       </section>
-                      {view === 'session' && item ? (
+                      {view === "session" && item ? (
                         <Assessment
                           key={item.id}
                           item={item}
                           concept={lesson}
-                          faded={stage(state, lesson.id, now) !== 'independent'}
+                          faded={stage(state, lesson.id, now) !== "independent"}
                           onEvidence={evidence}
                           onNext={nextQuestion}
                         />
@@ -1424,7 +1451,7 @@ export default function Tutor() {
                     </div>
                     <aside className="lesson-aside">
                       <Interactive key={lesson.id} concept={lesson} />
-                      {view === 'session' && (
+                      {view === "session" && (
                         <button
                           className="text-button centered"
                           onClick={finishSession}
@@ -1438,7 +1465,7 @@ export default function Tutor() {
               )}
             </>
           )}
-          {view === 'diagnostic' && item && (
+          {view === "diagnostic" && item && (
             <>
               <div className="diagnostic-heading">
                 <span className="eyebrow">FINDING YOUR FRONTIER</span>
@@ -1479,17 +1506,17 @@ export default function Tutor() {
                 />
                 <button
                   className="text-button"
-                  onClick={() => navigate('placement')}
+                  onClick={() => navigate("placement")}
                 >
                   {state.diagnostic.length >= 12
-                    ? 'Finish placement'
-                    : 'Pause placement and use the evidence so far'}{' '}
+                    ? "Finish placement"
+                    : "Pause placement and use the evidence so far"}{" "}
                   <ArrowRight size={14} />
                 </button>
               </div>
             </>
           )}
-          {view === 'placement' && (
+          {view === "placement" && (
             <section className="result-page">
               <span className="result-icon">
                 <Focus size={29} />
@@ -1497,9 +1524,9 @@ export default function Tutor() {
               <span className="eyebrow">A STARTING POINT, NOT A LABEL.</span>
               <h1>Here’s where we begin.</h1>
               <p>
-                You explored {state.diagnostic.length} questions.{' '}
+                You explored {state.diagnostic.length} questions.{" "}
                 {frontier.uncertain
-                  ? 'There is still broad uncertainty, so the engine will be careful about the first steps.'
+                  ? "There is still broad uncertainty, so the engine will be careful about the first steps."
                   : `The diagnostic places your frontier near depth ${frontier.depth} of ${frontier.max}. This is a noisy estimate; individual prerequisite checks guide your route.`}
               </p>
               <div className="placement-evidence">
@@ -1509,29 +1536,29 @@ export default function Tutor() {
                     <div key={i}>
                       <span>{concept(e.concept).title}</span>
                       <span
-                        className={e.correct ? 'evidence-yes' : 'evidence-no'}
+                        className={e.correct ? "evidence-yes" : "evidence-no"}
                       >
                         {e.correct
-                          ? 'Supporting evidence'
-                          : 'Worth a closer look'}
+                          ? "Supporting evidence"
+                          : "Worth a closer look"}
                       </span>
                     </div>
                   ))}
               </div>
               <div className="summary-next">
                 <span className="eyebrow">YOUR NEXT CONNECTION</span>
-                <h2>{nextConcept?.title ?? 'Spaced review'}</h2>
+                <h2>{nextConcept?.title ?? "Spaced review"}</h2>
                 <p>{next?.why}</p>
                 <button className="primary" onClick={() => startSession()}>
                   Start my first session <ArrowRight size={16} />
                 </button>
-                <button className="text-button" onClick={() => navigate('map')}>
+                <button className="text-button" onClick={() => navigate("map")}>
                   See my frontier map <ArrowUpRight size={14} />
                 </button>
               </div>
             </section>
           )}
-          {view === 'summary' && lastSession && (
+          {view === "summary" && lastSession && (
             <section className="result-page">
               <span className="result-icon">
                 <Check size={30} />
@@ -1543,8 +1570,8 @@ export default function Tutor() {
                 than before.
               </h1>
               <p>
-                {lastSession.total} responses. {lastSession.concepts.length}{' '}
-                connected idea{lastSession.concepts.length === 1 ? '' : 's'}.
+                {lastSession.total} responses. {lastSession.concepts.length}{" "}
+                connected idea{lastSession.concepts.length === 1 ? "" : "s"}.
                 Evidence collected, with room for uncertainty.
               </p>
               <div className="session-changes">
@@ -1555,17 +1582,24 @@ export default function Tutor() {
                       <div>
                         <h3>{concept(id).title}</h3>
                         <p>
-                          Next recall:{' '}
+                          Current model uncertainty:{" "}
+                          {interval(k)
+                            .map((v) => Math.round(v * 100))
+                            .join("–")}
+                          %
+                        </p>
+                        <p>
+                          Next recall:{" "}
                           {new Date(dueAt(k)).toLocaleString(undefined, {
-                            month: 'short',
-                            day: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit',
+                            month: "short",
+                            day: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
                           })}
                         </p>
                       </div>
                       <span className="mono">
-                        {d >= 0 ? '+' : ''}
+                        {d >= 0 ? "+" : ""}
                         {(d * 100).toFixed(1)} pp
                         <small>estimated mastery</small>
                       </span>
@@ -1592,19 +1626,19 @@ export default function Tutor() {
                     ),
                     reflection,
                   });
-                  setNotice('Reflection saved on this device.');
+                  setNotice("Reflection saved on this device.");
                 }}
               >
                 Save reflection <NotebookPen size={14} />
               </button>
               <div className="summary-next">
                 <span className="eyebrow">WHEN YOU RETURN</span>
-                <h2>{nextConcept?.title ?? 'A well-timed review'}</h2>
+                <h2>{nextConcept?.title ?? "A well-timed review"}</h2>
                 <p>
                   {next?.why ??
-                    'The next review will appear when memory needs a return.'}
+                    "The next review will appear when memory needs a return."}
                 </p>
-                <button className="primary" onClick={() => navigate('today')}>
+                <button className="primary" onClick={() => navigate("today")}>
                   Back to my learning space <ArrowRight size={15} />
                 </button>
               </div>
@@ -1617,19 +1651,19 @@ export default function Tutor() {
               key={n.id}
               onClick={() => navigate(n.id)}
               aria-label={n.label}
-              aria-current={activeView === n.id ? 'page' : undefined}
+              aria-current={activeView === n.id ? "page" : undefined}
             >
               <n.icon size={19} />
               <span>
-                {n.id === 'map'
-                  ? 'Map'
-                  : n.id === 'curriculum'
-                    ? 'Explore'
-                    : 'Today'}
+                {n.id === "map"
+                  ? "Map"
+                  : n.id === "curriculum"
+                    ? "Explore"
+                    : "Today"}
               </span>
             </button>
           ))}
-          <button onClick={() => navigate('settings')} aria-label="Preferences">
+          <button onClick={() => navigate("settings")} aria-label="Preferences">
             <Settings2 size={19} />
             <span>Preferences</span>
           </button>
