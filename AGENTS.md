@@ -40,3 +40,6 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Field Atlas presentation
+See docs/DESIGN.md for the authored design system and redesign verification contract. Blue ink, warm paper and copper annotations use semantic theme tokens. Fonts are bundled under public/fonts. The atlas layout is presentation-only; preserve engine readiness and evidence semantics, IndexedDB v1 and the Vercel static/offline setup.

@@ -496,12 +496,13 @@ export default function Tutor() {
           {nav.map((n) => (
             <button
               key={n.id}
+              aria-label={n.label}
               className={`nav-item ${activeView === n.id ? 'active' : ''}`}
               aria-current={activeView === n.id ? 'page' : undefined}
               onClick={() => navigate(n.id)}
             >
               <n.icon size={18} strokeWidth={1.7} />
-              {n.label}
+              <span>{n.id === 'map' ? 'Atlas' : n.id === 'curriculum' ? 'Library' : n.id === 'journal' ? 'Journal' : n.label}</span>
               {n.id === 'today' && <span className="nav-dot" />}
             </button>
           ))}
@@ -636,15 +637,14 @@ export default function Tutor() {
               <div className="page-heading">
                 <div>
                   <span className="eyebrow">
-                    SMALL STEPS. DEEP UNDERSTANDING.
+                    NOETHERWAKE / YOUR FIELD NOTES
                   </span>
                   <h1>
-                    A little further.
-                    <br />
-                    <em>A little clearer.</em>
+                    Make the next
+                    <em> connection.</em>
                   </h1>
                   <p>
-                    You bring the curiosity. We’ll find the next right question.
+                    Your direction: {goals.find((g) => g.id === state.goal)?.title ?? goal.title}
                   </p>
                 </div>
                 <span className="date-label" suppressHydrationWarning>
@@ -670,7 +670,7 @@ export default function Tutor() {
                     </span>
                     <span className="pill">{state.minutes} min session</span>
                   </div>
-                  <div className="next-illustration" aria-hidden="true">
+                  <div className="next-illustration" aria-hidden="true" hidden>
                     <svg viewBox="0 0 240 160">
                       <g fill="none" stroke="currentColor">
                         <path d="M20 130H225M45 145V15" opacity=".2" />
@@ -701,18 +701,15 @@ export default function Tutor() {
                         (nextConcept?.title ?? 'Let your learning settle.')
                       ) : (
                         <>
-                          Find your footing.
+                          Begin with what
                           <br />
-                          Then build from there.
+                          you understand.
                         </>
                       )}
                     </h2>
                     <p className="next-description">
                       {state.onboarded
-                        ? nextConcept?.summary
-                            .split('. ')
-                            .slice(0, 2)
-                            .join('. ') + '.'
+                        ? (nextConcept?.summary ?? 'Your next review will appear when it is useful.')
                         : 'A few thoughtful questions reveal what you know, what’s uncertain, and where a new idea can take root.'}
                     </p>
                     <button
@@ -758,7 +755,7 @@ export default function Tutor() {
                   <div className="panel-heading">
                     <div>
                       <span className="eyebrow">THE BIG PICTURE</span>
-                      <h2>Your learning frontier</h2>
+                      <h2>The shape of your learning</h2>
                     </div>
                     <button
                       className="icon-button"
@@ -768,7 +765,7 @@ export default function Tutor() {
                       <ArrowUpRight size={20} />
                     </button>
                   </div>
-                  <p>Every idea connects. This is where yours begin.</p>
+                  <p>Your goal dependencies. Select an idea to trace its foundations.</p>
                   <ConceptMap
                     state={state}
                     compact
@@ -869,7 +866,7 @@ export default function Tutor() {
                 </span>
                 <h1>The connections matter.</h1>
                 <p>
-                  Follow the green path toward {goal.title.toLowerCase()}.
+                  Follow the highlighted dependencies toward {goal.title.toLowerCase()}.
                   Dashed rings mean uncertainty; double rings mark your
                   frontier.
                 </p>
@@ -915,10 +912,11 @@ export default function Tutor() {
                               <small>%</small>
                             </strong>
                             <div className="probability-track">
-                              <span style={{ width: `${k.p * 100}%` }} />
+                              <span style={{ width: `${effective(k, now) * 100}%` }} />
                             </div>
+                            <p>{k.observations} direct observations · {k.fluent} fluent responses</p>
                             <p className="mono">
-                              Uncertainty: {Math.round(range[0] * 100)}–
+                              Model uncertainty: {Math.round(range[0] * 100)}–
                               {Math.round(range[1] * 100)}%
                             </p>
                           </div>
