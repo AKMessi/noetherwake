@@ -72,6 +72,7 @@ export const metadata: Metadata = {
   description:
     "Connected mathematics and physics. Read, predict, practise, and follow the evidence. Stored on your device.",
   manifest: "/manifest.webmanifest",
+  icons: { icon: "/icon.svg", apple: "/icon-192.png" },
   appleWebApp: {
     capable: true,
     title: "Noetherwake",
