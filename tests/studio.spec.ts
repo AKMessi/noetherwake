@@ -336,6 +336,7 @@ test("touch selection, pointer panning and pinch zoom work on the mobile atlas",
     viewport: { width: 390, height: 844 },
     hasTouch: true,
     isMobile: true,
+    reducedMotion: "reduce",
   });
   const page = await context.newPage();
   try {
@@ -390,6 +391,28 @@ test("touch selection, pointer panning and pinch zoom work on the mobile atlas",
         Number(await page.locator(".map-scroll>svg").getAttribute("width")),
       )
       .toBeGreaterThan(Number(width));
+    const sheet = page.locator(".concept-detail");
+    async function dragHandle(dy: number) {
+      const h = (await page.locator(".detail-handle").boundingBox())!,
+        hx = h.x + h.width / 2,
+        hy = h.y + h.height / 2;
+      await cdp.send("Input.dispatchTouchEvent", {
+        type: "touchStart",
+        touchPoints: [{ x: hx, y: hy }],
+      });
+      await cdp.send("Input.dispatchTouchEvent", {
+        type: "touchMove",
+        touchPoints: [{ x: hx, y: hy + dy }],
+      });
+      await cdp.send("Input.dispatchTouchEvent", {
+        type: "touchEnd",
+        touchPoints: [],
+      });
+    }
+    await dragHandle(-80);
+    await expect(sheet).toHaveClass(/expanded/);
+    await dragHandle(80);
+    await expect(sheet).not.toHaveClass(/expanded/);
   } finally {
     await context.close();
   }

@@ -35,7 +35,8 @@ export default function ConceptDetail({
   mobileSheet?: boolean;
 }) {
   const [expanded, setExpanded] = useState(false),
-    start = useRef(0);
+    start = useRef(0),
+    dragged = useRef(false);
   if (!id)
     return (
       <aside className="concept-detail empty-detail">
@@ -55,14 +56,24 @@ export default function ConceptDetail({
         <button
           className="detail-handle"
           onPointerDown={(event) => {
+            dragged.current = false;
             start.current = event.clientY;
             event.currentTarget.setPointerCapture(event.pointerId);
           }}
           onPointerUp={(event) => {
             const dy = event.clientY - start.current;
-            if (Math.abs(dy) > 24) setExpanded(dy < 0);
+            if (Math.abs(dy) > 24) {
+              dragged.current = true;
+              setExpanded(dy < 0);
+            }
           }}
-          onClick={() => setExpanded((v) => !v)}
+          onClick={() => {
+            if (dragged.current) {
+              dragged.current = false;
+              return;
+            }
+            setExpanded((v) => !v);
+          }}
           aria-expanded={expanded || !!trace}
           aria-label={
             expanded ? "Collapse concept details" : "Expand concept details"

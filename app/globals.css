@@ -3838,3 +3838,6 @@ svg text {
   height: 44px;
   width: 240px;
 }
+.detail-handle {
+  touch-action: none;
+}
