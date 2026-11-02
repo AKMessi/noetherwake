@@ -1,6 +1,6 @@
 # The Working Page — verification and delivery
 
-Verified on 3 November 2026 (Asia/Kolkata), in `/home/akmessi/noetherwake`. This is the current presentation release; earlier screenshot directories and engineering reports are historical. The static production export is `out/`. This redesign was committed and pushed to GitHub in working change sets. No new Vercel CLI deployment was run for this redesign.
+Verified on 3 November 2026 (Asia/Kolkata), in `/home/akmessi/noetherwake`. This is the current presentation release; earlier screenshot directories and engineering reports are historical. The static production export is `out/`. This redesign was committed and pushed to GitHub in working change sets. This release is now published through Vercel CLI; [DEPLOYMENT.md](DEPLOYMENT.md) records the source revision, deployment and live smoke checks.
 
 ## Delivered behaviour
 
@@ -63,7 +63,7 @@ Repository inspection confirmed KaTeX, Tailwind v4, existing dark mode, version-
 
 Definitions and self-checks currently have concept-level authoring data, so connections are grouped once. Explicit paragraph anchors, reference-aware equation numbering, structured given-quantity lists and colour-marked unknowns need authored metadata. Incomplete retained histories explicitly withhold reconstructed historical marks. Session reflections remain persistent; unfinished drafts survive navigation within the current tab, not a reload. Route rulers wrap to retain 44px controls, and a dense map overview has the full-size List equivalent. These limits and priorities are recorded in ROADMAP.md.
 
-There is no lint script or configured lint tool in this repository, so no lint result is claimed. OS file-picker keyboard operation, physical phones, manual screen-reader mathematics, all browser/OS combinations and human learning outcomes were not certified. Automated axe checks are not a full WCAG conformance claim. GitHub CI completion and a fresh Vercel publication were not asserted from these local checks.
+There is no lint script or configured lint tool in this repository, so no lint result is claimed. OS file-picker keyboard operation, physical phones, manual screen-reader mathematics, all browser/OS combinations and human learning outcomes were not certified. Automated axe checks are not a full WCAG conformance claim. GitHub CI completion is not asserted from these local checks. The subsequent Vercel publication and live verification are recorded separately in DEPLOYMENT.md.
 
 ## Reproduction
 
