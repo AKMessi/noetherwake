@@ -1,10 +1,12 @@
 {
-  "lcpMs": 876,
+  "lcp": 688,
+  "controlsReadyMs": 3123.7999999988824,
+  "bytes": 693124,
   "cpuSlowdown": 4,
   "latencyMs": 60,
   "bandwidthKbps": 1600,
   "viewport": "390x844",
-  "hardware": "synthetic Chromium throttling, not a physical phone",
-  "browserVersion": "152.0.7977.82",
-  "executableSource": "installed Chromium-compatible executable"
+  "hardware": "Synthetic Chromium throttling; not a physical phone",
+  "browserVersion": "156.0.8078.4",
+  "lcpBudgetMs": 2000
 }

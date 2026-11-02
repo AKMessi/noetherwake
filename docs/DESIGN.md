@@ -27,3 +27,9 @@ Motion is restricted to: trace 180ms/layer with 80ms stagger; trace clearing 120
 ## Compatibility and verification
 
 Engine policy, content contracts, IndexedDB v1, old JSON backups, static export, Vercel configuration, and offline worker remain compatible. Screenshots and seeded browser state are disposable QA artifacts, never learner data embedded in the interface. See `DESIGN_VERIFICATION.md` for the current verification report and `ROADMAP.md` for unsupported requests. Every implementation change set is committed and pushed to GitHub.
+
+## Loading, icons, and practical adaptations
+
+The static introduction is meaningful HTML while IndexedDB is read. Learner counts and preferences are withheld, and controls remain inert until hydration completes. This keeps a returning learner's saved state safe without delaying the generic first paint. Font preloading avoids forcing every italic/monospace file onto the first-paint path; all subsets remain locally hosted and precached. Light/dark manifests, browser theme colour, the favicon and offline icons use the same paper/blueprint and wake-mark system.
+
+Route rulers wrap to retain 44px targets instead of squeezing 31 interactive ticks into a phone-width row. The map's normal zoom uses full-size targets; its zoomed overview has the full-size List alternative. Per-paragraph definitions and reference-aware equation numbering require authoring metadata; current connections are grouped once, and marked derivation justifications occupy their actual margin. There is no fabricated calibration curve or lesson-duration estimate. These contract limits are recorded in ROADMAP.md.

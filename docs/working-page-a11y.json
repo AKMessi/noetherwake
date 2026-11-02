@@ -1,0 +1,85 @@
+{
+  "standard": "axe WCAG 2 A/AA and WCAG 2.1 AA; automated checks are not a full conformance certification",
+  "results": [
+    {
+      "width": 1440,
+      "state": "goal-dialog",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "state": "placement-question",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "state": "practice-unanswered",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "state": "practice-incorrect",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "state": "session-complete",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "state": "field-notes",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "state": "import-preview",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "state": "clear-confirmation",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "goal-dialog",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "placement-question",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "practice-unanswered",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "practice-incorrect",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "session-complete",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "field-notes",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "import-preview",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "clear-confirmation",
+      "violations": []
+    }
+  ]
+}

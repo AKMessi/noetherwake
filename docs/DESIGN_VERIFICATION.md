@@ -1,58 +1,82 @@
-# Curiosity Studio — verification and delivery
+# The Working Page — verification and delivery
 
-Verified on 2 November 2026 from the canonical Linux checkout, `/home/akmessi/noetherwake`. The static production build is in `out/`. This redesign has not been deployed to the existing public Vercel site.
+Verified on 3 November 2026 (Asia/Kolkata), in `/home/akmessi/noetherwake`. This is the current presentation release; earlier screenshot directories and engineering reports are historical. The static production export is `out/`. This redesign was committed and pushed to GitHub in working change sets. No new Vercel CLI deployment was run for this redesign.
 
-## What changed
+## Delivered behaviour
 
-The studio replaces the previous visual system with warm paper, carbon panels, chartreuse actions, original vector illustrations and bundled local typography. The desktop sidebar and compact mobile navigation frame a new learning home. The primary mobile action remains inside the first 390×844 viewport.
+The application now uses the sheet-and-margin system, warm paper and blueprint themes, locally hosted Newsreader / Instrument Sans / IBM Plex Mono, a wake wordmark, matching install icons, and unified Today / Atlas / Library / Lab / Field notes navigation. Static content stands freely; measured and operated surfaces carry the few containers. The initial generic introduction renders from HTML; saved learner counts are withheld and controls remain inert while storage is read.
 
-The home includes a prediction-first projectile laboratory with Earth/Moon gravity, SI measurements, angle exploration and an analytic trajectory. Exploration adds no learner evidence. Three curated expeditions expose real curriculum landmarks, prerequisite states and an explicit choice of direction. The library combines domain, strand, readiness and text filters with a working reset. Lessons display their central idea, model boundary, linked foundations, downstream applications and an authored misconception. A sticky reading navigator connects explanation, experiment and practice. The journal surfaces latest incorrect or supported responses and stored reflections without inventing a diagnosis.
+Today exposes actual recommendations, scoped route counts, evidence rulers and retrieval dates. Lessons preserve the authored reading and KaTeX, with numbered sections, equation wrappers, worked-example rules, a marked derivation stepper, margin justifications, connections and mobile practice access. Practice uses native confidence radios, retained in-tab drafts, engine-owned feedback and canonical-unit answer gaps. The atlas uses deterministic longest-path layers and foundation-first strand lanes, keyboard traversal, pointer/touch pan, pinch/controlled zoom, a list equivalent and an ancestor trace. The laboratory draws equal-scale analytic trajectories and computed differences; exploration does not change mastery.
 
-Eight authored lesson bodies were expanded: fractions, units, vectors, derivatives, integrals, Newton’s second law, conservation of energy and electric fields. They now contain concrete mechanisms, worked calculations, scale/unit checks and model limitations. The other 59 lessons retain their existing authored content and parameter instruments. All 67 remain validated; no empty curriculum nodes were added.
+Field notes are a dated ledger with real responses and reflections. Historical marks appear only when replay through the unchanged engine reproduces stored knowledge. Session completion captures exact current-session before/after states. Preferences retains the working settings, previews validated version-1 JSON before replacement, and requires typed confirmation for deletion. Both colour themes update browser chrome and the local manifest. The engine, authored concept source, IndexedDB version and Vercel configuration were preserved.
 
-## Automated results
+## Automated verification
 
-- Strict TypeScript check passes.
-- **24 engine unit tests pass**, including three analytic projectile-model tests covering symmetry, gravity scaling, endpoint/apex consistency and invalid input.
-- The deterministic synthetic evaluation passes and reproduces estimator MAE **0.0029148693**, Brier error **0.0002554159** and normalized diagnostic depth error **0.025**. Learning policies were preserved. These simulations do not establish human learning effectiveness.
-- **67 concepts, 201 templates and 201,000 generated variants pass** source schema, DAG, link, MDX, KaTeX, unit and answer validation. Expedition IDs and formulas also pass build-time validation.
-- **WebKit: 18 passed, one skipped** in the final complete run. The only skip is its inapplicable Chromium/CDP performance test. Journeys cover placement, sessions, missing prerequisites, prediction/reveal, due reviews, validated backups, reload persistence, offline navigation, offline symbolic grading, keyboard use, reduced motion, filters, route selection, evidence review and the first-screen mobile action.
-- **Chromium-compatible browser: all 19 cases pass in isolated processes**, with unchanged Playwright assertions. The installed browser is Helium 0.16.5.1 / Chromium **152.0.7977.82**. Details are in `chromium-isolated-results.json`.
-- Axe AA checks pass on the exercised home, atlas, dark mobile lesson, diagnostic, summary and revealed-laboratory states.
+| Check | Actual result |
+| --- | --- |
+| `npm run verify` | Passed strict TypeScript, 28 unit tests, seeded evaluation and production build |
+| `npm run build` | Passed after the final UI/asset refinements; static export, offline manifest and budgets valid |
+| Content validation | 67 concepts, 201 templates, 201,000 verified variants; DAG, MDX, links, mathematics, units and formulas valid |
+| Chromium browser suite | 22 cases passed; subsequent placement/atlas/touch refinements passed 3 focused regressions |
+| WebKit browser suite | 20 passed, 2 skipped: Chromium/CDP performance and CDP touch dispatch only |
+| Transient-state axe scans | 16 scans, no violations, at 1440×900 and 390×844 |
+| Palette verification | 106 intended text/control pairs passed in light and dark |
+| Visual matrix | 129 captures; no page overflow, browser exceptions or outside-origin font/script requests |
+| Motion | Real-time laboratory, prerequisite trace and session evidence recording; reduced-motion final states passed |
 
-The production build generates **108 same-origin cached assets**. Measured output is **4,257,304 bytes**; combined gzip JavaScript is **694,279 bytes**; the largest gzip JavaScript chunk is **158,939 bytes**. All three configured size budgets pass. These are total build sizes, not a claim that every chunk transfers on initial navigation.
+Browser journeys exercise placement response/skip/pause/resume, lessons and marked derivations, practice confidence and feedback, session completion, in-tab draft retention, a version-1 export/import round trip, invalid JSON, typed deletion, missing-prerequisite routing, retrieval evidence, offline reload and offline symbolic equivalence, route selection, filters, map keys and touch, and keyboard-only onboarding/lesson/practice/lab/data actions. Axe checks cover representative populated, light/dark, desktop/tablet/mobile screens; the supplementary scans cover the goal dialog, placement, unanswered/incorrect practice, completion, notes, import preview and deletion confirmation.
 
-The final Chromium/CDP mobile measurement is **876 ms LCP** at 390×844, 4× CPU slowdown, 60 ms latency and 1,600 kbps download bandwidth. The existing 2,000 ms gate passes. This is a synthetic desktop-browser measurement, not a physical-phone result. Exact conditions and browser provenance are recorded in `perf-results.json`.
+The synthetic learner benchmark reproduces estimator MAE 0.0029148693, Brier error 0.0002554159 and normalized diagnostic depth error 0.025. Engine policy was not changed. These results do not establish learning effectiveness in humans.
 
-## Rendered review
+## Measurements
 
-`npx tsx scripts/studio-preview.ts` captures isolated disposable learner contexts against `npm run start`. **40 screenshots** under `images/curiosity-studio/` cover opening/home, experiment, expeditions, atlas, library, locked lesson, lesson reading, feedback, summary, journal, returning learner and due-review states at **1440×900**, **768×1024** and **390×844**, plus mobile dark home. The script checks horizontal overflow for every captured state and records browser runtime exceptions. None were detected. Captured answers and history are test practice, not production learner data.
+- Static output: **4,824,159 bytes**, against 12,000,000.
+- All gzip JavaScript: **704,202 bytes**, against 2,000,000.
+- Largest gzip chunk: **158,939 bytes**, against 700,000.
+- Offline cache: **125 same-origin assets**, including fonts, lessons, checker chunks, workers, icons and manifests.
+- Latest Chromium 156.0.8078.4 mobile LCP: **688 ms**, against the unchanged **2,000 ms** gate.
+- Controls ready after local hydration: **3124 ms** in that same throttled run. This is reported separately from LCP.
+- Initial measured resource transfer: **693,124 bytes**. This differs from total build size because secondary screens load separately.
+- Performance conditions: 390×844, 4× CPU slowdown, 60 ms latency, 1,600 kbps download bandwidth. This is synthetic desktop-browser throttling, not a physical-phone measurement.
+- Minimum measured text contrast: **4.548:1**. Minimum functional-boundary contrast: **3.391:1**. Exact token pairs are in `working-page-contrast.json`. Decorative grid/rule opacity and deliberately dimmed trace context are separate from those text/control pairs; this report does not claim every decorative SVG stroke reaches 3:1.
 
-Useful review images:
+The first throttled LCP check failed at 4,012 ms. Rendering the truthful static introduction before hydration, retaining inert controls and withholding learner counts resolved it without relaxing the budget. Verification also caught an invalid ARIA label on the placement ticks, a sheet drag followed by an unwanted click, an old mobile canvas CSS rule, and prematurely captured lazy screens. They were corrected and their affected checks rerun. A filtered-list assertion and a supposed incorrect zero answer were also corrected in QA rather than changing correct application behaviour.
 
-- [Desktop opening](images/curiosity-studio/desktop-opening.png)
-- [Mobile opening](images/curiosity-studio/mobile-opening.png)
-- [Projectile laboratory](images/curiosity-studio/desktop-experiment.png)
-- [Expedition landmarks](images/curiosity-studio/desktop-expeditions.png)
-- [Lesson reading](images/curiosity-studio/tablet-lesson.png)
-- [Review journal](images/curiosity-studio/mobile-journal.png)
+## Visual evidence
 
-## Failures found and resolved
+`working-page-preview.json` lists all captures and the fixture method. The four browser viewports are 1440×900, 1024×768, 768×1024 and 390×844. Captures include full pages and selected instruments, so a PNG's total height or a cropped instrument's width can differ from its viewport dimensions. Every populated context uses disposable version-1 data generated, graded and observed through the actual engine, loaded through the application's import preview and confirmation. No fixture is injected into the shipped interface or an existing learner profile.
 
-Early browser trials found interactions could be attempted before learner storage had hydrated. The shell is now inert and marked busy until the local state is ready. Dark-lesson checks found insufficient contrast in a highlighted navigation number and links distinguished only by color; the final styles use explicit contrasting text and underlines. A readiness-filter test exposed an ambiguous accessible label; it now has an explicit name. Visual review also moved a working start action into the first mobile viewport.
+Representative images:
 
-One concurrent browser trial collided in Playwright’s shared trace directory and failed teardown with ENOENT. Final suites use separate artifact directories and run sequentially. The installed Helium build exits when its last context closes: a normal reused-browser run passed 10 cases and could not create contexts for the other nine. `scripts/chromium-isolated.ts` resolves this environment limitation by running every original case in a fresh process. It changes no assertions, retries or skips. Standard Chromium CI remains unchanged.
+- [Desktop opening](images/working-page/1440-opening.png) and [mobile opening](images/working-page/390-opening.png).
+- [Returning Today](images/working-page/1440-returning.png).
+- [Lesson](images/working-page/1440-lesson.png), [derivation](images/working-page/1440-derivation.png), [mobile sticky action](images/working-page/390-lesson-sticky.png).
+- [Numeric feedback](images/working-page/390-practice-incorrect.png) and [low-confidence correct feedback](images/working-page/1440-practice-correct-low-confidence.png).
+- [Atlas](images/working-page/1440-atlas-default.png), [trace](images/working-page/1440-atlas-trace.png), [mobile details](images/working-page/390-atlas-selected.png).
+- [Tested laboratory](images/working-page/1440-lab-tested.png), [field notes](images/working-page/1440-notes-populated.png), [import preview](images/working-page/390-import-preview.png).
+- [Dark lesson](images/working-page/1440-dark-lesson.png) and [dark atlas](images/working-page/390-dark-atlas.png).
+- [Signature-moment recording](images/working-page/signature-moments.webm): real-time application interaction, no staged history.
 
-## Compatibility and limits
+## Verified facts, adaptations and unchecked limits
 
-IndexedDB v1 and JSON backups remain compatible. Readiness, scoring, confidence-before-feedback, hint penalties, memory scheduling and uncertainty remain engine-owned. No account, telemetry, remote font, server-side learner storage or new runtime dependency was introduced.
+Repository inspection confirmed KaTeX, Tailwind v4, existing dark mode, version-1 local storage and all three session budgets. The engine exposes probabilities, uncertainty intervals and per-concept confidence error, but no named evidence tiers, population calibration curve or lesson durations. The four display tiers and uncertainty/locked overlays are documented in DESIGN.md; they do not affect readiness or planning. Durations, calibration thresholds and curves were not invented.
 
-Manual screen-reader certification, browser-zoom certification, physical-device frame-rate checks and human learning studies remain unverified. The shared lesson instruments are still general parameter plots for many topics; the new bespoke laboratory covers ideal projectile motion. Curated landmarks are a narrative view, not the complete prerequisite graph. The ranked roadmap records the remaining subject-review and instrument work.
+Definitions and self-checks currently have concept-level authoring data, so connections are grouped once. Explicit paragraph anchors, reference-aware equation numbering, structured given-quantity lists and colour-marked unknowns need authored metadata. Incomplete retained histories explicitly withhold reconstructed historical marks. Session reflections remain persistent; unfinished drafts survive navigation within the current tab, not a reload. Route rulers wrap to retain 44px controls, and a dense map overview has the full-size List equivalent. These limits and priorities are recorded in ROADMAP.md.
 
-To reproduce Chromium checks with an installed compatible browser:
+There is no lint script or configured lint tool in this repository, so no lint result is claimed. OS file-picker keyboard operation, physical phones, manual screen-reader mathematics, all browser/OS combinations and human learning outcomes were not certified. Automated axe checks are not a full WCAG conformance claim. GitHub CI completion and a fresh Vercel publication were not asserted from these local checks.
 
-```bash
-PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/path/to/browser npx tsx scripts/chromium-isolated.ts
+## Reproduction
+
+```sh
+npm run verify
+npm run test:e2e
+TEST_BROWSER=webkit npm run test:e2e
+npx tsx scripts/contrast.ts
+npm run start
+# In a second terminal, against the production preview:
+npx tsx scripts/working-page-preview.ts
+npx tsx scripts/working-page-a11y.ts
+npx tsx scripts/working-page-motion.ts
 ```
 
-Use `npm run test:e2e` with standard Playwright Chromium in CI, or `TEST_BROWSER=webkit npm run test:e2e` for the installed WebKit alternative.
+Set `QA_ORIGIN` to another production preview origin when needed. Use `npx tsx scripts/icons.ts` to regenerate install icons from `public/icon.svg` with the existing Chromium dependency.

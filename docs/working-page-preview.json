@@ -1,0 +1,781 @@
+{
+  "images": [
+    {
+      "file": "docs/images/working-page/1440-first-visit.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-opening.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-route-expanded.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-onboarding.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-placement-question.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-placement-result.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-notes-empty.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-lab-before.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-lab-prediction.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-lab-tested.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-atlas-default.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-atlas-selected-peek.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-atlas-selected.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-atlas-trace.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-atlas-list.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-library-search.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-library-empty.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-preferences.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-import-preview.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-clear-confirmation.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-returning.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-lesson.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-derivation.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-practice-unanswered.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-practice-correct-low-confidence.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-session-complete.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-notes-populated.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-practice-incorrect.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-dark-today.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-dark-lesson.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-dark-practice.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1440-dark-atlas.png",
+      "width": 1440,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-first-visit.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-opening.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-route-expanded.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-onboarding.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-placement-question.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-placement-result.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-notes-empty.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-lab-before.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-lab-prediction.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-lab-tested.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-atlas-default.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-atlas-selected-peek.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-atlas-selected.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-atlas-trace.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-atlas-list.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-library-search.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-library-empty.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-preferences.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-import-preview.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-clear-confirmation.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-returning.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-lesson.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-derivation.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-practice-unanswered.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-practice-correct-low-confidence.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-session-complete.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-notes-populated.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-practice-incorrect.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-dark-today.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-dark-lesson.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-dark-practice.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/1024-dark-atlas.png",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-first-visit.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-opening.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-route-expanded.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-onboarding.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-placement-question.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-placement-result.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-notes-empty.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-lab-before.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-lab-prediction.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-lab-tested.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-atlas-default.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-atlas-selected-peek.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-atlas-selected.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-atlas-trace.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-atlas-list.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-library-search.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-library-empty.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-preferences.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-import-preview.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-clear-confirmation.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-returning.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-lesson.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-derivation.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-practice-unanswered.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-practice-correct-low-confidence.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-session-complete.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-notes-populated.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-practice-incorrect.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-dark-today.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-dark-lesson.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-dark-practice.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/768-dark-atlas.png",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-first-visit.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-opening.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-route-expanded.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-onboarding.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-placement-question.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-placement-result.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-notes-empty.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-lab-before.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-lab-prediction.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-lab-tested.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-atlas-default.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-atlas-selected-peek.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-atlas-selected.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-atlas-trace.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-atlas-list.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-library-search.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-library-empty.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-preferences.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-import-preview.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-clear-confirmation.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-returning.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-lesson.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-derivation.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-lesson-sticky.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-practice-unanswered.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-practice-correct-low-confidence.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-session-complete.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-notes-populated.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-practice-incorrect.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-dark-today.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-dark-lesson.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-dark-practice.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "file": "docs/images/working-page/390-dark-atlas.png",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "externalAssets": [],
+  "fixture": "Disposable version-1 state generated, checked and observed by the unchanged engine; imported through the application preview and confirmation."
+}

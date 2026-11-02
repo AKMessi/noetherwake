@@ -15,6 +15,7 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
+      - run: npx tsx scripts/contrast.ts
       - run: npm run eval
       - run: npm run build
       - run: npx playwright install --with-deps chromium
@@ -27,4 +28,5 @@ jobs:
             docs/eval-results.json
             docs/build-metrics.json
             docs/perf-results.json
+            docs/working-page-contrast.json
             playwright-report/
