@@ -1,53 +1,19 @@
 "use client";
-import LessonReading from "./LessonReading";
 import LessonView from "./LessonView";
 import StudioHome from "./StudioHome";
-import LessonConnections from "./LessonConnections";
-import EvidenceReview from "./EvidenceReview";
 import FieldNotes from "./FieldNotes";
 import SessionComplete from "./SessionComplete";
 import Preferences from "./Preferences";
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  BookOpen,
-  Check,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Clock3,
-  Compass,
-  Download,
-  Focus,
-  Home,
-  LockKeyhole,
-  Map,
-  Menu,
-  Monitor,
-  Moon,
-  NotebookPen,
-  Search,
-  Settings2,
-  ShieldCheck,
-  SlidersHorizontal,
-  Sun,
-  Target,
-  Upload,
-  WifiOff,
-  X,
-} from "lucide-react";
+import { ArrowRight, Check, Clock3, X } from "lucide-react";
 import {
   ancestors,
   createLearner,
   diagnosticNext,
-  dueAt,
   effective,
   estimateFrontier,
   generate,
   getKnowledge,
-  interval,
   missing,
   observe,
   plan,
@@ -62,19 +28,12 @@ import {
   type SessionRecord,
 } from "@noetherwake/engine";
 import { catalog, concept, goals } from "@/lib/catalog";
-import { learnerSchema, parseImport, readState, saveState } from "@/lib/store";
-import ConceptMap from "./ConceptMap";
+import { learnerSchema, readState, saveState } from "@/lib/store";
 import AtlasView from "./AtlasView";
 import Library from "./Library";
 import Assessment from "./Assessment";
-import MathText from "./Math";
 import ProjectileLab from "./ProjectileLab";
 import { EvidenceMark } from "./ui/WorkingPage";
-const Interactive = dynamic(() => import("./Interactive"), {
-  loading: () => (
-    <div className="interactive-card">Preparing the learning instrument…</div>
-  ),
-});
 type View =
   | "today"
   | "map"
@@ -199,16 +158,10 @@ export default function Tutor() {
     [lessonId, setLessonId] = useState("fractions"),
     [item, setItem] = useState<Item | null>(null),
     [onboarding, setOnboarding] = useState(false),
-    [mobileNav, setMobileNav] = useState(false),
     [notice, setNotice] = useState(""),
     [storageError, setStorageError] = useState(""),
-    [search, setSearch] = useState(""),
-    [domain, setDomain] = useState("all"),
-    [strand, setStrand] = useState("all"),
-    [readiness, setReadiness] = useState("all"),
     [reflection, setReflection] = useState(""),
     [lastSession, setLastSession] = useState<SessionRecord | null>(null),
-    [online, setOnline] = useState(true),
     [offlineReady, setOfflineReady] = useState(false),
     [placementPending, setPlacementPending] = useState(false);
   const [completedBefore, setCompletedBefore] = useState<
@@ -223,8 +176,7 @@ export default function Tutor() {
       events: Evidence[];
       minutes: 5 | 15 | 30;
     } | null>(null),
-    main = useRef<HTMLElement>(null),
-    fileInput = useRef<HTMLInputElement>(null);
+    main = useRef<HTMLElement>(null);
   useEffect(() => {
     let live = true;
     readState()
@@ -252,11 +204,6 @@ export default function Tutor() {
           hydrated.current = true;
         }
       });
-    setOnline(navigator.onLine);
-    const on = () => setOnline(true),
-      off = () => setOnline(false);
-    window.addEventListener("online", on);
-    window.addEventListener("offline", off);
     if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
       navigator.serviceWorker
         .register("/sw.js")
@@ -275,8 +222,6 @@ export default function Tutor() {
     }
     return () => {
       live = false;
-      window.removeEventListener("online", on);
-      window.removeEventListener("offline", off);
     };
   }, []);
   useEffect(() => {
@@ -320,7 +265,6 @@ export default function Tutor() {
     if (next === "map" && !selected && state)
       setSelected(plan(catalog, state, Date.now())[0]?.concept ?? state.goal);
     setView(next);
-    setMobileNav(false);
     setNotice("");
     requestAnimationFrame(() => {
       main.current?.focus();
@@ -331,7 +275,7 @@ export default function Tutor() {
     return (
       <div className="loading-screen">
         <Brand />
-        <p>Opening your learning observatory…</p>
+        <p>Reading from this device</p>
       </div>
     );
   const now = Date.now(),
@@ -346,26 +290,8 @@ export default function Tutor() {
     strong = assessed.filter(
       (c) => effective(getKnowledge(state, c.id, now), now) >= 0.8,
     ),
-    ready = catalog.filter(
-      (c) =>
-        missing(catalog, state, c.id, now).length === 0 &&
-        effective(getKnowledge(state, c.id, now), now) < 0.8,
-    ),
     lesson = concept(lessonId),
-    gaps = missing(catalog, state, lessonId, now),
     frontier = estimateFrontier(catalog, state);
-  const visibleConcepts = catalog.filter(
-    (c) =>
-      (domain === "all" || c.domain === domain) &&
-      (strand === "all" || c.strand === strand) &&
-      (readiness === "all" ||
-        (readiness === "ready"
-          ? missing(catalog, state, c.id, now).length === 0
-          : getKnowledge(state, c.id, now).observations > 0)) &&
-      `${c.title} ${c.strand} ${c.summary}`
-        .toLowerCase()
-        .includes(search.trim().toLowerCase()),
-  );
   function itemFor(id: string, s: Learner, diagnostic = false) {
     const c = concept(id);
     const template = diagnostic
@@ -385,6 +311,11 @@ export default function Tutor() {
     );
   }
   function startSession(id?: string, s = state!) {
+    if (session.current && item && (!id || item.concept === id)) {
+      navigate("session");
+      return;
+    }
+    if (session.current?.events.length) finishSession();
     if (!s.onboarded) {
       setOnboarding(true);
       return;

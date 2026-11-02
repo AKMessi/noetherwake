@@ -6,8 +6,6 @@ import {
   ArrowRight,
   Lightbulb,
   Check,
-  CornerDownLeft,
-  HelpCircle,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";

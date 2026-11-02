@@ -7,7 +7,7 @@ import {
   type Knowledge,
   type SessionRecord,
 } from "@noetherwake/engine";
-import { catalog, concept } from "@/lib/catalog";
+import { concept } from "@/lib/catalog";
 import { evidenceView, shortDate } from "@/lib/presentation";
 import EvidenceShift from "./ui/EvidenceShift";
 import { EvidenceMark, Sheet } from "./ui/WorkingPage";
