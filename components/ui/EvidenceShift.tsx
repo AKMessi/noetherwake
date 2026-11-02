@@ -31,7 +31,7 @@ export default function EvidenceShift({
       setQuarter(current);
       if (current !== b) timer = setTimeout(tick, 600 / Math.abs(b - a));
     };
-    timer = setTimeout(tick, 250);
+    timer = setTimeout(tick, 250 + 600 / Math.abs(b - a));
     return () => clearTimeout(timer);
   }, [a, b, reduced]);
   const range = interval(after),

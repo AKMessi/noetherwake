@@ -1,508 +1,399 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { writeFileSync, readFileSync } from "node:fs";
-async function skipPlacement(page: import("@playwright/test").Page) {
-  await page.goto("/");
-  await page
-    .getByRole("button", { name: "Find my starting point", exact: true })
-    .click();
-  await page
-    .getByRole("button", { name: "Skip placement; learn from my practice" })
-    .click();
-  await expect(
-    page.getByRole("heading", { name: "Fractions & the whole", exact: true }),
-  ).toBeVisible();
-}
-async function firstResponse(page: import("@playwright/test").Page) {
-  const title = await page.locator("#question-title").textContent(),
-    numbers = [...title!.matchAll(/(\d+)\/4/g)].map((m) => Number(m[1]));
-  await page
-    .getByLabel("Your answer", { exact: true })
-    .fill(String((numbers[0] + numbers[1]) / 4));
-  await page.getByLabel("Unit", { exact: true }).fill("m");
-  const check = page.getByRole("button", { name: "Check my reasoning" });
-  await expect(check).toBeDisabled();
-  await page.getByRole("button", { name: "Fairly sure", exact: true }).click();
-  await check.click();
-  await expect(
-    page.getByText("That holds together.", { exact: true }),
-  ).toBeVisible();
-}
-test("full journey: skip placement, retrieve, reflect, retain progress and export", async ({
+import { readFile, writeFile } from "node:fs/promises";
+import {
+  startPractice,
+  answerFractions,
+  nav,
+  preferences,
+  importFixture,
+  learnerFixture,
+  openLesson,
+  noOverflow,
+  origin,
+} from "./support/working-page";
+
+test("practice, exact evidence shift, reflection and a version-one export/import round trip", async ({
   page,
 }) => {
-  await skipPlacement(page);
-  await firstResponse(page);
-  await page
-    .getByRole("button", { name: "Finish this session", exact: true })
-    .click();
+  await startPractice(page);
+  await answerFractions(page);
+  await expect(page.locator(".gap-figure")).toContainText(
+    "Matches within tolerance",
+  );
+  await page.getByRole("button", { name: "End session", exact: true }).click();
   await expect(
-    page.getByRole("heading", { name: "A little clearer than before." }),
+    page.getByRole("heading", { name: "Session complete", exact: true }),
   ).toBeVisible();
+  await expect(page.locator(".evidence-shift")).toHaveCount(1);
   await page
     .getByLabel("What clicked? What still feels uncertain?")
-    .fill("Equal pieces share a denominator.");
-  await page.getByRole("button", { name: "Save reflection" }).click();
-  await page.getByRole("button", { name: "Back to my learning space" }).click();
+    .fill("Keep the pieces equal.");
+  await page
+    .getByRole("button", { name: "Save reflection", exact: true })
+    .click();
+  await nav(page, "Field notes");
+  await expect(page.locator(".session-ledger")).toContainText(
+    "Keep the pieces equal.",
+  );
+  await expect(page.locator(".ledger-effect .evidence-shift")).toHaveCount(1);
+  await preferences(page);
+  const downloaded = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export JSON", exact: true }).click();
+  const file = await downloaded;
+  const before = JSON.parse(await readFile((await file.path())!, "utf8"));
+  await page.locator("input[type=file]").setInputFiles((await file.path())!);
+  await expect(
+    page.getByRole("heading", { name: "Import preview" }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Import and replace" }).click();
+  await expect(page.getByRole("status")).toContainText("Backup restored");
+  const again = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export JSON", exact: true }).click();
+  const after = JSON.parse(
+    await readFile((await (await again).path())!, "utf8"),
+  );
+  expect(after).toEqual(before);
   await page.reload();
-  await expect(
-    page.getByRole("button", { name: "Continue learning", exact: true }),
-  ).toBeVisible();
-  await page
-    .getByRole("button", { name: "Learning journal", exact: true })
-    .click();
-  await expect(
-    page.getByText("Equal pieces share a denominator."),
-  ).toBeVisible();
-  await page
-    .getByRole("button", { name: "Preferences", exact: true })
-    .first()
-    .click();
-  const download = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Export progress as JSON" }).click();
-  const backup = await download;
-  expect(backup.suggestedFilename()).toMatch(/noetherwake-.*\.json/);
-  await page.locator("input[type=file]").setInputFiles((await backup.path())!);
-  await expect(
-    page.getByText(
-      "Backup restored. Your route now uses the imported evidence.",
-    ),
-  ).toBeVisible();
+  await nav(page, "Field notes");
+  await expect(page.locator(".session-ledger")).toContainText(
+    "Keep the pieces equal.",
+  );
 });
-test("adaptive placement updates evidence and yields a frontier", async ({
+
+test("placement skips without fabricated evidence, pauses and resumes after reload", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto(origin);
   await page
-    .getByRole("button", { name: "Find my starting point", exact: true })
+    .getByRole("button", { name: "Find my starting point →", exact: true })
     .click();
   await page
     .getByRole("dialog")
     .getByRole("button", { name: "Find my starting point", exact: true })
     .click();
-  for (let i = 0; i < 12; i++) {
-    if (await page.getByLabel("Your answer", { exact: true }).count()) {
-      await page.getByLabel("Your answer", { exact: true }).fill("0");
-      if (await page.getByLabel("Unit", { exact: true }).count())
-        await page.getByLabel("Unit", { exact: true }).fill("m");
-    } else {
-      await page.locator(".choice").first().click();
-    }
-    await page
-      .getByRole("button", { name: "Still guessing", exact: true })
-      .click();
-    await page.getByRole("button", { name: "Check my reasoning" }).click();
-    await page.getByRole("button", { name: "Next placement question" }).click();
-  }
   await page
-    .getByRole("button", { name: "Finish placement", exact: true })
+    .getByRole("button", { name: "I don’t know yet", exact: true })
     .click();
-  await expect(
-    page.getByText("You explored 12 questions.", { exact: false }),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Start my first session" }).click();
-  await expect(
-    page.getByRole("heading", { name: "Fractions & the whole", exact: true }),
-  ).toBeVisible();
+  await expect(page.locator(".diagnostic-heading")).toContainText("question 2");
+  await page
+    .getByRole("button", { name: "Pause placement", exact: true })
+    .click();
+  await page.reload();
+  await page
+    .getByRole("button", { name: "Continue placement →", exact: true })
+    .click();
+  await expect(page.locator(".diagnostic-heading")).toContainText("question 2");
+  await page
+    .getByRole("button", { name: "Use the evidence so far →", exact: true })
+    .click();
+  await expect(page.locator(".placement-result")).toContainText(
+    "0 recorded answers",
+  );
+  await page.getByRole("button", { name: /^Begin:/ }).click();
+  await expect(page.locator(".lesson-prose").first()).toBeVisible();
 });
-test("locked concept names prerequisites and reroutes to ready foundation", async ({
+
+test("placement records an actual graded response and exposes a real frontier", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto(origin);
   await page
-    .getByRole("button", { name: "The curriculum", exact: true })
+    .getByRole("button", { name: "Find my starting point →", exact: true })
     .click();
   await page
-    .getByRole("textbox", { name: "Search concepts" })
-    .fill("Electric field:");
-  await page.locator(".curriculum-item").first().click();
-  await expect(
-    page.getByText("A CONNECTION TO BUILD FIRST", { exact: true }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("button", {
-      name: "Coulomb law & inverse-square spreading",
-    }),
-  ).toBeVisible();
-  await page
-    .getByRole("button", { name: "Take me to the first ready step" })
+    .getByRole("dialog")
+    .getByRole("button", { name: "Find my starting point", exact: true })
     .click();
-  await expect(
-    page.getByRole("heading", { name: "Fractions & the whole", exact: true }),
-  ).toBeVisible();
+  await page.getByLabel("Your answer", { exact: true }).fill("0");
+  await page.getByRole("radio", { name: "Guessing", exact: true }).check();
+  await page.getByRole("button", { name: "Check answer", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Next placement question", exact: false })
+    .click();
+  await page
+    .getByRole("button", { name: "Use the evidence so far →", exact: true })
+    .click();
+  await expect(page.locator(".placement-result")).toContainText(
+    "1 recorded answers",
+  );
+  await expect(page.locator(".placement-excerpt>button")).toHaveCount(1);
 });
-test("prediction is committed before reveal and interactive responds", async ({
+
+test("locked concepts expose a trace and route to an engine-ready lesson", async ({
   page,
 }) => {
-  await skipPlacement(page);
+  await page.goto(origin);
+  await nav(page, "Library");
+  await page.getByLabel("Search concepts").fill("Electric field:");
+  await page.locator(".library-row").first().click();
+  await page
+    .getByRole("button", { name: "Trace the route here →", exact: true })
+    .click();
+  await expect(page.locator(".prerequisite-trace")).toContainText("unmet");
+  await page.locator(".detail-actions .primary").click();
+  await expect(page.locator(".lesson-prose").first()).toBeVisible();
   await expect(
-    page.getByRole("button", { name: "Reveal the change" }),
+    page.getByRole("heading", { name: "Prerequisites to work on first" }),
   ).toHaveCount(0);
-  await page
-    .getByLabel(/What changes when the parameter doubles/)
-    .fill("The output doubles at the same input.");
-  await page.getByRole("button", { name: "Commit prediction" }).click();
-  await page.getByRole("button", { name: "Reveal the change" }).click();
-  await expect(page.getByText("f(2) = 1.000")).toBeVisible();
 });
-test("backup validation is atomic and review scheduling works after a clock change", async ({
+
+test("numeric feedback uses canonical units and confidence is a native radio group", async ({
   page,
 }) => {
-  await skipPlacement(page);
-  await firstResponse(page);
+  await startPractice(page);
+  const radios = page.getByRole("radio", { name: "Guessing", exact: true });
+  await radios.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(
+    page.getByRole("radio", { name: "Leaning", exact: true }),
+  ).toBeChecked();
+  await answerFractions(page, { unit: "cm", confidence: "Guessing" });
+  await expect(page.locator(".gap-figure")).toContainText(
+    "Matches within tolerance",
+  );
+  await expect(page.locator(".feedback-title")).toContainText("Correct");
+});
+
+test("incorrect feedback identifies the measured gap and persists a review opportunity", async ({
+  page,
+}) => {
+  await startPractice(page);
+  await answerFractions(page, { correct: false, confidence: "Certain" });
+  await expect(page.locator(".gap-figure")).toContainText(
+    "relative error 100%",
+  );
+  await page.getByRole("button", { name: "End session", exact: true }).click();
+  await nav(page, "Field notes");
+  await expect(page.locator(".ledger-verdict")).toContainText("Incorrect");
   await page
-    .getByRole("button", { name: "Finish this session", exact: true })
+    .getByRole("button", { name: "Revisit the idea →", exact: true })
     .click();
-  await page
-    .getByRole("button", { name: "Preferences", exact: true })
-    .first()
-    .click();
+  await expect(page.locator(".lesson-prose").first()).toBeVisible();
+});
+
+test("validated import is atomic and typed deletion is explicit", async ({
+  page,
+}) => {
+  await page.goto(origin);
+  await importFixture(page, await learnerFixture());
   await page.locator("input[type=file]").setInputFiles({
     name: "invalid.json",
     mimeType: "application/json",
-    buffer: Buffer.from('{"version":999}'),
+    buffer: Buffer.from("{}"),
   });
+  await expect(page.locator(".data-error")).toContainText(
+    "Import did not change",
+  );
+  await nav(page, "Field notes");
+  await expect(page.locator(".ledger-entry")).not.toHaveCount(0);
+  await preferences(page);
+  await page
+    .getByRole("button", { name: "Clear local data", exact: true })
+    .click();
   await expect(
-    page.getByText(/Import did not change your progress/),
-  ).toBeVisible();
-  await page.clock.install({ time: new Date(Date.now() + 7 * 86400000) });
-  await page.getByRole("button", { name: "Today", exact: true }).click();
+    page.getByRole("button", { name: "Delete local data", exact: true }),
+  ).toBeDisabled();
+  await page.getByLabel("Type delete to confirm").fill("delete");
+  await page
+    .getByRole("button", { name: "Delete local data", exact: true })
+    .click();
+  await page.reload();
+  await nav(page, "Field notes");
   await expect(
-    page.getByRole("button", { name: /1 idea ready to revisit/ }),
+    page.getByRole("heading", { name: "Nothing recorded yet.", exact: true }),
   ).toBeVisible();
 });
-test("production offline cache serves a reload and retains on-device state", async ({
+
+test("production offline reload preserves on-device evidence and symbolic grading", async ({
   page,
   context,
 }) => {
-  await skipPlacement(page);
-  await firstResponse(page);
-  await page
-    .getByRole("button", { name: "Finish this session", exact: true })
-    .click();
-  await page.getByRole("button", { name: "Back to my learning space" }).click();
+  await startPractice(page);
+  await answerFractions(page);
+  await page.getByRole("button", { name: "End session", exact: true }).click();
   await page.evaluate(async () => {
-    await navigator.serviceWorker.ready;
+    const registration = await navigator.serviceWorker.ready;
+    if (!registration.active) throw Error("Worker did not activate");
   });
   await page.reload();
-  await expect(page.getByText("Offline ready", { exact: true })).toBeVisible();
   await context.setOffline(true);
   await page.reload();
-  await expect(
-    page.getByRole("button", { name: "Continue learning", exact: true }),
-  ).toBeVisible();
-  await page
-    .getByRole("button", { name: "The curriculum", exact: true })
-    .click();
-  await page
-    .getByRole("textbox", { name: "Search concepts" })
-    .fill("Fractions");
-  await page.locator(".curriculum-item").first().click();
-  await expect(
-    page.getByRole("heading", { name: "Fractions & the whole", exact: true }),
-  ).toBeVisible();
+  await nav(page, "Field notes");
+  await expect(page.locator(".ledger-entry")).toHaveCount(1);
+  await openLesson(page, "Fractions & the whole");
+  await expect(page.locator(".lesson-prose")).toHaveCount(4);
   await context.setOffline(false);
 });
-test("desktop home and map meet axe AA checks", async ({ page }) => {
-  await page.goto("/");
-  await expect(
-    page.getByRole("heading", { name: "Follow your curiosity." }),
-  ).toBeVisible();
-  const result = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-    .analyze();
-  expect(result.violations).toEqual([]);
+
+test("keyboard derivation reveal, math keyboard insertion, and practice resumption", async ({
+  page,
+}) => {
+  await startPractice(page);
+  await page.getByRole("button", { name: /Math keyboard/ }).click();
+  await page.getByLabel("Your answer", { exact: true }).fill("12");
   await page
-    .getByRole("button", { name: "Knowledge map", exact: true })
-    .click();
-  const mapResult = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-    .analyze();
-  expect(mapResult.violations).toEqual([]);
-});
-test("mobile, dark mode and lesson meet axe AA and avoid horizontal overflow", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
-  await expect(
-    page.getByRole("heading", { name: "Follow your curiosity." }),
-  ).toBeVisible();
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth,
-    ),
-  ).toBe(true);
-  await page.getByRole("button", { name: "Use dark theme" }).click();
-  const home = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-    .analyze();
-  expect(home.violations).toEqual([]);
-  await skipPlacement(page);
-  const lesson = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-    .analyze();
-  expect(lesson.violations).toEqual([]);
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth,
-    ),
-  ).toBe(true);
-});
-test("keyboard navigation and reduced motion preserve the primary flow", async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
-  await expect(page.locator(".app-shell")).toHaveAttribute(
-    "aria-busy",
-    "false",
+    .getByLabel("Your answer", { exact: true })
+    .evaluate((input: HTMLInputElement) => input.setSelectionRange(1, 1));
+  await page.getByRole("button", { name: "^", exact: true }).click();
+  await expect(page.getByLabel("Your answer", { exact: true })).toHaveValue(
+    "1^2",
   );
-  await page.keyboard.press("Tab");
-  await expect(
-    page.getByRole("link", { name: "Skip to content" }),
-  ).toBeFocused();
+  await nav(page, "Today");
   await page
-    .getByRole("button", { name: "Find my starting point", exact: true })
-    .focus();
-  await page.keyboard.press("Enter");
-  await expect(page.getByRole("dialog")).toBeVisible();
-  await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog")).toHaveCount(0);
+    .getByRole("button", { name: "Resume practice →", exact: true })
+    .click();
+  await expect(page.getByLabel("Your answer", { exact: true })).toHaveValue(
+    "1^2",
+  );
+  await nav(page, "Library");
+  await page.getByLabel("Search concepts").fill("Fractions");
+  await page.locator(".library-row").first().click();
+  await page
+    .getByRole("button", { name: "Open lesson →", exact: true })
+    .click();
+  await page.locator(".working-derivation").focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.locator(".derivation-lines li:visible")).toHaveCount(2);
+  await page.keyboard.press("ArrowLeft");
+  await expect(page.locator(".derivation-lines li:visible")).toHaveCount(1);
 });
-test("mobile-emulated LCP and transfer budgets", async ({
+
+test("desktop, tablet and mobile key screens meet automated axe AA checks in both themes", async ({
   page,
-  context,
+}) => {
+  test.setTimeout(180000);
+  for (const [width, height] of [
+    [1440, 900],
+    [1024, 768],
+    [768, 1024],
+    [390, 844],
+  ]) {
+    await page.setViewportSize({ width, height });
+    await page.goto(origin);
+    await noOverflow(page);
+    let results = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      .analyze();
+    expect(results.violations).toEqual([]);
+    await preferences(page);
+    await page.getByRole("button", { name: "Dark", exact: true }).click();
+    await nav(page, "Atlas");
+    await noOverflow(page);
+    results = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      .analyze();
+    expect(results.violations).toEqual([]);
+    await nav(page, "Library");
+    await page.getByLabel("Search concepts").fill("Fractions");
+    await page.locator(".library-row").first().click();
+    if (width < 1024)
+      await page
+        .getByRole("button", { name: "Expand concept details", exact: true })
+        .click();
+    await page
+      .getByRole("button", { name: "Open lesson →", exact: true })
+      .click();
+    await noOverflow(page);
+    results = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      .analyze();
+    expect(results.violations).toEqual([]);
+  }
+});
+
+test("mobile emulated loading meets measured LCP and transfer budgets", async ({
+  page,
   browserName,
 }) => {
   test.skip(browserName !== "chromium", "CDP throttling requires Chromium");
-  await page.setViewportSize({ width: 390, height: 844 });
-  const cdp = await context.newCDPSession(page);
-  await cdp.send("Network.enable");
-  await cdp.send("Network.emulateNetworkConditions", {
+  const session = await page.context().newCDPSession(page);
+  await session.send("Network.enable");
+  await session.send("Network.emulateNetworkConditions", {
     offline: false,
     latency: 60,
     downloadThroughput: (1600 * 1024) / 8,
     uploadThroughput: (750 * 1024) / 8,
   });
-  await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });
+  await session.send("Emulation.setCPUThrottlingRate", { rate: 4 });
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.addInitScript(() => {
-    (window as unknown as { __lcp: number }).__lcp = 0;
+    const w = window as Window & { qaReady?: number };
+    new MutationObserver(() => {
+      const shell = document.querySelector(".app-shell");
+      if (shell && !shell.hasAttribute("inert") && w.qaReady === undefined)
+        w.qaReady = performance.now();
+    }).observe(document, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      attributeFilter: ["inert"],
+    });
     new PerformanceObserver((list) => {
-      for (const entry of list.getEntries())
-        (window as unknown as { __lcp: number }).__lcp = entry.startTime;
+      const entry = list.getEntries().at(-1);
+      if (entry)
+        (window as Window & { qaLcp?: number }).qaLcp = entry.startTime;
     }).observe({ type: "largest-contentful-paint", buffered: true });
   });
-  await page.goto("/");
-  await expect(
-    page.getByRole("button", { name: "Find my starting point", exact: true }),
-  ).toBeVisible();
-  await page.waitForTimeout(1500);
-  const lcp = await page.evaluate(
-    () => (window as unknown as { __lcp: number }).__lcp,
-  );
-  writeFileSync(
+  await page.goto(origin, { waitUntil: "networkidle" });
+  const metrics = await page.evaluate(() => ({
+    lcp: (window as Window & { qaLcp?: number }).qaLcp ?? 0,
+    controlsReadyMs: (window as Window & { qaReady?: number }).qaReady ?? null,
+    bytes: performance
+      .getEntriesByType("resource")
+      .reduce((n, e) => n + (e as PerformanceResourceTiming).transferSize, 0),
+  }));
+  console.log("Working Page mobile metrics", metrics);
+  await writeFile(
     "docs/perf-results.json",
     JSON.stringify(
       {
-        lcpMs: lcp,
+        ...metrics,
         cpuSlowdown: 4,
         latencyMs: 60,
         bandwidthKbps: 1600,
         viewport: "390x844",
-        hardware: "synthetic Chromium throttling, not a physical phone",
-        browserVersion: context.browser()?.version(),
-        executableSource: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
-          ? "installed Chromium-compatible executable"
-          : "Playwright Chromium",
+        hardware: "Synthetic Chromium throttling; not a physical phone",
+        browserVersion: page.context().browser()?.version(),
+        lcpBudgetMs: 2000,
       },
       null,
       2,
     ) + "\n",
   );
-  expect(lcp).toBeGreaterThan(0);
-  expect(lcp).toBeLessThan(2000);
+  expect(metrics.lcp).toBeGreaterThan(0);
+  expect(metrics.lcp).toBeLessThan(2000);
+  expect(metrics.bytes).toBeLessThan(3000000);
 });
 
-test("symbolic checking loads and works with the network disabled", async ({
+test("symbolic equivalence works after the application goes offline", async ({
   page,
   context,
 }) => {
-  const { createLearner, initialKnowledge } =
-    await import("../packages/engine/src");
-  const catalog = JSON.parse(
-    readFileSync("lib/catalog.generated.json", "utf8"),
-  ) as { id: string }[];
-  const now = Date.now(),
-    s = createLearner(now, "substitution");
-  s.onboarded = true;
-  for (const c of catalog)
-    s.knowledge[c.id] = {
-      ...initialKnowledge(now),
-      p: 0.9,
-      n: 10,
-      observations: 2,
-    };
-  s.knowledge["power-rule"] = { ...initialKnowledge(now), observations: 1 };
-  await page.goto("/");
+  await page.goto(origin);
+  await importFixture(page, await learnerFixture());
+  await openLesson(page, "Power rule & local scaling");
   await page
-    .getByRole("button", { name: "Preferences", exact: true })
+    .getByRole("button", { name: "Practice this →", exact: true })
     .first()
     .click();
-  await page.locator("input[type=file]").setInputFiles({
-    name: "test-learner.json",
-    mimeType: "application/json",
-    buffer: Buffer.from(JSON.stringify(s)),
-  });
-  await expect(
-    page.getByText(
-      "Backup restored. Your route now uses the imported evidence.",
-    ),
-  ).toBeVisible();
-  await page.evaluate(async () => {
-    await navigator.serviceWorker.ready;
-  });
+  await expect(page.locator("#question-title")).toContainText("Differentiate");
+  await page.evaluate(async () => navigator.serviceWorker.ready);
   await page.reload();
+  // Reload keeps evidence; start another engine-selected symbolic item from the imported one-observation state.
+  await openLesson(page, "Power rule & local scaling");
+  await page
+    .getByRole("button", { name: "Practice this →", exact: true })
+    .first()
+    .click();
+  const title = await page.locator("#question-title").textContent(),
+    coefficient = Number(title!.match(/Differentiate (\d+)x/)![1]);
   await context.setOffline(true);
   await page
-    .getByRole("button", { name: "The curriculum", exact: true })
-    .click();
-  await page
-    .getByRole("textbox", { name: "Search concepts" })
-    .fill("Power rule");
-  await page.locator(".curriculum-item").first().click();
-  await page.getByRole("button", { name: "Try the idea", exact: true }).click();
-  const prompt = await page.locator("#question-title").textContent();
-  const coefficient = Number(prompt!.match(/Differentiate (\d+)x/)![1]);
-  await page
     .getByLabel("Your answer", { exact: true })
-    .fill(`${2 * coefficient}*x`);
-  await page.getByRole("button", { name: "Very sure", exact: true }).click();
-  await page.getByRole("button", { name: "Check my reasoning" }).click();
-  await expect(
-    page.getByText("Equivalent expressions: the structure agrees."),
-  ).toBeVisible();
+    .fill(`${coefficient}*x+${coefficient}*x`);
+  await page.getByRole("radio", { name: "Fairly sure", exact: true }).check();
+  await page.getByRole("button", { name: "Check answer", exact: true }).click();
+  await expect(page.locator(".feedback-title")).toContainText("Correct");
   await context.setOffline(false);
-});
-
-test("atlas goal filters, search, keyboard selection and mobile outline preserve dependencies", async ({
-  page,
-}) => {
-  await page.goto("/");
-  await page
-    .getByRole("button", { name: "Knowledge map", exact: true })
-    .click();
-  await expect(
-    page
-      .locator(".map-detail")
-      .getByRole("heading", { name: "Fractions & the whole", exact: true }),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "All concepts", exact: true }).click();
-  await page
-    .getByRole("textbox", { name: "Search atlas" })
-    .fill("Electric field:");
-  await expect(page.locator(".map-scroll [role=button]")).toHaveCount(1);
-  const node = page.locator(".map-scroll [role=button]").first();
-  await node.focus();
-  await page.keyboard.press("Enter");
-  await expect(
-    page.locator(".map-detail").getByText("Build these first"),
-  ).toBeVisible();
-  await page.setViewportSize({ width: 390, height: 844 });
-  await expect(page.locator(".atlas-outline")).toBeVisible();
-  await page
-    .getByRole("button", { name: "Take me there", exact: true })
-    .click();
-  await expect(
-    page.getByRole("heading", { name: "Fractions & the whole", exact: true }),
-  ).toBeVisible();
-});
-
-test("math keyboard inserts at selection and feedback receives focus", async ({
-  page,
-}) => {
-  await skipPlacement(page);
-  const answer = page.getByLabel("Your answer", { exact: true });
-  await answer.fill("123");
-  await answer.evaluate((el: HTMLInputElement) => el.setSelectionRange(1, 2));
-  await page
-    .getByRole("button", { name: "Math keyboard +", exact: true })
-    .click();
-  await page
-    .locator(".math-keyboard")
-    .getByRole("button", { name: "x", exact: true })
-    .click();
-  await expect(answer).toHaveValue("1x3");
-  await answer.fill("unsupported(");
-  await page.getByLabel("Unit", { exact: true }).fill("m");
-  await page.getByRole("button", { name: "Fairly sure", exact: true }).click();
-  await page
-    .getByRole("button", { name: "Check my reasoning", exact: true })
-    .click();
-  // Numeric parse failure is explicit feedback; only checker-indeterminate responses suppress evidence.
-  await expect(page.locator(".feedback")).toBeVisible();
-  await expect(page.locator(".feedback")).toBeFocused();
-});
-
-test("tablet and mobile atlas, diagnostic and completed session stay accessible", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 768, height: 1024 });
-  await page.goto("/");
-  await page
-    .getByRole("button", { name: "Find my starting point", exact: true })
-    .waitFor();
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth,
-    ),
-  ).toBe(true);
-  await page
-    .getByRole("button", { name: "Find my starting point", exact: true })
-    .click();
-  await page
-    .getByRole("dialog")
-    .getByRole("button", { name: "Find my starting point", exact: true })
-    .click();
-  expect(
-    (
-      await new AxeBuilder({ page })
-        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-        .analyze()
-    ).violations,
-  ).toEqual([]);
-  await page
-    .getByRole("button", {
-      name: "Pause placement and use the evidence so far",
-    })
-    .click();
-  await page.getByRole("button", { name: "Start my first session" }).click();
-  await firstResponse(page);
-  await page
-    .getByRole("button", { name: "Finish this session", exact: true })
-    .click();
-  expect(
-    (
-      await new AxeBuilder({ page })
-        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-        .analyze()
-    ).violations,
-  ).toEqual([]);
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page
-    .getByRole("button", { name: "Knowledge map", exact: true })
-    .last()
-    .click();
-  expect(
-    (
-      await new AxeBuilder({ page })
-        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-        .analyze()
-    ).violations,
-  ).toEqual([]);
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth,
-    ),
-  ).toBe(true);
 });

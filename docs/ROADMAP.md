@@ -29,15 +29,15 @@ The memory parameters, difficulty priors and displayed uncertainty intervals are
 
 Source storage exception: the original NTFS mount became blocked in the kernel during package installation. The durable repository is `/home/akmessi/noetherwake`; the original workspace AGENTS.md points there. Dependencies, verification and commits were preserved outside the stalled mount.
 
-## Field Atlas presentation refinements
-- Optimize dense atlas crossings further and add pointer/pinch panning; current zoom, scroll, search and neighborhood views are functional.
-- Consider a mobile inspector drawer after observing learners using the current focused inline inspector.
-- Re-measure Chromium LCP for the redesigned build; the local browser download stalled, while WebKit behavioral and accessibility checks pass. Keep the existing Chromium CI performance gate.
-- Validate the new typography and instruments with manual assistive-technology and physical-phone testing.
+## Working Page follow-ups and explicit limits
 
-## Curiosity Studio follow-ups
+1. **Real-device and assistive-technology validation.** Desktop Chromium/WebKit, native keyboard controls, axe, and CDP touch checks do not replace physical phones, OS file-picker operation, VoiceOver/NVDA/JAWS, browser zoom, or human usability work. At a dense Fit overview, use the full-size List alternative for reliable node targets; zoom necessarily reduces the SVG's visual hit regions.
+2. **Calibrated confidence and lesson-time contracts.** The engine exposes per-concept squared confidence error, not a population calibration curve or a validated minimum sample threshold. Lessons have no authored durations. Neither a curve, a threshold message, nor invented durations are displayed.
+3. **Paragraph-level authoring metadata.** Definitions and self-checks currently have concept-level metadata. Connections and the authored misconception check are grouped once; anchored per-paragraph notes, reference-aware equation numbers, and colour-marked unknowns need explicit authoring metadata rather than a heuristic rewrite of all MDX. Marked derivations already reveal actual authored lines and align their justifications with the margin.
+4. **Persist unfinished practice drafts across reload.** Drafts survive navigation within the current tab. Completed responses, evidence, sessions and reflections survive reload. A durable unfinished answer, its timer and an in-progress session summary require a separately validated persistence contract; no version-1 schema migration was introduced. Placement does resume after reload through a local UI marker and the existing diagnostic state.
+5. **Historical snapshots for truncated imports.** Session completion captures exact before/after knowledge in memory. Field notes reconstruct retained answers only when replay through `observe` reproduces the stored concept state. Incomplete histories explicitly withhold historical marks; stored session deltas remain visible. Future exports could carry validated snapshots in a new schema version.
+6. **Per-answer notes.** The existing concept-authored self-explanation remains a formative keyword check. Persisted reflections remain attached to completed sessions. There is no pretend per-answer “Save note” control.
+7. **Continue content and instrument development.** More bespoke tangent, energy and circuit instruments, independent review beyond the eight expanded lessons, and consented delayed-retention studies remain priorities. Synthetic evidence does not prove human learning effectiveness.
+8. **Continue cold-start profiling.** Meaningful generic text renders from static HTML while local learner records are read. Performance reports separate LCP from control readiness; reducing the client catalogue and font transfer can improve interactivity further without replacing real fonts or hiding uncertainty.
 
-- Extend the bespoke experiment treatment beyond projectile motion: direct tangent manipulation, energy bookkeeping and field probes remain future work. Existing lessons still provide their authored parameter instruments.
-- Continue the worked-example expansion beyond the eight revised foundation and bridge lessons, with independent subject-matter review of all lesson banks.
-- Add a learner-authored question notebook only with a clear local persistence and migration contract; no inactive notebook input is exposed.
-- Validate the studio with physical phones, browser zoom and manual screen-reader use, and measure delayed retention with consenting people before claiming learning gains.
+The Working Page resolves the historical presentation requests for pointer/pinch atlas panning, a mobile inspector sheet, unified navigation, and an executable Chromium performance gate. Historical screenshot and measurement directories remain available as prior release evidence; they are not measurements of this build.

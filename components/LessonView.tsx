@@ -40,13 +40,11 @@ export default function LessonView({
   useEffect(() => {
     const update = () => {
       if (!reading.current) return;
-      const r = reading.current.getBoundingClientRect();
-      setProgress(
-        Math.max(
-          0,
-          Math.min(1, (innerHeight - r.top) / (r.height + innerHeight)),
-        ),
-      );
+      const prose =
+        reading.current.querySelector<HTMLElement>(".lesson-reading") ??
+        reading.current;
+      const r = prose.getBoundingClientRect();
+      setProgress(Math.max(0, Math.min(1, -r.top / Math.max(1, r.height))));
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
