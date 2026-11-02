@@ -41,7 +41,7 @@ export function ExpeditionArt({ kind }: { kind: string }) {
             cx="191"
             cy="36"
             r="6"
-            fill="var(--card-accent)"
+            fill="rgb(var(--sheet))"
             strokeWidth="2"
           />
         </g>
@@ -69,8 +69,8 @@ export function ExpeditionArt({ kind }: { kind: string }) {
               opacity={i === 0 ? 1 : 0.5}
             />
           ))}
-          <circle cx="42" cy="60" r="16" fill="var(--card-accent)" />
-          <circle cx="198" cy="60" r="16" fill="var(--card-accent)" />
+          <circle cx="42" cy="60" r="16" fill="rgb(var(--sheet))" />
+          <circle cx="198" cy="60" r="16" fill="rgb(var(--sheet))" />
           <path
             d="M36 60h12m-6-6v12M192 60h12M119 55l7 5-7 5"
             strokeWidth="1.5"

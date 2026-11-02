@@ -61,6 +61,7 @@ import { learnerSchema, parseImport, readState, saveState } from "@/lib/store";
 import ConceptMap from "./ConceptMap";
 import Assessment from "./Assessment";
 import MathText from "./Math";
+import ProjectileLab from "./ProjectileLab";
 const Interactive = dynamic(() => import("./Interactive"), {
   loading: () => (
     <div className="interactive-card">Preparing the learning instrument…</div>
@@ -76,22 +77,34 @@ type View =
   | "diagnostic"
   | "session"
   | "summary"
-  | "placement";
+  | "placement"
+  | "lab";
 const nav = [
-  { id: "today", label: "Today", icon: Home },
-  { id: "map", label: "Knowledge map", icon: Map },
-  { id: "curriculum", label: "The curriculum", icon: BookOpen },
-  { id: "journal", label: "Learning journal", icon: NotebookPen },
+  { id: "today", label: "Today" },
+  { id: "map", label: "Atlas" },
+  { id: "curriculum", label: "Library" },
+  { id: "lab", label: "Lab" },
+  { id: "journal", label: "Field notes" },
 ] as const;
 function Brand() {
   return (
     <span className="brand">
-      <svg viewBox="0 0 40 40" aria-hidden="true">
-        <ellipse cx="20" cy="20" rx="16" ry="7" transform="rotate(-48 20 20)" />
-        <ellipse cx="20" cy="20" rx="16" ry="7" transform="rotate(48 20 20)" />
-        <circle cx="20" cy="20" r="2" />
+      <svg viewBox="0 0 28 28" aria-hidden="true">
+        <circle cx="20" cy="14" r="4" fill="currentColor" />
+        <path
+          d="M14 7C5 7 5 21 14 21"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M9 3C-3 5-3 23 9 25"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth=".75"
+        />
       </svg>
-      Noetherwake<span className="brand-period">.</span>
+      Noetherwake
     </span>
   );
 }
@@ -485,14 +498,14 @@ export default function Tutor() {
     : view;
   return (
     <div
-      className="app-shell"
+      className={`app-shell ${view === "session" || view === "diagnostic" ? "active-practice" : ""}`}
       inert={!hydrated.current}
       aria-busy={!hydrated.current}
     >
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <aside className={`sidebar ${mobileNav ? "open" : ""}`}>
+      <aside className="sidebar">
         <a
           className="brand-link"
           href="#today"
@@ -504,133 +517,72 @@ export default function Tutor() {
         >
           <Brand />
         </a>
-        <div className="workspace-label">THE CURIOSITY STUDIO</div>
         <nav aria-label="Main navigation">
           {nav.map((n) => (
             <button
               key={n.id}
-              aria-label={n.label}
               className={`nav-item ${activeView === n.id ? "active" : ""}`}
               aria-current={activeView === n.id ? "page" : undefined}
               onClick={() => navigate(n.id)}
             >
-              <n.icon size={18} strokeWidth={1.7} />
-              <span>
-                {n.id === "map"
-                  ? "Knowledge atlas"
-                  : n.id === "curriculum"
-                    ? "Concept library"
-                    : n.id === "journal"
-                      ? "Field notes"
-                      : n.label}
-              </span>
-              {n.id === "today" && <span className="nav-dot" />}
+              {n.label}
             </button>
           ))}
         </nav>
-        <div className="sidebar-goal">
-          <span className="eyebrow">YOUR NORTH STAR</span>
-          <div>
-            <Target size={16} />
-            <span>
-              {goals.find((g) => g.id === state.goal)?.title ?? goal.title}
-            </span>
-          </div>
-          <div className="goal-progress">
-            <span
-              style={{
-                width: `${(strong.filter((c) => target.has(c.id)).length / target.size) * 100}%`,
-              }}
-            />
-          </div>
-          <small>
-            {strong.filter((c) => target.has(c.id)).length} of {target.size}{" "}
-            ideas with strong evidence
-          </small>
-        </div>
         <div className="sidebar-bottom">
-          <div className="local-note">
-            <ShieldCheck size={16} />
-            <div>
-              Yours. On this device.<small>No account. No tracking.</small>
-            </div>
-          </div>
+          <p className="route-label mono">
+            Route: {goals.find((g) => g.id === state.goal)?.title ?? goal.title}
+            <br />
+            <span>
+              {strong.filter((c) => target.has(c.id)).length} of {target.size}{" "}
+              with strong evidence
+            </span>
+          </p>
           <button
-            className={`nav-item ${view === "settings" ? "active" : ""}`}
-            onClick={() => navigate("settings")}
+            className="nav-item"
             aria-current={view === "settings" ? "page" : undefined}
+            onClick={() => navigate("settings")}
           >
-            <Settings2 size={17} /> Preferences
+            Preferences
           </button>
-          <div className="version-label">
-            NOETHERWAKE <span>v0.1 / offline first</span>
-          </div>
+          <p className="local-note">
+            Stored on this device
+            {offlineReady && (
+              <>
+                <br />
+                Offline copy ready
+              </>
+            )}
+          </p>
         </div>
       </aside>
-      {mobileNav && (
-        <button
-          className="nav-backdrop"
-          aria-label="Close menu"
-          onClick={() => setMobileNav(false)}
-        />
-      )}
       <div className="workspace">
         <header className="topbar">
-          <div className="topbar-left">
-            <button
-              className="icon-button mobile-menu"
-              aria-label="Open navigation"
-              onClick={() => setMobileNav(!mobileNav)}
-            >
-              <Menu size={20} />
-            </button>
-            <span className="breadcrumb">
-              The studio <ChevronRight size={13} />{" "}
-              <b>
-                {view === "today"
-                  ? "Today"
-                  : view === "map"
-                    ? "Knowledge map"
-                    : view === "curriculum"
-                      ? "Curriculum"
-                      : view === "journal"
-                        ? "Field notes"
-                        : view === "settings"
-                          ? "Preferences"
-                          : view === "diagnostic"
-                            ? "Finding your frontier"
-                            : "Your learning session"}
-              </b>
-            </span>
-          </div>
-          <div className="topbar-right">
-            <span className="connection">
-              <i />
-              {!online
-                ? "Offline"
-                : offlineReady
-                  ? "Offline ready"
-                  : "Local first"}
-            </span>
-            <span className="topbar-divider" />
-            <button
-              className="icon-button theme-toggle"
-              aria-label={
-                state.theme === "dark" ? "Use light theme" : "Use dark theme"
-              }
-              onClick={() =>
-                setState({
-                  ...state,
-                  theme: state.theme === "dark" ? "light" : "dark",
-                })
-              }
-            >
-              {state.theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
-            </button>
-            <span className="user-mark" aria-label="Local learner">
-              N
-            </span>
-          </div>
+          <a
+            href="#today"
+            className="brand-link"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("today");
+            }}
+          >
+            <Brand />
+          </a>
+          <nav aria-label="Tablet navigation">
+            {nav.map((n) => (
+              <button
+                key={n.id}
+                className={activeView === n.id ? "active" : ""}
+                aria-current={activeView === n.id ? "page" : undefined}
+                onClick={() => navigate(n.id)}
+              >
+                {n.label}
+              </button>
+            ))}
+          </nav>
+          <button className="text-button" onClick={() => navigate("settings")}>
+            Preferences
+          </button>
         </header>
         <main
           id="main-content"
@@ -673,6 +625,7 @@ export default function Tutor() {
               }}
             />
           )}
+          {view === "lab" && <ProjectileLab onConcept={openLesson} />}
           {view === "map" && (
             <>
               <div className="standard-heading">
@@ -1553,29 +1506,17 @@ export default function Tutor() {
             </section>
           )}
         </main>
-        <div className="mobile-bottom-nav">
-          {nav.slice(0, 3).map((n) => (
+        <nav className="mobile-bottom-nav" aria-label="Mobile navigation">
+          {nav.map((n) => (
             <button
               key={n.id}
               onClick={() => navigate(n.id)}
-              aria-label={n.label}
               aria-current={activeView === n.id ? "page" : undefined}
             >
-              <n.icon size={19} />
-              <span>
-                {n.id === "map"
-                  ? "Map"
-                  : n.id === "curriculum"
-                    ? "Explore"
-                    : "Today"}
-              </span>
+              {n.label}
             </button>
           ))}
-          <button onClick={() => navigate("settings")} aria-label="Preferences">
-            <Settings2 size={19} />
-            <span>Preferences</span>
-          </button>
-        </div>
+        </nav>
       </div>
       {onboarding && (
         <GoalDialog

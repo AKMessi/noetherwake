@@ -1,19 +1,29 @@
-# Noetherwake — The Curiosity Studio
+# Noetherwake — The Working Page
 
-The experience should make mathematics and physics feel like a world worth investigating. A warm paper workspace, carbon-black editorial panels, acid-yellow highlights, oversized serif headlines, precise monospace annotations and original vector diagrams establish the visual language. All typography remains bundled locally.
+The presentation is a printed physics monograph that computes: a working sheet, a ruled margin, and measured figures. Newsreader carries prose, Instrument Sans carries controls, IBM Plex Mono carries measurements. Font files and their OFL licenses live in `app/fonts`; `next/font/local` self-hosts Latin and Latin Extended subsets. KaTeX remains the mathematics renderer with its bundled fonts.
 
-## Learning experience
+## Shared system
 
-- A learning studio makes the engine's next action prominent and explains the evidence behind it. New learners see an invitation to placement, never invented progress.
-- A live projectile laboratory invites a prediction, then reveals a model with explicit units, linked trajectories, numerical measurements and physical assumptions. Exploration is formative and never changes mastery.
-- Three curated expeditions connect existing authored lessons through meaningful questions: motion and energy, the mathematics of change, and fields and circuits. Readiness always comes from the engine.
-- The library exposes strand filters, actual prerequisite states and useful empty states. Lessons connect their prerequisites, downstream applications, misconceptions and model boundaries.
-- The journal brings actual errors and supported responses back into view alongside stored reflections. Its entries identify authored misconception signals when available; it never invents a diagnosis.
+`app/globals.css` is the single RGB-channel token source, extended through Tailwind v4 `@theme inline`. Light warm paper and dark blueprint palettes share semantic roles. Ink means given; cobalt means derived or selected; ochre means predicted or uncertain. Green/red are correctness only. The reference palette is adjusted for measured contrast: light `ink-3` is #5C6270, light `rule-strong` is #827965, dark `ink-3` is #979DAC, dark `rule-strong` is #6B758A. Decorative rules and measurement grids are deliberately quieter; functional boundaries use `rule-strong`. Run `npx tsx scripts/contrast.ts` for the exact 106-pair report in `working-page-contrast.json`.
 
-## Architecture and compatibility
+Spacing: 4, 8, 12, 16, 24, 32, 48, 64, 96 px. Square regions, 2px controls, no decorative shadows or card grids. Containers are reserved for interactive surfaces, answer fields, the map, popovers, and import previews. One cobalt-filled action per task. Focus uses a 2px cobalt outline with a 4px ground halo. Targets are at least 44px. Prose stays at 66ch, with Newsreader 19/31 desktop and 17.5/29 mobile. Equations scroll within their own wrapper.
 
-Pure engine functions retain exclusive ownership of readiness, grading, planning and memory. New physical models are deterministic functions with explicit units and analytic checks. There are no schema migrations, remote assets, telemetry, accounts or fabricated evidence. The static export and offline worker remain the production delivery path. Existing JSON backups and IndexedDB v1 remain compatible.
+Desktop navigation is a 208px fixed spine; below 1100px it becomes a 56px bar; below 768px five text tabs occupy the bottom safe area. Vocabulary is Today, Atlas, Library, Lab, Field notes; Preferences is separate. Sheets use a 640px working column and a 280px margin with a 56px gutter. Marginal content becomes inline below 1024px. No marketing slogans, all-caps labels, decorative icons, pills, gamification, or invented evidence.
 
-## Verification contract
+## Evidence contract
 
-Run engine tests and seeded evaluation before UI work. Validate all 67 lessons and all 201 templates over 1,000 seeds each. Run strict type checking, a production build, size budgets and browser journeys. Add meaningful browser coverage for the new prediction/reveal model, expedition navigation, search and evidence review. Check keyboard operation, reduced motion, light/dark contrast and layouts at 1440×900, 768×1024 and 390×844. Record actual measurements and unavailable checks in DESIGN_VERIFICATION.md. Do not infer human learning effectiveness from synthetic checks.
+The engine has probabilities, direct observation counts, descriptive uncertainty intervals, and suspicion; it does not define named evidence tiers. `lib/presentation.ts` supplies display labels only: no observations → none; otherwise effective mastery below .5 → emerging; [.5,.8) → moderate; ≥.8 → strong (the existing UI threshold). Glyph fills are hollow, quarter, half, full. Unmet prerequisite readiness always comes from engine `missing`; a dashed ring plus “needs n” identifies it. A descriptive interval wider than .5, or engine suspicion above .14, adds a dashed ochre ring; the tooltip names uncertainty explicitly. These labels never determine readiness, grading, recommendations, or scheduling.
+
+The catalogue has 67 concepts. Each route count includes its goal and all hard ancestors. Counts must name that scope. No duration, item total, confidence threshold, or calibration curve is invented: the model has no lesson durations or calibrated population curve. Existing session budgets and actual observed confidence errors may be shown with their meaning stated.
+
+## Screens and motion
+
+The first-visit Today is a working page with placement, a real projectile prediction, and a typographic route index. Returning Today presents the engine recommendation, route evidence ruler, due retrieval, and actual evidence counts. Lessons pair authored prose and equations with prerequisite notes, derivation steps, model boundaries, and a teaching instrument. Practice focuses on the problem, confidence radio scale, answer and engine feedback. Numeric feedback compares canonical values only when units are valid.
+
+Atlas uses deterministic longest-path layers, strand lanes, evidence glyphs, a shared detail margin, an accessible list, and an ancestor trace. Library uses rule-separated rows and the same details. The lab plots equal-scale SI trajectories, compares the real prediction to the computed winner, and states model assumptions. Field notes are a chronological record, session completion reports actual changes, and Preferences exposes existing settings, atomic validated import, export, and explicit typed deletion.
+
+Motion is restricted to: trace 180ms/layer with 80ms stagger; trace clearing 120ms; numeric gap 420ms; lab physical trajectories at 1× capped at 2400ms; evidence shift 600ms after 250ms; derivation reveal 140ms; mobile sheet 220ms. Reduced motion shows final states immediately. No ambient or scroll animation.
+
+## Compatibility and verification
+
+Engine policy, content contracts, IndexedDB v1, old JSON backups, static export, Vercel configuration, and offline worker remain compatible. Screenshots and seeded browser state are disposable QA artifacts, never learner data embedded in the interface. See `DESIGN_VERIFICATION.md` for the current verification report and `ROADMAP.md` for unsupported requests. Every implementation change set is committed and pushed to GitHub.

@@ -125,7 +125,7 @@ export default function Assessment({
                 >
                   <path
                     d="M20 180H345M20 180V15"
-                    stroke="var(--muted)"
+                    stroke="rgb(var(--ink-3))"
                     fill="none"
                   />
                   {(() => {
@@ -141,7 +141,7 @@ export default function Assessment({
                       <path
                         d={path}
                         fill="none"
-                        stroke="var(--green)"
+                        stroke="rgb(var(--cobalt))"
                         strokeWidth="2.5"
                       />
                     );
@@ -149,7 +149,7 @@ export default function Assessment({
                   <text
                     x="337"
                     y="200"
-                    fill="var(--muted)"
+                    fill="rgb(var(--ink-3))"
                     fontSize="10"
                     textAnchor="end"
                   >
@@ -203,16 +203,16 @@ export default function Assessment({
                     );
                   }}
                 >
-                  <path d="M20 50H340" stroke="var(--muted)" />
+                  <path d="M20 50H340" stroke="rgb(var(--ink-3))" />
                   {[0, 5, 10, 15, 20].map((x) => (
                     <g key={x}>
-                      <path d={`M${20 + x * 16} 45v10`} stroke="var(--muted)" />
+                      <path d={`M${20 + x * 16} 45v10`} stroke="rgb(var(--ink-3))" />
                       <text
                         x={20 + x * 16}
                         y="76"
                         textAnchor="middle"
                         fontSize="11"
-                        fill="var(--muted)"
+                        fill="rgb(var(--ink-3))"
                       >
                         {x}
                       </text>
@@ -222,7 +222,7 @@ export default function Assessment({
                     cx={20 + Number(answer) * 16}
                     cy="50"
                     r="7"
-                    fill="var(--green)"
+                    fill="rgb(var(--cobalt))"
                   />
                 </svg>
                 <label htmlFor="point-position">

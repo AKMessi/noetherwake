@@ -1,12 +1,12 @@
 {
   "name": "Noetherwake",
   "short_name": "Noetherwake",
-  "description": "Your personal mathematics and physics learning studio",
+  "description": "Connected mathematics and physics, stored on your device",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f7f7f2",
-  "theme_color": "#f7f7f2",
+  "background_color": "#F4F1E8",
+  "theme_color": "#F4F1E8",
   "icons": [
     {
       "src": "/icon.svg",

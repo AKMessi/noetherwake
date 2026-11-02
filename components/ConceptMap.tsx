@@ -246,10 +246,10 @@ export default function ConceptMap({
                     fill="none"
                     stroke={
                       cross
-                        ? "var(--ochre)"
+                        ? "rgb(var(--ochre))"
                         : path.has(c.id)
-                          ? "var(--path-line)"
-                          : "var(--map-line)"
+                          ? "rgb(var(--cobalt))"
+                          : "rgb(var(--ink-3))"
                     }
                     strokeDasharray={cross ? "6 4" : undefined}
                     strokeWidth={related ? 3 : 1.3}
@@ -321,7 +321,7 @@ export default function ConceptMap({
                 {ready && (
                   <circle
                     r={22}
-                    stroke="var(--green)"
+                    stroke="rgb(var(--cobalt))"
                     fill="none"
                     strokeWidth={1.5}
                   />
@@ -329,16 +329,16 @@ export default function ConceptMap({
                 {c.domain === "math" ? (
                   <circle
                     r={15}
-                    fill="var(--surface)"
-                    stroke="var(--map-node)"
+                    fill="rgb(var(--sheet))"
+                    stroke="rgb(var(--ink-2))"
                     strokeWidth={1.5}
                     strokeDasharray={known ? undefined : "3 3"}
                   />
                 ) : (
                   <path
                     d="M0 -17L17 0L0 17L-17 0Z"
-                    fill="var(--surface)"
-                    stroke="var(--map-node)"
+                    fill="rgb(var(--sheet))"
+                    stroke="rgb(var(--ink-2))"
                     strokeWidth={1.5}
                     strokeDasharray={known ? undefined : "3 3"}
                   />
@@ -347,18 +347,18 @@ export default function ConceptMap({
                   <circle
                     r={10}
                     fill="none"
-                    stroke="var(--green)"
+                    stroke="rgb(var(--cobalt))"
                     strokeWidth={4}
                     pathLength={100}
                     strokeDasharray={`${p * 100} 100`}
                     transform="rotate(-90)"
                   />
                 )}
-                {focus === c.id && <circle r={4} fill="var(--ochre)" />}
+                {focus === c.id && <circle r={4} fill="rgb(var(--ochre))" />}
                 <text
                   y={37}
                   textAnchor="middle"
-                  fill="var(--ink)"
+                  fill="rgb(var(--ink))"
                   fontSize={12}
                 >
                   {c.title.length > 30 ? c.title.slice(0, 28) + "…" : c.title}

@@ -100,7 +100,7 @@ export default function Interactive({ concept }: { concept: Concept }) {
             <path
               d="M30 0H0V29"
               fill="none"
-              stroke="var(--border)"
+              stroke="rgb(var(--rule))"
               strokeWidth=".6"
             />
           </pattern>
@@ -112,10 +112,10 @@ export default function Interactive({ concept }: { concept: Concept }) {
           height="155"
           fill="url(#interactive-grid)"
         />
-        <path d="M35 25V185H345" fill="none" stroke="var(--muted)" />
+        <path d="M35 25V185H345" fill="none" stroke="rgb(var(--ink-3))" />
         <path
           d={curves.old}
-          stroke="var(--muted)"
+          stroke="rgb(var(--ink-3))"
           strokeDasharray="4 4"
           fill="none"
           opacity=".45"
@@ -123,7 +123,7 @@ export default function Interactive({ concept }: { concept: Concept }) {
         <path
           d={curves.path}
           fill="none"
-          stroke="var(--green)"
+          stroke="rgb(var(--cobalt))"
           strokeWidth="2.5"
         />
         {revealed && (
@@ -131,8 +131,8 @@ export default function Interactive({ concept }: { concept: Concept }) {
             cx={curves.marker.split(",")[0]}
             cy={curves.marker.split(",")[1]}
             r="5"
-            fill="var(--ochre)"
-            stroke="var(--surface)"
+            fill="rgb(var(--ochre))"
+            stroke="rgb(var(--sheet))"
             strokeWidth="2"
           />
         )}
@@ -140,18 +140,18 @@ export default function Interactive({ concept }: { concept: Concept }) {
           x="335"
           y="210"
           textAnchor="end"
-          fill="var(--muted)"
+          fill="rgb(var(--ink-3))"
           fontSize="10"
         >
           {spec.xLabel}
         </text>
-        <text x="40" y="20" fill="var(--muted)" fontSize="10">
+        <text x="40" y="20" fill="rgb(var(--ink-3))" fontSize="10">
           {spec.yLabel}
         </text>
-        <text x="10" y="40" fill="var(--muted)" fontSize="9">
+        <text x="10" y="40" fill="rgb(var(--ink-3))" fontSize="9">
           {curves.hi.toFixed(0)}
         </text>
-        <text x="10" y="185" fill="var(--muted)" fontSize="9">
+        <text x="10" y="185" fill="rgb(var(--ink-3))" fontSize="9">
           {curves.lo.toFixed(0)}
         </text>
       </svg>
