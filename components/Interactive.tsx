@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Play, RotateCcw, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import MathText from "./Math";
 import { arithmetic, type Concept } from "@noetherwake/engine";
 interface Point {
@@ -33,8 +33,8 @@ export default function Interactive({ concept }: { concept: Concept }) {
       start = 0;
     const run = (time: number) => {
       if (!start) start = time;
-      setFrame(Math.min(180, Math.floor((time - start) / 17)));
-      if (time - start < 3060) handle = requestAnimationFrame(run);
+      setFrame(Math.min(180, Math.floor(((time - start) / 2400) * 180)));
+      if (time - start < 2400) handle = requestAnimationFrame(run);
     };
     if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
       handle = requestAnimationFrame(run);
@@ -76,85 +76,85 @@ export default function Interactive({ concept }: { concept: Concept }) {
   const last = spec.kind === "motion" ? points[frame] : undefined;
   return (
     <section className="interactive-card" aria-labelledby="interactive-title">
-      <div className="eyebrow">
-        <span className="tiny-square" /> LEARNING INSTRUMENT
-      </div>
-      <h3 id="interactive-title">Predict. Change. Observe.</h3>
+      <div className="eyebrow">Teaching interactive</div>
+      <h3 id="interactive-title">Test the relationship</h3>
       <p>{spec.prompt}</p>
       <div className="instrument-formula">
         <MathText value={"f(x)=" + spec.formula} />
-        <span className="mono">{revealed ? "OBSERVED" : "BASELINE"}</span>
+        <span className="mono">{revealed ? "Observed" : "Baseline"}</span>
       </div>
-      <svg
-        viewBox="0 0 370 225"
-        role="img"
-        aria-label={`Graph of ${spec.formula}. Parameter a=${revealed ? a : spec.initial}. Vertical range ${curves.lo.toFixed(1)} to ${curves.hi.toFixed(1)}.`}
-      >
-        <defs>
-          <pattern
-            id="interactive-grid"
-            width="30"
-            height="29"
-            patternUnits="userSpaceOnUse"
-          >
-            <path
-              d="M30 0H0V29"
-              fill="none"
-              stroke="rgb(var(--rule))"
-              strokeWidth=".6"
-            />
-          </pattern>
-        </defs>
-        <rect
-          x="35"
-          y="30"
-          width="300"
-          height="155"
-          fill="url(#interactive-grid)"
-        />
-        <path d="M35 25V185H345" fill="none" stroke="rgb(var(--ink-3))" />
-        <path
-          d={curves.old}
-          stroke="rgb(var(--ink-3))"
-          strokeDasharray="4 4"
-          fill="none"
-          opacity=".45"
-        />
-        <path
-          d={curves.path}
-          fill="none"
-          stroke="rgb(var(--cobalt))"
-          strokeWidth="2.5"
-        />
-        {revealed && (
-          <circle
-            cx={curves.marker.split(",")[0]}
-            cy={curves.marker.split(",")[1]}
-            r="5"
-            fill="rgb(var(--ochre))"
-            stroke="rgb(var(--sheet))"
-            strokeWidth="2"
-          />
-        )}
-        <text
-          x="335"
-          y="210"
-          textAnchor="end"
-          fill="rgb(var(--ink-3))"
-          fontSize="10"
+      <div className="measurement-grid instrument-plot">
+        <svg
+          viewBox="0 0 370 225"
+          role="img"
+          aria-label={`Graph of ${spec.formula}. Parameter a=${revealed ? a : spec.initial}. Vertical range ${curves.lo.toFixed(1)} to ${curves.hi.toFixed(1)}.`}
         >
-          {spec.xLabel}
-        </text>
-        <text x="40" y="20" fill="rgb(var(--ink-3))" fontSize="10">
-          {spec.yLabel}
-        </text>
-        <text x="10" y="40" fill="rgb(var(--ink-3))" fontSize="9">
-          {curves.hi.toFixed(0)}
-        </text>
-        <text x="10" y="185" fill="rgb(var(--ink-3))" fontSize="9">
-          {curves.lo.toFixed(0)}
-        </text>
-      </svg>
+          <defs>
+            <pattern
+              id="interactive-grid"
+              width="30"
+              height="29"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M30 0H0V29"
+                fill="none"
+                stroke="rgb(var(--rule))"
+                strokeWidth=".6"
+              />
+            </pattern>
+          </defs>
+          <rect
+            x="35"
+            y="30"
+            width="300"
+            height="155"
+            fill="url(#interactive-grid)"
+          />
+          <path d="M35 25V185H345" fill="none" stroke="rgb(var(--ink-3))" />
+          <path
+            d={curves.old}
+            stroke="rgb(var(--ink-3))"
+            strokeDasharray="4 4"
+            fill="none"
+            opacity=".45"
+          />
+          <path
+            d={curves.path}
+            fill="none"
+            stroke="rgb(var(--cobalt))"
+            strokeWidth="2.5"
+          />
+          {revealed && (
+            <circle
+              cx={curves.marker.split(",")[0]}
+              cy={curves.marker.split(",")[1]}
+              r="5"
+              fill="rgb(var(--ochre))"
+              stroke="rgb(var(--sheet))"
+              strokeWidth="2"
+            />
+          )}
+          <text
+            x="335"
+            y="210"
+            textAnchor="end"
+            fill="rgb(var(--ink-3))"
+            fontSize="10"
+          >
+            {spec.xLabel}
+          </text>
+          <text x="40" y="20" fill="rgb(var(--ink-3))" fontSize="10">
+            {spec.yLabel}
+          </text>
+          <text x="10" y="40" fill="rgb(var(--ink-3))" fontSize="9">
+            {curves.hi.toFixed(0)}
+          </text>
+          <text x="10" y="185" fill="rgb(var(--ink-3))" fontSize="9">
+            {curves.lo.toFixed(0)}
+          </text>
+        </svg>
+      </div>
       <div className="parameter-head">
         <label htmlFor="parameter">
           {revealed ? "Observed" : "Proposed"} parameter {spec.parameterLabel}
@@ -201,7 +201,7 @@ export default function Interactive({ concept }: { concept: Concept }) {
             {prediction}
           </p>
           <button className="primary full" onClick={() => setRevealed(true)}>
-            <Play size={15} /> Reveal the change
+            Reveal the change
           </button>
         </>
       )}
@@ -254,7 +254,7 @@ export default function Interactive({ concept }: { concept: Concept }) {
             setRevealed(false);
           }}
         >
-          <RotateCcw size={13} /> Revise prediction
+          Revise prediction
         </button>
       )}
     </section>

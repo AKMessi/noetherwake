@@ -1,5 +1,6 @@
 "use client";
 import LessonReading from "./LessonReading";
+import LessonView from "./LessonView";
 import StudioHome from "./StudioHome";
 import LessonConnections from "./LessonConnections";
 import EvidenceReview from "./EvidenceReview";
@@ -1159,171 +1160,63 @@ export default function Tutor() {
               </div>
             </>
           )}
-          {(view === "lesson" || view === "session") && (
+          {view === "lesson" && (
+            <LessonView
+              key={lessonId}
+              id={lessonId}
+              state={state}
+              now={now}
+              onConcept={openLesson}
+              onPractice={startSession}
+              onToday={() => navigate("today")}
+            />
+          )}
+          {view === "session" && item && (
             <>
-              <button
-                className="text-button back-button"
-                onClick={() => navigate("today")}
-              >
-                <ChevronLeft size={16} /> Back to today
-              </button>
-              {gaps.length && view === "lesson" ? (
-                <section className="locked-card">
-                  <LockKeyhole size={30} />
-                  <span className="eyebrow">A CONNECTION TO BUILD FIRST</span>
+              <header className="practice-header">
+                <div>
+                  <p className="caption">Practice</p>
                   <h1>{lesson.title}</h1>
-                  <p>
-                    This idea rests on the following prerequisites. Practice a
-                    ready foundation first, and the engine will bring you back
-                    when the evidence supports it.
-                  </p>
-                  <div>
-                    {gaps.map((id) => (
-                      <button
-                        className="prerequisite-link"
-                        key={id}
-                        onClick={() => openLesson(id)}
-                      >
-                        {concept(id).title}
-                        <ArrowRight size={14} />
-                      </button>
-                    ))}
-                  </div>
-                  <button
-                    className="primary"
-                    onClick={() =>
-                      openLesson(routeToReady(catalog, state, lesson.id, now))
-                    }
-                  >
-                    Take me to the first ready step <ArrowRight size={17} />
+                </div>
+                <div className="practice-session-meta">
+                  <span className="mono">
+                    {session.current?.events.length ?? 0} answered
+                  </span>
+                  <button className="text-button" onClick={finishSession}>
+                    End session
                   </button>
-                </section>
-              ) : (
-                <>
-                  <div className="lesson-heading">
-                    <span className="eyebrow">
-                      {lesson.domain} / {lesson.strand}
-                      {view === "session"
-                        ? ` / SESSION ${String((session.current?.events.length ?? 0) + 1).padStart(2, "0")}`
-                        : ""}
-                    </span>
-                    <h1>{lesson.title}</h1>
-                    <p>
-                      {view === "session"
-                        ? (plan(catalog, state, now).find(
-                            (a) => a.concept === lesson.id,
-                          )?.why ??
-                          "A ready connection, chosen from your evidence.")
-                        : "Intuition first. A precise relationship. Then a test of your own."}
-                    </p>
-                  </div>
-                  <div className="lesson-big-idea">
-                    <span className="eyebrow">THE IDEA IN ONE BREATH</span>
-                    <p>{lesson.summary}</p>
-                    <details>
-                      <summary>Know the boundary of this model</summary>
-                      <p>{lesson.boundary}</p>
-                    </details>
-                  </div>
-                  <nav className="lesson-jumpbar" aria-label="Lesson sections">
-                    <a href="#lesson-reading">
-                      <span className="mono">01</span> Understand
-                    </a>
-                    <a href="#interactive-title">
-                      <span className="mono">02</span> Experiment
-                    </a>
-                    <a
-                      href={
-                        view === "session"
-                          ? "#question-title"
-                          : "#lesson-practice"
-                      }
-                    >
-                      <span className="mono">03</span> Practice{" "}
-                      <ArrowRight size={13} />
-                    </a>
-                  </nav>
-                  <div className="lesson-layout">
-                    <div>
-                      {view === "lesson" ||
-                      stage(state, lesson.id, now) === "worked" ? (
-                        <LessonReading
-                          html={lesson.html ?? ""}
-                          onConcept={openLesson}
-                        />
-                      ) : null}
-                      <section className="derivation">
-                        <span className="eyebrow">FOLLOW THE REASONING</span>
-                        {lesson.derivation.map((d, i) => (
-                          <details key={i}>
-                            <summary>
-                              <span className="mono">0{i + 1}</span>
-                              <MathText value={d.expression} />
-                              <ChevronDown size={15} />
-                            </summary>
-                            <p>{d.rule}</p>
-                            <button
-                              className="text-button"
-                              onClick={() => openLesson(d.concept)}
-                            >
-                              Underlying idea: {concept(d.concept).title}
-                              <ArrowUpRight size={13} />
-                            </button>
-                          </details>
-                        ))}
-                      </section>
-                      {view === "session" && item ? (
-                        <Assessment
-                          key={item.id}
-                          item={item}
-                          concept={lesson}
-                          faded={stage(state, lesson.id, now) !== "independent"}
-                          onEvidence={evidence}
-                          onNext={nextQuestion}
-                        />
-                      ) : (
-                        <div className="lesson-practice" id="lesson-practice">
-                          <h2>Can you reconstruct it?</h2>
-                          <p>
-                            Reading makes an idea familiar. Retrieval tells us
-                            what is yours.
-                          </p>
-                          {effective(getKnowledge(state, lesson.id, now), now) >
-                            0.93 &&
-                          dueAt(getKnowledge(state, lesson.id, now)) > now ? (
-                            <p className="hint-box">
-                              Your evidence is already strong. Give this idea
-                              some space; the scheduler will bring it back.
-                            </p>
-                          ) : (
-                            <button
-                              className="primary"
-                              onClick={() => startSession(lesson.id)}
-                            >
-                              Try the idea <ArrowRight size={16} />
-                            </button>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                    <aside className="lesson-aside">
-                      <Interactive key={lesson.id} concept={lesson} />
-                      <LessonConnections
-                        lesson={lesson}
-                        onConcept={openLesson}
-                      />
-                      {view === "session" && (
-                        <button
-                          className="text-button centered"
-                          onClick={finishSession}
-                        >
-                          Finish this session
-                        </button>
-                      )}
-                    </aside>
-                  </div>
-                </>
-              )}
+                </div>
+              </header>
+              <div className="sheet-frame">
+                <div className="sheet">
+                  <Assessment
+                    key={item.id}
+                    item={item}
+                    concept={lesson}
+                    faded={stage(state, lesson.id, now) !== "independent"}
+                    onEvidence={evidence}
+                    onNext={nextQuestion}
+                  />
+                </div>
+                <aside className="margin">
+                  <h2>Related lesson</h2>
+                  <button
+                    className="text-button"
+                    onClick={() => openLesson(lesson.id)}
+                  >
+                    {lesson.title}
+                  </button>
+                  <p>
+                    {
+                      plan(catalog, state, now).find(
+                        (a) => a.concept === lesson.id,
+                      )?.why
+                    }
+                  </p>
+                  <h2>Model boundary</h2>
+                  <p>{lesson.boundary}</p>
+                </aside>
+              </div>
             </>
           )}
           {view === "diagnostic" && item && (

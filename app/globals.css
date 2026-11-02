@@ -2105,3 +2105,321 @@ svg text {
   height: 12px;
   left: calc(50% - 4px);
 }
+/* Reading and reasoning. */
+.lesson-page {
+  max-width: 976px;
+}
+.lesson-page .sheet-frame {
+  position: relative;
+}
+.lesson-page .margin {
+  position: sticky;
+  top: 48px;
+}
+.lesson-summary {
+  font: 19px/31px var(--prose);
+  color: rgb(var(--ink)) !important;
+}
+.lesson-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 12.5px;
+  color: rgb(var(--ink-3));
+}
+.lesson-heading .caption {
+  margin-bottom: 12px;
+}
+.lesson-prose h2 {
+  position: relative;
+}
+.lesson-prose h2 .section-number {
+  position: absolute;
+  left: -32px;
+  top: 8px;
+}
+.worked-example {
+  border-left: 2px solid rgb(var(--ink));
+  padding-left: 24px;
+}
+.worked-example h2 .section-number {
+  position: static;
+  margin-right: 12px;
+}
+.equation-scroll {
+  position: relative;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 28px 0;
+  scrollbar-width: thin;
+}
+.equation-scroll .katex-display {
+  margin: 0;
+  overflow: visible;
+  min-width: max-content;
+  padding: 4px 0;
+}
+.equation-scroll.is-wide {
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 4px,
+    black calc(100% - 24px),
+    transparent
+  );
+}
+.equation-scroll .katex {
+  font-size: max(15px, 1.2em);
+}
+.working-derivation {
+  margin: 48px 0;
+  outline-offset: 8px;
+}
+.working-derivation > .caption {
+  margin: 12px 0 24px;
+}
+.derivation-lines {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.derivation-lines li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) minmax(120px, 1fr);
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid rgb(var(--rule));
+  animation: derivation-line 140ms ease-out;
+}
+.derivation-lines li[hidden] {
+  display: none;
+}
+.derivation-expression {
+  overflow-x: auto;
+  font-size: 17px;
+  align-self: center;
+  padding: 8px 0;
+}
+.derivation-lines aside .text-button {
+  font: italic 15px/22px var(--prose);
+  display: block;
+  min-height: 44px;
+}
+.working-derivation .actions {
+  margin-top: 16px;
+}
+.connection-row {
+  margin: 8px 0;
+}
+.connection-row > .evidence-state {
+  display: flex;
+}
+.connection-row .text-button {
+  font-size: 14px;
+  line-height: 20px;
+  justify-content: flex-start;
+}
+.connection-row .text-button .evidence-state {
+  margin-right: 0;
+}
+.lesson-connections > div + div {
+  margin-top: 24px;
+}
+.lesson-connections h2 {
+  font: 600 14px/20px var(--ui);
+}
+.prerequisite-trace {
+  margin: 24px 0;
+}
+.prerequisite-trace > p {
+  font-size: 12.5px;
+  line-height: 20px;
+}
+.prerequisite-trace ol {
+  padding: 0;
+  list-style: none;
+  margin: 16px 0;
+  border-left: 1px solid rgb(var(--rule));
+  padding-left: 16px;
+}
+.prerequisite-trace li {
+  animation: trace-line 180ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--trace-layer) * 80ms);
+}
+.prerequisite-trace li .section-number {
+  display: block;
+}
+.prerequisite-trace li .text-button {
+  font-size: 14px;
+  justify-content: flex-start;
+}
+.prerequisite-trace .unmet .text-button {
+  color: rgb(var(--ochre-ink));
+}
+.prerequisite-trace > button {
+  justify-content: flex-start;
+}
+.locked-lesson > p {
+  margin-top: 16px;
+}
+.locked-lesson .primary {
+  margin-top: 24px;
+}
+.reading-progress {
+  position: fixed;
+  left: 208px;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: rgb(var(--rule));
+  z-index: 25;
+}
+.reading-progress span {
+  display: block;
+  height: 2px;
+  background: rgb(var(--ink));
+}
+.lesson-sticky-action {
+  display: none;
+}
+.lesson-boundary {
+  margin-top: 32px;
+}
+.lesson-boundary p {
+  font: 19px/31px var(--prose);
+  margin-top: 16px;
+}
+.lesson-page .interactive-card {
+  margin: 48px 0 32px;
+  padding: 24px;
+}
+.instrument-plot {
+  margin: 24px -24px;
+  padding: 16px 24px;
+  border-block: 1px solid rgb(var(--rule));
+}
+.instrument-plot svg {
+  width: 100%;
+  display: block;
+}
+.lesson-page .interactive-card > p,
+.lesson-page .interactive-card .field-label {
+  max-width: 60ch;
+}
+.practice-header {
+  max-width: 976px;
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  border-bottom: 1px solid rgb(var(--rule));
+  padding-bottom: 24px;
+}
+.practice-header h1 {
+  font-size: 30px;
+  line-height: 36px;
+  margin-top: 8px;
+}
+.practice-session-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 12.5px;
+  flex-shrink: 0;
+}
+.view-session .assessment {
+  margin-top: 0;
+}
+.view-session .margin p {
+  margin-top: 16px;
+}
+.view-session .margin h2 {
+  margin-top: 24px;
+}
+@keyframes derivation-line {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes trace-line {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 1099px) {
+  .reading-progress {
+    left: 0;
+    top: 56px;
+  }
+  .lesson-page .margin {
+    top: 88px;
+  }
+}
+@media (max-width: 1023px) {
+  .lesson-page .margin {
+    position: static;
+    margin-top: 48px;
+  }
+  .lesson-prose h2 .section-number {
+    position: static;
+    margin-right: 12px;
+  }
+}
+@media (max-width: 767px) {
+  .lesson-sticky-action {
+    display: block;
+    position: fixed;
+    bottom: calc(56px + env(safe-area-inset-bottom));
+    left: 0;
+    right: 0;
+    padding: 8px 16px;
+    background: rgb(var(--sheet));
+    border-top: 1px solid rgb(var(--rule));
+    z-index: 25;
+  }
+  .lesson-summary,
+  .lesson-boundary p {
+    font-size: 17.5px;
+    line-height: 29px;
+  }
+  .derivation-lines li {
+    grid-template-columns: 16px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .derivation-lines aside {
+    grid-column: 2;
+  }
+  .lesson-page .interactive-card {
+    padding: 16px;
+  }
+  .instrument-plot {
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+  .practice-header {
+    display: block;
+  }
+  .practice-header h1 {
+    font-size: 25px;
+    line-height: 31px;
+  }
+  .practice-session-meta {
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  .lesson-prose h2 .section-number {
+    display: inline-block;
+  }
+  .lesson-page .margin {
+    margin-bottom: 64px;
+  }
+  .view-session .sheet-frame > .margin {
+    border-left: 2px solid rgb(var(--rule));
+  }
+}
