@@ -139,29 +139,36 @@
   "summary": "An integral accumulates many tiny contributions. A velocity-time strip has height velocity and width time, so its area is a small displacement. Refining the strips captures changing rates."
 }
 ---
-
 ## Intuition
 
-An integral accumulates many tiny contributions. A velocity-time strip has height velocity and width time, so its area is a small displacement. Refining the strips captures changing rates.
+Suppose you know a car’s velocity at every moment. To reconstruct its displacement, divide time into short slices. Within each slice, approximate the velocity as constant; velocity times duration gives a small displacement. Add the displacements.
+
+On a velocity–time graph these contributions look like thin rectangles. Make the rectangles narrower and the estimate improves. The definite integral is the limiting signed accumulation, not simply “an area” with no physical meaning.
 
 ## Formalism
 
-$$
-\int_a^b f(x)\,dx=\lim_{n\to\infty}\sum f(x_i)\Delta x
-$$
+For a continuous function on $[a,b]$, the definite integral is the limit of sums:
 
-Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs.
+$$\int_a^b f(x)\,dx=\lim_{n\to\infty}\sum_{i=1}^n f(x_i^*)\,\Delta x,\qquad\Delta x=\frac{b-a}{n}.$$
 
-[Explore limits](concept:limits). [Explore power rule](concept:power-rule).
+Values below the horizontal axis contribute negatively. Units multiply: integrating velocity in metres per second with respect to seconds gives metres. Integrating force with respect to displacement gives work in joules.
+
+When $F'=f$, the [fundamental theorem](concept:fundamental-theorem) evaluates the accumulation as $F(b)-F(a)$. An indefinite integral instead describes a family of antiderivatives, including an arbitrary constant.
 
 ## Worked example
 
-A constant rate is 3 per second for 4 seconds. Find its accumulated total.
+A cart has velocity $v(t)=2t\,\mathrm{m/s}$, where the coefficient has the units needed for $t$ in seconds. Find displacement from $0$ to $3\,\mathrm{s}$.
 
-Start with the defining relationship. Partition the input interval, multiply each local rate by its small width, and add. Positive and negative contributions keep their signs. Substitute the given values: **`3*4` = 12 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+The velocity rises from $0$ to $6\,\mathrm{m/s}$. The graph encloses a triangle with base $3\,\mathrm{s}$ and height $6\,\mathrm{m/s}$:
+
+$$\Delta s=\frac12(3\,\mathrm{s})(6\,\mathrm{m/s})=9\,\mathrm{m}.$$
+
+The antiderivative gives the same result: $\int_0^3 2t\,dt=[t^2]_0^3=9$, with the physical units restored as metres. As a check, the average velocity is $3\,\mathrm{m/s}$, so three seconds gives nine metres.
 
 ## Where it breaks
 
-A signed integral is not always geometric area. Convergence needs checking for unbounded functions or intervals.
+Signed accumulation and total amount can differ. If a cart reverses direction, integrating velocity gives displacement; integrating its absolute value gives distance travelled. Positive and negative contributions can cancel even though motion occurred.
 
-A common trap is: **dropping the width of a strip**. Check dimensions: a rate must be multiplied by an input interval before it becomes a total.
+The elementary antiderivative method needs its conditions. An unbounded function or infinite interval may require an improper integral that can diverge. A graph that looks narrow is not enough to establish a finite accumulation.
+
+Follow the connection to [work](concept:work), or use [substitution](concept:substitution) to rewrite an integral in a more natural variable.

@@ -16,3 +16,9 @@ Generator fuzzing detects runtime failures, not whether the physics model fits e
 Runtime item metadata also includes `concepts` (the focus node and its hard prerequisites), `misconceptionTags`, and the seed. Choice distractors resolve to individual named causes with different remediation. The initial curriculum has all eight declared item kinds; graph-point tasks currently use a one-dimensional number line, simulation assessment uses level-ground projectile range, and proof completion is a constrained skeleton. The content bank has bounded parameter ranges and repeated seeded draws, not infinitely many distinct contexts. Wider variant/context coverage requires authored templates and review.
 
 The initial authoring scripts are a bootstrap record. `refine-content.py` adds intermediate derivation equations and distractor-specific remediation; neither bootstrap script runs during builds. The editable MDX files are the final source of truth.
+
+## Curated expedition annotations
+
+`lib/expeditions.ts` supplies three presentation routes through existing authored concepts. Five landmarks summarize each route; they are not an exhaustive prerequisite sequence. The content build verifies every goal and landmark ID against the MDX catalog and checks the displayed formula with KaTeX. Runtime route sizes use the engine's complete ancestor graph, and every landmark's readiness uses `missing`; presentation never promotes a concept to ready or generates learner evidence.
+
+The Curiosity Studio expands the lesson bodies for fractions, units, vectors, derivatives, integrals, Newton's second law, energy conservation and electric fields. Generator contracts remain unchanged. The authored MDX remains the source of truth; rebuild the catalog rather than hand-editing compiled lesson HTML.

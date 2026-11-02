@@ -139,29 +139,34 @@
   "summary": "A unit is part of a measurement, not an annotation added afterward. A rate divides one kind of quantity by another. Dimensional consistency lets you reject equations before calculating."
 }
 ---
-
 ## Intuition
 
-A unit is part of a measurement, not an annotation added afterward. A rate divides one kind of quantity by another. Dimensional consistency lets you reject equations before calculating.
+A measurement is a number tied to a reference: $4\,\mathrm{m}$ means four copies of a metre. The unit is part of the information. A bare “4” cannot tell us whether we measured a length, a duration, or a mass.
+
+Units act like a type system for physical reasoning. Adding metres to seconds is as ill-formed as adding a length to a temperature. Multiplication and division can create new quantities: metres divided by seconds describe a rate of motion.
 
 ## Formalism
 
-$$
-[v]=LT^{-1},\quad[a]=LT^{-2},\quad[F]=MLT^{-2}
-$$
+A physical dimension describes the kind of quantity; a unit supplies its scale. Metres and centimetres share the length dimension $L$. Speed has dimension $LT^{-1}$ and acceleration has dimension $LT^{-2}$.
 
-Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator.
+$$[v]=\frac{L}{T},\qquad [a]=\frac{L}{T^2},\qquad [F]=MLT^{-2}.$$
 
-[Explore ratios](concept:ratios). [Explore exponents](concept:exponents).
+A valid equation has matching dimensions on both sides. Convert units by multiplying by a ratio equal to one, with units arranged to cancel. Converting units changes the numerical value, not the physical quantity.
+
+Dimensional agreement is necessary, but not sufficient: both $d=vt$ and $d=2vt$ have length units. Units cannot decide which numerical factor fits the model.
 
 ## Worked example
 
-Convert 3 kilometres to metres.
+Convert $72\,\mathrm{km/h}$ to metres per second:
 
-Start with the defining relationship. Speed is displacement per elapsed time. Acceleration is the change in that speed per elapsed time, introducing a second time denominator. Substitute the given values: **`1000*3` = 3000 m**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+$$72\,\frac{\mathrm{km}}{\mathrm{h}}\times\frac{1000\,\mathrm{m}}{1\,\mathrm{km}}\times\frac{1\,\mathrm{h}}{3600\,\mathrm{s}}=20\,\mathrm{m/s}.$$
+
+Kilometres cancel with kilometres; hours cancel with hours. At constant speed for $3\,\mathrm{s}$, the displacement magnitude is $20\,\mathrm{m/s}\times3\,\mathrm{s}=60\,\mathrm{m}$.
+
+**Check the scale:** multiplying km/h by $1000/3600$ should make the number smaller. A result of $259.2\,\mathrm{m/s}$ would suggest the conversion was inverted.
 
 ## Where it breaks
 
-Dimensions constrain a formula but cannot fix dimensionless constants or prove a physical law. Angles in radians are dimensionless ratios.
+A unit check does not validate assumptions, signs, vector direction or constants. Degrees and radians are both dimensionless in the dimensional sense, yet substituting degrees into a formula expecting radians gives a wrong number. Celsius and kelvin also require care: absolute temperatures have an offset even though temperature differences use the same scale size.
 
-A common trap is: **treating a correct number as sufficient**. State what quantity is measured and derive its unit from the defining ratio.
+Carry units through every calculation, and still ask what the model assumes. [Velocity](concept:velocity), [acceleration](concept:acceleration) and [Newton’s second law](concept:newton-2) make the units increasingly informative.

@@ -139,29 +139,34 @@
   "summary": "A vector carries both size and direction. Components record independent changes along chosen axes, so vector addition is just combining those changes axis by axis."
 }
 ---
-
 ## Intuition
 
-A vector carries both size and direction. Components record independent changes along chosen axes, so vector addition is just combining those changes axis by axis.
+Walking three metres east and four metres north does not put you seven metres from where you started. The two movements point in different directions. Their combined displacement is the diagonal of a right triangle.
+
+A vector stores both **magnitude and direction**. Components describe that vector relative to chosen axes. Rotate the axes and the components change; the physical displacement stays the same. Before adding forces or velocities, agree on the coordinate system.
 
 ## Formalism
 
-$$
-\mathbf a+\mathbf b=(a_x+b_x,a_y+b_y)
-$$
+In perpendicular Cartesian axes, write a two-dimensional vector as $\mathbf{u}=(u_x,u_y)$. Add matching components and compute length with Pythagoras:
 
-Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements.
+$$\mathbf{u}+\mathbf{v}=(u_x+v_x,u_y+v_y),\qquad |\mathbf{u}|=\sqrt{u_x^2+u_y^2}.$$
 
-[Explore trig](concept:trig). [Explore signed numbers](concept:signed-numbers).
+Multiplying by a positive scalar stretches a vector; a negative scalar also reverses its direction. A unit vector has length one and isolates direction. For nonzero $\mathbf{u}$, its unit vector is $\hat{\mathbf{u}}=\mathbf{u}/|\mathbf{u}|$.
+
+Use [coordinates](concept:coordinates) to locate the components and [trigonometry](concept:trig) when an angle and magnitude are given instead.
 
 ## Worked example
 
-Add (3,2) and (4,3). Enter the x-component.
+A drone travels $3\,\mathrm{m}$ east, then $4\,\mathrm{m}$ north. Choose east as positive $x$ and north as positive $y$.
 
-Start with the defining relationship. Place the second arrow at the head of the first. The final displacement equals the sum of horizontal and vertical movements. Substitute the given values: **`3+4` = 7 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+$$\Delta\mathbf{r}=(3,0)\,\mathrm{m}+(0,4)\,\mathrm{m}=(3,4)\,\mathrm{m}.$$
+
+Its displacement magnitude is $\sqrt{3^2+4^2}=5\,\mathrm{m}$, while its path length is $3+4=7\,\mathrm{m}$. Both values are correct; they answer different questions.
+
+If the drone now travels $3\,\mathrm{m}$ west, add $(-3,0)\,\mathrm{m}$. The final displacement becomes $(0,4)\,\mathrm{m}$. The sign encodes direction rather than “less distance.”
 
 ## Where it breaks
 
-Components depend on the coordinate axes; the physical arrow does not. A vector magnitude is never a signed component.
+Adding magnitudes generally does not give the magnitude of a vector sum. It works only for vectors pointing in the same direction. The component length formula above assumes perpendicular unit axes; it cannot be copied unchanged into arbitrary coordinates.
 
-A common trap is: **adding magnitudes for nonparallel vectors**. Add each component first, then take the length of the resulting vector.
+The zero vector has no unique direction, so normalizing it would divide by zero. In physics, also distinguish displacement from position, and speed from [velocity](concept:velocity). These distinctions become essential when you draw a [free-body diagram](concept:free-body).

@@ -139,29 +139,34 @@
   "summary": "Zoom into a smooth curve until it resembles a straight line. The derivative is the slope of that local line: output change per tiny input change. For position, that rate is velocity."
 }
 ---
-
 ## Intuition
 
-Zoom into a smooth curve until it resembles a straight line. The derivative is the slope of that local line: output change per tiny input change. For position, that rate is velocity.
+A speedometer answers a difficult question: how fast are you moving **now**, rather than over the last kilometre? An average rate compares two separated observations. An instantaneous rate asks what that comparison approaches as the observations get closer.
+
+Zoom into a smooth curve. Over a sufficiently small interval, its bend becomes hard to distinguish from a straight line. The derivative is the slope of that local line. It tells you the output change per unit input change near a particular point, including its sign.
 
 ## Formalism
 
-$$
-f\prime(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}h
-$$
+Start with the secant slope and let the input separation shrink:
 
-For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x.
+$$f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}.$$
 
-[Explore limits](concept:limits). [Explore slope](concept:slope).
+The quotient is defined for $h\ne0$; the limit can exist even though direct substitution gives $0/0$. We simplify the quotient first. A finite derivative requires the same limiting slope from the left and right.
+
+If position is $s(t)$ in metres and time is in seconds, $s'(t)$ has units $\mathrm{m/s}$. Differentiating again gives [acceleration](concept:acceleration). The prerequisite ideas are [slope](concept:slope) and [limits](concept:limits).
 
 ## Worked example
 
-For f(x)=x^2, find the derivative at x=3.
+Let $f(x)=x^2$. At $x=3$, the secant slope across an input step $h$ is
 
-Start with the defining relationship. For x squared, the secant quotient expands to 2x+h. As the interval shrinks, the extra h vanishes and leaves 2x. Substitute the given values: **`2*3` = 6 **. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+$$\frac{(3+h)^2-3^2}{h}=\frac{6h+h^2}{h}=6+h,\qquad h\ne0.$$
+
+For $h=0.1$, the slope is $6.1$; for $h=0.01$, it is $6.01$; for $h=-0.01$, it is $5.99$. Both sides approach $6$. Thus $f'(3)=6$.
+
+The derivative also supplies a local prediction: increasing the input from $3$ to $3.01$ should increase the output by approximately $6(0.01)=0.06$. The exact increase is $9.0601-9=0.0601$. The small discrepancy comes from the curvature we ignored.
 
 ## Where it breaks
 
-A corner or jump can destroy the limit. A derivative is a rate at a point, not the total change across a wide interval.
+For $f(x)=|x|$, the slope at zero approaches $-1$ from the left and $+1$ from the right. The function is continuous there but has no derivative. A corner is enough to break the local-line model.
 
-A common trap is: **using f(x)/x as the derivative**. Compare two nearby outputs and divide their difference by the input difference.
+Do not use $f(x)/x$ as the derivative: that measures a slope from the origin, not a local slope. And a derivative does not give the total change across a long interval. To accumulate changing rates, use an [integral](concept:integral).

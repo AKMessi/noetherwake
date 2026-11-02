@@ -139,29 +139,38 @@
   "summary": "When only conservative forces do work, kinetic and potential energy trade places while their sum stays fixed. A falling object loses height energy at the rate it gains motion energy."
 }
 ---
-
 ## Intuition
 
-When only conservative forces do work, kinetic and potential energy trade places while their sum stays fixed. A falling object loses height energy at the rate it gains motion energy.
+A rising ball slows down, but its energy has not vanished. In an ideal model, kinetic energy is exchanged for gravitational potential energy. On the way down, the exchange reverses.
+
+This perspective changes the problem. Instead of calculating every instant of the motion, compare the energy accounts at two states. You still need a clearly defined system and a record of any energy crossing its boundary.
 
 ## Formalism
 
-$$
-K_i+U_i=K_f+U_f
-$$
+When only conservative forces do work, mechanical energy is constant:
 
-Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero.
+$$K_i+U_i=K_f+U_f.$$
 
-[Explore kinetic energy](concept:kinetic-energy). [Explore potential energy](concept:potential-energy).
+Near Earth’s surface, $K=\tfrac12mv^2$ and $U=mgh$ with approximately constant $g$. If nonconservative forces do work on this mechanical account,
+
+$$K_i+U_i+W_{\mathrm{nc}}=K_f+U_f.$$
+
+Friction can reduce mechanical energy while increasing internal energy. Total energy is still conserved when the account includes the relevant surroundings. [Kinetic energy](concept:kinetic-energy), [potential energy](concept:potential-energy) and [work](concept:work) tell you which terms to include.
 
 ## Worked example
 
-Total mechanical energy is 3+4 J and potential energy is 4 J. Find kinetic energy.
+A $2\,\mathrm{kg}$ object is released from rest $5\,\mathrm{m}$ above the ground. Ignore air resistance and take $g=9.81\,\mathrm{m/s^2}$. Choose zero potential energy at the ground.
 
-Start with the defining relationship. Net work equals kinetic change, while conservative work is minus potential change. Equating them makes the total change zero. Substitute the given values: **`3` = 3 J**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+Initially $K_i=0$ and $U_i=2\times9.81\times5=98.1\,\mathrm{J}$. Just before impact $U_f=0$, so
+
+$$\frac12mv^2=mgh\quad\Rightarrow\quad v=\sqrt{2gh}=\sqrt{98.1}\,\mathrm{m/s}\approx9.90\,\mathrm{m/s}.$$
+
+The mass cancels because both energy expressions contain the same factor. In this ideal model, doubling mass doubles both available potential energy and the kinetic energy required for a given speed.
+
+**Check the scale:** the square root contains $\mathrm{m^2/s^2}$, so the result has speed units. The calculation gives speed, not the direction of velocity or the time of impact.
 
 ## Where it breaks
 
-Friction, external work or deformation can change mechanical energy; total energy requires including those channels.
+Mechanical energy is not conserved when drag or friction transfers energy into thermal motion. Add those transfers rather than declaring that energy “disappears.” The approximation $mgh$ also needs nearly constant gravity; it is unsuitable for large orbital height changes.
 
-A common trap is: **conserving kinetic energy by itself during a fall**. Track the sum of kinetic and potential terms between two chosen states.
+A zero reference for potential energy is a choice. Only potential differences affect the speed prediction. Energy alone generally cannot supply the direction or timing of motion; use forces and kinematics for those questions.

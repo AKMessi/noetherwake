@@ -140,29 +140,36 @@
   "summary": "Force changes momentum. For a constant mass, it changes velocity at a rate proportional to the net force and inversely proportional to the mass. The vector sum matters, not any single push."
 }
 ---
-
 ## Intuition
 
-Force changes momentum. For a constant mass, it changes velocity at a rate proportional to the net force and inversely proportional to the mass. The vector sum matters, not any single push.
+A force changes motion; it does not maintain motion by default. A cart can keep moving at constant velocity when its forces balance. What an unbalanced force controls is the **rate at which velocity changes**.
+
+Mass measures resistance to that change. Push two carts with the same net force: the cart with twice the mass accelerates half as much. Push the same cart twice as hard, and its acceleration doubles, within this model.
 
 ## Formalism
 
-$$
-\sum\mathbf F=m\mathbf a
-$$
+In an inertial frame, the total external force equals the rate of change of momentum. For a constant-mass object this becomes
 
-Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma.
+$$\sum\mathbf{F}_{\mathrm{ext}}=\frac{d\mathbf{p}}{dt}=m\frac{d\mathbf{v}}{dt}=m\mathbf{a}.$$
 
-[Explore newton 1](concept:newton-1). [Explore acceleration](concept:acceleration). [Explore equations](concept:equations).
+The sum matters. Draw a [free-body diagram](concept:free-body), choose axes, and add signed components before dividing by mass. One newton is $1\,\mathrm{kg\,m/s^2}$, so force divided by kilograms has acceleration units.
+
+The mathematical work is [rearranging an equation](concept:equations); the physical work is deciding which forces belong in the sum. Start with [Newton’s first law](concept:newton-1) and the meaning of [acceleration](concept:acceleration).
 
 ## Worked example
 
-A net force of 3 N acts on mass 4 kg. Find acceleration.
+A $2\,\mathrm{kg}$ cart experiences an $8\,\mathrm{N}$ horizontal push to the right and $2\,\mathrm{N}$ of friction to the left. Take right as positive.
 
-Start with the defining relationship. Begin with net force as momentum rate: F=dp/dt. For constant mass p=mv, differentiation gives m dv/dt, so F=ma. Substitute the given values: **`3/4` = 0.75 m/s^2**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+$$F_{\mathrm{net},x}=8\,\mathrm{N}-2\,\mathrm{N}=6\,\mathrm{N},\qquad a_x=\frac{6\,\mathrm{N}}{2\,\mathrm{kg}}=3\,\mathrm{m/s^2}.$$
+
+If the cart initially moves left at $-4\,\mathrm{m/s}$, it still accelerates right. After one second with the same forces, its velocity is $-1\,\mathrm{m/s}$. It is moving left but slowing down. Acceleration and velocity need not point the same way.
+
+**Check the model:** we assumed the forces stay constant over that second. Friction can change when the cart stops or reverses, so extrapolating this calculation indefinitely would need a new force analysis.
 
 ## Where it breaks
 
-Use the total external force and constant mass. Variable-mass systems require a momentum-flow account rather than blindly using F=ma.
+Using the largest individual force instead of the net force gives the wrong acceleration. A balanced-force object can have nonzero velocity; zero acceleration does not imply rest.
 
-A common trap is: **using the largest force instead of the net force**. Add signed force components first, then divide by the mass.
+The simple $\mathbf{F}=m\mathbf{a}$ form here assumes constant mass and an inertial frame. Rockets require careful momentum-flow accounting, and rotating frames need additional apparent-force terms. At relativistic speeds, momentum is not $m\mathbf{v}$.
+
+Next, connect force acting over a displacement to [work](concept:work) and [kinetic energy](concept:kinetic-energy).

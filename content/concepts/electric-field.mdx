@@ -140,29 +140,36 @@
   "summary": "An electric field describes what force a small positive test charge would feel at each point. It separates the source arrangement from the probe used to measure it."
 }
 ---
-
 ## Intuition
 
-An electric field describes what force a small positive test charge would feel at each point. It separates the source arrangement from the probe used to measure it.
+An electric field describes what a small positive test charge would experience at a location. It turns “this charge pushes that charge” into a spatial map: a source creates a field, and a charge placed in that field feels a force.
+
+The field exists as a description of the source even before a test charge is inserted. Its direction is defined using a positive test charge. A negative charge feels a force in the opposite direction.
 
 ## Formalism
 
-$$
-\mathbf E=\mathbf F/q_{test},\qquad\mathbf F=q\mathbf E
-$$
+For a sufficiently small test charge $q$, define
 
-Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position.
+$$\mathbf{E}=\frac{\mathbf{F}}{q},\qquad\mathbf{F}=q\mathbf{E}.$$
 
-[Explore coulomb](concept:coulomb). [Explore newton 2](concept:newton-2). [Explore vectors](concept:vectors).
+The field unit is newtons per coulomb, equivalently volts per metre. For an isolated point source charge $Q$ in vacuum,
+
+$$\mathbf{E}(r)=k\frac{Q}{r^2}\hat{\mathbf{r}},\qquad r>0.$$
+
+Here $\hat{\mathbf{r}}$ points away from the source. Positive $Q$ gives an outward field; negative $Q$ gives an inward field. Use [Coulomb’s law](concept:coulomb), [charge](concept:charge) and [vectors](concept:vectors) to connect the magnitude and direction.
 
 ## Worked example
 
-Force on a positive 3 C probe is 4 N right. Find signed field.
+At one location, a uniform field points right with magnitude $200\,\mathrm{N/C}$. A particle of charge $-3\,\mathrm{\mu C}$ is placed there. What force acts on it?
 
-Start with the defining relationship. Divide the Coulomb force on a test charge by that charge. The probe factor cancels, leaving a property of the sources and the position. Substitute the given values: **`4/3` = 1.3333 N/C**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+Convert the charge first: $-3\,\mathrm{\mu C}=-3\times10^{-6}\,\mathrm{C}$. With right as positive,
+
+$$F_x=qE_x=(-3\times10^{-6}\,\mathrm{C})(200\,\mathrm{N/C})=-6\times10^{-4}\,\mathrm{N}.$$
+
+The force has magnitude $0.0006\,\mathrm{N}$ and points left. Coulombs cancel, and the negative sign carries direction. Changing the particle’s charge changes the force, not the externally specified field.
 
 ## Where it breaks
 
-The test charge must not significantly rearrange the source. A negative probe feels force opposite the field.
+A large test charge can rearrange the sources, changing the field you were trying to measure. The test-charge definition assumes its disturbance is negligible. The point-source formula is also singular at $r=0$ and does not describe the interior structure of a real charged object.
 
-A common trap is: **field direction follows a negative probe force**. Define direction with a positive test charge, then apply the sign of the actual charge.
+Field lines are a drawing convention, not physical tracks that charges must follow. A moving particle’s trajectory also depends on its initial velocity. With multiple sources, add the field vectors using [superposition](concept:superposition); do not simply add their magnitudes.

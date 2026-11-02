@@ -136,29 +136,42 @@
   "summary": "A fraction counts equal pieces of a specified whole. Three quarters of a metre and three quarters of a minute share arithmetic, but describe different things. The denominator names the size of the piece; the numerator counts pieces."
 }
 ---
-
 ## Intuition
 
-A fraction counts equal pieces of a specified whole. Three quarters of a metre and three quarters of a minute share arithmetic, but describe different things. The denominator names the size of the piece; the numerator counts pieces.
+A fraction answers two questions: **how large is one piece, and how many pieces do we have?** In $3/4$, the denominator says the whole was split into four equal pieces; the numerator counts three of them. The whole matters: half a metre and half a kilometre are different lengths.
+
+Adding fractions is counting pieces of the same size. Three quarter-metres and two quarter-metres make five quarter-metres. Adding the denominators would silently change the size of the pieces while you count them.
+
+Picture a number line marked every quarter-metre. Start at zero, take three steps, then two more. You finish one quarter beyond one metre. Fractions can describe a position beyond the whole; they are not restricted to numbers below one.
 
 ## Formalism
 
-$$
-\frac a b+\frac c b=\frac{a+c}{b}
-$$
+For $b\ne0$, the ratio $a/b$ represents $a$ copies of $1/b$. Multiplying numerator and denominator by the same nonzero factor preserves the value:
 
-Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged.
+$$\frac{a}{b}=\frac{ka}{kb},\qquad k\ne0.$$
 
+This is how we make unlike pieces comparable. For addition, first choose a common denominator:
 
+$$\frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd},\qquad b,d\ne0.$$
+
+The product $bd$ always works; a smaller common multiple can make the arithmetic easier. Keep the physical unit outside the numerical fraction. See [units and dimensions](concept:units) for why lengths can be added to lengths, but not to times.
 
 ## Worked example
 
-A ribbon is 3/4 metres long. You add 4/4 metres. What is the total in metres?
+A cart moves $3/4\,\mathrm{m}$, then another $2/3\,\mathrm{m}$ in the same direction. What distance has it covered?
 
-Start with the defining relationship. Cut every whole into the same number of pieces before adding. Doubling both the piece count and pieces per whole leaves the amount unchanged. Substitute the given values: **`(3+4)/4` = 1.75 m**. Keep the unit through the calculation and check whether the sign and scale fit the situation.
+1. Choose twelfths of a metre as the common piece size.
+2. Rewrite $3/4=9/12$ and $2/3=8/12$.
+3. Count the pieces: $9/12+8/12=17/12$.
+
+$$d=\left(\frac34+\frac23\right)\mathrm{m}=\frac{17}{12}\,\mathrm{m}\approx1.417\,\mathrm{m}.$$
+
+**Check the scale:** both distances are below one metre, so the total must be below two metres. It must also exceed either individual distance. Our result passes both checks.
 
 ## Where it breaks
 
-A denominator cannot be zero. Adding denominators changes the size of the pieces and is not addition of quantities.
+Division by zero is undefined. A fraction also loses its meaning when its reference whole is ambiguous: combining “half a tank” from two different tank sizes requires converting to a common volume first.
 
-A common trap is: **adding denominators**. Rename both fractions with one common denominator, then add only the numerators.
+**Try the trap:** $1/2+1/2$ is one whole, not $2/4$. Two halves do not shrink into two quarters. Draw the pieces when a rule feels like a trick.
+
+Next, use [ratios](concept:ratios) to compare quantities and [signed numbers](concept:signed-numbers) to track direction.
