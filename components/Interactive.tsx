@@ -76,7 +76,7 @@ export default function Interactive({ concept }: { concept: Concept }) {
   const last = spec.kind === "motion" ? points[frame] : undefined;
   return (
     <section className="interactive-card" aria-labelledby="interactive-title">
-      <div className="eyebrow">Teaching interactive</div>
+      <p className="caption">Teaching interactive</p>
       <h3 id="interactive-title">Test the relationship</h3>
       <p>{spec.prompt}</p>
       <div className="instrument-formula">

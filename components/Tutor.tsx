@@ -1,10 +1,7 @@
 "use client";
-import LessonView from "./LessonView";
 import StudioHome from "./StudioHome";
-import FieldNotes from "./FieldNotes";
-import SessionComplete from "./SessionComplete";
-import Preferences from "./Preferences";
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { ArrowRight, Check, Clock3, X } from "lucide-react";
 import {
   ancestors,
@@ -29,11 +26,20 @@ import {
 } from "@noetherwake/engine";
 import { catalog, concept, goals } from "@/lib/catalog";
 import { learnerSchema, readState, saveState } from "@/lib/store";
-import AtlasView from "./AtlasView";
-import Library from "./Library";
-import Assessment from "./Assessment";
+import Assessment, { type AssessmentDraft } from "./Assessment";
 import ProjectileLab from "./ProjectileLab";
 import { EvidenceMark } from "./ui/WorkingPage";
+const loading = () => (
+  <p className="caption" role="status">
+    Opening the working page…
+  </p>
+);
+const LessonView = dynamic(() => import("./LessonView"), { loading });
+const FieldNotes = dynamic(() => import("./FieldNotes"), { loading });
+const SessionComplete = dynamic(() => import("./SessionComplete"), { loading });
+const Preferences = dynamic(() => import("./Preferences"), { loading });
+const AtlasView = dynamic(() => import("./AtlasView"), { loading });
+const Library = dynamic(() => import("./Library"), { loading });
 type View =
   | "today"
   | "map"
@@ -123,7 +129,6 @@ function GoalDialog({
               onChange={() => setGoal(g.id)}
             />
             <div>
-              <span className="eyebrow">{g.label}</span>
               <strong>{g.title}</strong>
               <p>{g.description}</p>
             </div>
@@ -168,6 +173,7 @@ export default function Tutor() {
     Record<string, Knowledge>
   >({});
   const itemSequence = useRef(0);
+  const drafts = useRef(new Map<string, AssessmentDraft>());
   const hydrated = useRef(false),
     session = useRef<{
       start: number;
@@ -247,6 +253,14 @@ export default function Tutor() {
         .map(Number);
       const color =
         "#" + channels.map((c) => c.toString(16).padStart(2, "0")).join("");
+      const dark =
+        state.theme === "dark" || (state.theme === "system" && media.matches);
+      document
+        .querySelector('link[rel="manifest"]')
+        ?.setAttribute(
+          "href",
+          dark ? "/manifest-dark.webmanifest" : "/manifest.webmanifest",
+        );
       document
         .querySelectorAll('meta[name="theme-color"]')
         .forEach((meta) => meta.setAttribute("content", color));
@@ -709,6 +723,8 @@ export default function Tutor() {
                       <Assessment
                         key={item.id}
                         item={item}
+                        draft={drafts.current.get(item.id)}
+                        onDraft={(draft) => drafts.current.set(item.id, draft)}
                         concept={lesson}
                         faded={stage(state, lesson.id, now) !== "independent"}
                         onEvidence={evidence}
@@ -765,6 +781,8 @@ export default function Tutor() {
                     <Assessment
                       key={item.id}
                       item={item}
+                      draft={drafts.current.get(item.id)}
+                      onDraft={(draft) => drafts.current.set(item.id, draft)}
                       concept={lesson}
                       diagnostic
                       onEvidence={evidence}

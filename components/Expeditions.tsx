@@ -11,7 +11,8 @@ import { catalog, concept } from "@/lib/catalog";
 import { expeditions } from "@/lib/expeditions";
 import { evidenceView } from "@/lib/presentation";
 import { EvidenceMark } from "./ui/WorkingPage";
-import MathText from "./Math";
+import dynamic from "next/dynamic";
+const MathText = dynamic(() => import("./Math"));
 export function RouteRuler({
   state,
   now,

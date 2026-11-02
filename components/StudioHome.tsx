@@ -102,7 +102,7 @@ export default function StudioHome({
     </>
   );
   return (
-    <div className="working-today">
+    <div className={`working-today ${!state.onboarded ? "first-visit" : ""}`}>
       <Sheet margin={margin}>
         <header className="today-header">
           <time dateTime={new Date(now).toISOString()}>{shortDate(now)}</time>
@@ -138,14 +138,12 @@ export default function StudioHome({
               <button
                 className="secondary"
                 onClick={() =>
-                  document
-                    .getElementById("today-prediction")
-                    ?.scrollIntoView({
-                      behavior: matchMedia("(prefers-reduced-motion: reduce)")
-                        .matches
-                        ? "instant"
-                        : "smooth",
-                    })
+                  document.getElementById("today-prediction")?.scrollIntoView({
+                    behavior: matchMedia("(prefers-reduced-motion: reduce)")
+                      .matches
+                      ? "instant"
+                      : "smooth",
+                  })
                 }
               >
                 Try a prediction first

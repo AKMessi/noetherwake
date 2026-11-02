@@ -19,6 +19,17 @@ import {
   type Item,
   type CheckResult,
 } from "@noetherwake/engine";
+export interface AssessmentDraft {
+  answer: string;
+  unit: string;
+  confidence: number | null;
+  hints: number;
+  result: CheckResult | null;
+  explanation: string;
+  rubric: boolean | null;
+  keyboard: boolean;
+  startedAt: number;
+}
 interface Props {
   item: Item;
   concept: Concept;
@@ -27,6 +38,8 @@ interface Props {
   onEvidence: (e: Evidence) => void;
   onNext: () => void;
   onSkip?: () => void;
+  draft?: AssessmentDraft;
+  onDraft?: (draft: AssessmentDraft) => void;
 }
 export default function Assessment({
   item,
@@ -36,26 +49,54 @@ export default function Assessment({
   onEvidence,
   onNext,
   onSkip,
+  draft,
+  onDraft,
 }: Props) {
   const [answer, setAnswer] = useState(
-      item.kind === "simulation"
-        ? "20"
-        : item.kind === "point"
-          ? "0"
-          : item.kind === "ordering"
-            ? "A,B,C"
-            : "",
+      draft?.answer ??
+        (item.kind === "simulation"
+          ? "20"
+          : item.kind === "point"
+            ? "0"
+            : item.kind === "ordering"
+              ? "A,B,C"
+              : ""),
     ),
-    [unit, setUnit] = useState(""),
-    [confidence, setConfidence] = useState<number | null>(null),
-    [hints, setHints] = useState(faded ? 1 : 0),
-    [result, setResult] = useState<CheckResult | null>(null),
+    [unit, setUnit] = useState(draft?.unit ?? ""),
+    [confidence, setConfidence] = useState<number | null>(
+      draft?.confidence ?? null,
+    ),
+    [hints, setHints] = useState(draft?.hints ?? (faded ? 1 : 0)),
+    [result, setResult] = useState<CheckResult | null>(draft?.result ?? null),
     [busy, setBusy] = useState(false),
-    [explanation, setExplanation] = useState(""),
-    [rubric, setRubric] = useState<boolean | null>(null),
-    [keyboard, setKeyboard] = useState(false);
-  const start = useRef(Date.now()),
+    [explanation, setExplanation] = useState(draft?.explanation ?? ""),
+    [rubric, setRubric] = useState<boolean | null>(draft?.rubric ?? null),
+    [keyboard, setKeyboard] = useState(draft?.keyboard ?? false);
+  const start = useRef(draft?.startedAt ?? Date.now()),
     input = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    onDraft?.({
+      answer,
+      unit,
+      confidence,
+      hints,
+      result,
+      explanation,
+      rubric,
+      keyboard,
+      startedAt: start.current,
+    });
+  }, [
+    answer,
+    unit,
+    confidence,
+    hints,
+    result,
+    explanation,
+    rubric,
+    keyboard,
+    onDraft,
+  ]);
   async function submit() {
     if (!answer.trim() || confidence === null || busy || result) return;
     setBusy(true);
@@ -121,7 +162,11 @@ export default function Assessment({
     });
   }
   return (
-    <section className="assessment" aria-labelledby="question-title">
+    <section
+      className="assessment"
+      data-item={item.id}
+      aria-labelledby="question-title"
+    >
       <p className="assessment-stage caption">
         {diagnostic
           ? "Placement question"

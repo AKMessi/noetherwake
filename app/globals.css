@@ -3645,3 +3645,43 @@ svg text {
     margin-left: 16px;
   }
 }
+.detail-handle {
+  height: 44px;
+  min-height: 44px;
+}
+.mobile-detail:not(.expanded) .detail-heading h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mobile-detail .detail-heading > div {
+  min-width: 0;
+}
+.mobile-bottom-nav {
+  column-gap: 8px;
+  padding-inline: 8px;
+}
+@media (max-width: 1023px) {
+  .working-today.first-visit {
+    display: flex;
+    flex-direction: column;
+  }
+  .first-visit > .sheet-frame {
+    display: contents;
+  }
+  .first-visit > .sheet-frame > .sheet {
+    order: 0;
+  }
+  .first-visit > .today-prediction {
+    order: 1;
+  }
+  .first-visit > .sheet-frame > .margin {
+    order: 2;
+  }
+  .first-visit > .expeditions {
+    order: 3;
+  }
+  .first-visit > .sheet-frame > .margin {
+    margin-top: 0;
+  }
+}
