@@ -1,14 +1,19 @@
-# Field Atlas
-A personal scientific atlas: warm paper, blue ink, copper annotations, and visible evidence. The recommendation is the point of entry; the atlas explains how it connects; the learning instrument lets the learner test it.
+# Noetherwake — The Curiosity Studio
 
-## Implementation milestones
-1. Authored themes, local typography, masthead and learning desk.
-2. Goal-derived atlas, semantic node states, dependency navigation and evidence inspector.
-3. Linked instruments, focused solving, confidence and uncertain feedback.
-4. Journey verification, responsive screenshots and production build.
+The experience should make mathematics and physics feel like a world worth investigating. A warm paper workspace, carbon-black editorial panels, acid-yellow highlights, oversized serif headlines, precise monospace annotations and original vector diagrams establish the visual language. All typography remains bundled locally.
 
-## Contracts
-The pure engine owns planning, readiness, grading and scheduling. Presentation derives graph layouts only. IndexedDB version 1 and backups remain compatible. Unknown priors never become invented observations. All fonts are local and licensed. Controls need keyboard operation and visible focus; touch controls are at least 44px. Both themes and reduced motion must be checked.
+## Learning experience
 
-## Verification
-Run typecheck, engine tests, eval, content validation through production build, and Playwright with axe. Review 1440×900, 768×1024, 390×844; initial, uncertain, incorrect, locked, review and completed states. Screenshots and actual results belong in docs/DESIGN_VERIFICATION.md.
+- A learning studio makes the engine's next action prominent and explains the evidence behind it. New learners see an invitation to placement, never invented progress.
+- A live projectile laboratory invites a prediction, then reveals a model with explicit units, linked trajectories, numerical measurements and physical assumptions. Exploration is formative and never changes mastery.
+- Three curated expeditions connect existing authored lessons through meaningful questions: motion and energy, the mathematics of change, and fields and circuits. Readiness always comes from the engine.
+- The library exposes strand filters, actual prerequisite states and useful empty states. Lessons connect their prerequisites, downstream applications, misconceptions and model boundaries.
+- The journal brings actual errors and supported responses back into view alongside stored reflections. Its entries identify authored misconception signals when available; it never invents a diagnosis.
+
+## Architecture and compatibility
+
+Pure engine functions retain exclusive ownership of readiness, grading, planning and memory. New physical models are deterministic functions with explicit units and analytic checks. There are no schema migrations, remote assets, telemetry, accounts or fabricated evidence. The static export and offline worker remain the production delivery path. Existing JSON backups and IndexedDB v1 remain compatible.
+
+## Verification contract
+
+Run engine tests and seeded evaluation before UI work. Validate all 67 lessons and all 201 templates over 1,000 seeds each. Run strict type checking, a production build, size budgets and browser journeys. Add meaningful browser coverage for the new prediction/reveal model, expedition navigation, search and evidence review. Check keyboard operation, reduced motion, light/dark contrast and layouts at 1440×900, 768×1024 and 390×844. Record actual measurements and unavailable checks in DESIGN_VERIFICATION.md. Do not infer human learning effectiveness from synthetic checks.
