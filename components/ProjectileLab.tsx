@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { ArrowUpRight, FlaskConical, Play, RotateCcw } from "lucide-react";
 import { projectile } from "@noetherwake/engine";
-
+import { Readout, useReducedMotion } from "./ui/WorkingPage";
+import Gap from "./ui/Gap";
 export default function ProjectileLab({
   onConcept,
 }: {
@@ -13,265 +13,390 @@ export default function ProjectileLab({
     [prediction, setPrediction] = useState<number | null>(null),
     [revealed, setRevealed] = useState(false),
     [progress, setProgress] = useState(1),
-    [run, setRun] = useState(0);
-  const gravity = planet === "earth" ? 9.81 : 1.62,
-    speed = 12;
-  const flight = useMemo(
-    () => projectile(speed, angle, gravity),
-    [angle, gravity],
-  );
+    [run, setRun] = useState(0),
+    reduced = useReducedMotion();
+  const speed = 12,
+    gravity = planet === "earth" ? 9.81 : 1.62;
   const comparison = useMemo(
-    () =>
-      [30, 45, 60].map((a) => ({ angle: a, ...projectile(speed, a, gravity) })),
-    [gravity],
-  );
-  const extent = (speed * speed) / gravity;
-  const toPoint = (p: { x: number; y: number }) =>
-    `${48 + (p.x / extent) * 490},${242 - (p.y / (extent / 2)) * 190}`;
-  const path = (points: { x: number; y: number }[]) =>
-    points.map((p, i) => `${i ? "L" : "M"}${toPoint(p)}`).join(" ");
-  const ball = flight.points[Math.min(80, Math.floor(progress * 80))];
+      () =>
+        [30, 45, 60].map((a) => ({
+          angle: a,
+          ...projectile(speed, a, gravity),
+        })),
+      [gravity],
+    ),
+    flight = useMemo(() => projectile(speed, angle, gravity), [angle, gravity]);
+  const winner = comparison.reduce((a, b) => (a.range > b.range ? a : b)),
+    predicted = comparison.find((f) => f.angle === prediction),
+    extent = winner.range * 1.05,
+    scale = 620 / extent,
+    maxDuration = Math.max(
+      ...comparison.map((f) => f.duration),
+      flight.duration,
+    );
+  const point = (p: { x: number; y: number }) =>
+    `${64 + p.x * scale},${340 - p.y * scale}`;
+  const path = (
+    points: { t: number; x: number; y: number }[],
+    animated: boolean,
+  ) =>
+    points
+      .filter((p) => !animated || p.t <= progress * maxDuration)
+      .map((p, i) => `${i ? "L" : "M"}${point(p)}`)
+      .join(" ");
   useEffect(() => {
-    if (!revealed) return;
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!revealed || reduced) {
       setProgress(1);
       return;
     }
-    let frame = 0,
+    let handle = 0,
       start = 0;
-    const tick = (now: number) => {
-      if (!start) start = now;
-      const p = Math.min(1, (now - start) / 1600);
+    const duration = Math.min(2400, maxDuration * 1000);
+    const tick = (time: number) => {
+      if (!start) start = time;
+      const p = Math.min(1, (time - start) / duration);
       setProgress(p);
-      if (p < 1) frame = requestAnimationFrame(tick);
+      if (p < 1) handle = requestAnimationFrame(tick);
     };
     setProgress(0);
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [revealed, run, angle, planet]);
+    handle = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(handle);
+  }, [revealed, reduced, run, angle, planet, maxDuration]);
+  const trajectories =
+    angle === 30 || angle === 45 || angle === 60
+      ? comparison
+      : [...comparison, { angle, ...flight }];
   return (
-    <section className="projectile-lab" aria-labelledby="lab-title">
-      <div className="lab-visual">
-        <div className="lab-caption">
-          <span>
-            <i /> EXPERIMENT 001
-          </span>
-          <span>THE PERFECT THROW</span>
-        </div>
-        <svg
-          viewBox="0 0 580 290"
-          role="img"
-          aria-label={
-            revealed
-              ? `Projectile at ${angle} degrees. Range ${flight.range.toFixed(2)} metres on ${planet}. Dashed lines compare 30, 45 and 60 degree launches.`
-              : "Three possible projectile paths. Make a prediction to reveal their measured ranges."
-          }
-        >
-          <defs>
-            <pattern
-              id="lab-grid"
-              width="35"
-              height="35"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M35 0H0V35"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth=".5"
-                opacity=".12"
-              />
-            </pattern>
-          </defs>
-          <rect x="48" y="27" width="490" height="215" fill="url(#lab-grid)" />
-          <path
-            d="M48 22V242H552"
-            fill="none"
-            stroke="currentColor"
-            opacity=".35"
-          />
-          {[0, 0.25, 0.5, 0.75, 1].map((p) => (
-            <g key={p}>
-              <path
-                d={`M${48 + p * 490} 242v5`}
-                stroke="currentColor"
-                opacity=".5"
-              />
-              <text x={48 + p * 490} y="266" textAnchor="middle">
-                {revealed
-                  ? (p * extent).toFixed(1)
-                  : ["0", "", "", "", "?"][p * 4]}
-              </text>
-            </g>
-          ))}
-          <text x="542" y="286" textAnchor="end">
-            distance / m
-          </text>
-          <text x="17" y="30" transform="rotate(-90 17 30)" textAnchor="end">
-            height / m
-          </text>
-          {comparison.map((f) => (
-            <g key={f.angle}>
-              <path
-                d={path(f.points)}
-                fill="none"
-                stroke="currentColor"
-                opacity={revealed ? 0.3 : 0.19}
-                strokeDasharray="5 6"
-                strokeWidth="1.3"
-              />
-              <text
-                x={48 + (f.range / extent) * 490}
-                y={f.angle === 60 ? 212 : 229}
-                textAnchor="middle"
+    <section className="projectile-lab working-lab" aria-labelledby="lab-title">
+      <header className="lab-heading">
+        <span className="section-number">Experiment 1</span>
+        <h2 id="lab-title">Projectile range</h2>
+        <p>
+          Same speed, different angles. Predict, then compare the measured
+          paths.
+        </p>
+      </header>
+      <div className="lab-bench">
+        <div className="lab-sheet">
+          <figure>
+            <div className="lab-plot measured-figure measurement-grid">
+              <svg
+                viewBox="0 0 720 400"
+                role="img"
+                aria-label={
+                  revealed
+                    ? `Equal-scale trajectory plot on ${planet}. ${angle} degrees: range ${flight.range.toFixed(2)} metres.`
+                    : "Equal-scale axes for a projectile prediction. Measurements appear after testing."
+                }
               >
-                {f.angle}°
-              </text>
-            </g>
-          ))}
+                <path
+                  d="M64 30V340H696"
+                  fill="none"
+                  stroke="rgb(var(--rule-strong))"
+                />
+                <path
+                  d="M64 340H696"
+                  stroke="rgb(var(--ink))"
+                  strokeWidth="2"
+                />
+                {[0, 0.25, 0.5, 0.75, 1].map((p) => (
+                  <g key={p}>
+                    <path
+                      d={`M${64 + p * 620} 340v8`}
+                      stroke="rgb(var(--rule-strong))"
+                    />
+                    <text x={64 + p * 620} y="370" textAnchor="middle">
+                      {(p * extent).toFixed(1)}
+                    </text>
+                  </g>
+                ))}
+                {[0.125, 0.25, 0.375, 0.5].map((p) => (
+                  <g key={p}>
+                    <path
+                      d={`M56 ${340 - p * 620}h8`}
+                      stroke="rgb(var(--rule-strong))"
+                    />
+                    <text x="48" y={344 - p * 620} textAnchor="end">
+                      {(p * extent).toFixed(1)}
+                    </text>
+                  </g>
+                ))}
+                <text x="684" y="394" textAnchor="end">
+                  range / m
+                </text>
+                <text x="64" y="20">
+                  height / m
+                </text>
+                <circle cx="64" cy="340" r="4" fill="rgb(var(--ink))" />
+                {!revealed && (
+                  <>
+                    <path
+                      d="M64 340l40 -24M64 340l32 -32M64 340l24 -40"
+                      fill="none"
+                      stroke="rgb(var(--ink-3))"
+                      strokeDasharray="4 4"
+                    />
+                    {predicted && (
+                      <g>
+                        <path
+                          d={`M${64 + predicted.range * scale} 326v28`}
+                          stroke="rgb(var(--ochre-ink))"
+                          strokeWidth="2"
+                        />
+                        <text
+                          x={Math.min(580, 64 + predicted.range * scale)}
+                          y="308"
+                          textAnchor="end"
+                          className="prediction-label"
+                        >
+                          Your prediction: {prediction}°
+                        </text>
+                      </g>
+                    )}
+                  </>
+                )}
+                {revealed &&
+                  trajectories.map((f) => {
+                    const chosen = f.angle === prediction,
+                      color =
+                        f.angle === winner.angle
+                          ? "rgb(var(--cobalt))"
+                          : chosen
+                            ? "rgb(var(--ochre-ink))"
+                            : "rgb(var(--ink))",
+                      landed = progress * maxDuration >= f.duration,
+                      ball =
+                        f.points[
+                          Math.min(
+                            80,
+                            Math.floor(
+                              Math.min(
+                                1,
+                                (progress * maxDuration) / f.duration,
+                              ) * 80,
+                            ),
+                          )
+                        ];
+                    return (
+                      <g key={f.angle}>
+                        <path
+                          d={path(f.points, true)}
+                          fill="none"
+                          stroke={color}
+                          strokeWidth={f.angle === angle ? 2.5 : 1.5}
+                          strokeDasharray={f.angle === 60 ? "6 4" : undefined}
+                        />
+                        {!landed && (
+                          <circle
+                            cx={64 + ball.x * scale}
+                            cy={340 - ball.y * scale}
+                            r="4"
+                            fill={color}
+                          />
+                        )}
+                        <text
+                          x={64 + f.range * 0.5 * scale}
+                          y={324 - f.height * scale - (f.angle === 60 ? 8 : 0)}
+                          textAnchor="middle"
+                          style={{ fill: color }}
+                        >
+                          {f.angle}°{chosen ? " · yours" : ""}
+                        </text>
+                        {landed && (
+                          <path
+                            d={`M${64 + f.range * scale} 332v16`}
+                            stroke={color}
+                            strokeWidth="2"
+                          />
+                        )}
+                      </g>
+                    );
+                  })}
+              </svg>
+            </div>
+            <figcaption className="figure-caption">
+              Fig. 1. Equal distances on both axes represent equal lengths.
+              Launch speed {speed} m/s; constant gravity {gravity} m/s². No air
+              resistance, equal launch and landing heights. Exploration adds no
+              mastery evidence.
+            </figcaption>
+          </figure>
+          {revealed && predicted && (
+            <div className="lab-outcome" aria-live="polite">
+              <p>
+                {winner.angle}° travelled furthest: {winner.range.toFixed(2)} m.
+                You predicted {prediction}°, which travelled{" "}
+                {predicted.range.toFixed(2)} m.
+              </p>
+              {(reduced || progress >= 1) && (
+                <Gap
+                  yours={predicted.range}
+                  correct={winner.range}
+                  unit="m"
+                  matches={prediction === winner.angle}
+                />
+              )}
+            </div>
+          )}
           {revealed && (
-            <>
-              <path
-                d={path(flight.points)}
-                className="flight-path"
-                fill="none"
-                strokeWidth="3"
-              />
-              <circle
-                cx={toPoint(ball).split(",")[0]}
-                cy={toPoint(ball).split(",")[1]}
-                r="7"
-                className="flight-ball"
-              />
-              <circle cx="48" cy="242" r="5" fill="currentColor" />
-              <path
-                d={`M48 242l${36 * Math.cos((angle * Math.PI) / 180)} ${-36 * Math.sin((angle * Math.PI) / 180)}`}
-                stroke="currentColor"
-                strokeWidth="2"
-              />
-            </>
-          )}
-          {!revealed && (
-            <g className="lab-question">
-              <circle cx="290" cy="115" r="33" />
-              <text x="290" y="128" textAnchor="middle">
-                ?
-              </text>
-            </g>
-          )}
-        </svg>
-        <div className="lab-measurements" aria-live="polite">
-          <div>
-            <span>HORIZONTAL RANGE</span>
-            <output data-testid="lab-range">
-              {revealed ? flight.range.toFixed(2) : "—"}
-              <small> m</small>
-            </output>
-          </div>
-          <div>
-            <span>MAXIMUM HEIGHT</span>
-            <output>
-              {revealed ? flight.height.toFixed(2) : "—"}
-              <small> m</small>
-            </output>
-          </div>
-          <div>
-            <span>TIME IN FLIGHT</span>
-            <output>
-              {revealed ? flight.duration.toFixed(2) : "—"}
-              <small> s</small>
-            </output>
-          </div>
-        </div>
-      </div>
-      <div className="lab-controls">
-        <span className="eyebrow">
-          <FlaskConical size={14} /> THE CURIOSITY LAB
-        </span>
-        <h2 id="lab-title">
-          A better throw starts
-          <br />
-          with a better question.
-        </h2>
-        {!revealed ? (
-          <>
-            <p>
-              Same speed. Different angles. Which throw travels furthest on
-              level ground?
-            </p>
-            <fieldset className="lab-predictions">
-              <legend>Your prediction</legend>
-              {[30, 45, 60].map((a) => (
-                <button
-                  key={a}
-                  aria-pressed={prediction === a}
-                  onClick={() => setPrediction(a)}
+            <div className="trajectory-ledger">
+              <h3>Measured trajectories</h3>
+              {trajectories.map((f) => (
+                <div
+                  className={`trajectory-row ${f.angle === winner.angle ? "model-winner" : f.angle === prediction ? "your-trajectory" : ""}`}
+                  key={f.angle}
                 >
-                  {a}°<ArrowUpRight size={16} />
-                </button>
+                  <span className="mono trajectory-angle">
+                    {f.angle}°{f.angle === prediction && <small>yours</small>}
+                  </span>
+                  <div className="readouts">
+                    <Readout
+                      label="Range"
+                      value={
+                        <span
+                          data-testid={
+                            f.angle === angle ? "lab-range" : undefined
+                          }
+                        >
+                          {f.range.toFixed(2)}
+                        </span>
+                      }
+                      unit="m"
+                    />
+                    <Readout
+                      label="Maximum height"
+                      value={f.height.toFixed(2)}
+                      unit="m"
+                    />
+                    <Readout
+                      label="Time of flight"
+                      value={f.duration.toFixed(2)}
+                      unit="s"
+                    />
+                  </div>
+                </div>
               ))}
-            </fieldset>
+            </div>
+          )}
+        </div>
+        <aside className="lab-margin">
+          <h3>Setup</h3>
+          <dl className="setup-values">
+            <div>
+              <dt>Launch speed</dt>
+              <dd>
+                12 <span>m/s</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Gravity</dt>
+              <dd>
+                {gravity} <span>m/s²</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Landing height</dt>
+              <dd>
+                0 <span>m</span>
+              </dd>
+            </div>
+          </dl>
+          <h3>Predict</h3>
+          <p className="lab-question-text">
+            Which angle travels furthest on level ground?
+          </p>
+          <fieldset className="lab-predictions">
+            <legend>Your prediction</legend>
+            {[30, 45, 60].map((a) => (
+              <button
+                key={a}
+                aria-pressed={prediction === a}
+                disabled={revealed}
+                onClick={() => setPrediction(a)}
+              >
+                <span className="prediction-square" aria-hidden="true" />
+                {a}°
+              </button>
+            ))}
+          </fieldset>
+          {!revealed ? (
             <button
-              className="primary"
+              className="primary lab-test"
               disabled={prediction === null}
               onClick={() => {
                 setAngle(prediction!);
                 setRevealed(true);
               }}
             >
-              <Play size={15} /> Test my prediction
+              Test my prediction →
             </button>
-            <p className="lab-note">
-              Make a guess. Surprises are where understanding begins.
-            </p>
-          </>
-        ) : (
-          <>
-            <p className="lab-insight" role="status">
-              {prediction === 45
-                ? "Your prediction holds: "
-                : "Here’s the surprise: "}
-              <b>45° gives the greatest range.</b> At 30° and 60°, the ranges
-              match: more airtime balances less horizontal speed.
-            </p>
-            <label className="lab-angle" htmlFor="lab-angle">
-              Explore the launch angle <output>{angle}°</output>
-            </label>
-            <input
-              id="lab-angle"
-              type="range"
-              min="10"
-              max="80"
-              value={angle}
-              onChange={(e) => setAngle(Number(e.target.value))}
-            />
-            <div className="lab-planet">
-              <label htmlFor="lab-gravity">Try another world</label>
-              <select
-                id="lab-gravity"
-                value={planet}
-                onChange={(e) => setPlanet(e.target.value)}
+          ) : (
+            <>
+              <h3>Explore</h3>
+              <label className="lab-angle" htmlFor="lab-angle">
+                Launch angle<output>{angle}°</output>
+              </label>
+              <input
+                id="lab-angle"
+                aria-label="Explore launch angle"
+                type="range"
+                min="10"
+                max="80"
+                value={angle}
+                onChange={(e) => setAngle(Number(e.target.value))}
+              />
+              <button
+                className="secondary"
+                onClick={() => setRun((r) => r + 1)}
               >
-                <option value="earth">Earth · 9.81 m/s²</option>
-                <option value="moon">Moon · 1.62 m/s²</option>
-              </select>
-            </div>
-            <button className="text-button" onClick={() => setRun(run + 1)}>
-              <RotateCcw size={14} /> Replay this throw
+                Replay the model
+              </button>
+            </>
+          )}
+          <label className="field-label" htmlFor="lab-gravity">
+            Gravity setting
+          </label>
+          <select
+            id="lab-gravity"
+            value={planet}
+            onChange={(e) => {
+              setPlanet(e.target.value);
+              setRevealed(false);
+              setPrediction(null);
+            }}
+          >
+            <option value="earth">Earth · 9.81 m/s²</option>
+            <option value="moon">Moon · 1.62 m/s²</option>
+          </select>
+          <div className="lab-margin-actions">
+            <button
+              className="secondary"
+              onClick={() => {
+                setRevealed(false);
+                setPrediction(null);
+                setAngle(45);
+              }}
+            >
+              Reset
             </button>
             <button
-              className="text-button"
+              className="secondary"
               onClick={() => onConcept("projectile")}
             >
-              Explore the reasoning <ArrowUpRight size={14} />
+              Read the reasoning →
             </button>
-          </>
-        )}
-        <div className="lab-assumptions">
-          MODEL NOTES · Launch speed 12 m/s. Constant gravity, no air
-          resistance, equal launch and landing heights. Exploration adds no
-          mastery evidence.
-        </div>
+          </div>
+          <p className="annotation">
+            The model computes every value. Changing the experiment does not
+            update your learning evidence.
+          </p>
+          {revealed && maxDuration > 2.4 && (
+            <p className="annotation">
+              Playback is compressed to 2.4 seconds. Flight times above are
+              model time.
+            </p>
+          )}
+        </aside>
       </div>
     </section>
   );

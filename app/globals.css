@@ -3539,3 +3539,541 @@ svg text {
 .working-map-node {
   transition: opacity 120ms ease-out;
 }
+/* The projectile bench. Equal SI scales; colour names prediction and model. */
+.working-lab {
+  display: block;
+  max-width: 1104px;
+}
+.lab-heading {
+  margin-bottom: 24px;
+}
+.lab-heading h2 {
+  margin: 8px 0 16px;
+}
+.lab-heading > p {
+  color: rgb(var(--ink-2));
+  font-size: 14px;
+}
+.lab-bench {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 32px;
+  align-items: start;
+}
+.lab-sheet {
+  min-width: 0;
+}
+.lab-plot {
+  padding: 16px 8px;
+}
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.lab-plot text {
+  font: 12.5px var(--mono);
+}
+.lab-plot text.prediction-label {
+  fill: rgb(var(--ochre-ink));
+}
+.lab-margin {
+  padding-left: 24px;
+  border-left: 1px solid rgb(var(--rule));
+  min-width: 0;
+}
+.lab-margin h3 {
+  font: 600 14px/20px var(--ui);
+  margin-bottom: 16px;
+}
+.lab-margin h3:not(:first-child) {
+  margin-top: 32px;
+}
+.setup-values {
+  font: 12.5px/20px var(--mono);
+}
+.setup-values > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.setup-values dt {
+  color: rgb(var(--ink-3));
+}
+.setup-values dd span {
+  color: rgb(var(--ink-3));
+  font-weight: 400;
+}
+.lab-question-text {
+  font: 21px/30px var(--prose);
+}
+.working-lab .lab-predictions {
+  margin: 24px 0;
+  gap: 8px;
+}
+.working-lab .lab-predictions legend {
+  font-size: 12.5px;
+  color: rgb(var(--ink-3));
+}
+.working-lab .lab-predictions button {
+  min-width: 64px;
+  padding: 12px 4px;
+  gap: 8px;
+}
+.prediction-square {
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgb(var(--rule-strong));
+}
+.lab-predictions [aria-pressed="true"] .prediction-square {
+  background: rgb(var(--ochre-ink));
+  border-color: rgb(var(--ochre-ink));
+}
+.lab-test {
+  width: 100%;
+  font-size: 14px;
+}
+.lab-margin select {
+  width: 100%;
+  font-size: 14px;
+}
+.lab-margin .lab-angle {
+  font-size: 14px;
+}
+.lab-margin .annotation {
+  margin-top: 24px;
+}
+.lab-margin-actions {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  margin-top: 24px;
+}
+.lab-outcome {
+  margin-top: 24px;
+}
+.lab-outcome > p {
+  font: 19px/31px var(--prose);
+}
+.trajectory-ledger {
+  margin-top: 32px;
+  border-top: 1px solid rgb(var(--rule));
+}
+.trajectory-ledger > h3 {
+  padding-top: 24px;
+  margin-bottom: 16px;
+}
+.trajectory-row {
+  display: flex;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgb(var(--rule));
+  align-items: center;
+}
+.trajectory-angle {
+  font-size: 14px;
+  min-width: 48px;
+}
+.trajectory-angle small {
+  display: block;
+  font: 12px/20px var(--ui);
+  color: inherit;
+}
+.trajectory-row .readouts {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.trajectory-row .readout dd {
+  font-size: 21px;
+  line-height: 28px;
+}
+.trajectory-row .readout dt {
+  font-size: 12px;
+  line-height: 17px;
+}
+.model-winner .readout dd,
+.model-winner .trajectory-angle {
+  color: rgb(var(--cobalt));
+}
+.your-trajectory .readout dd,
+.your-trajectory .trajectory-angle {
+  color: rgb(var(--ochre-ink));
+}
+.lab-margin .lab-angle output {
+  font-family: var(--mono);
+}
+@media (max-width: 1279px) {
+  .lab-bench {
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 24px;
+  }
+  .lab-margin {
+    padding-left: 16px;
+  }
+  .trajectory-row {
+    gap: 16px;
+  }
+  .trajectory-row .readout dd {
+    font-size: 19px;
+  }
+}
+@media (max-width: 1023px) {
+  .lab-bench {
+    display: block;
+  }
+  .lab-margin {
+    margin-top: 32px;
+    border: 0;
+    border-top: 1px solid rgb(var(--rule));
+    padding: 24px 0 0;
+    max-width: 640px;
+  }
+  .lab-margin .setup-values {
+    max-width: 320px;
+  }
+  .lab-margin .lab-predictions button {
+    min-width: 88px;
+  }
+  .lab-margin .lab-test {
+    width: auto;
+  }
+  .lab-margin select {
+    max-width: 320px;
+  }
+  .lab-margin input[type="range"] {
+    max-width: 480px;
+  }
+  .lab-margin .lab-angle {
+    max-width: 480px;
+  }
+  .lab-margin .annotation {
+    max-width: 60ch;
+  }
+}
+@media (max-width: 767px) {
+  .lab-plot {
+    padding: 8px 0;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+  }
+  .lab-plot svg {
+    height: auto;
+  }
+  .lab-plot text {
+    font-size: 16px;
+  }
+  .working-lab .lab-predictions button {
+    min-width: 96px;
+  }
+  .lab-margin .lab-test {
+    width: 100%;
+    position: sticky;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    z-index: 12;
+  }
+  .lab-margin .setup-values {
+    max-width: none;
+  }
+  .lab-margin select {
+    max-width: none;
+  }
+  .lab-outcome > p {
+    font-size: 17.5px;
+    line-height: 29px;
+  }
+  .trajectory-row {
+    display: block;
+  }
+  .trajectory-angle {
+    display: block;
+    margin-bottom: 16px;
+  }
+  .trajectory-angle small {
+    display: inline;
+    margin-left: 8px;
+  }
+  .trajectory-row .readout dd {
+    font-size: 19px;
+    line-height: 26px;
+  }
+  .trajectory-row .readout .unit {
+    font-size: 12px;
+  }
+  .trajectory-row .readout dt {
+    font-size: 11px;
+  }
+  .trajectory-row .readouts {
+    gap: 12px;
+  }
+  .lab-heading {
+    margin-bottom: 24px;
+  }
+  .lab-heading .section-number {
+    display: inline;
+  }
+  .today-prediction .lab-heading > .section-number {
+    display: none;
+  }
+}
+/* Field notes: dated records and exact, replayable evidence changes. */
+.field-notes {
+  max-width: 1104px;
+}
+.evidence-overview {
+  padding: 24px 0 32px;
+  border-block: 1px solid rgb(var(--rule));
+}
+.evidence-overview .readouts {
+  margin-top: 24px;
+  gap: 48px;
+}
+.evidence-overview > .caption {
+  margin-top: 24px;
+}
+.ledger-filters {
+  display: flex;
+  gap: 32px;
+  margin: 32px 0;
+}
+.ledger-filters label {
+  font-size: 12.5px;
+  color: rgb(var(--ink-3));
+  max-width: 280px;
+  flex: 1;
+}
+.ledger-filters select {
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  color: rgb(var(--ink));
+  margin-top: 8px;
+}
+.ledger-day {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+.ledger-day > h2 {
+  font: 12.5px/20px var(--mono);
+  color: rgb(var(--ink-3));
+  padding-top: 16px;
+}
+.ledger-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 32px;
+  padding: 16px 0;
+  border-top: 1px solid rgb(var(--rule));
+}
+.ledger-concept {
+  padding: 0;
+  justify-content: flex-start;
+  font: 600 21px/28px var(--prose);
+  color: rgb(var(--cobalt));
+}
+.ledger-verdict {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  margin: 8px 0 !important;
+  font-size: 14px;
+}
+.ledger-verdict .mono {
+  font-size: 12.5px;
+  color: rgb(var(--ink-3));
+}
+.correct-text {
+  color: rgb(var(--ok));
+}
+.incorrect-text {
+  color: rgb(var(--err));
+}
+.ledger-effect {
+  border-left: 1px solid rgb(var(--rule));
+  padding-left: 24px;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 8px;
+}
+.evidence-shift {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+}
+.evidence-shift .mono {
+  font-size: 12px;
+  line-height: 20px;
+  flex-basis: 100%;
+  color: rgb(var(--ink-2));
+  margin-top: 8px;
+}
+.evidence-review {
+  margin-top: 48px;
+}
+.evidence-review > .caption {
+  margin-top: 12px;
+}
+.review-row {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid rgb(var(--rule));
+}
+.review-row > div {
+  flex: 1;
+}
+.review-row h3 {
+  font-size: 21px;
+  line-height: 28px;
+}
+.review-row p {
+  font-size: 14px;
+  line-height: 22px;
+  color: rgb(var(--ink-2));
+  margin-top: 8px;
+}
+.review-row .secondary {
+  flex-shrink: 0;
+}
+.session-ledger {
+  margin-top: 48px;
+}
+.session-ledger > article {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgb(var(--rule));
+}
+.session-ledger time {
+  font-size: 12.5px;
+  color: rgb(var(--ink-3));
+}
+.session-ledger h3 {
+  font-size: 21px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+.session-ledger .caption {
+  margin-top: 12px;
+}
+.session-complete .session-total {
+  font-size: 14px;
+  margin: 24px 0 48px;
+}
+.completed-changes {
+  margin: 24px 0 32px;
+  border-top: 1px solid rgb(var(--rule));
+}
+.completed-changes article {
+  padding: 24px 0;
+  border-bottom: 1px solid rgb(var(--rule));
+}
+.completed-changes h3 {
+  font-size: 21px;
+  line-height: 28px;
+  margin-bottom: 16px;
+}
+.completed-changes .evidence-shift {
+  margin-bottom: 12px;
+}
+.completed-changes .annotation {
+  margin-top: 12px;
+}
+.completion-actions {
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+  margin-top: 48px;
+}
+.completion-actions .primary {
+  text-align: left;
+}
+@media (max-width: 1279px) {
+  .ledger-entry {
+    grid-template-columns: minmax(0, 1fr) 200px;
+    gap: 24px;
+  }
+  .ledger-effect {
+    padding-left: 16px;
+  }
+  .evidence-overview .readouts {
+    gap: 32px;
+  }
+}
+@media (max-width: 1023px) {
+  .ledger-entry {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ledger-effect {
+    border-left: 2px solid rgb(var(--rule));
+    padding: 8px 0 8px 16px;
+  }
+  .ledger-effect .evidence-shift .mono {
+    flex-basis: auto;
+    margin: 0 0 0 8px;
+  }
+}
+@media (max-width: 767px) {
+  .evidence-overview .readouts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .ledger-day {
+    display: block;
+    margin-top: 24px;
+  }
+  .ledger-day > h2 {
+    padding: 16px 0;
+  }
+  .ledger-entry {
+    gap: 16px;
+  }
+  .ledger-concept {
+    font-size: 19px;
+    line-height: 26px;
+  }
+  .ledger-filters {
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .ledger-verdict {
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+  .review-row {
+    display: block;
+  }
+  .review-row .secondary {
+    margin-top: 16px;
+  }
+  .session-ledger > article {
+    display: block;
+  }
+  .session-ledger time {
+    display: block;
+    margin-bottom: 16px;
+  }
+  .session-ledger h3 {
+    font-size: 19px;
+  }
+  .completed-changes .evidence-shift .mono {
+    flex-basis: auto;
+    margin: 0 0 0 8px;
+  }
+  .completion-actions {
+    width: 100%;
+  }
+  .completion-actions .primary {
+    width: 100%;
+  }
+}
