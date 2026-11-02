@@ -105,7 +105,7 @@ export default function Assessment({
   }
   const feedbackRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (result) feedbackRef.current?.focus();
+    if (result) feedbackRef.current?.focus({ preventScroll: true });
   }, [result]);
   const misconception = concept.misconceptions.find(
     (m) => m.id === result?.misconception,

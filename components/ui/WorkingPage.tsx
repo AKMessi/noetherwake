@@ -84,14 +84,16 @@ export function EvidenceGlyph({
   needs = 0,
   label,
   size = 12,
+  quarters,
 }: {
   level: EvidenceLevel;
   uncertain?: boolean;
   needs?: number;
   label: string;
   size?: number;
+  quarters?: 0 | 1 | 2 | 3 | 4;
 }) {
-  const fill = levelIndex[level];
+  const fill = quarters ?? levelIndex[level];
   return (
     <svg
       className={`evidence-mark ${level}`}
@@ -118,7 +120,9 @@ export function EvidenceGlyph({
               ? "M12 12V4A8 8 0 0 1 20 12Z"
               : fill === 2
                 ? "M12 4A8 8 0 0 1 12 20Z"
-                : "M12 4A8 8 0 1 1 11.999 4Z"
+                : fill === 3
+                  ? "M12 12V4A8 8 0 1 1 4 12Z"
+                  : "M12 4A8 8 0 1 1 11.999 4Z"
           }
           fill="currentColor"
         />

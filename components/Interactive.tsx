@@ -200,7 +200,7 @@ export default function Interactive({ concept }: { concept: Concept }) {
             <br />
             {prediction}
           </p>
-          <button className="primary full" onClick={() => setRevealed(true)}>
+          <button className="secondary full" onClick={() => setRevealed(true)}>
             Reveal the change
           </button>
         </>

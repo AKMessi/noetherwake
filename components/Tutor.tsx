@@ -4,6 +4,9 @@ import LessonView from "./LessonView";
 import StudioHome from "./StudioHome";
 import LessonConnections from "./LessonConnections";
 import EvidenceReview from "./EvidenceReview";
+import FieldNotes from "./FieldNotes";
+import SessionComplete from "./SessionComplete";
+import Preferences from "./Preferences";
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import {
@@ -53,6 +56,7 @@ import {
   sessionPlan,
   stage,
   type Evidence,
+  type Knowledge,
   type Item,
   type Learner,
   type SessionRecord,
@@ -65,6 +69,7 @@ import Library from "./Library";
 import Assessment from "./Assessment";
 import MathText from "./Math";
 import ProjectileLab from "./ProjectileLab";
+import { EvidenceMark } from "./ui/WorkingPage";
 const Interactive = dynamic(() => import("./Interactive"), {
   loading: () => (
     <div className="interactive-card">Preparing the learning instrument…</div>
@@ -206,11 +211,15 @@ export default function Tutor() {
     [online, setOnline] = useState(true),
     [offlineReady, setOfflineReady] = useState(false),
     [placementPending, setPlacementPending] = useState(false);
+  const [completedBefore, setCompletedBefore] = useState<
+    Record<string, Knowledge>
+  >({});
   const itemSequence = useRef(0);
   const hydrated = useRef(false),
     session = useRef<{
       start: number;
       initial: Record<string, number>;
+      knowledgeBefore: Record<string, Knowledge>;
       events: Evidence[];
       minutes: 5 | 15 | 30;
     } | null>(null),
@@ -226,9 +235,11 @@ export default function Tutor() {
               ? learnerSchema.parse(s)
               : createLearner(Date.now(), "conservation-energy"),
           );
-          setPlacementPending(
-            localStorage.getItem("noetherwake-placement") === "active",
-          );
+          try {
+            setPlacementPending(
+              localStorage.getItem("noetherwake-placement") === "active",
+            );
+          } catch {}
           hydrated.current = true;
         }
       })
@@ -250,11 +261,11 @@ export default function Tutor() {
       navigator.serviceWorker
         .register("/sw.js")
         .then(() => navigator.serviceWorker.ready)
-        .then(() => {
+        .then((registration) => {
           navigator.serviceWorker.addEventListener("message", (e) => {
             if (e.data === "OFFLINE_READY") setOfflineReady(true);
           });
-          setOfflineReady(!!navigator.serviceWorker.controller);
+          setOfflineReady(!!registration.active);
         })
         .catch(() =>
           setNotice(
@@ -280,6 +291,25 @@ export default function Tutor() {
       ? "accessible"
       : "standard";
   }, [state]);
+  useEffect(() => {
+    if (!state) return;
+    const media = matchMedia("(prefers-color-scheme: dark)");
+    const update = () => {
+      const channels = getComputedStyle(document.documentElement)
+        .getPropertyValue("--ground")
+        .trim()
+        .split(/\s+/)
+        .map(Number);
+      const color =
+        "#" + channels.map((c) => c.toString(16).padStart(2, "0")).join("");
+      document
+        .querySelectorAll('meta[name="theme-color"]')
+        .forEach((meta) => meta.setAttribute("content", color));
+    };
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, [state?.theme]);
   function navigate(next: View) {
     if (next === "placement") {
       setPlacementPending(false);
@@ -361,6 +391,9 @@ export default function Tutor() {
     }
     session.current = {
       start: Date.now(),
+      knowledgeBefore: Object.fromEntries(
+        catalog.map((c) => [c.id, { ...getKnowledge(s, c.id, Date.now()) }]),
+      ),
       initial: Object.fromEntries(
         catalog.map((c) => [c.id, getKnowledge(s, c.id, Date.now()).p]),
       ),
@@ -443,6 +476,7 @@ export default function Tutor() {
         ]),
       ),
     };
+    setCompletedBefore(run.knowledgeBefore);
     session.current = null;
     setLastSession(record);
     setReflection("");
@@ -487,22 +521,30 @@ export default function Tutor() {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     setNotice("Your progress was exported. Keep the JSON file somewhere safe.");
   }
-  async function importState(file?: File) {
-    if (!file) return;
+  async function importState(s: Learner) {
+    await saveState(s);
+    session.current = null;
+    setItem(null);
+    setSelected(null);
+    setCompletedBefore({});
+    setLastSession(null);
+    setState(s);
+    setNotice("Backup restored. Your route now uses the imported evidence.");
+  }
+  async function clearState() {
+    const s = createLearner(Date.now(), "conservation-energy");
+    await saveState(s);
+    session.current = null;
+    setItem(null);
+    setSelected(null);
+    setCompletedBefore({});
+    setLastSession(null);
+    setPlacementPending(false);
     try {
-      const s = parseImport(
-        await file.text(),
-        new Set(catalog.map((c) => c.id)),
-      );
-      await saveState(s);
-      setState(s);
-      setNotice("Backup restored. Your route now uses the imported evidence.");
-    } catch (e) {
-      setNotice(
-        `Import did not change your progress: ${e instanceof Error ? e.message : "Invalid file"}`,
-      );
-    }
-    if (fileInput.current) fileInput.current.value = "";
+      localStorage.removeItem("noetherwake-placement");
+    } catch {}
+    setState(s);
+    setNotice("Local learner data cleared.");
   }
   const activeView = [
     "lesson",
@@ -607,542 +649,290 @@ export default function Tutor() {
           tabIndex={-1}
           className={`main-content view-${view}`}
         >
-          {(notice || storageError) && (
-            <div className="notice" role="status">
-              {storageError || notice}
-              <button
-                className="icon-button"
-                aria-label="Dismiss notice"
-                onClick={() => {
-                  setNotice("");
-                  if (!storageError) setStorageError("");
-                }}
-              >
-                <X size={14} />
-              </button>
+          {!hydrated.current ? (
+            <div className="storage-loading" role="status">
+              <p>Reading from this device</p>
+              <div />
+              <div />
+              <div />
             </div>
-          )}
-          {view === "today" && (
-            <StudioHome
-              state={state}
-              now={now}
-              onStart={() => setOnboarding(true)}
-              onMap={() => navigate("map")}
-              onLibrary={() => navigate("curriculum")}
-              onJournal={() => navigate("journal")}
-              onLab={() => navigate("lab")}
-              onResumePlacement={
-                placementPending
-                  ? () => {
-                      const c = diagnosticNext(catalog, state, Date.now());
-                      if (c && state.diagnostic.length < 18) {
-                        itemFor(c.id, state, true);
-                        navigate("diagnostic");
-                      } else navigate("placement");
-                    }
-                  : undefined
-              }
-              onResume={
-                session.current && item ? () => navigate("session") : undefined
-              }
-              onConcept={openLesson}
-              onMinutes={(minutes) => setState({ ...state, minutes })}
-              onDirection={(goalId) => {
-                setState({ ...state, goal: goalId });
-                setNotice(
-                  "Your direction is set. The next step now follows this goal and your existing evidence.",
-                );
-              }}
-            />
-          )}
-          {view === "lab" && <ProjectileLab onConcept={openLesson} />}
-          {view === "map" && (
-            <AtlasView
-              state={state}
-              now={now}
-              selected={selected}
-              onSelect={setSelected}
-              onLesson={openLesson}
-              onPractice={startSession}
-              onList={() => navigate("curriculum")}
-            />
-          )}
-          {view === "curriculum" && (
-            <Library
-              state={state}
-              now={now}
-              selected={selected}
-              onSelect={setSelected}
-              onLesson={openLesson}
-              onPractice={startSession}
-              onMap={() => navigate("map")}
-            />
-          )}
-          {view === "journal" && (
+          ) : (
             <>
-              <div className="standard-heading">
-                <span className="eyebrow">
-                  EVIDENCE, NOT EXPERIENCE POINTS.
-                </span>
-                <h1>Watch understanding grow.</h1>
-                <p>
-                  Your locally stored sessions, reflections and confidence
-                  calibration.
-                </p>
-              </div>
-              <div className="journal-stats">
-                <div>
-                  <span>Ideas assessed</span>
-                  <strong className="mono">{assessed.length}</strong>
-                </div>
-                <div>
-                  <span>Independent fluent responses</span>
-                  <strong className="mono">
-                    {Object.values(state.knowledge).reduce(
-                      (n, k) => n + k.fluent,
-                      0,
-                    )}
-                  </strong>
-                </div>
-                <div>
-                  <span>Confidence Brier error · lower is better</span>
-                  <strong className="mono">
-                    {state.history.length
-                      ? (
-                          state.history.reduce(
-                            (n, e) =>
-                              n + (e.confidence - Number(e.correct)) ** 2,
-                            0,
-                          ) / state.history.length
-                        ).toFixed(3)
-                      : "—"}
-                  </strong>
-                </div>
-              </div>
-              <EvidenceReview state={state} onConcept={openLesson} />
-              {state.sessions.length ? (
-                <div className="journal-list">
-                  {[...state.sessions].reverse().map((s, i) => (
-                    <article className="journal-entry" key={`${s.at}-${i}`}>
-                      <span className="eyebrow">
-                        {new Date(s.at).toLocaleDateString(undefined, {
-                          month: "long",
-                          day: "numeric",
-                        })}{" "}
-                        · {s.minutes} MINUTES
-                      </span>
-                      <h2>
-                        {s.concepts.map((id) => concept(id).title).join(" · ")}
-                      </h2>
-                      <p>
-                        {s.correct} of {s.total} responses correct.{" "}
-                        {s.reflection || "No reflection recorded."}
-                      </p>
-                      {Object.entries(s.changes).map(([id, d]) => (
-                        <span className="delta-chip" key={id}>
-                          {concept(id).title}: {d >= 0 ? "+" : ""}
-                          {(d * 100).toFixed(1)} percentage points
-                        </span>
-                      ))}
-                    </article>
-                  ))}
-                </div>
-              ) : (
-                <div className="empty-state">
-                  <NotebookPen size={34} />
-                  <h2>Your story starts with a question.</h2>
-                  <p>
-                    Complete a session to record what changed, what felt
-                    difficult and what deserves another look.
-                  </p>
-                  <button className="primary" onClick={() => startSession()}>
-                    Begin a session <ArrowRight size={15} />
+              {(notice || storageError) && (
+                <div className="notice" role="status">
+                  {storageError || notice}
+                  <button
+                    className="icon-button"
+                    aria-label="Dismiss notice"
+                    onClick={() => {
+                      setNotice("");
+                      if (!storageError) setStorageError("");
+                    }}
+                  >
+                    <X size={14} />
                   </button>
                 </div>
               )}
-            </>
-          )}
-          {view === "settings" && (
-            <>
-              <div className="standard-heading">
-                <span className="eyebrow">A TOOL THAT ADAPTS TO YOU.</span>
-                <h1>Make space for learning.</h1>
-                <p>Your preferences and your progress stay on this device.</p>
-              </div>
-              <div className="settings-grid">
-                <section className="settings-card">
-                  <h2>
-                    <SlidersHorizontal size={19} /> Your environment
-                  </h2>
-                  <fieldset>
-                    <legend>Appearance</legend>
-                    <div className="setting-options">
-                      {[
-                        { id: "system", label: "System", icon: Monitor },
-                        { id: "light", label: "Light", icon: Sun },
-                        { id: "dark", label: "Dark", icon: Moon },
-                      ].map((t) => (
-                        <button
-                          key={t.id}
-                          className={state.theme === t.id ? "selected" : ""}
-                          onClick={() =>
-                            setState({
-                              ...state,
-                              theme: t.id as Learner["theme"],
-                            })
-                          }
-                          aria-pressed={state.theme === t.id}
-                        >
-                          <t.icon size={18} />
-                          {t.label}
-                        </button>
-                      ))}
-                    </div>
-                  </fieldset>
-                  <label className="toggle-row">
-                    <div>
-                      <strong>Accessible reading font</strong>
-                      <span>
-                        Clear sans serif, wider spacing and generous lines.
-                      </span>
-                    </div>
-                    <input
-                      type="checkbox"
-                      checked={state.accessibleFont}
-                      onChange={(e) =>
-                        setState({ ...state, accessibleFont: e.target.checked })
-                      }
-                    />
-                  </label>
-                  <label className="field-label" htmlFor="session-length">
-                    Time for a typical session
-                  </label>
-                  <select
-                    id="session-length"
-                    value={state.minutes}
-                    onChange={(e) =>
-                      setState({
-                        ...state,
-                        minutes: Number(e.target.value) as 5 | 15 | 30,
-                      })
-                    }
-                  >
-                    <option value="5">5 minutes · a small foothold</option>
-                    <option value="15">15 minutes · one good connection</option>
-                    <option value="30">30 minutes · room to go deeper</option>
-                  </select>
-                  <label className="field-label" htmlFor="goal-setting">
-                    Your learning direction
-                  </label>
-                  <select
-                    id="goal-setting"
-                    value={state.goal}
-                    onChange={(e) =>
-                      setState({ ...state, goal: e.target.value })
-                    }
-                  >
-                    {goals.map((g) => (
-                      <option key={g.id} value={g.id}>
-                        {g.title}
-                      </option>
-                    ))}
-                  </select>
-                  <button
-                    className="text-button"
-                    onClick={() => setOnboarding(true)}
-                  >
-                    Revisit placement <ArrowUpRight size={14} />
-                  </button>
-                </section>
-                <section className="settings-card">
-                  <h2>
-                    <ShieldCheck size={19} /> Your data belongs to you
-                  </h2>
-                  <p>
-                    All answers, mastery estimates and reflections live in
-                    IndexedDB in this browser. Clearing browser storage removes
-                    them. A backup lets you restore or move to another device.
-                  </p>
-                  <button className="secondary full" onClick={exportState}>
-                    <Download size={17} /> Export progress as JSON
-                  </button>
-                  <label className="import-label">
-                    <Upload size={17} />
-                    <span>Import a progress backup</span>
-                    <input
-                      ref={fileInput}
-                      type="file"
-                      accept="application/json,.json"
-                      onChange={(e) => void importState(e.target.files?.[0])}
-                    />
-                  </label>
-                  <p className="fine-print">
-                    A valid import replaces the local learner state. Invalid
-                    files leave your progress unchanged.
-                  </p>
-                  <div className="privacy-note">
-                    <WifiOff size={18} />
-                    <div>
-                      <strong>Fully deterministic. No AI required.</strong>
-                      <p>
-                        No API keys, analytics, remote grading or hidden
-                        uploads. Offline lessons are available after the
-                        production cache finishes installing.
-                      </p>
-                    </div>
-                  </div>
-                </section>
-              </div>
-            </>
-          )}
-          {view === "lesson" && (
-            <LessonView
-              key={lessonId}
-              id={lessonId}
-              state={state}
-              now={now}
-              onConcept={openLesson}
-              onPractice={startSession}
-              onToday={() => navigate("today")}
-            />
-          )}
-          {view === "session" && item && (
-            <>
-              <header className="practice-header">
-                <div>
-                  <p className="caption">Practice</p>
-                  <h1>{lesson.title}</h1>
-                </div>
-                <div className="practice-session-meta">
-                  <span className="mono">
-                    {session.current?.events.length ?? 0} answered
-                  </span>
-                  <button className="text-button" onClick={finishSession}>
-                    End session
-                  </button>
-                </div>
-              </header>
-              <div className="sheet-frame">
-                <div className="sheet">
-                  <Assessment
-                    key={item.id}
-                    item={item}
-                    concept={lesson}
-                    faded={stage(state, lesson.id, now) !== "independent"}
-                    onEvidence={evidence}
-                    onNext={nextQuestion}
-                    onSkip={nextQuestion}
-                  />
-                </div>
-                <aside className="margin">
-                  <h2>Related lesson</h2>
-                  <button
-                    className="text-button"
-                    onClick={() => openLesson(lesson.id)}
-                  >
-                    {lesson.title}
-                  </button>
-                  <p>
-                    {
-                      plan(catalog, state, now).find(
-                        (a) => a.concept === lesson.id,
-                      )?.why
-                    }
-                  </p>
-                  <h2>Model boundary</h2>
-                  <p>{lesson.boundary}</p>
-                </aside>
-              </div>
-            </>
-          )}
-          {view === "diagnostic" && item && (
-            <>
-              <div className="diagnostic-heading">
-                <span className="eyebrow">FINDING YOUR FRONTIER</span>
-                <div>
-                  <h1>
-                    Let’s find the edges
-                    <br />
-                    of what you know.
-                  </h1>
-                  <span className="mono">
-                    {state.diagnostic.length + 1}
-                    <small> / 18</small>
-                  </span>
-                </div>
-                <p>
-                  This isn’t a grade. Uncertain answers are useful evidence,
-                  too.
-                </p>
-                <div className="diagnostic-progress">
-                  <span
-                    style={{
-                      width: `${(state.diagnostic.length / 18) * 100}%`,
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="diagnostic-body">
-                <span className="pill light">
-                  {lesson.strand} · {lesson.title}
-                </span>
-                <Assessment
-                  key={item.id}
-                  item={item}
-                  concept={lesson}
-                  diagnostic
-                  onEvidence={evidence}
-                  onNext={nextQuestion}
-                  onSkip={() => {
-                    const s = {
-                      ...state,
-                      diagnostic: [...state.diagnostic, lesson.id],
-                    };
-                    setState(s);
-                    const c = diagnosticNext(catalog, s, Date.now());
-                    if (c && s.diagnostic.length < 18) itemFor(c.id, s, true);
-                    else navigate("placement");
+              {view === "today" && (
+                <StudioHome
+                  state={state}
+                  now={now}
+                  onStart={() => setOnboarding(true)}
+                  onMap={() => navigate("map")}
+                  onLibrary={() => navigate("curriculum")}
+                  onJournal={() => navigate("journal")}
+                  onLab={() => navigate("lab")}
+                  onResumePlacement={
+                    placementPending
+                      ? () => {
+                          const c = diagnosticNext(catalog, state, Date.now());
+                          if (c && state.diagnostic.length < 18) {
+                            itemFor(c.id, state, true);
+                            navigate("diagnostic");
+                          } else navigate("placement");
+                        }
+                      : undefined
+                  }
+                  onResume={
+                    session.current && item
+                      ? () => navigate("session")
+                      : undefined
+                  }
+                  onConcept={openLesson}
+                  onMinutes={(minutes) => setState({ ...state, minutes })}
+                  onDirection={(goalId) => {
+                    setState({ ...state, goal: goalId });
+                    setNotice(
+                      "Your direction is set. The next step now follows this goal and your existing evidence.",
+                    );
                   }}
                 />
-                <button
-                  className="text-button"
-                  onClick={() => navigate("placement")}
-                >
-                  {state.diagnostic.length >= 12
-                    ? "Finish placement"
-                    : "Pause placement and use the evidence so far"}{" "}
-                  <ArrowRight size={14} />
-                </button>
-              </div>
-            </>
-          )}
-          {view === "placement" && (
-            <section className="result-page">
-              <span className="result-icon">
-                <Focus size={29} />
-              </span>
-              <span className="eyebrow">A STARTING POINT, NOT A LABEL.</span>
-              <h1>Here’s where we begin.</h1>
-              <p>
-                You explored {state.diagnostic.length} questions.{" "}
-                {frontier.uncertain
-                  ? "There is still broad uncertainty, so the engine will be careful about the first steps."
-                  : `The diagnostic places your frontier near depth ${frontier.depth} of ${frontier.max}. This is a noisy estimate; individual prerequisite checks guide your route.`}
-              </p>
-              <div className="placement-evidence">
-                {state.history
-                  .filter((e) => e.diagnostic)
-                  .map((e, i) => (
-                    <div key={i}>
-                      <span>{concept(e.concept).title}</span>
-                      <span
-                        className={e.correct ? "evidence-yes" : "evidence-no"}
-                      >
-                        {e.correct
-                          ? "Supporting evidence"
-                          : "Worth a closer look"}
-                      </span>
+              )}
+              {view === "lab" && <ProjectileLab onConcept={openLesson} />}
+              {view === "map" && (
+                <AtlasView
+                  state={state}
+                  now={now}
+                  selected={selected}
+                  onSelect={setSelected}
+                  onLesson={openLesson}
+                  onPractice={startSession}
+                  onList={() => navigate("curriculum")}
+                />
+              )}
+              {view === "curriculum" && (
+                <Library
+                  state={state}
+                  now={now}
+                  selected={selected}
+                  onSelect={setSelected}
+                  onLesson={openLesson}
+                  onPractice={startSession}
+                  onMap={() => navigate("map")}
+                />
+              )}
+              {view === "journal" && (
+                <FieldNotes state={state} now={now} onConcept={openLesson} />
+              )}
+              {view === "settings" && (
+                <Preferences
+                  state={state}
+                  onChange={setState}
+                  onExport={exportState}
+                  onImport={importState}
+                  onClear={clearState}
+                  onPlacement={() => setOnboarding(true)}
+                  offlineReady={offlineReady}
+                  storageError={storageError}
+                />
+              )}
+              {view === "lesson" && (
+                <LessonView
+                  key={lessonId}
+                  id={lessonId}
+                  state={state}
+                  now={now}
+                  onConcept={openLesson}
+                  onPractice={startSession}
+                  onToday={() => navigate("today")}
+                />
+              )}
+              {view === "session" && item && (
+                <>
+                  <header className="practice-header">
+                    <div>
+                      <p className="caption">Practice</p>
+                      <h1>{lesson.title}</h1>
                     </div>
-                  ))}
-              </div>
-              <div className="summary-next">
-                <span className="eyebrow">YOUR NEXT CONNECTION</span>
-                <h2>{nextConcept?.title ?? "Spaced review"}</h2>
-                <p>{next?.why}</p>
-                <button className="primary" onClick={() => startSession()}>
-                  Start my first session <ArrowRight size={16} />
-                </button>
-                <button className="text-button" onClick={() => navigate("map")}>
-                  See my frontier map <ArrowUpRight size={14} />
-                </button>
-              </div>
-            </section>
-          )}
-          {view === "summary" && lastSession && (
-            <section className="result-page">
-              <span className="result-icon">
-                <Check size={30} />
-              </span>
-              <span className="eyebrow">THAT’S A GOOD PLACE TO PAUSE.</span>
-              <h1>
-                A little clearer
-                <br />
-                than before.
-              </h1>
-              <p>
-                {lastSession.total} responses. {lastSession.concepts.length}{" "}
-                connected idea{lastSession.concepts.length === 1 ? "" : "s"}.
-                Evidence collected, with room for uncertainty.
-              </p>
-              <div className="session-changes">
-                {Object.entries(lastSession.changes).map(([id, d]) => {
-                  const k = getKnowledge(state, id, now);
-                  return (
-                    <div key={id}>
-                      <div>
-                        <h3>{concept(id).title}</h3>
-                        <p>
-                          Current model uncertainty:{" "}
-                          {interval(k)
-                            .map((v) => Math.round(v * 100))
-                            .join("–")}
-                          %
-                        </p>
-                        <p>
-                          Next recall:{" "}
-                          {new Date(dueAt(k)).toLocaleString(undefined, {
-                            month: "short",
-                            day: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}
-                        </p>
-                      </div>
+                    <div className="practice-session-meta">
                       <span className="mono">
-                        {d >= 0 ? "+" : ""}
-                        {(d * 100).toFixed(1)} pp
-                        <small>estimated mastery</small>
+                        {session.current?.events.length ?? 0} answered
                       </span>
+                      <button className="text-button" onClick={finishSession}>
+                        End session
+                      </button>
                     </div>
-                  );
-                })}
-              </div>
-              <label className="field-label" htmlFor="reflection">
-                What clicked? What still feels uncertain?
-              </label>
-              <textarea
-                id="reflection"
-                rows={3}
-                value={reflection}
-                onChange={(e) => setReflection(e.target.value.slice(0, 4000))}
-              />
-              <button
-                className="secondary"
-                onClick={() => {
-                  setState({
-                    ...state,
-                    sessions: state.sessions.map((s) =>
-                      s.at === lastSession.at ? { ...s, reflection } : s,
-                    ),
-                    reflection,
-                  });
-                  setNotice("Reflection saved on this device.");
-                }}
-              >
-                Save reflection <NotebookPen size={14} />
-              </button>
-              <div className="summary-next">
-                <span className="eyebrow">WHEN YOU RETURN</span>
-                <h2>{nextConcept?.title ?? "A well-timed review"}</h2>
-                <p>
-                  {next?.why ??
-                    "The next review will appear when memory needs a return."}
-                </p>
-                <button className="primary" onClick={() => navigate("today")}>
-                  Back to my learning space <ArrowRight size={15} />
-                </button>
-              </div>
-            </section>
+                  </header>
+                  <div className="sheet-frame">
+                    <div className="sheet">
+                      <Assessment
+                        key={item.id}
+                        item={item}
+                        concept={lesson}
+                        faded={stage(state, lesson.id, now) !== "independent"}
+                        onEvidence={evidence}
+                        onNext={nextQuestion}
+                        onSkip={nextQuestion}
+                      />
+                    </div>
+                    <aside className="margin">
+                      <div id="practice-hint-margin" />
+                      <h2>Related lesson</h2>
+                      <button
+                        className="text-button"
+                        onClick={() => openLesson(lesson.id)}
+                      >
+                        {lesson.title}
+                      </button>
+                      <p>
+                        {
+                          plan(catalog, state, now).find(
+                            (a) => a.concept === lesson.id,
+                          )?.why
+                        }
+                      </p>
+                      <h2>Model boundary</h2>
+                      <p>{lesson.boundary}</p>
+                    </aside>
+                  </div>
+                </>
+              )}
+              {view === "diagnostic" && item && (
+                <>
+                  <header className="diagnostic-heading">
+                    <p className="mono caption">
+                      Placement · question {state.diagnostic.length + 1} · up to
+                      18
+                    </p>
+                    <h1>Finding a starting point</h1>
+                    <p>
+                      You can skip a question without adding mastery evidence.
+                    </p>
+                    <div
+                      className="placement-ticks"
+                      aria-label={`${state.diagnostic.length} questions visited`}
+                    >
+                      {state.diagnostic.map((id, i) => (
+                        <span key={`${id}-${i}`} />
+                      ))}
+                    </div>
+                  </header>
+                  <div className="diagnostic-body">
+                    <span className="caption">
+                      {lesson.strand} · {lesson.title}
+                    </span>
+                    <Assessment
+                      key={item.id}
+                      item={item}
+                      concept={lesson}
+                      diagnostic
+                      onEvidence={evidence}
+                      onNext={nextQuestion}
+                      onSkip={() => {
+                        const s = {
+                          ...state,
+                          diagnostic: [...state.diagnostic, lesson.id],
+                        };
+                        setState(s);
+                        const c = diagnosticNext(catalog, s, Date.now());
+                        if (c && s.diagnostic.length < 18)
+                          itemFor(c.id, s, true);
+                        else navigate("placement");
+                      }}
+                    />
+                    <button
+                      className="text-button"
+                      onClick={() => navigate("placement")}
+                    >
+                      {state.diagnostic.length >= 12
+                        ? "Finish placement"
+                        : "Use the evidence so far"}{" "}
+                      →
+                    </button>
+                    <button className="quiet" onClick={() => navigate("today")}>
+                      Pause placement
+                    </button>
+                  </div>
+                </>
+              )}
+              {view === "placement" && (
+                <section className="placement-result">
+                  <h1>Your starting point</h1>
+                  <p className="prose">
+                    {state.history.filter((e) => e.diagnostic).length} recorded
+                    answers across {new Set(state.diagnostic).size} concepts.{" "}
+                    {frontier.uncertain
+                      ? "The evidence is still broad. Prerequisite checks will guide the next steps."
+                      : `The estimated frontier is depth ${frontier.depth} of ${frontier.max}. Individual prerequisite checks remain necessary.`}
+                  </p>
+                  <div
+                    className="placement-excerpt"
+                    aria-label="Concepts touched by placement"
+                  >
+                    {[...new Set(state.diagnostic)].map((id) => (
+                      <button key={id} onClick={() => openLesson(id)}>
+                        <EvidenceMark state={state} id={id} now={now} />
+                        <span>{concept(id).title}</span>
+                        <EvidenceMark state={state} id={id} now={now} text />
+                      </button>
+                    ))}
+                  </div>
+                  {next && (
+                    <div className="placement-next">
+                      <h2>{nextConcept?.title}</h2>
+                      <p className="prose">{next.why}</p>
+                      <div className="actions">
+                        <button
+                          className="primary"
+                          onClick={() => openLesson(next.concept)}
+                        >
+                          Begin: {nextConcept?.title} →
+                        </button>
+                        <button
+                          className="secondary"
+                          onClick={() => navigate("map")}
+                        >
+                          See the whole atlas
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </section>
+              )}
+              {view === "summary" && lastSession && (
+                <SessionComplete
+                  state={state}
+                  record={lastSession}
+                  before={completedBefore}
+                  now={now}
+                  reflection={reflection}
+                  onReflection={setReflection}
+                  next={next?.concept}
+                  onContinue={() => next && openLesson(next.concept)}
+                  onToday={() => navigate("today")}
+                  onSave={() => {
+                    setState({
+                      ...state,
+                      sessions: state.sessions.map((s) =>
+                        s.at === lastSession.at ? { ...s, reflection } : s,
+                      ),
+                      reflection,
+                    });
+                    setNotice("Reflection saved on this device.");
+                  }}
+                />
+              )}{" "}
+            </>
           )}
         </main>
         <nav className="mobile-bottom-nav" aria-label="Mobile navigation">

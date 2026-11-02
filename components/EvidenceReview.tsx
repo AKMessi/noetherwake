@@ -1,8 +1,6 @@
 "use client";
-import { ArrowRight, Lightbulb } from "lucide-react";
 import type { Learner } from "@noetherwake/engine";
 import { concept } from "@/lib/catalog";
-
 export default function EvidenceReview({
   state,
   onConcept,
@@ -10,7 +8,6 @@ export default function EvidenceReview({
   state: Learner;
   onConcept: (id: string) => void;
 }) {
-  // Only the latest observation per idea determines whether it belongs in this review.
   const seen = new Set<string>();
   const opportunities = [...state.history]
     .reverse()
@@ -22,40 +19,31 @@ export default function EvidenceReview({
     .slice(0, 6);
   if (!opportunities.length) return null;
   return (
-    <section className="evidence-review" aria-labelledby="review-title">
-      <div className="studio-section-heading">
-        <div>
-          <span className="eyebrow">MISTAKES ARE INFORMATION</span>
-          <h2 id="review-title">A second look can change everything.</h2>
-          <p>
-            Ideas whose latest recorded response was incorrect or used support.
-          </p>
-        </div>
-      </div>
-      <div className="review-opportunities">
+    <section className="evidence-review">
+      <h2>Worth another pass</h2>
+      <p className="caption">
+        Concepts whose latest recorded response was incorrect or used support.
+      </p>
+      <div>
         {opportunities.map((e) => {
           const c = concept(e.concept),
             cause = c.misconceptions.find((m) => m.id === e.misconception);
           return (
-            <article key={e.concept}>
-              <span className="eyebrow">
-                <Lightbulb size={13} />{" "}
-                {e.correct
-                  ? "RECALLED WITH SUPPORT"
-                  : "A CONNECTION TO REVISIT"}
-              </span>
-              <h3>{c.title}</h3>
-              <p>
-                {cause
-                  ? cause.remediation
-                  : e.correct
-                    ? "You reached the answer with a hint. Revisit the reasoning before trying independent recall."
-                    : "Reconstruct the worked example, then compare your reasoning with the model’s boundary."}
-              </p>
-              <button className="text-button" onClick={() => onConcept(c.id)}>
-                Revisit the idea <ArrowRight size={14} />
+            <div className="review-row" key={c.id}>
+              <div>
+                <h3>{c.title}</h3>
+                <p>
+                  {cause
+                    ? cause.remediation
+                    : e.correct
+                      ? "The last response used support. Try independent recall."
+                      : "Compare the worked reasoning with your response."}
+                </p>
+              </div>
+              <button className="secondary" onClick={() => onConcept(c.id)}>
+                Revisit the idea →
               </button>
-            </article>
+            </div>
           );
         })}
       </div>

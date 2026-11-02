@@ -1,6 +1,6 @@
-import Dexie, { type EntityTable } from 'dexie';
-import { z } from 'zod';
-import type { Learner } from '@noetherwake/engine';
+import Dexie, { type EntityTable } from "dexie";
+import { z } from "zod";
+import type { Learner } from "@noetherwake/engine";
 const finite = z.number().finite(),
   prob = finite.min(0).max(1);
 const knowledge = z.object({
@@ -38,7 +38,7 @@ export const learnerSchema = z.object({
   history: z.array(evidence).max(3000),
   diagnostic: z.array(z.string()).max(1000),
   onboarded: z.boolean(),
-  theme: z.enum(['system', 'dark', 'light']),
+  theme: z.enum(["system", "dark", "light"]),
   accessibleFont: z.boolean(),
   sessions: z
     .array(
@@ -55,18 +55,18 @@ export const learnerSchema = z.object({
     .max(1000),
   reflection: z.string().max(4000),
 });
-export const db = new Dexie('noetherwake') as Dexie & {
-  learners: EntityTable<{ id: string; state: Learner }, 'id'>;
+export const db = new Dexie("noetherwake") as Dexie & {
+  learners: EntityTable<{ id: string; state: Learner }, "id">;
 };
-db.version(1).stores({ learners: 'id' });
+db.version(1).stores({ learners: "id" });
 export async function readState() {
-  return (await db.learners.get('local'))?.state;
+  return (await db.learners.get("local"))?.state;
 }
 export async function saveState(state: Learner) {
-  await db.learners.put({ id: 'local', state });
+  await db.learners.put({ id: "local", state });
 }
 export function parseImport(text: string, ids: Set<string>): Learner {
-  if (text.length > 8_000_000) throw Error('Import must be smaller than 8 MB.');
+  if (text.length > 8_000_000) throw Error("Import must be smaller than 8 MB.");
   const state = learnerSchema.parse(JSON.parse(text));
   if (
     !ids.has(state.goal) ||
@@ -74,8 +74,12 @@ export function parseImport(text: string, ids: Set<string>): Learner {
       ...Object.keys(state.knowledge),
       ...state.history.map((e) => e.concept),
       ...state.diagnostic,
+      ...state.sessions.flatMap((s) => [
+        ...s.concepts,
+        ...Object.keys(s.changes),
+      ]),
     ].some((id) => !ids.has(id))
   )
-    throw Error('This file references concepts from another curriculum.');
+    throw Error("This file references concepts from another curriculum.");
   return state;
 }
