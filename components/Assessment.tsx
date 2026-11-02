@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { ConfidenceScale } from "./ui/WorkingPage";
 import Gap from "./ui/Gap";
 import { createPortal } from "react-dom";
-import { ArrowRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   check,
   arithmetic,
@@ -601,8 +601,7 @@ export default function Assessment({
           )}
           {!result.indeterminate && (
             <button className="primary" onClick={onNext}>
-              {diagnostic ? "Next placement question" : "Next problem →"}{" "}
-              <ArrowRight size={16} />
+              {diagnostic ? "Next placement question →" : "Next problem →"}
             </button>
           )}
         </div>

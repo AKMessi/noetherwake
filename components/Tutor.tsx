@@ -778,6 +778,7 @@ export default function Tutor() {
                     </p>
                     <div
                       className="placement-ticks"
+                      role="img"
                       aria-label={`${state.diagnostic.length} questions visited`}
                     >
                       {state.diagnostic.map((id, i) => (

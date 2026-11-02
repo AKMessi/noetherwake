@@ -8,9 +8,20 @@ export interface AtlasPosition {
 export function atlasLayout(graph: Concept[], nodes: Concept[]) {
   const pos = new Map<string, AtlasPosition>(),
     memo = new Map<string, number>();
+  const firstDepth = (strand: string) =>
+    Math.min(
+      ...nodes
+        .filter((c) => `${c.domain}:${c.strand}` === strand)
+        .map((c) => depth(graph, c.id, memo)),
+    );
   const strands = [
       ...new Set(nodes.map((c) => `${c.domain}:${c.strand}`)),
-    ].sort(),
+    ].sort(
+      (a, b) =>
+        a.split(":")[0].localeCompare(b.split(":")[0]) ||
+        firstDepth(a) - firstDepth(b) ||
+        a.localeCompare(b),
+    ),
     lanes: { title: string; y: number }[] = [];
   const layers = [...new Set(nodes.map((c) => depth(graph, c.id, memo)))].sort(
     (a, b) => a - b,

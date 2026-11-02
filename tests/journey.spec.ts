@@ -72,6 +72,10 @@ test("placement skips without fabricated evidence, pauses and resumes after relo
     .getByRole("dialog")
     .getByRole("button", { name: "Find my starting point", exact: true })
     .click();
+  const placementAudit = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(placementAudit.violations).toEqual([]);
   await page
     .getByRole("button", { name: "I don’t know yet", exact: true })
     .click();
