@@ -2423,3 +2423,122 @@ svg text {
     border-left: 2px solid rgb(var(--rule));
   }
 }
+/* Answer comparisons use the same instrument as the laboratory. */
+.assessment-stage {
+  margin-bottom: 12px;
+}
+.assessment h2 {
+  margin-top: 0;
+}
+.assessment form > .caption {
+  margin-top: 16px;
+}
+.assessment-actions {
+  align-items: center;
+}
+.assessment .choice input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  min-height: 14px;
+  border: 1px solid rgb(var(--rule-strong));
+  padding: 0;
+  border-radius: 0;
+}
+.assessment .choice input:checked {
+  background: rgb(var(--cobalt));
+  border-color: rgb(var(--cobalt));
+}
+.assessment .choice-number {
+  display: none;
+}
+.gap-figure {
+  margin: 24px 0;
+}
+.gap-figure > div {
+  border-block: 1px solid rgb(var(--rule));
+}
+.gap-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 96px;
+}
+.gap-figure svg text {
+  font: 12.5px var(--mono);
+}
+.gap-correct {
+  transition: transform 420ms cubic-bezier(0.3, 0, 0, 1);
+}
+.gap-correct text {
+  fill: rgb(var(--cobalt));
+}
+.gap-yours {
+  fill: rgb(var(--ochre-ink));
+}
+.gap-bracket {
+  stroke-dasharray: 1;
+  animation: gap-bracket 420ms cubic-bezier(0.3, 0, 0, 1) both;
+  animation-delay: 420ms;
+}
+.gap-figure .figure-caption {
+  font-size: 12.5px;
+  font-style: normal;
+}
+.error-value {
+  color: rgb(var(--err));
+}
+.self-explanation {
+  border-top: 1px solid rgb(var(--rule));
+  padding-top: 24px;
+}
+.self-explanation label {
+  font-size: 14px;
+}
+.feedback > details {
+  border-top: 1px solid rgb(var(--rule));
+  margin-top: 24px;
+}
+.feedback-title strong {
+  font: 600 21px/28px var(--prose);
+}
+.feedback .primary {
+  margin-top: 24px;
+}
+.feedback:focus {
+  outline: none;
+}
+.feedback:focus-visible {
+  outline: 2px solid rgb(var(--focus));
+  outline-offset: 4px;
+}
+@keyframes gap-bracket {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (max-width: 767px) {
+  .confidence-scale label {
+    font-size: 12px;
+    line-height: 17px;
+  }
+  .view-session .assessment-actions {
+    position: sticky;
+    bottom: 0;
+    background: rgb(var(--sheet));
+    padding: 8px 0;
+    z-index: 12;
+  }
+  .assessment-actions .primary {
+    position: static;
+  }
+  .gap-figure svg text {
+    font-size: 14px;
+  }
+  .feedback .primary {
+    width: 100%;
+  }
+}

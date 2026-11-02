@@ -210,6 +210,7 @@ export default function Tutor() {
     [lastSession, setLastSession] = useState<SessionRecord | null>(null),
     [online, setOnline] = useState(true),
     [offlineReady, setOfflineReady] = useState(false);
+  const itemSequence = useRef(0);
   const hydrated = useRef(false),
     session = useRef<{
       start: number;
@@ -341,6 +342,7 @@ export default function Tutor() {
         c,
         template,
         ((s.history.length + 1) * 7919 +
+          ++itemSequence.current * 17 +
           ((s.history.at(-1)?.at ?? 0) % 10_000_000) * 101 +
           catalog.indexOf(c) * 101) >>>
           0,
@@ -1196,6 +1198,7 @@ export default function Tutor() {
                     faded={stage(state, lesson.id, now) !== "independent"}
                     onEvidence={evidence}
                     onNext={nextQuestion}
+                    onSkip={nextQuestion}
                   />
                 </div>
                 <aside className="margin">
@@ -1257,6 +1260,16 @@ export default function Tutor() {
                   diagnostic
                   onEvidence={evidence}
                   onNext={nextQuestion}
+                  onSkip={() => {
+                    const s = {
+                      ...state,
+                      diagnostic: [...state.diagnostic, lesson.id],
+                    };
+                    setState(s);
+                    const c = diagnosticNext(catalog, s, Date.now());
+                    if (c && s.diagnostic.length < 18) itemFor(c.id, s, true);
+                    else navigate("placement");
+                  }}
                 />
                 <button
                   className="text-button"

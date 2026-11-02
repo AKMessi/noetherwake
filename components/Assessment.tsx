@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { ConfidenceScale } from "./ui/WorkingPage";
+import Gap from "./ui/Gap";
 import {
   ArrowRight,
   Lightbulb,
@@ -11,6 +13,8 @@ import {
 } from "lucide-react";
 import {
   check,
+  arithmetic,
+  dimension,
   explainCheck,
   type Concept,
   type Evidence,
@@ -24,6 +28,7 @@ interface Props {
   faded?: boolean;
   onEvidence: (e: Evidence) => void;
   onNext: () => void;
+  onSkip?: () => void;
 }
 export default function Assessment({
   item,
@@ -32,6 +37,7 @@ export default function Assessment({
   faded = false,
   onEvidence,
   onNext,
+  onSkip,
 }: Props) {
   const [answer, setAnswer] = useState(
       item.kind === "simulation"
@@ -78,6 +84,25 @@ export default function Assessment({
       setBusy(false);
     }
   }
+  let gap: { yours: number; correct: number; unit: string } | null = null;
+  if (
+    result &&
+    !result.indeterminate &&
+    ["numeric", "point", "simulation"].includes(item.kind)
+  ) {
+    try {
+      const a = dimension(unit),
+        b = dimension(item.unit);
+      if (a.d.every((v, i) => v === b.d[i]))
+        gap = {
+          yours: (arithmetic(answer) * a.factor) / b.factor,
+          correct: arithmetic(item.answer),
+          unit: item.unit,
+        };
+    } catch {
+      /* Invalid syntax and units retain the engine's feedback only. */
+    }
+  }
   const feedbackRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (result) feedbackRef.current?.focus();
@@ -99,14 +124,13 @@ export default function Assessment({
   }
   return (
     <section className="assessment" aria-labelledby="question-title">
-      <div className="eyebrow">
-        <span className="tiny-square" />
+      <p className="assessment-stage caption">
         {diagnostic
-          ? "ADAPTIVE PLACEMENT"
+          ? "Placement question"
           : faded
-            ? "FADED EXAMPLE · COMPLETE THE LAST STEP"
-            : "RETRIEVAL PRACTICE"}
-      </div>
+            ? "Supported practice · hint weighting applies"
+            : "Independent practice"}
+      </p>
       <h2 id="question-title">{item.prompt}</h2>
       <form
         onSubmit={(e) => {
@@ -206,7 +230,10 @@ export default function Assessment({
                   <path d="M20 50H340" stroke="rgb(var(--ink-3))" />
                   {[0, 5, 10, 15, 20].map((x) => (
                     <g key={x}>
-                      <path d={`M${20 + x * 16} 45v10`} stroke="rgb(var(--ink-3))" />
+                      <path
+                        d={`M${20 + x * 16} 45v10`}
+                        stroke="rgb(var(--ink-3))"
+                      />
                       <text
                         x={20 + x * 16}
                         y="76"
@@ -330,7 +357,7 @@ export default function Assessment({
                     id="unit"
                     value={unit}
                     onChange={(e) => setUnit(e.target.value)}
-                    placeholder="SI unit"
+                    placeholder={item.unit}
                     disabled={!!result}
                     autoComplete="off"
                   />
@@ -375,33 +402,11 @@ export default function Assessment({
           </>
         )}
         {!result && (
-          <fieldset className="confidence">
-            <legend>
-              Before checking, how sure are you? <HelpCircle size={13} />
-            </legend>
-            <div>
-              {[
-                { label: "Still guessing", value: 0.35 },
-                { label: "Fairly sure", value: 0.65 },
-                { label: "Very sure", value: 0.9 },
-              ].map((c) => (
-                <button
-                  key={c.value}
-                  className={
-                    confidence === c.value
-                      ? "confidence-button selected"
-                      : "confidence-button"
-                  }
-                  type="button"
-                  onClick={() => setConfidence(c.value)}
-                  aria-pressed={confidence === c.value}
-                >
-                  {c.label}
-                </button>
-              ))}
-            </div>
-            <p>Confidence helps you tell knowing from recognizing.</p>
-          </fieldset>
+          <ConfidenceScale
+            value={confidence}
+            onChange={setConfidence}
+            disabled={busy}
+          />
         )}
         {hints > 0 && (
           <div className="hint-box">
@@ -426,10 +431,15 @@ export default function Assessment({
               type="submit"
               className="primary"
               disabled={!answer.trim() || confidence === null || busy}
+              aria-describedby="answer-requirements"
             >
-              {busy ? "Checking…" : "Check my reasoning"}
-              <CornerDownLeft size={15} />
+              {busy ? "Checking…" : "Check answer"}
             </button>
+            {onSkip && (
+              <button className="quiet" type="button" onClick={onSkip}>
+                {diagnostic ? "I don’t know yet" : "Skip"}
+              </button>
+            )}
             {!diagnostic && hints < 3 && (
               <button
                 type="button"
@@ -441,6 +451,15 @@ export default function Assessment({
               </button>
             )}
           </div>
+        )}
+        {!result && (
+          <p className="caption" id="answer-requirements">
+            {!answer.trim()
+              ? "Enter an answer."
+              : confidence === null
+                ? "Choose a confidence before checking."
+                : "Ready to check."}
+          </p>
         )}
       </form>
       {result && (
@@ -456,10 +475,11 @@ export default function Assessment({
               {result.indeterminate
                 ? "Let’s check another form."
                 : result.correct
-                  ? "That holds together."
-                  : "A useful place to look closer."}
+                  ? "Correct"
+                  : "Compare the reasoning"}
             </strong>
           </div>
+          {gap && <Gap {...gap} matches={result.correct} />}
           <p>
             {result.feedback}
             {result.indeterminate
@@ -483,7 +503,7 @@ export default function Assessment({
             </p>
           )}
           <details>
-            <summary>Trace the solution</summary>
+            <summary>Show the worked solution</summary>
             <p>{item.solution}</p>
             <p className="mono">
               Expected: {item.answer} {item.unit}
@@ -520,7 +540,7 @@ export default function Assessment({
           )}
           {!result.indeterminate && (
             <button className="primary" onClick={onNext}>
-              {diagnostic ? "Next placement question" : "Continue the session"}{" "}
+              {diagnostic ? "Next placement question" : "Next problem →"}{" "}
               <ArrowRight size={16} />
             </button>
           )}
