@@ -534,14 +534,19 @@ export default function Tutor() {
           ))}
         </nav>
         <div className="sidebar-bottom">
-          <p className="route-label mono">
-            Route: {goals.find((g) => g.id === state.goal)?.title ?? goal.title}
-            <br />
-            <span>
-              {strong.filter((c) => target.has(c.id)).length} of {target.size}{" "}
-              with strong evidence
-            </span>
-          </p>
+          {hydrated.current ? (
+            <p className="route-label mono">
+              Route:{" "}
+              {goals.find((g) => g.id === state.goal)?.title ?? goal.title}
+              <br />
+              <span>
+                {strong.filter((c) => target.has(c.id)).length} of {target.size}{" "}
+                with strong evidence
+              </span>
+            </p>
+          ) : (
+            <p className="caption">Reading from this device</p>
+          )}
           <button
             className="nav-item"
             aria-current={view === "settings" ? "page" : undefined}
@@ -550,7 +555,11 @@ export default function Tutor() {
             Preferences
           </button>
           <p className="local-note">
-            Stored on this device
+            {hydrated.current
+              ? storageError
+                ? "Storage unavailable"
+                : "Stored on this device"
+              : ""}
             {offlineReady && (
               <>
                 <br />
@@ -594,14 +603,7 @@ export default function Tutor() {
           tabIndex={-1}
           className={`main-content view-${view}`}
         >
-          {!hydrated.current ? (
-            <div className="storage-loading" role="status">
-              <p>Reading from this device</p>
-              <div />
-              <div />
-              <div />
-            </div>
-          ) : (
+          {hydrated.current && (
             <>
               {(notice || storageError) && (
                 <div className="notice" role="status">
@@ -618,41 +620,44 @@ export default function Tutor() {
                   </button>
                 </div>
               )}
-              {view === "today" && (
-                <StudioHome
-                  state={state}
-                  now={now}
-                  onStart={() => setOnboarding(true)}
-                  onMap={() => navigate("map")}
-                  onLibrary={() => navigate("curriculum")}
-                  onJournal={() => navigate("journal")}
-                  onLab={() => navigate("lab")}
-                  onResumePlacement={
-                    placementPending
-                      ? () => {
-                          const c = diagnosticNext(catalog, state, Date.now());
-                          if (c && state.diagnostic.length < 18) {
-                            itemFor(c.id, state, true);
-                            navigate("diagnostic");
-                          } else navigate("placement");
-                        }
-                      : undefined
-                  }
-                  onResume={
-                    session.current && item
-                      ? () => navigate("session")
-                      : undefined
-                  }
-                  onConcept={openLesson}
-                  onMinutes={(minutes) => setState({ ...state, minutes })}
-                  onDirection={(goalId) => {
-                    setState({ ...state, goal: goalId });
-                    setNotice(
-                      "Your direction is set. The next step now follows this goal and your existing evidence.",
-                    );
-                  }}
-                />
-              )}
+            </>
+          )}
+          {view === "today" && (
+            <StudioHome
+              ready={hydrated.current}
+              state={state}
+              now={now}
+              onStart={() => setOnboarding(true)}
+              onMap={() => navigate("map")}
+              onLibrary={() => navigate("curriculum")}
+              onJournal={() => navigate("journal")}
+              onLab={() => navigate("lab")}
+              onResumePlacement={
+                placementPending
+                  ? () => {
+                      const c = diagnosticNext(catalog, state, Date.now());
+                      if (c && state.diagnostic.length < 18) {
+                        itemFor(c.id, state, true);
+                        navigate("diagnostic");
+                      } else navigate("placement");
+                    }
+                  : undefined
+              }
+              onResume={
+                session.current && item ? () => navigate("session") : undefined
+              }
+              onConcept={openLesson}
+              onMinutes={(minutes) => setState({ ...state, minutes })}
+              onDirection={(goalId) => {
+                setState({ ...state, goal: goalId });
+                setNotice(
+                  "Your direction is set. The next step now follows this goal and your existing evidence.",
+                );
+              }}
+            />
+          )}
+          {hydrated.current && (
+            <>
               {view === "lab" && <ProjectileLab onConcept={openLesson} />}
               {view === "map" && (
                 <AtlasView
@@ -723,6 +728,12 @@ export default function Tutor() {
                       <Assessment
                         key={item.id}
                         item={item}
+                        confidenceError={
+                          state.knowledge[lesson.id]?.observations
+                            ? getKnowledge(state, lesson.id, now)
+                                .confidenceError
+                            : undefined
+                        }
                         draft={drafts.current.get(item.id)}
                         onDraft={(draft) => drafts.current.set(item.id, draft)}
                         concept={lesson}
@@ -781,6 +792,11 @@ export default function Tutor() {
                     <Assessment
                       key={item.id}
                       item={item}
+                      confidenceError={
+                        state.knowledge[lesson.id]?.observations
+                          ? getKnowledge(state, lesson.id, now).confidenceError
+                          : undefined
+                      }
                       draft={drafts.current.get(item.id)}
                       onDraft={(draft) => drafts.current.set(item.id, draft)}
                       concept={lesson}

@@ -34,6 +34,8 @@ export default function LessonView({
     gaps = missing(catalog, state, id, now),
     e = evidenceView(state, id, now);
   const [progress, setProgress] = useState(0),
+    [endVisible, setEndVisible] = useState(false),
+    end = useRef<HTMLElement>(null),
     reading = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const update = () => {
@@ -49,6 +51,13 @@ export default function LessonView({
     update();
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
+  }, [id]);
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) =>
+      setEndVisible(entries[0].isIntersecting),
+    );
+    if (end.current) observer.observe(end.current);
+    return () => observer.disconnect();
   }, [id]);
   const strong =
     effective(getKnowledge(state, id, now), now) > 0.93 &&
@@ -69,6 +78,7 @@ export default function LessonView({
         ← Back to Today
       </button>
       <Sheet
+        className="reading-frame"
         margin={
           <LessonConnections
             key={id}
@@ -112,15 +122,19 @@ export default function LessonView({
             </button>
           </section>
         ) : (
-          <>
-            <LessonReading html={lesson.html ?? ""} onConcept={onConcept} />
-            <Derivation key={id} lesson={lesson} onConcept={onConcept} />
-            <Interactive key={id} concept={lesson} />
+          <LessonReading html={lesson.html ?? ""} onConcept={onConcept} />
+        )}
+      </Sheet>
+      {!gaps.length && (
+        <>
+          <Derivation key={id} lesson={lesson} onConcept={onConcept} />
+          <Interactive key={id} concept={lesson} />
+          <Sheet className="lesson-ending">
             <section className="lesson-boundary">
               <h2>Model boundary</h2>
               <p className="prose">{lesson.boundary}</p>
             </section>
-            <section className="lesson-practice" id="lesson-practice">
+            <section ref={end} className="lesson-practice" id="lesson-practice">
               <h2>Practice this concept</h2>
               <p className="prose">
                 Reconstruct the reasoning without the worked example.
@@ -136,10 +150,10 @@ export default function LessonView({
                 </button>
               )}
             </section>
-          </>
-        )}
-      </Sheet>
-      {!gaps.length && !strong && progress > 0.6 && (
+          </Sheet>
+        </>
+      )}
+      {!gaps.length && !strong && progress > 0.6 && !endVisible && (
         <div className="lesson-sticky-action">
           <button className="primary full" onClick={() => onPractice(id)}>
             Practice this →

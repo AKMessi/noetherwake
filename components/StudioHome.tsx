@@ -13,6 +13,7 @@ import { EvidenceMark, Readout, Sheet } from "./ui/WorkingPage";
 import Expeditions, { RouteRuler } from "./Expeditions";
 import ProjectileLab from "./ProjectileLab";
 interface Props {
+  ready?: boolean;
   state: Learner;
   now: number;
   onStart: () => void;
@@ -27,6 +28,7 @@ interface Props {
   onResumePlacement?: () => void;
 }
 export default function StudioHome({
+  ready = true,
   state,
   now,
   onStart,
@@ -103,9 +105,13 @@ export default function StudioHome({
   );
   return (
     <div className={`working-today ${!state.onboarded ? "first-visit" : ""}`}>
-      <Sheet margin={margin}>
+      <Sheet margin={ready ? margin : <p>Reading from this device.</p>}>
         <header className="today-header">
-          <time dateTime={new Date(now).toISOString()}>{shortDate(now)}</time>
+          {ready ? (
+            <time dateTime={new Date(now).toISOString()}>{shortDate(now)}</time>
+          ) : (
+            <span className="caption">Mathematics and physics</span>
+          )}
           <span className="section-number">§1</span>
         </header>
         {!state.onboarded ? (
@@ -117,38 +123,51 @@ export default function StudioHome({
               Answer a few questions and the atlas marks what you know, what
               you’re unsure of, and the next idea worth learning.
             </p>
-            <fieldset className="time-choice">
-              <legend>Time for today</legend>
-              <div className="segmented">
-                {([5, 15, 30] as const).map((m) => (
-                  <button
-                    key={m}
-                    aria-pressed={state.minutes === m}
-                    onClick={() => onMinutes(m)}
-                  >
-                    {m} min
+            {ready ? (
+              <>
+                <fieldset className="time-choice">
+                  <legend>Time for today</legend>
+                  <div className="segmented">
+                    {([5, 15, 30] as const).map((m) => (
+                      <button
+                        key={m}
+                        aria-pressed={state.minutes === m}
+                        onClick={() => onMinutes(m)}
+                      >
+                        {m} min
+                      </button>
+                    ))}
+                  </div>
+                </fieldset>
+                <div className="actions">
+                  <button className="primary" onClick={onStart}>
+                    Find my starting point →
                   </button>
-                ))}
+                  <button
+                    className="secondary"
+                    onClick={() =>
+                      document
+                        .getElementById("today-prediction")
+                        ?.scrollIntoView({
+                          behavior: matchMedia(
+                            "(prefers-reduced-motion: reduce)",
+                          ).matches
+                            ? "instant"
+                            : "smooth",
+                        })
+                    }
+                  >
+                    Try a prediction first
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="home-loading" role="status">
+                <p>Reading from this device</p>
+                <div className="loading-time" />
+                <div className="loading-action" />
               </div>
-            </fieldset>
-            <div className="actions">
-              <button className="primary" onClick={onStart}>
-                Find my starting point →
-              </button>
-              <button
-                className="secondary"
-                onClick={() =>
-                  document.getElementById("today-prediction")?.scrollIntoView({
-                    behavior: matchMedia("(prefers-reduced-motion: reduce)")
-                      .matches
-                      ? "instant"
-                      : "smooth",
-                  })
-                }
-              >
-                Try a prediction first
-              </button>
-            </div>
+            )}
           </section>
         ) : (
           <>
@@ -274,7 +293,7 @@ export default function StudioHome({
           </>
         )}
       </Sheet>
-      {!state.onboarded && (
+      {ready && !state.onboarded && (
         <section id="today-prediction" className="today-prediction">
           <div className="index-heading">
             <span className="section-number">§2</span>
@@ -283,12 +302,14 @@ export default function StudioHome({
           <ProjectileLab onConcept={onConcept} />
         </section>
       )}
-      <Expeditions
-        state={state}
-        now={now}
-        onConcept={onConcept}
-        onDirection={onDirection}
-      />
+      {ready && (
+        <Expeditions
+          state={state}
+          now={now}
+          onConcept={onConcept}
+          onDirection={onDirection}
+        />
+      )}
     </div>
   );
 }

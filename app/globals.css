@@ -3685,3 +3685,156 @@ svg text {
     margin-top: 0;
   }
 }
+@media (max-width: 767px) {
+  .lab-plot text {
+    font-size: 28px;
+  }
+  .gap-figure svg text {
+    font-size: 24px;
+  }
+}
+@media (min-width: 1024px) {
+  .mobile-detail:not(.expanded) .detail-heading h2 {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+}
+.confidence-note {
+  background: rgb(var(--ochre-tint));
+  border-left: 2px solid rgb(var(--ochre-ink));
+  padding: 12px 16px;
+  margin: 24px 0;
+  color: rgb(var(--ochre-ink));
+}
+.confidence-note > p {
+  font: italic 17px/26px var(--prose);
+  margin: 0;
+}
+.confidence-note details p {
+  font-size: 15px;
+  line-height: 24px;
+}
+.confidence-note summary {
+  font-size: 12.5px;
+}
+.margin .hint-box {
+  padding: 0 0 0 16px;
+  margin: 0 0 24px;
+}
+.margin .hint-box h3 {
+  font: 600 14px/20px var(--ui);
+  margin: 0 0 12px;
+}
+.margin .hint-box p {
+  font: italic 15px/22px var(--prose);
+}
+.margin .hint-box .caption {
+  font: 12.5px/20px var(--ui);
+  color: rgb(var(--ink-3));
+}
+/* Derivation rules occupy the same ruled margin as lesson connections. */
+.working-derivation > h2,
+.working-derivation > .caption {
+  max-width: 640px;
+}
+.derivation-lines li {
+  position: relative;
+  grid-template-columns: minmax(0, 640px) 280px;
+  gap: 56px;
+}
+.derivation-lines li > .section-number {
+  position: absolute;
+  left: -32px;
+  top: 24px;
+}
+.derivation-lines .derivation-expression {
+  grid-column: 1;
+}
+.derivation-lines aside {
+  grid-column: 2;
+  border-left: 1px solid rgb(var(--rule));
+  padding-left: 24px;
+}
+.equation-scroll .katex-display {
+  font-size: 1em;
+  padding-right: 24px;
+}
+.math-display .katex-display {
+  font-size: 1em;
+}
+.math-display .katex-display > .katex {
+  font-size: 1.2em;
+}
+@media (max-width: 1279px) {
+  .derivation-lines li {
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 40px;
+  }
+}
+@media (max-width: 1023px) {
+  .lesson-page {
+    display: flex;
+    flex-direction: column;
+  }
+  .lesson-page > .back-button {
+    align-self: flex-start;
+    order: 0;
+  }
+  .lesson-page > .reading-frame {
+    display: contents;
+  }
+  .reading-frame > .sheet {
+    order: 1;
+  }
+  .lesson-page > .working-derivation {
+    order: 2;
+  }
+  .lesson-page > .interactive-card {
+    order: 3;
+  }
+  .lesson-page > .lesson-ending {
+    order: 4;
+  }
+  .reading-frame > .margin {
+    order: 5;
+  }
+  .derivation-lines li {
+    grid-template-columns: 16px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .derivation-lines li > .section-number {
+    position: static;
+    grid-column: 1;
+  }
+  .derivation-lines .derivation-expression {
+    grid-column: 2;
+  }
+  .derivation-lines aside {
+    grid-column: 2;
+    border-left: 2px solid rgb(var(--rule));
+    padding-left: 16px;
+  }
+  .lesson-page > .lesson-ending {
+    margin-top: 0;
+  }
+}
+.home-loading {
+  margin-top: 32px;
+}
+.home-loading p {
+  font-size: 12.5px;
+  color: rgb(var(--ink-3));
+}
+.home-loading > div {
+  background: rgb(var(--rule) / 0.4);
+  margin-top: 16px;
+}
+.loading-time {
+  height: 44px;
+  width: 208px;
+}
+.loading-action {
+  height: 44px;
+  width: 240px;
+}

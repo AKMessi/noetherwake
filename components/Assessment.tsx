@@ -2,13 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { ConfidenceScale } from "./ui/WorkingPage";
 import Gap from "./ui/Gap";
-import {
-  ArrowRight,
-  Lightbulb,
-  Check,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { createPortal } from "react-dom";
+import { ArrowRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   check,
   arithmetic,
@@ -40,6 +35,7 @@ interface Props {
   onSkip?: () => void;
   draft?: AssessmentDraft;
   onDraft?: (draft: AssessmentDraft) => void;
+  confidenceError?: number;
 }
 export default function Assessment({
   item,
@@ -51,6 +47,7 @@ export default function Assessment({
   onSkip,
   draft,
   onDraft,
+  confidenceError,
 }: Props) {
   const [answer, setAnswer] = useState(
       draft?.answer ??
@@ -97,6 +94,22 @@ export default function Assessment({
     keyboard,
     onDraft,
   ]);
+  const [hintMargin, setHintMargin] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    setHintMargin(document.getElementById("practice-hint-margin"));
+  }, []);
+  const hintContent =
+    hints > 0 ? (
+      <section className="hint-box">
+        <h3>Hint · {["", "Nudge", "Partial step", "Full solution"][hints]}</h3>
+        <p>{item.hints[hints - 1]}</p>
+        <p className="caption">
+          {hints === 3
+            ? "Full support: this answer adds no mastery evidence."
+            : "Supported recall receives less mastery credit."}
+        </p>
+      </section>
+    ) : null;
   async function submit() {
     if (!answer.trim() || confidence === null || busy || result) return;
     setBusy(true);
@@ -451,23 +464,7 @@ export default function Assessment({
             disabled={busy}
           />
         )}
-        {hints > 0 && (
-          <div className="hint-box">
-            <Lightbulb size={16} />
-            <div>
-              <b>
-                {["", "Nudge", "Partial step", "Full solution"][hints]} ·{" "}
-                {hints} of 3
-              </b>
-              <p>
-                {hints === 3
-                  ? "Full support: this answer adds no mastery evidence."
-                  : "Supported recall receives less mastery credit."}
-              </p>
-              <p>{item.hints[hints - 1]}</p>
-            </div>
-          </div>
-        )}
+        {hintMargin ? createPortal(hintContent, hintMargin) : hintContent}
         {!result && (
           <div className="assessment-actions">
             <button
@@ -489,8 +486,7 @@ export default function Assessment({
                 className="text-button"
                 onClick={() => setHints(hints + 1)}
               >
-                <Lightbulb size={15} />{" "}
-                {hints ? "Another hint" : "A small hint"}
+                {hints ? "Next hint" : "Hint"}
               </button>
             )}
           </div>
@@ -513,7 +509,7 @@ export default function Assessment({
           role="status"
         >
           <div className="feedback-title">
-            {result.correct ? <Check size={18} /> : <Lightbulb size={18} />}
+            {result.correct ? <Check size={18} /> : null}
             <strong>
               {result.indeterminate
                 ? "Let’s check another form."
@@ -540,6 +536,28 @@ export default function Assessment({
               Try another form
             </button>
           )}
+          {!result.indeterminate &&
+            confidence !== null &&
+            confidenceError !== undefined &&
+            ((result.correct && confidence <= 0.35) ||
+              (!result.correct && confidence >= 0.75)) && (
+              <aside className="confidence-note">
+                <p>
+                  {result.correct
+                    ? `Correct, with ${Math.round(confidence * 100)}% reported confidence. Worth another independent pass.`
+                    : `You reported ${Math.round(confidence * 100)}% confidence. Compare the relationship with the worked solution.`}
+                </p>
+                <details>
+                  <summary>Confidence evidence</summary>
+                  <p>
+                    Mean squared confidence error for this concept:{" "}
+                    <span className="mono">{confidenceError.toFixed(3)}</span>.
+                    Lower values mean reported confidence and correctness were
+                    more closely aligned.
+                  </p>
+                </details>
+              </aside>
+            )}
           {misconception && (
             <p>
               <b>{misconception.description}.</b> {misconception.remediation}

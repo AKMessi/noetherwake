@@ -29,13 +29,13 @@ export default function ProjectileLab({
   const winner = comparison.reduce((a, b) => (a.range > b.range ? a : b)),
     predicted = comparison.find((f) => f.angle === prediction),
     extent = winner.range * 1.05,
-    scale = 620 / extent,
+    scale = 588 / extent,
     maxDuration = Math.max(
       ...comparison.map((f) => f.duration),
       flight.duration,
     );
   const point = (p: { x: number; y: number }) =>
-    `${64 + p.x * scale},${340 - p.y * scale}`;
+    `${96 + p.x * scale},${340 - p.y * scale}`;
   const path = (
     points: { t: number; x: number; y: number }[],
     animated: boolean,
@@ -90,22 +90,22 @@ export default function ProjectileLab({
                 }
               >
                 <path
-                  d="M64 30V340H696"
+                  d="M96 30V340H696"
                   fill="none"
                   stroke="rgb(var(--rule-strong))"
                 />
                 <path
-                  d="M64 340H696"
+                  d="M96 340H696"
                   stroke="rgb(var(--ink))"
                   strokeWidth="2"
                 />
                 {[0, 0.25, 0.5, 0.75, 1].map((p) => (
                   <g key={p}>
                     <path
-                      d={`M${64 + p * 620} 340v8`}
+                      d={`M${96 + p * 588} 340v8`}
                       stroke="rgb(var(--rule-strong))"
                     />
-                    <text x={64 + p * 620} y="370" textAnchor="middle">
+                    <text x={96 + p * 588} y="370" textAnchor="middle">
                       {(p * extent).toFixed(1)}
                     </text>
                   </g>
@@ -113,10 +113,10 @@ export default function ProjectileLab({
                 {[0.125, 0.25, 0.375, 0.5].map((p) => (
                   <g key={p}>
                     <path
-                      d={`M56 ${340 - p * 620}h8`}
+                      d={`M88 ${340 - p * 588}h8`}
                       stroke="rgb(var(--rule-strong))"
                     />
-                    <text x="48" y={344 - p * 620} textAnchor="end">
+                    <text x="80" y={344 - p * 588} textAnchor="end">
                       {(p * extent).toFixed(1)}
                     </text>
                   </g>
@@ -124,14 +124,14 @@ export default function ProjectileLab({
                 <text x="684" y="394" textAnchor="end">
                   range / m
                 </text>
-                <text x="64" y="20">
+                <text x="96" y="20">
                   height / m
                 </text>
-                <circle cx="64" cy="340" r="4" fill="rgb(var(--ink))" />
+                <circle cx="96" cy="340" r="4" fill="rgb(var(--ink))" />
                 {!revealed && (
                   <>
                     <path
-                      d="M64 340l40 -24M64 340l32 -32M64 340l24 -40"
+                      d="M96 340l40 -24M96 340l32 -32M96 340l24 -40"
                       fill="none"
                       stroke="rgb(var(--ink-3))"
                       strokeDasharray="4 4"
@@ -139,12 +139,12 @@ export default function ProjectileLab({
                     {predicted && (
                       <g>
                         <path
-                          d={`M${64 + predicted.range * scale} 326v28`}
+                          d={`M${96 + predicted.range * scale} 326v28`}
                           stroke="rgb(var(--ochre-ink))"
                           strokeWidth="2"
                         />
                         <text
-                          x={Math.min(580, 64 + predicted.range * scale)}
+                          x={Math.min(580, 96 + predicted.range * scale)}
                           y="308"
                           textAnchor="end"
                           className="prediction-label"
@@ -188,14 +188,14 @@ export default function ProjectileLab({
                         />
                         {!landed && (
                           <circle
-                            cx={64 + ball.x * scale}
+                            cx={96 + ball.x * scale}
                             cy={340 - ball.y * scale}
                             r="4"
                             fill={color}
                           />
                         )}
                         <text
-                          x={64 + f.range * 0.5 * scale}
+                          x={96 + f.range * 0.5 * scale}
                           y={324 - f.height * scale - (f.angle === 60 ? 8 : 0)}
                           textAnchor="middle"
                           style={{ fill: color }}
@@ -204,7 +204,7 @@ export default function ProjectileLab({
                         </text>
                         {landed && (
                           <path
-                            d={`M${64 + f.range * scale} 332v16`}
+                            d={`M${96 + f.range * scale} 332v16`}
                             stroke={color}
                             strokeWidth="2"
                           />

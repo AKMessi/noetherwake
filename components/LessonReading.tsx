@@ -32,6 +32,7 @@ export default function LessonReading({
             wrap.removeAttribute("aria-label");
           }
         };
+        void document.fonts.ready.then(check);
         const observer = new ResizeObserver(check);
         observer.observe(wrap);
         observers.push(observer);

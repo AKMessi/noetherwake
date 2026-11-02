@@ -117,7 +117,6 @@ export default function Interactive({ concept }: { concept: Concept }) {
             stroke="rgb(var(--ink-3))"
             strokeDasharray="4 4"
             fill="none"
-            opacity=".45"
           />
           <path
             d={curves.path}
@@ -130,7 +129,7 @@ export default function Interactive({ concept }: { concept: Concept }) {
               cx={curves.marker.split(",")[0]}
               cy={curves.marker.split(",")[1]}
               r="5"
-              fill="rgb(var(--ochre))"
+              fill="rgb(var(--cobalt))"
               stroke="rgb(var(--sheet))"
               strokeWidth="2"
             />

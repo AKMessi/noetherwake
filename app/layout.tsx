@@ -17,6 +17,7 @@ const prose = localFont({
   ],
   variable: "--font-prose",
   display: "swap",
+  preload: false,
 });
 const proseExt = localFont({
   src: [
@@ -55,6 +56,7 @@ const mono = localFont({
   ],
   variable: "--font-mono",
   display: "swap",
+  preload: false,
 });
 const monoExt = localFont({
   src: [
