@@ -139,16 +139,9 @@ function GoalDialog({
       >
         <X size={20} />
       </button>
-      <span className="eyebrow">A PATH THAT STARTS WITH YOU</span>
-      <h2 id="goal-title">
-        Where would you
-        <br />
-        like to go?
-      </h2>
-      <p>
-        Your goal gives the engine a direction. A few questions will find your
-        starting point.
-      </p>
+      <span className="section-number">Placement</span>
+      <h2 id="goal-title">Choose a route</h2>
+      <p>The route determines which prerequisites placement asks about.</p>
       <fieldset className="goal-options">
         <legend className="sr-only">Choose a learning goal</legend>
         {goals.map((g) => (
@@ -209,7 +202,8 @@ export default function Tutor() {
     [reflection, setReflection] = useState(""),
     [lastSession, setLastSession] = useState<SessionRecord | null>(null),
     [online, setOnline] = useState(true),
-    [offlineReady, setOfflineReady] = useState(false);
+    [offlineReady, setOfflineReady] = useState(false),
+    [placementPending, setPlacementPending] = useState(false);
   const itemSequence = useRef(0);
   const hydrated = useRef(false),
     session = useRef<{
@@ -229,6 +223,9 @@ export default function Tutor() {
             s
               ? learnerSchema.parse(s)
               : createLearner(Date.now(), "conservation-energy"),
+          );
+          setPlacementPending(
+            localStorage.getItem("noetherwake-placement") === "active",
           );
           hydrated.current = true;
         }
@@ -282,6 +279,12 @@ export default function Tutor() {
       : "standard";
   }, [state]);
   function navigate(next: View) {
+    if (next === "placement") {
+      setPlacementPending(false);
+      try {
+        localStorage.removeItem("noetherwake-placement");
+      } catch {}
+    }
     if (next === "map" && !selected && state)
       setSelected(plan(catalog, state, Date.now())[0]?.concept ?? state.goal);
     setView(next);
@@ -381,6 +384,10 @@ export default function Tutor() {
     navigate("lesson");
   }
   function beginDiagnostic(goalId: string) {
+    setPlacementPending(true);
+    try {
+      localStorage.setItem("noetherwake-placement", "active");
+    } catch {}
     const s = {
       ...state!,
       goal: goalId,
@@ -397,6 +404,10 @@ export default function Tutor() {
     }
   }
   function skipDiagnostic(goalId: string) {
+    setPlacementPending(false);
+    try {
+      localStorage.removeItem("noetherwake-placement");
+    } catch {}
     const s = { ...state!, goal: goalId, onboarded: true };
     setState(s);
     setOnboarding(false);
@@ -430,6 +441,7 @@ export default function Tutor() {
         ]),
       ),
     };
+    session.current = null;
     setLastSession(record);
     setReflection("");
     setState((s) =>
@@ -612,12 +624,25 @@ export default function Tutor() {
             <StudioHome
               state={state}
               now={now}
-              onStart={() =>
-                state.onboarded ? startSession() : setOnboarding(true)
-              }
+              onStart={() => setOnboarding(true)}
               onMap={() => navigate("map")}
               onLibrary={() => navigate("curriculum")}
               onJournal={() => navigate("journal")}
+              onLab={() => navigate("lab")}
+              onResumePlacement={
+                placementPending
+                  ? () => {
+                      const c = diagnosticNext(catalog, state, Date.now());
+                      if (c && state.diagnostic.length < 18) {
+                        itemFor(c.id, state, true);
+                        navigate("diagnostic");
+                      } else navigate("placement");
+                    }
+                  : undefined
+              }
+              onResume={
+                session.current && item ? () => navigate("session") : undefined
+              }
               onConcept={openLesson}
               onMinutes={(minutes) => setState({ ...state, minutes })}
               onDirection={(goalId) => {

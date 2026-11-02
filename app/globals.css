@@ -2542,3 +2542,425 @@ svg text {
     width: 100%;
   }
 }
+/* Today is a working page, and routes are an index. */
+.working-today {
+  max-width: 976px;
+}
+.today-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(var(--rule));
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+}
+.today-header time {
+  font-size: 12.5px;
+  line-height: 20px;
+  color: rgb(var(--ink-3));
+}
+.first-working-page .display {
+  max-width: 19ch;
+}
+.today-introduction {
+  font-size: 15px;
+  line-height: 24px;
+  color: rgb(var(--ink-2));
+  margin-top: 24px;
+  max-width: 60ch;
+}
+.time-choice {
+  margin: 32px 0 24px;
+}
+.time-choice legend {
+  font-size: 12.5px;
+  color: rgb(var(--ink-3));
+  margin-bottom: 8px;
+}
+.time-choice .segmented button {
+  min-width: 64px;
+  font-family: var(--mono);
+  font-size: 14px;
+  padding-inline: 8px;
+}
+.today-prediction {
+  margin: 48px 0;
+}
+.index-heading {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+.today-route > p:first-child {
+  font-size: 12.5px;
+  line-height: 20px;
+}
+.route-ruler {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16px, 1fr));
+  position: relative;
+  margin: 16px 0 8px;
+  border-bottom: 1px solid rgb(var(--rule));
+}
+.route-ruler button {
+  padding: 8px 0;
+  min-width: 0;
+  min-height: 44px;
+  align-items: flex-end;
+}
+.ruler-tick {
+  height: 18px;
+  width: 2px;
+  border: 1px solid rgb(var(--ink-3));
+  position: relative;
+}
+.ruler-tick.emerging {
+  height: 8px;
+  background: rgb(var(--ink));
+}
+.ruler-tick.moderate {
+  height: 12px;
+  background: rgb(var(--ink));
+}
+.ruler-tick.strong {
+  background: rgb(var(--cobalt));
+  border-color: rgb(var(--cobalt));
+}
+.ruler-tick.uncertain:before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -2px;
+  width: 4px;
+  height: 4px;
+  border-top: 1px dashed rgb(var(--ochre-ink));
+}
+.today-next {
+  padding: 32px 0;
+}
+.today-next h1 {
+  margin: 12px 0 24px;
+  max-width: 18ch;
+}
+.prose {
+  font: 19px/31px var(--prose);
+  max-width: 66ch;
+}
+.today-next .actions {
+  margin-top: 32px;
+}
+.along-route,
+.due-retrieval,
+.open-question {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgb(var(--rule));
+}
+.along-route h2,
+.due-retrieval h2,
+.open-question h2 {
+  font-size: 21px;
+  line-height: 28px;
+  margin-bottom: 16px;
+}
+.along-route ol {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+.along-route li {
+  position: relative;
+}
+.along-route li:before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: -16px;
+  height: 1px;
+  background: rgb(var(--rule));
+}
+.along-route li:last-child:before {
+  right: 0;
+}
+.along-route button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 0;
+  font-size: 13px;
+  line-height: 18px;
+  width: 100%;
+  min-height: 96px;
+  position: relative;
+  gap: 12px;
+}
+.along-route button > .evidence-state {
+  background: rgb(var(--ground));
+  padding-right: 8px;
+}
+.along-route .recommended button {
+  box-shadow: inset 0 -2px rgb(var(--cobalt));
+}
+.along-route .caption {
+  font-size: 12px;
+}
+.retrieval-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  border-bottom: 1px solid rgb(var(--rule));
+  min-height: 64px;
+}
+.retrieval-row > span:nth-child(2) {
+  flex: 1;
+}
+.retrieval-row small {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+}
+.open-question .secondary {
+  text-align: left;
+  justify-content: flex-start;
+}
+.expeditions {
+  margin-top: 64px;
+}
+.route-index {
+  margin-top: 24px;
+  border-top: 1px solid rgb(var(--rule));
+}
+.route-index-row {
+  display: flex;
+  width: 100%;
+  text-align: left;
+  justify-content: flex-start;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgb(var(--rule));
+  border-radius: 0;
+}
+.route-number {
+  font-size: 12px;
+  color: rgb(var(--ink-3));
+  align-self: flex-start;
+}
+.route-index-text {
+  flex: 1;
+  min-width: 0;
+  display: block;
+}
+.route-index-text > strong {
+  display: block;
+  font: 600 21px/28px var(--prose);
+  margin-bottom: 8px;
+}
+.route-index-text > span:not(.concept-thread) {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: rgb(var(--ink-2));
+  display: block;
+  max-width: 60ch;
+}
+.route-index-count {
+  font-size: 12.5px;
+  line-height: 20px;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+.route-index-count > span {
+  display: block;
+  font-size: 12px;
+  color: rgb(var(--ink-3));
+  margin-top: 8px;
+}
+.concept-thread {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  background: linear-gradient(rgb(var(--rule)), rgb(var(--rule))) 0 50%/100% 1px
+    no-repeat;
+  max-width: 520px;
+}
+.concept-thread .evidence-state {
+  background: rgb(var(--ground));
+}
+.route-index-row[aria-expanded="true"] {
+  background: rgb(var(--cobalt-tint) / 0.25);
+}
+.route-detail {
+  margin-top: 32px;
+  max-width: 720px;
+}
+.route-detail header > .prose {
+  margin-top: 16px;
+}
+.route-detail header .secondary {
+  margin-top: 16px;
+}
+.route-stops {
+  padding: 0 0 0 24px;
+  list-style: none;
+  border-left: 1px solid rgb(var(--rule));
+  margin: 24px 0;
+}
+.route-stops > li {
+  position: relative;
+  padding: 16px 0;
+  border-bottom: 1px solid rgb(var(--rule));
+}
+.route-stop-mark {
+  position: absolute;
+  left: -32px;
+  top: 32px;
+  background: rgb(var(--ground));
+}
+.route-stop-title {
+  font: 600 21px/28px var(--prose);
+  padding: 8px 0;
+  justify-content: flex-start;
+}
+.route-stops p {
+  font-size: 14px;
+  line-height: 22px;
+  color: rgb(var(--ink-2));
+}
+.route-stop-state {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.route-current > div {
+  border-left: 2px solid rgb(var(--cobalt));
+  padding-left: 16px;
+}
+.route-unmet {
+  list-style: none;
+  padding-left: 16px;
+  border-left: 1px solid rgb(var(--rule));
+  margin: 16px 0;
+}
+.resume-placement {
+  margin: 24px 0;
+  padding: 16px 0;
+  border-block: 1px solid rgb(var(--rule));
+}
+.resume-placement p {
+  margin: 12px 0;
+}
+@media (hover: hover) {
+  .route-index-row:hover {
+    background: rgb(var(--cobalt-tint) / 0.5);
+  }
+  .route-index-row:hover strong,
+  .route-stop-title:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .first-working-page .display {
+    max-width: 18ch;
+  }
+  .first-working-page > .actions {
+    gap: 12px;
+    display: grid;
+    justify-items: start;
+  }
+  .first-working-page .primary {
+    width: 100%;
+  }
+  .today-introduction {
+    margin-top: 24px;
+  }
+  .time-choice {
+    margin-top: 24px;
+  }
+  .working-today > .expeditions {
+    margin-top: 48px;
+  }
+  .route-index-row {
+    gap: 12px;
+    padding: 24px 0;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .route-number {
+    width: 16px;
+  }
+  .route-index-text {
+    flex-basis: calc(100% - 32px);
+  }
+  .route-index-count {
+    margin-left: 28px;
+    flex: 1;
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .route-index-count > span {
+    margin: 0;
+  }
+  .concept-thread {
+    gap: 4px;
+  }
+  .today-route .route-ruler {
+    grid-template-columns: repeat(auto-fit, minmax(24px, 1fr));
+  }
+  .along-route ol {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding-bottom: 8px;
+  }
+  .along-route li {
+    flex: 0 0 96px;
+  }
+  .today-next .prose,
+  .prose {
+    font-size: 17.5px;
+    line-height: 29px;
+  }
+  .today-next .actions {
+    gap: 16px;
+  }
+  .today-next .primary {
+    width: 100%;
+  }
+  .route-stops {
+    padding-left: 16px;
+    margin-left: 8px;
+  }
+  .route-stop-mark {
+    left: -24px;
+  }
+  .route-stop-title {
+    font-size: 19px;
+    line-height: 26px;
+  }
+  .route-ruler button {
+    min-width: 0;
+  }
+  .today-prediction {
+    margin-top: 48px;
+  }
+}
+.route-ruler {
+  grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+  column-gap: 8px;
+}
+.route-ruler button {
+  min-width: 44px;
+}
+.today-route .route-ruler {
+  grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+}
