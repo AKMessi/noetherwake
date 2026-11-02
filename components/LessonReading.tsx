@@ -15,6 +15,7 @@ export default function LessonReading({
         .map((section, index) => (
           <article
             className="lesson-prose"
+            id={index === 0 ? "lesson-reading" : undefined}
             key={index}
             onClick={(e) => {
               const link = (e.target as HTMLElement).closest("a");

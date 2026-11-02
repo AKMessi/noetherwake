@@ -1,5 +1,8 @@
 "use client";
 import LessonReading from "./LessonReading";
+import StudioHome from "./StudioHome";
+import LessonConnections from "./LessonConnections";
+import EvidenceReview from "./EvidenceReview";
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import {
@@ -13,18 +16,13 @@ import {
   Clock3,
   Compass,
   Download,
-  Flag,
   Focus,
-  Gauge,
   Home,
-  Layers3,
-  Lightbulb,
   LockKeyhole,
   Map,
   Menu,
   Monitor,
   Moon,
-  MoveUpRight,
   NotebookPen,
   Search,
   Settings2,
@@ -52,9 +50,7 @@ import {
   routeToReady,
   selectTemplate,
   sessionPlan,
-  sessionStreak,
   stage,
-  type Concept,
   type Evidence,
   type Item,
   type Learner,
@@ -194,6 +190,8 @@ export default function Tutor() {
     [storageError, setStorageError] = useState(""),
     [search, setSearch] = useState(""),
     [domain, setDomain] = useState("all"),
+    [strand, setStrand] = useState("all"),
+    [readiness, setReadiness] = useState("all"),
     [reflection, setReflection] = useState(""),
     [lastSession, setLastSession] = useState<SessionRecord | null>(null),
     [online, setOnline] = useState(true),
@@ -292,10 +290,6 @@ export default function Tutor() {
     nextConcept = next ? concept(next.concept) : null,
     goal = concept(state.goal),
     target = ancestors(catalog, state.goal),
-    due = catalog.filter((c) => {
-      const k = getKnowledge(state, c.id, now);
-      return k.observations > 0 && dueAt(k) < now;
-    }),
     assessed = catalog.filter(
       (c) => getKnowledge(state, c.id, now).observations > 0,
     ),
@@ -310,6 +304,18 @@ export default function Tutor() {
     lesson = concept(lessonId),
     gaps = missing(catalog, state, lessonId, now),
     frontier = estimateFrontier(catalog, state);
+  const visibleConcepts = catalog.filter(
+    (c) =>
+      (domain === "all" || c.domain === domain) &&
+      (strand === "all" || c.strand === strand) &&
+      (readiness === "all" ||
+        (readiness === "ready"
+          ? missing(catalog, state, c.id, now).length === 0
+          : getKnowledge(state, c.id, now).observations > 0)) &&
+      `${c.title} ${c.strand} ${c.summary}`
+        .toLowerCase()
+        .includes(search.trim().toLowerCase()),
+  );
   function itemFor(id: string, s: Learner, diagnostic = false) {
     const c = concept(id);
     const template = diagnostic
@@ -478,7 +484,11 @@ export default function Tutor() {
     ? "today"
     : view;
   return (
-    <div className="app-shell">
+    <div
+      className="app-shell"
+      inert={!hydrated.current}
+      aria-busy={!hydrated.current}
+    >
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
@@ -494,7 +504,7 @@ export default function Tutor() {
         >
           <Brand />
         </a>
-        <div className="workspace-label">YOUR LEARNING SPACE</div>
+        <div className="workspace-label">THE CURIOSITY STUDIO</div>
         <nav aria-label="Main navigation">
           {nav.map((n) => (
             <button
@@ -507,11 +517,11 @@ export default function Tutor() {
               <n.icon size={18} strokeWidth={1.7} />
               <span>
                 {n.id === "map"
-                  ? "Atlas"
+                  ? "Knowledge atlas"
                   : n.id === "curriculum"
-                    ? "Library"
+                    ? "Concept library"
                     : n.id === "journal"
-                      ? "Journal"
+                      ? "Field notes"
                       : n.label}
               </span>
               {n.id === "today" && <span className="nav-dot" />}
@@ -575,7 +585,7 @@ export default function Tutor() {
               <Menu size={20} />
             </button>
             <span className="breadcrumb">
-              Your workspace <ChevronRight size={13} />{" "}
+              The studio <ChevronRight size={13} />{" "}
               <b>
                 {view === "today"
                   ? "Today"
@@ -584,7 +594,7 @@ export default function Tutor() {
                     : view === "curriculum"
                       ? "Curriculum"
                       : view === "journal"
-                        ? "Journal"
+                        ? "Field notes"
                         : view === "settings"
                           ? "Preferences"
                           : view === "diagnostic"
@@ -644,262 +654,24 @@ export default function Tutor() {
             </div>
           )}
           {view === "today" && (
-            <>
-              <div className="page-heading">
-                <div>
-                  <span className="eyebrow">
-                    NOETHERWAKE / YOUR FIELD NOTES
-                  </span>
-                  <h1>
-                    Make the next
-                    <em> connection.</em>
-                  </h1>
-                  <p>
-                    Your direction:{" "}
-                    {goals.find((g) => g.id === state.goal)?.title ??
-                      goal.title}
-                  </p>
-                </div>
-                <span className="date-label" suppressHydrationWarning>
-                  {new Intl.DateTimeFormat("en", {
-                    weekday: "long",
-                    month: "short",
-                    day: "numeric",
-                  }).format(now)}
-                  <span>
-                    <span className="tiny-square" /> A good day to understand
-                    something.
-                  </span>
-                </span>
-              </div>
-              <div className="today-grid">
-                <section className="next-card">
-                  <div className="next-card-top">
-                    <span className="eyebrow">
-                      <span className="pulse-dot" />{" "}
-                      {state.onboarded
-                        ? "YOUR NEXT BEST STEP"
-                        : "YOUR JOURNEY STARTS HERE"}
-                    </span>
-                    <span className="pill">{state.minutes} min session</span>
-                  </div>
-                  <div className="next-illustration" aria-hidden="true" hidden>
-                    <svg viewBox="0 0 240 160">
-                      <g fill="none" stroke="currentColor">
-                        <path d="M20 130H225M45 145V15" opacity=".2" />
-                        <path
-                          d="M45 130C100 130 130 120 150 90S175 30 220 20"
-                          strokeWidth="1.5"
-                        />
-                        <path
-                          d="M45 130L220 20"
-                          strokeDasharray="3 5"
-                          opacity=".25"
-                        />
-                        <circle cx="150" cy="90" r="6" fill="currentColor" />
-                        <circle cx="150" cy="90" r="15" opacity=".25" />
-                        <path d="M115 135L185 45" opacity=".5" />
-                      </g>
-                    </svg>
-                    <span>Δ understanding &gt; 0</span>
-                  </div>
-                  <div className="next-card-content">
-                    <span className="lesson-path">
-                      {state.onboarded
-                        ? `${nextConcept?.strand ?? "Spaced retrieval"} / ${next?.kind === "repair" ? "Prerequisite repair" : next?.kind === "review" ? "A timely return" : "The next connection"}`
-                        : "MATH + PHYSICS / ADAPTIVE LEARNING"}
-                    </span>
-                    <h2>
-                      {state.onboarded ? (
-                        (nextConcept?.title ?? "Let your learning settle.")
-                      ) : (
-                        <>
-                          Begin with what
-                          <br />
-                          you understand.
-                        </>
-                      )}
-                    </h2>
-                    <p className="next-description">
-                      {state.onboarded
-                        ? (nextConcept?.summary ??
-                          "Your next review will appear when it is useful.")
-                        : "A few thoughtful questions reveal what you know, what’s uncertain, and where a new idea can take root."}
-                    </p>
-                    <button
-                      className="continue-button"
-                      onClick={() =>
-                        state.onboarded ? startSession() : setOnboarding(true)
-                      }
-                    >
-                      {state.onboarded
-                        ? "Continue learning"
-                        : "Find my starting point"}{" "}
-                      <ArrowRight size={19} />
-                    </button>
-                    <div className="why-line">
-                      <Lightbulb size={15} />
-                      <p>
-                        {state.onboarded
-                          ? (next?.why ??
-                            "Strong evidence deserves some space. Choose a new goal or return for a review.")
-                          : "Why start here? A useful path begins with what you actually understand."}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="session-duration">
-                    <span>
-                      <Clock3 size={13} /> A little time, well spent
-                    </span>
-                    <div aria-label="Session length">
-                      {([5, 15, 30] as const).map((m) => (
-                        <button
-                          key={m}
-                          className={state.minutes === m ? "selected" : ""}
-                          aria-pressed={state.minutes === m}
-                          onClick={() => setState({ ...state, minutes: m })}
-                        >
-                          {m}m
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-                <section className="frontier-card">
-                  <div className="panel-heading">
-                    <div>
-                      <span className="eyebrow">THE BIG PICTURE</span>
-                      <h2>The shape of your learning</h2>
-                    </div>
-                    <button
-                      className="icon-button"
-                      aria-label="Open full knowledge map"
-                      onClick={() => navigate("map")}
-                    >
-                      <ArrowUpRight size={20} />
-                    </button>
-                  </div>
-                  <p>
-                    Your goal dependencies. Select an idea to trace its
-                    foundations.
-                  </p>
-                  <ConceptMap
-                    state={state}
-                    compact
-                    onSelect={(id) => {
-                      setSelected(id);
-                      navigate("map");
-                    }}
-                  />
-                  <div className="frontier-note">
-                    <Focus size={16} />
-                    <p>
-                      {assessed.length
-                        ? `${assessed.length} ideas assessed. Your next step follows the evidence.`
-                        : "The dashed edges are honest: we haven’t met your knowledge yet."}
-                    </p>
-                  </div>
-                </section>
-              </div>
-              {state.history.length > 0 && (
-                <section
-                  className="evidence-ledger"
-                  aria-label="Recent learning evidence"
-                >
-                  <span className="eyebrow">RECENT OBSERVATIONS</span>
-                  <div>
-                    {state.history
-                      .slice(-3)
-                      .reverse()
-                      .map((e, i) => (
-                        <button key={i} onClick={() => openLesson(e.concept)}>
-                          <span>{concept(e.concept).title}</span>
-                          <small>
-                            {e.correct
-                              ? e.hints
-                                ? "Recalled with support"
-                                : "Independent recall"
-                              : "Needs another look"}{" "}
-                            · {e.diagnostic ? "Placement" : "Practice"}
-                          </small>
-                        </button>
-                      ))}
-                  </div>
-                </section>
-              )}
-              <div className="today-bottom">
-                <section className="session-outline">
-                  <div className="section-title">
-                    <Layers3 size={17} />
-                    <h2>A session with a purpose</h2>
-                    <span>Not a playlist. A learning loop.</span>
-                  </div>
-                  <div className="session-steps">
-                    {[
-                      {
-                        n: "01",
-                        title: "Retrieve",
-                        copy: "Wake up an idea you know.",
-                      },
-                      {
-                        n: "02",
-                        title: "Connect",
-                        copy: "Build one new piece of intuition.",
-                      },
-                      {
-                        n: "03",
-                        title: "Test",
-                        copy: "Try it without the scaffolding.",
-                      },
-                      {
-                        n: "04",
-                        title: "Reflect",
-                        copy: "Keep what matters. Space the rest.",
-                      },
-                    ].map((s) => (
-                      <div key={s.n}>
-                        <span className="step-number">{s.n}</span>
-                        <div>
-                          <h3>{s.title}</h3>
-                          <p>{s.copy}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-                <section className="review-note">
-                  <div className="review-icon">
-                    <Clock3 size={22} />
-                  </div>
-                  <div>
-                    <h3>
-                      {due.length
-                        ? `${due.length} idea${due.length === 1 ? "" : "s"} ready to revisit`
-                        : "Room for things to settle."}
-                    </h3>
-                    <p>
-                      {due.length
-                        ? "Your next session includes timely retrieval."
-                        : assessed.length
-                          ? "The scheduler will bring ideas back before they fade."
-                          : "Reviews will appear once you’ve started learning. No catching up required."}
-                    </p>
-                  </div>
-                  <span className="review-count mono">
-                    {String(due.length).padStart(2, "0")}
-                  </span>
-                </section>
-              </div>
-              <footer className="home-footer">
-                <span>
-                  <span className="tiny-square" /> UNDERSTANDING, NOT JUST
-                  ANSWERS.
-                </span>
-                <span>
-                  67 connected ideas <i /> Math ↔ Physics <i /> Entirely yours
-                </span>
-              </footer>
-            </>
+            <StudioHome
+              state={state}
+              now={now}
+              onStart={() =>
+                state.onboarded ? startSession() : setOnboarding(true)
+              }
+              onMap={() => navigate("map")}
+              onLibrary={() => navigate("curriculum")}
+              onJournal={() => navigate("journal")}
+              onConcept={openLesson}
+              onMinutes={(minutes) => setState({ ...state, minutes })}
+              onDirection={(goalId) => {
+                setState({ ...state, goal: goalId });
+                setNotice(
+                  "Your direction is set. The next step now follows this goal and your existing evidence.",
+                );
+              }}
+            />
           )}
           {view === "map" && (
             <>
@@ -1092,10 +864,11 @@ export default function Tutor() {
                 <span className="eyebrow">
                   CONCRETE FIRST. ABSTRACT SECOND.
                 </span>
-                <h1>A connected curriculum.</h1>
+                <h1>A universe of ideas.</h1>
                 <p>
-                  67 complete lessons. Three generated problem families per
-                  idea. One continuous path from foundations to fields.
+                  {catalog.length} lessons. Worked reasoning, interactive
+                  experiments and three problem families per idea. Follow a
+                  thread, or find the connection you need.
                 </p>
               </div>
               <div className="library-toolbar">
@@ -1113,7 +886,11 @@ export default function Tutor() {
                     <button
                       key={d}
                       className={domain === d ? "selected" : ""}
-                      onClick={() => setDomain(d)}
+                      aria-pressed={domain === d}
+                      onClick={() => {
+                        setDomain(d);
+                        setStrand("all");
+                      }}
                     >
                       {d === "all"
                         ? "All ideas"
@@ -1124,54 +901,92 @@ export default function Tutor() {
                   ))}
                 </div>
               </div>
-              <div className="curriculum-list">
-                {catalog
-                  .filter(
-                    (c) =>
-                      (domain === "all" || c.domain === domain) &&
-                      `${c.title} ${c.strand} ${c.summary}`
-                        .toLowerCase()
-                        .includes(search.toLowerCase()),
-                  )
-                  .map((c) => {
-                    const gap = missing(catalog, state, c.id, now),
-                      k = getKnowledge(state, c.id, now);
-                    return (
-                      <button
-                        className="curriculum-item"
-                        key={c.id}
-                        onClick={() => openLesson(c.id)}
-                      >
-                        <span className={`domain-icon ${c.domain}`}>
-                          {c.domain === "math" ? (
-                            <span>ƒ</span>
-                          ) : (
-                            <span>φ</span>
-                          )}
-                        </span>
-                        <div>
-                          <span className="eyebrow">{c.strand}</span>
-                          <h2>{c.title}</h2>
-                          <p>{c.summary.split(". ")[0]}.</p>
-                        </div>
-                        <span className="curriculum-status">
-                          {gap.length ? (
-                            <>
-                              <LockKeyhole size={13} />
-                              {gap.length} prerequisite
-                              {gap.length === 1 ? "" : "s"}
-                            </>
-                          ) : k.observations ? (
-                            `${Math.round(k.p * 100)}% · estimated`
-                          ) : (
-                            "Ready to explore"
-                          )}
-                        </span>
-                        <ArrowUpRight size={17} />
-                      </button>
-                    );
-                  })}
+              <div className="library-filters">
+                <div className="strand-filters" aria-label="Filter by strand">
+                  {[
+                    "all",
+                    ...new Set(
+                      catalog
+                        .filter((c) => domain === "all" || c.domain === domain)
+                        .map((c) => c.strand),
+                    ),
+                  ].map((s) => (
+                    <button
+                      key={s}
+                      aria-pressed={strand === s}
+                      onClick={() => setStrand(s)}
+                    >
+                      {s === "all" ? "Every strand" : s}
+                    </button>
+                  ))}
+                </div>
+                <label className="readiness-filter">
+                  Show
+                  <select
+                    aria-label="Filter by readiness"
+                    value={readiness}
+                    onChange={(e) => setReadiness(e.target.value)}
+                  >
+                    <option value="all">All readiness levels</option>
+                    <option value="ready">Ready to explore</option>
+                    <option value="assessed">Evidence collected</option>
+                  </select>
+                </label>
               </div>
+              <div className="curriculum-list">
+                {visibleConcepts.map((c) => {
+                  const gap = missing(catalog, state, c.id, now),
+                    k = getKnowledge(state, c.id, now);
+                  return (
+                    <button
+                      className="curriculum-item"
+                      key={c.id}
+                      onClick={() => openLesson(c.id)}
+                    >
+                      <span className={`domain-icon ${c.domain}`}>
+                        {c.domain === "math" ? <span>ƒ</span> : <span>φ</span>}
+                      </span>
+                      <div>
+                        <span className="eyebrow">{c.strand}</span>
+                        <h2>{c.title}</h2>
+                        <p>{c.summary.split(". ")[0]}.</p>
+                      </div>
+                      <span className="curriculum-status">
+                        {gap.length ? (
+                          <>
+                            <LockKeyhole size={13} />
+                            {gap.length} prerequisite
+                            {gap.length === 1 ? "" : "s"}
+                          </>
+                        ) : k.observations ? (
+                          `${Math.round(k.p * 100)}% · estimated`
+                        ) : (
+                          "Ready to explore"
+                        )}
+                      </span>
+                      <ArrowUpRight size={17} />
+                    </button>
+                  );
+                })}
+              </div>
+              {visibleConcepts.length === 0 && (
+                <div className="empty-state">
+                  <Search size={30} />
+                  <h2>No ideas in this view yet.</h2>
+                  <p>Try another phrase or open up the filters.</p>
+                  <button
+                    className="secondary"
+                    onClick={() => {
+                      setSearch("");
+                      setDomain("all");
+                      setStrand("all");
+                      setReadiness("all");
+                    }}
+                  >
+                    Show all ideas
+                  </button>
+                </div>
+              )}
             </>
           )}
           {view === "journal" && (
@@ -1215,6 +1030,7 @@ export default function Tutor() {
                   </strong>
                 </div>
               </div>
+              <EvidenceReview state={state} onConcept={openLesson} />
               {state.sessions.length ? (
                 <div className="journal-list">
                   {[...state.sessions].reverse().map((s, i) => (
@@ -1448,6 +1264,32 @@ export default function Tutor() {
                         : "Intuition first. A precise relationship. Then a test of your own."}
                     </p>
                   </div>
+                  <div className="lesson-big-idea">
+                    <span className="eyebrow">THE IDEA IN ONE BREATH</span>
+                    <p>{lesson.summary}</p>
+                    <details>
+                      <summary>Know the boundary of this model</summary>
+                      <p>{lesson.boundary}</p>
+                    </details>
+                  </div>
+                  <nav className="lesson-jumpbar" aria-label="Lesson sections">
+                    <a href="#lesson-reading">
+                      <span className="mono">01</span> Understand
+                    </a>
+                    <a href="#interactive-title">
+                      <span className="mono">02</span> Experiment
+                    </a>
+                    <a
+                      href={
+                        view === "session"
+                          ? "#question-title"
+                          : "#lesson-practice"
+                      }
+                    >
+                      <span className="mono">03</span> Practice{" "}
+                      <ArrowRight size={13} />
+                    </a>
+                  </nav>
                   <div className="lesson-layout">
                     <div>
                       {view === "lesson" ||
@@ -1487,7 +1329,7 @@ export default function Tutor() {
                           onNext={nextQuestion}
                         />
                       ) : (
-                        <div className="lesson-practice">
+                        <div className="lesson-practice" id="lesson-practice">
                           <h2>Can you reconstruct it?</h2>
                           <p>
                             Reading makes an idea familiar. Retrieval tells us
@@ -1513,6 +1355,10 @@ export default function Tutor() {
                     </div>
                     <aside className="lesson-aside">
                       <Interactive key={lesson.id} concept={lesson} />
+                      <LessonConnections
+                        lesson={lesson}
+                        onConcept={openLesson}
+                      />
                       {view === "session" && (
                         <button
                           className="text-button centered"

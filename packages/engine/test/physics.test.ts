@@ -22,7 +22,15 @@ describe("ideal projectile model", () => {
     }
   });
   it("rejects nonphysical and nonfinite parameters", () => {
-    for (const args of [[0, 45], [-1, 45], [10, 0], [10, 90], [NaN, 45], [10, Infinity], [10, 45, 0]])
+    for (const args of [
+      [0, 45],
+      [-1, 45],
+      [10, 0],
+      [10, 90],
+      [NaN, 45],
+      [10, Infinity],
+      [10, 45, 0],
+    ])
       expect(() => projectile(args[0], args[1], args[2])).toThrow(RangeError);
   });
 });
