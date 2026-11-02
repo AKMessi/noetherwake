@@ -60,6 +60,8 @@ import {
 import { catalog, concept, goals } from "@/lib/catalog";
 import { learnerSchema, parseImport, readState, saveState } from "@/lib/store";
 import ConceptMap from "./ConceptMap";
+import AtlasView from "./AtlasView";
+import Library from "./Library";
 import Assessment from "./Assessment";
 import MathText from "./Math";
 import ProjectileLab from "./ProjectileLab";
@@ -655,320 +657,26 @@ export default function Tutor() {
           )}
           {view === "lab" && <ProjectileLab onConcept={openLesson} />}
           {view === "map" && (
-            <>
-              <div className="standard-heading">
-                <span className="eyebrow">
-                  WHERE YOU ARE. WHERE YOU CAN GO.
-                </span>
-                <h1>The connections matter.</h1>
-                <p>
-                  Follow the highlighted dependencies toward{" "}
-                  {goal.title.toLowerCase()}. Dashed rings mean uncertainty;
-                  double rings mark your frontier.
-                </p>
-              </div>
-              <div className="map-page-layout">
-                <section className="full-map-card">
-                  <div className="panel-heading">
-                    <h2>Your knowledge, connected</h2>
-                    <span className="pill light">
-                      {catalog.length} ideas ·{" "}
-                      {catalog.filter((c) => c.domain === "physics").length}{" "}
-                      physics
-                    </span>
-                  </div>
-                  <ConceptMap
-                    state={state}
-                    selected={selected ?? undefined}
-                    onSelect={(id) => {
-                      setSelected(id);
-                      if (window.innerWidth <= 760)
-                        requestAnimationFrame(() => {
-                          const panel =
-                            document.querySelector<HTMLElement>(".map-detail");
-                          panel?.focus();
-                          panel?.scrollIntoView({
-                            block: "start",
-                            behavior: "instant",
-                          });
-                        });
-                    }}
-                  />
-                </section>
-                <aside
-                  className="map-detail"
-                  tabIndex={-1}
-                  aria-label="Concept evidence and prerequisites"
-                >
-                  {selected ? (
-                    (() => {
-                      const c = concept(selected),
-                        k = getKnowledge(state, selected, now),
-                        gap = missing(catalog, state, selected, now),
-                        range = interval(k);
-                      return (
-                        <>
-                          <span className="eyebrow">
-                            {c.domain} / {c.strand}
-                          </span>
-                          <h2>{c.title}</h2>
-                          <p>{c.summary}</p>
-                          {c.domain === "physics" &&
-                            c.prerequisites.some(
-                              (id) => concept(id).domain === "math",
-                            ) && (
-                              <div className="math-foundation">
-                                <span className="eyebrow">
-                                  MATHEMATICS USED HERE
-                                </span>
-                                {c.prerequisites
-                                  .filter((id) => concept(id).domain === "math")
-                                  .map((id) => (
-                                    <button
-                                      key={id}
-                                      className="prerequisite-link"
-                                      onClick={() => setSelected(id)}
-                                    >
-                                      {concept(id).title}
-                                      <ArrowUpRight size={14} />
-                                    </button>
-                                  ))}
-                              </div>
-                            )}
-                          {k.observations > 0 && (
-                            <p className="evidence-timestamp">
-                              Last evidence:{" "}
-                              {new Date(k.last).toLocaleDateString()}
-                              <br />
-                              Next retrieval:{" "}
-                              {new Date(dueAt(k)).toLocaleString(undefined, {
-                                month: "short",
-                                day: "numeric",
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })}
-                            </p>
-                          )}
-                          <div className="mastery-detail">
-                            <span>
-                              {k.observations
-                                ? "Estimated mastery"
-                                : "Prior · not yet assessed"}
-                            </span>
-                            <strong className="mono">
-                              {Math.round(effective(k, now) * 100)}
-                              <small>%</small>
-                            </strong>
-                            <div className="probability-track">
-                              <span
-                                style={{ width: `${effective(k, now) * 100}%` }}
-                              />
-                            </div>
-                            <p>
-                              {k.observations} direct observations · {k.fluent}{" "}
-                              fluent responses
-                            </p>
-                            <p className="mono">
-                              Model uncertainty: {Math.round(range[0] * 100)}–
-                              {Math.round(range[1] * 100)}%
-                            </p>
-                          </div>
-                          {gap.length ? (
-                            <>
-                              <h3>
-                                <LockKeyhole size={14} /> Build these first
-                              </h3>
-                              {gap.map((id) => (
-                                <button
-                                  className="prerequisite-link"
-                                  key={id}
-                                  onClick={() => setSelected(id)}
-                                >
-                                  {concept(id).title}
-                                  <ChevronRight size={14} />
-                                </button>
-                              ))}
-                              <button
-                                className="primary full"
-                                onClick={() =>
-                                  openLesson(
-                                    routeToReady(catalog, state, selected, now),
-                                  )
-                                }
-                              >
-                                Take me there <ArrowRight size={15} />
-                              </button>
-                            </>
-                          ) : (
-                            <button
-                              className="primary full"
-                              onClick={() => openLesson(selected)}
-                            >
-                              Explore this idea <ArrowRight size={15} />
-                            </button>
-                          )}
-                        </>
-                      );
-                    })()
-                  ) : (
-                    <>
-                      <Compass size={32} />
-                      <h2>
-                        Choose an idea.
-                        <br />
-                        See the path.
-                      </h2>
-                      <p>
-                        Select any node to see its evidence, prerequisites and
-                        connections.
-                      </p>
-                      <div className="map-facts">
-                        <span>
-                          <b>{ready.length}</b> ready to explore
-                        </span>
-                        <span>
-                          <b>{assessed.length}</b> assessed so far
-                        </span>
-                        <span>
-                          <b>{strong.length}</b> with strong evidence
-                        </span>
-                      </div>
-                    </>
-                  )}
-                </aside>
-              </div>
-            </>
+            <AtlasView
+              state={state}
+              now={now}
+              selected={selected}
+              onSelect={setSelected}
+              onLesson={openLesson}
+              onPractice={startSession}
+              onList={() => navigate("curriculum")}
+            />
           )}
           {view === "curriculum" && (
-            <>
-              <div className="standard-heading">
-                <span className="eyebrow">
-                  CONCRETE FIRST. ABSTRACT SECOND.
-                </span>
-                <h1>A universe of ideas.</h1>
-                <p>
-                  {catalog.length} lessons. Worked reasoning, interactive
-                  experiments and three problem families per idea. Follow a
-                  thread, or find the connection you need.
-                </p>
-              </div>
-              <div className="library-toolbar">
-                <label className="search-field">
-                  <Search size={17} />
-                  <input
-                    aria-label="Search concepts"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Find an idea, not a chapter…"
-                  />
-                </label>
-                <div className="segmented">
-                  {["all", "math", "physics"].map((d) => (
-                    <button
-                      key={d}
-                      className={domain === d ? "selected" : ""}
-                      aria-pressed={domain === d}
-                      onClick={() => {
-                        setDomain(d);
-                        setStrand("all");
-                      }}
-                    >
-                      {d === "all"
-                        ? "All ideas"
-                        : d === "math"
-                          ? "Mathematics"
-                          : "Physics"}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="library-filters">
-                <div className="strand-filters" aria-label="Filter by strand">
-                  {[
-                    "all",
-                    ...new Set(
-                      catalog
-                        .filter((c) => domain === "all" || c.domain === domain)
-                        .map((c) => c.strand),
-                    ),
-                  ].map((s) => (
-                    <button
-                      key={s}
-                      aria-pressed={strand === s}
-                      onClick={() => setStrand(s)}
-                    >
-                      {s === "all" ? "Every strand" : s}
-                    </button>
-                  ))}
-                </div>
-                <label className="readiness-filter">
-                  Show
-                  <select
-                    aria-label="Filter by readiness"
-                    value={readiness}
-                    onChange={(e) => setReadiness(e.target.value)}
-                  >
-                    <option value="all">All readiness levels</option>
-                    <option value="ready">Ready to explore</option>
-                    <option value="assessed">Evidence collected</option>
-                  </select>
-                </label>
-              </div>
-              <div className="curriculum-list">
-                {visibleConcepts.map((c) => {
-                  const gap = missing(catalog, state, c.id, now),
-                    k = getKnowledge(state, c.id, now);
-                  return (
-                    <button
-                      className="curriculum-item"
-                      key={c.id}
-                      onClick={() => openLesson(c.id)}
-                    >
-                      <span className={`domain-icon ${c.domain}`}>
-                        {c.domain === "math" ? <span>ƒ</span> : <span>φ</span>}
-                      </span>
-                      <div>
-                        <span className="eyebrow">{c.strand}</span>
-                        <h2>{c.title}</h2>
-                        <p>{c.summary.split(". ")[0]}.</p>
-                      </div>
-                      <span className="curriculum-status">
-                        {gap.length ? (
-                          <>
-                            <LockKeyhole size={13} />
-                            {gap.length} prerequisite
-                            {gap.length === 1 ? "" : "s"}
-                          </>
-                        ) : k.observations ? (
-                          `${Math.round(k.p * 100)}% · estimated`
-                        ) : (
-                          "Ready to explore"
-                        )}
-                      </span>
-                      <ArrowUpRight size={17} />
-                    </button>
-                  );
-                })}
-              </div>
-              {visibleConcepts.length === 0 && (
-                <div className="empty-state">
-                  <Search size={30} />
-                  <h2>No ideas in this view yet.</h2>
-                  <p>Try another phrase or open up the filters.</p>
-                  <button
-                    className="secondary"
-                    onClick={() => {
-                      setSearch("");
-                      setDomain("all");
-                      setStrand("all");
-                      setReadiness("all");
-                    }}
-                  >
-                    Show all ideas
-                  </button>
-                </div>
-              )}
-            </>
+            <Library
+              state={state}
+              now={now}
+              selected={selected}
+              onSelect={setSelected}
+              onLesson={openLesson}
+              onPractice={startSession}
+              onMap={() => navigate("map")}
+            />
           )}
           {view === "journal" && (
             <>
