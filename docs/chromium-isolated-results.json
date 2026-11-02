@@ -1,0 +1,83 @@
+{
+  "mode": "One fresh Chromium process per existing Playwright test; assertions unchanged",
+  "passed": 19,
+  "failed": 0,
+  "results": [
+    {
+      "title": "full journey: skip placement, retrieve, reflect, retain progress and export",
+      "passed": true
+    },
+    {
+      "title": "adaptive placement updates evidence and yields a frontier",
+      "passed": true
+    },
+    {
+      "title": "locked concept names prerequisites and reroutes to ready foundation",
+      "passed": true
+    },
+    {
+      "title": "prediction is committed before reveal and interactive responds",
+      "passed": true
+    },
+    {
+      "title": "backup validation is atomic and review scheduling works after a clock change",
+      "passed": true
+    },
+    {
+      "title": "production offline cache serves a reload and retains on-device state",
+      "passed": true
+    },
+    {
+      "title": "desktop home and map meet axe AA checks",
+      "passed": true
+    },
+    {
+      "title": "mobile, dark mode and lesson meet axe AA and avoid horizontal overflow",
+      "passed": true
+    },
+    {
+      "title": "keyboard navigation and reduced motion preserve the primary flow",
+      "passed": true
+    },
+    {
+      "title": "mobile-emulated LCP and transfer budgets",
+      "passed": true
+    },
+    {
+      "title": "symbolic checking loads and works with the network disabled",
+      "passed": true
+    },
+    {
+      "title": "atlas goal filters, search, keyboard selection and mobile outline preserve dependencies",
+      "passed": true
+    },
+    {
+      "title": "math keyboard inserts at selection and feedback receives focus",
+      "passed": true
+    },
+    {
+      "title": "tablet and mobile atlas, diagnostic and completed session stay accessible",
+      "passed": true
+    },
+    {
+      "title": "laboratory requires a prediction, reports SI measurements and never fabricates learning evidence",
+      "passed": true
+    },
+    {
+      "title": "expeditions expose real prerequisites and persist an explicit learning direction",
+      "passed": true
+    },
+    {
+      "title": "library combines strand, readiness and search with a useful reset",
+      "passed": true
+    },
+    {
+      "title": "an incorrect response becomes a concrete journal review opportunity",
+      "passed": true
+    },
+    {
+      "title": "the mobile opening keeps a working primary action inside the first viewport",
+      "passed": true
+    }
+  ]
+}

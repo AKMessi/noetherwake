@@ -34,3 +34,10 @@ Source storage exception: the original NTFS mount became blocked in the kernel d
 - Consider a mobile inspector drawer after observing learners using the current focused inline inspector.
 - Re-measure Chromium LCP for the redesigned build; the local browser download stalled, while WebKit behavioral and accessibility checks pass. Keep the existing Chromium CI performance gate.
 - Validate the new typography and instruments with manual assistive-technology and physical-phone testing.
+
+## Curiosity Studio follow-ups
+
+- Extend the bespoke experiment treatment beyond projectile motion: direct tangent manipulation, energy bookkeeping and field probes remain future work. Existing lessons still provide their authored parameter instruments.
+- Continue the worked-example expansion beyond the eight revised foundation and bridge lessons, with independent subject-matter review of all lesson banks.
+- Add a learner-authored question notebook only with a clear local persistence and migration contract; no inactive notebook input is exposed.
+- Validate the studio with physical phones, browser zoom and manual screen-reader use, and measure delayed retention with consenting people before claiming learning gains.

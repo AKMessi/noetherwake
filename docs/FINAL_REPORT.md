@@ -30,3 +30,7 @@ This is a working vertical slice, not the entire requested undergraduate catalog
 
 ## Field Atlas redesign
 The local presentation has been rebuilt around the learning desk, goal-derived atlas, linked instruments, authored light/dark themes and responsive reading sequence. See [DESIGN_VERIFICATION.md](DESIGN_VERIFICATION.md) for current screenshots, passing checks and browser-performance limitations. The existing deployed release is unchanged.
+
+## Curiosity Studio revision — November 2026
+
+The current local source includes the Curiosity Studio redesign: a new responsive visual system, deterministic projectile exploration, validated learning expeditions, richer lesson framing, combined library filters and review prompts drawn from actual local evidence. Eight authored lesson bodies were expanded. Persistence and learner decision policies remain compatible. See [DESIGN_VERIFICATION.md](DESIGN_VERIFICATION.md) for the current browser results, production measurements, screenshots and explicit verification limits; earlier visual/performance measurements in this report are historical. This revision is committed locally and is not a new public deployment.

@@ -168,7 +168,7 @@ test("backup validation is atomic and review scheduling works after a clock chan
   await page.clock.install({ time: new Date(Date.now() + 7 * 86400000) });
   await page.getByRole("button", { name: "Today", exact: true }).click();
   await expect(
-    page.getByRole("heading", { name: "1 idea ready to revisit" }),
+    page.getByRole("button", { name: /1 idea ready to revisit/ }),
   ).toBeVisible();
 });
 test("production offline cache serves a reload and retains on-device state", async ({
@@ -206,7 +206,7 @@ test("production offline cache serves a reload and retains on-device state", asy
 test("desktop home and map meet axe AA checks", async ({ page }) => {
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "Make the next connection." }),
+    page.getByRole("heading", { name: "Follow your curiosity." }),
   ).toBeVisible();
   const result = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
@@ -226,7 +226,7 @@ test("mobile, dark mode and lesson meet axe AA and avoid horizontal overflow", a
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "Make the next connection." }),
+    page.getByRole("heading", { name: "Follow your curiosity." }),
   ).toBeVisible();
   expect(
     await page.evaluate(
@@ -254,6 +254,10 @@ test("keyboard navigation and reduced motion preserve the primary flow", async (
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
+  await expect(page.locator(".app-shell")).toHaveAttribute(
+    "aria-busy",
+    "false",
+  );
   await page.keyboard.press("Tab");
   await expect(
     page.getByRole("link", { name: "Skip to content" }),
@@ -307,6 +311,10 @@ test("mobile-emulated LCP and transfer budgets", async ({
         bandwidthKbps: 1600,
         viewport: "390x844",
         hardware: "synthetic Chromium throttling, not a physical phone",
+        browserVersion: context.browser()?.version(),
+        executableSource: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
+          ? "installed Chromium-compatible executable"
+          : "Playwright Chromium",
       },
       null,
       2,
@@ -320,9 +328,8 @@ test("symbolic checking loads and works with the network disabled", async ({
   page,
   context,
 }) => {
-  const { createLearner, initialKnowledge } = await import(
-    "../packages/engine/src"
-  );
+  const { createLearner, initialKnowledge } =
+    await import("../packages/engine/src");
   const catalog = JSON.parse(
     readFileSync("lib/catalog.generated.json", "utf8"),
   ) as { id: string }[];
