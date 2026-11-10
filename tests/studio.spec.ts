@@ -21,6 +21,7 @@ test("projectile prediction, equal-scale SI readouts, gravity and no fabricated 
     page.getByRole("button", { name: "Test my prediction →", exact: true }),
   ).toBeDisabled();
   await page.getByRole("button", { name: "60°", exact: true }).click();
+  await expect(page.locator(".trajectory-row")).toHaveCount(0);
   await expect(page.locator(".prediction-label")).toContainText(
     "Your prediction: 60°",
   );

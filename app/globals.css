@@ -1,25 +1,27 @@
 @import "tailwindcss";
 :root {
-  --ground: 244 241 232;
-  --sheet: 250 248 242;
-  --inset: 233 228 213;
-  --rule: 210 203 182;
-  --rule-strong: 130 121 101;
-  --ink: 27 34 48;
-  --ink-2: 74 81 99;
-  --ink-3: 92 98 112;
-  --cobalt: 36 71 168;
-  --cobalt-deep: 27 58 142;
-  --cobalt-tint: 220 227 245;
-  --ochre-ink: 138 90 0;
-  --ochre: 217 162 58;
-  --ochre-tint: 243 230 196;
+  --ground: 241 239 249;
+  --plot: 41 32 74;
+  --beam: 223 245 141;
+  --sheet: 252 250 255;
+  --inset: 230 225 241;
+  --rule: 213 204 231;
+  --rule-strong: 122 109 150;
+  --ink: 35 23 62;
+  --ink-2: 78 63 104;
+  --ink-3: 93 77 117;
+  --cobalt: 80 44 197;
+  --cobalt-deep: 59 27 157;
+  --cobalt-tint: 227 218 255;
+  --ochre-ink: 133 54 57;
+  --ochre: 213 115 101;
+  --ochre-tint: 250 224 217;
   --ok: 47 107 79;
   --ok-tint: 217 232 221;
   --err: 166 42 42;
   --err-tint: 241 217 213;
-  --focus: 36 71 168;
-  --button-text: 250 248 242;
+  --focus: 80 44 197;
+  --button-text: 252 250 255;
   --prose:
     var(--font-prose), var(--font-prose-ext), "Iowan Old Style",
     "Palatino Linotype", Palatino, Georgia, serif;
@@ -32,50 +34,50 @@
   color-scheme: light;
 }
 :root[data-theme="dark"] {
-  --ground: 18 22 30;
-  --sheet: 24 29 39;
-  --inset: 14 17 24;
-  --rule: 42 49 64;
-  --rule-strong: 107 117 138;
-  --ink: 233 229 216;
-  --ink-2: 183 187 198;
-  --ink-3: 151 157 172;
-  --cobalt: 134 162 242;
-  --cobalt-deep: 165 186 246;
-  --cobalt-tint: 31 42 77;
-  --ochre: 226 176 74;
-  --ochre-ink: 232 190 99;
-  --ochre-tint: 58 47 20;
+  --ground: 26 20 42;
+  --sheet: 37 29 58;
+  --inset: 23 18 38;
+  --rule: 69 54 98;
+  --rule-strong: 139 124 169;
+  --ink: 246 240 255;
+  --ink-2: 222 208 241;
+  --ink-3: 192 177 217;
+  --cobalt: 193 169 255;
+  --cobalt-deep: 218 198 255;
+  --cobalt-tint: 59 42 106;
+  --ochre: 238 143 124;
+  --ochre-ink: 255 177 159;
+  --ochre-tint: 73 39 46;
   --ok: 124 199 160;
   --ok-tint: 23 52 42;
   --err: 241 144 136;
   --err-tint: 60 29 31;
-  --focus: 134 162 242;
-  --button-text: 14 17 24;
+  --focus: 193 169 255;
+  --button-text: 35 23 62;
   color-scheme: dark;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]):not([data-theme="dark"]) {
-    --ground: 18 22 30;
-    --sheet: 24 29 39;
-    --inset: 14 17 24;
-    --rule: 42 49 64;
-    --rule-strong: 107 117 138;
-    --ink: 233 229 216;
-    --ink-2: 183 187 198;
-    --ink-3: 151 157 172;
-    --cobalt: 134 162 242;
-    --cobalt-deep: 165 186 246;
-    --cobalt-tint: 31 42 77;
-    --ochre: 226 176 74;
-    --ochre-ink: 232 190 99;
-    --ochre-tint: 58 47 20;
+    --ground: 26 20 42;
+    --sheet: 37 29 58;
+    --inset: 23 18 38;
+    --rule: 69 54 98;
+    --rule-strong: 139 124 169;
+    --ink: 246 240 255;
+    --ink-2: 222 208 241;
+    --ink-3: 192 177 217;
+    --cobalt: 193 169 255;
+    --cobalt-deep: 218 198 255;
+    --cobalt-tint: 59 42 106;
+    --ochre: 238 143 124;
+    --ochre-ink: 255 177 159;
+    --ochre-tint: 73 39 46;
     --ok: 124 199 160;
     --ok-tint: 23 52 42;
     --err: 241 144 136;
     --err-tint: 60 29 31;
-    --focus: 134 162 242;
-    --button-text: 14 17 24;
+    --focus: 193 169 255;
+    --button-text: 35 23 62;
     color-scheme: dark;
   }
 }
@@ -121,8 +123,9 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--prose);
-  font-weight: 500;
+  font-family: var(--ui);
+  font-weight: 620;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 h1 {
@@ -170,7 +173,7 @@ button {
   cursor: pointer;
   background: transparent;
   border: 0;
-  border-radius: 2px;
+  border-radius: 8px;
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
@@ -325,8 +328,9 @@ small {
 .primary {
   background: rgb(var(--cobalt));
   color: rgb(var(--button-text));
-  font-weight: 600;
-  padding: 12px 24px;
+  font-weight: 650;
+  border-radius: 10px;
+  padding: 12px 20px;
 }
 .primary:disabled {
   background: rgb(var(--inset));
@@ -388,13 +392,13 @@ small {
 .sidebar {
   position: fixed;
   inset: 0 auto 0 0;
-  width: 208px;
+  width: 196px;
   border-right: 1px solid rgb(var(--rule));
-  padding: 32px 16px;
+  padding: 24px 14px;
   display: flex;
   flex-direction: column;
   z-index: 20;
-  background: rgb(var(--ground));
+  background: rgb(var(--sheet));
 }
 .brand-link {
   color: rgb(var(--ink));
@@ -407,17 +411,26 @@ small {
   display: flex;
   align-items: center;
   gap: 8px;
-  font: 600 20px/24px var(--prose);
+  font: 700 19px/24px var(--ui);
   letter-spacing: -0.02em;
   white-space: nowrap;
 }
 .brand svg {
-  width: 22px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
+  padding: 5px;
+  border-radius: 10px;
+  background: rgb(var(--cobalt));
+  color: rgb(var(--button-text));
   flex-shrink: 0;
 }
+.brand-discipline {
+  color: rgb(var(--ink-3));
+  font-size: 13px;
+  padding-left: 4px;
+}
 .sidebar nav {
-  margin-top: 48px;
+  margin-top: 36px;
   display: grid;
   gap: 8px;
 }
@@ -425,14 +438,15 @@ small {
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  border-left: 2px solid transparent;
+  gap: 11px;
   color: rgb(var(--ink-2));
-  padding-left: 16px;
+  padding-inline: 12px;
 }
 .nav-item.active,
 .nav-item[aria-current="page"] {
-  border-left-color: rgb(var(--ink));
-  color: rgb(var(--ink));
+  background: rgb(var(--cobalt-tint));
+  color: rgb(var(--cobalt-deep));
+  font-weight: 650;
 }
 .sidebar-bottom {
   margin-top: auto;
@@ -441,7 +455,9 @@ small {
 .route-label {
   font-size: 12.5px;
   line-height: 20px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+  padding: 12px;
+  border-top: 1px solid rgb(var(--rule));
 }
 .route-label span {
   color: rgb(var(--ink-3));
@@ -455,7 +471,7 @@ small {
   padding: 24px 0 0 16px;
 }
 .workspace {
-  margin-left: 208px;
+  margin-left: 196px;
 }
 .topbar {
   display: none;
@@ -463,7 +479,7 @@ small {
 .main-content {
   padding: 48px;
   max-width: 1328px;
-  margin: 0;
+  margin-inline: auto;
   min-width: 0;
 }
 .main-content > * + * {
@@ -1100,7 +1116,8 @@ svg text {
     padding: 8px;
   }
   .topbar .active {
-    box-shadow: inset 0 -2px rgb(var(--ink));
+    background: rgb(var(--cobalt-tint));
+    color: rgb(var(--cobalt-deep));
   }
   .main-content {
     max-width: 1100px;
@@ -1175,7 +1192,7 @@ svg text {
     z-index: 30;
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    height: calc(56px + env(safe-area-inset-bottom));
+    height: calc(64px + env(safe-area-inset-bottom));
     padding-bottom: env(safe-area-inset-bottom);
     border-top: 1px solid rgb(var(--rule));
     background: rgb(var(--ground));
@@ -1183,18 +1200,15 @@ svg text {
   .mobile-bottom-nav button {
     font-size: 12px;
     line-height: 16px;
-    padding: 8px 0;
+    flex-direction: column;
+    gap: 3px;
+    padding: 6px 0;
     min-width: 0;
-    position: relative;
   }
-  .mobile-bottom-nav button[aria-current="page"]:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 16px;
-    right: 16px;
-    height: 2px;
-    background: rgb(var(--ink));
+  .mobile-bottom-nav button[aria-current="page"] {
+    background: rgb(var(--cobalt-tint));
+    color: rgb(var(--cobalt-deep));
+    font-weight: 650;
   }
   .active-practice .mobile-bottom-nav {
     display: none;
@@ -1821,49 +1835,99 @@ svg text {
   }
 }
 /* Today is a working page, and routes are an index. */
-.working-today {
-  max-width: 976px;
+.working-today > .sheet-frame {
+  max-width: none;
 }
-.today-header {
+.placement-invitation {
+  margin-top: 24px;
+  padding: 24px clamp(20px, 3vw, 42px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgb(var(--rule));
-  padding-bottom: 16px;
-  margin-bottom: 32px;
+  gap: 24px;
+  background: rgb(var(--sheet));
+  border-radius: 18px;
 }
-.today-header time {
-  font-size: 12.5px;
-  line-height: 20px;
-  color: rgb(var(--ink-3));
-}
-.first-working-page .display {
-  max-width: 19ch;
-}
-.today-introduction {
-  font-size: 15px;
-  line-height: 24px;
-  color: rgb(var(--ink-2));
-  margin-top: 24px;
-  max-width: 60ch;
-}
-.time-choice {
-  margin: 32px 0 24px;
-}
-.time-choice legend {
-  font-size: 12.5px;
-  color: rgb(var(--ink-3));
+.placement-invitation h2 {
   margin-bottom: 8px;
 }
+.placement-invitation p {
+  color: rgb(var(--ink-2));
+}
+.placement-invitation .local-promise {
+  margin-top: 14px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.placement-actions {
+  flex-shrink: 0;
+}
+.placement-actions .primary {
+  width: 100%;
+  margin-top: 10px;
+}
+.time-choice legend {
+  font-size: 13px;
+  color: rgb(var(--ink-2));
+}
+.time-choice .segmented {
+  display: flex;
+}
 .time-choice .segmented button {
-  min-width: 64px;
-  font-family: var(--mono);
-  font-size: 14px;
-  padding-inline: 8px;
+  flex: 1;
 }
-.today-prediction {
-  margin: 48px 0;
+.working-today .margin {
+  background: rgb(var(--sheet));
+  border: 0;
+  padding: 24px;
+  border-radius: 18px;
 }
+.working-today .today-next {
+  background: rgb(var(--plot));
+  color: rgb(246 240 255);
+  border-radius: 24px;
+  padding: clamp(24px, 4vw, 52px);
+}
+.today-next .next-label {
+  color: rgb(var(--beam));
+  font-weight: 550;
+}
+.today-next .primary {
+  background: rgb(var(--beam));
+  color: rgb(var(--plot));
+}
+.today-next .secondary {
+  color: rgb(246 240 255);
+  text-align: left;
+}
+.today-next .display {
+  font-family: var(--ui);
+  font-variation-settings: normal;
+  font-weight: 650;
+  letter-spacing: -0.05em;
+}
+.today-route {
+  margin-top: 24px;
+}
+.today-route h2 {
+  font-size: 23px;
+  line-height: 30px;
+}
+@media (max-width: 767px) {
+  .placement-invitation {
+    display: block;
+  }
+  .placement-actions {
+    margin-top: 20px;
+  }
+  .view-today,
+  .view-lab {
+    padding-top: 16px;
+  }
+}
+
 .index-heading {
   display: flex;
   gap: 16px;
@@ -2817,32 +2881,109 @@ svg text {
 .working-map-node {
   transition: opacity 120ms ease-out;
 }
-/* The projectile bench. Equal SI scales; colour names prediction and model. */
+/* The plot is an instrument surface with its own accessible, fixed lighting. */
 .working-lab {
   display: block;
-  max-width: 1104px;
-}
-.lab-heading {
-  margin-bottom: 24px;
-}
-.lab-heading h2 {
-  margin: 8px 0 16px;
-}
-.lab-heading > p {
-  color: rgb(var(--ink-2));
-  font-size: 14px;
 }
 .lab-bench {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 280px;
-  gap: 32px;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.4fr);
   align-items: start;
+  gap: 22px;
+}
+.lab-prompt {
+  align-self: stretch;
+  padding: clamp(24px, 3vw, 48px);
+  border-radius: 24px;
+  background: rgb(var(--cobalt-tint));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.lab-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 650;
+  color: rgb(var(--cobalt-deep));
+  margin-bottom: 28px;
+}
+.lab-prompt h1 {
+  font: 650 clamp(40px, 4.5vw, 74px) / 0.98 var(--ui);
+  letter-spacing: -0.065em;
+  text-wrap: initial;
+  max-width: 10ch;
+}
+.lab-prompt h1 + p {
+  margin: 20px 0 24px;
+  color: rgb(var(--ink-2));
+  max-width: 34ch;
+}
+.working-lab .lab-predictions {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  gap: 8px;
+  margin: auto 0 12px;
+}
+.working-lab .lab-predictions legend {
+  color: rgb(var(--ink-2));
+  font: 600 13px/20px var(--ui);
+}
+.working-lab .lab-predictions button {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid rgb(var(--rule-strong));
+  border-radius: 10px;
+  padding: 10px 4px;
+  font: 500 18px/24px var(--mono);
+  background: rgb(var(--sheet));
+}
+.working-lab .lab-predictions button[aria-pressed="true"] {
+  color: rgb(var(--ochre-ink));
+  border-color: currentColor;
+  background: rgb(var(--ochre-tint));
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+.working-lab .lab-predictions button:disabled {
+  opacity: 1;
+}
+.lab-test {
+  width: 100%;
 }
 .lab-sheet {
   min-width: 0;
 }
-.lab-plot {
-  padding: 16px 8px;
+.lab-sheet figure {
+  margin: 0;
+}
+.lab-plot.measured-figure {
+  --ink: 246 240 255;
+  --rule-strong: 159 146 192;
+  --cobalt: var(--beam);
+  --ochre-ink: 255 177 159;
+  color: rgb(var(--ink));
+  border: 0;
+  border-radius: 24px;
+  background-color: rgb(var(--plot));
+  background-image:
+    linear-gradient(rgb(211 191 255 / 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(211 191 255 / 0.09) 1px, transparent 1px);
+  background-size: 24px 24px;
+  padding: 22px 16px 12px;
+}
+.plot-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  padding: 0 10px 14px;
+  color: rgb(var(--ink));
+  font-size: 13px;
+  font-weight: 550;
+}
+.plot-header > :last-child {
+  color: rgb(var(--beam));
 }
 .lab-plot svg {
   display: block;
@@ -2850,103 +2991,92 @@ svg text {
   height: auto;
 }
 .lab-plot text {
-  font: 12.5px var(--mono);
+  font: 17px var(--mono);
+  fill: rgb(var(--ink));
 }
 .lab-plot text.prediction-label {
   fill: rgb(var(--ochre-ink));
 }
+.lab-plot text.plot-velocity {
+  font-size: 26px;
+  fill: rgb(var(--cobalt));
+}
+.lab-sheet .figure-caption {
+  padding-inline: 10px;
+  margin-top: 10px;
+}
 .lab-margin {
-  padding-left: 24px;
-  border-left: 1px solid rgb(var(--rule));
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding: 12px 0;
+  border-block: 1px solid rgb(var(--rule));
   min-width: 0;
 }
 .lab-margin h3 {
-  font: 600 14px/20px var(--ui);
-  margin-bottom: 16px;
-}
-.lab-margin h3:not(:first-child) {
-  margin-top: 32px;
+  font: 650 14px/20px var(--ui);
 }
 .setup-values {
-  font: 12.5px/20px var(--mono);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 13px;
 }
 .setup-values > div {
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 12px;
+  gap: 6px;
 }
 .setup-values dt {
   color: rgb(var(--ink-3));
 }
-.setup-values dd span {
-  color: rgb(var(--ink-3));
-  font-weight: 400;
+.setup-values dd {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
 }
-.lab-question-text {
-  font: 21px/30px var(--prose);
-}
-.working-lab .lab-predictions {
-  margin: 24px 0;
-  gap: 8px;
-}
-.working-lab .lab-predictions legend {
-  font-size: 12.5px;
-  color: rgb(var(--ink-3));
-}
-.working-lab .lab-predictions button {
-  min-width: 64px;
-  padding: 12px 4px;
-  gap: 8px;
-}
-.prediction-square {
-  width: 8px;
-  height: 8px;
-  border: 1px solid rgb(var(--rule-strong));
-}
-.lab-predictions [aria-pressed="true"] .prediction-square {
-  background: rgb(var(--ochre-ink));
-  border-color: rgb(var(--ochre-ink));
-}
-.lab-test {
-  width: 100%;
-  font-size: 14px;
-}
-.lab-margin select {
-  width: 100%;
-  font-size: 14px;
-}
-.lab-margin .lab-angle {
-  font-size: 14px;
-}
-.lab-margin .annotation {
-  margin-top: 24px;
+.lab-gravity-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
 }
 .lab-margin-actions {
-  display: grid;
-  justify-items: start;
-  gap: 8px;
-  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.lab-angle-control {
+  width: min(280px, 100%);
+}
+.lab-angle {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+.lab-margin .annotation {
+  flex-basis: 100%;
 }
 .lab-outcome {
-  margin-top: 24px;
+  margin-top: 20px;
+  padding: 20px;
+  background: rgb(var(--sheet));
+  border-radius: 16px;
 }
 .lab-outcome > p {
-  font: 19px/31px var(--prose);
+  font: 21px/1.4 var(--prose);
 }
 .trajectory-ledger {
-  margin-top: 32px;
-  border-top: 1px solid rgb(var(--rule));
+  margin-top: 24px;
 }
 .trajectory-ledger > h3 {
-  padding-top: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .trajectory-row {
   display: flex;
-  gap: 24px;
-  padding: 24px 0;
-  border-bottom: 1px solid rgb(var(--rule));
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid rgb(var(--rule));
   align-items: center;
 }
 .trajectory-angle {
@@ -2955,22 +3085,21 @@ svg text {
 }
 .trajectory-angle small {
   display: block;
-  font: 12px/20px var(--ui);
   color: inherit;
 }
 .trajectory-row .readouts {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 12px;
 }
 .trajectory-row .readout dd {
-  font-size: 21px;
-  line-height: 28px;
+  font-size: 20px;
+  line-height: 26px;
 }
 .trajectory-row .readout dt {
   font-size: 12px;
-  line-height: 17px;
+  line-height: 16px;
 }
 .model-winner .readout dd,
 .model-winner .trajectory-angle {
@@ -2980,121 +3109,46 @@ svg text {
 .your-trajectory .trajectory-angle {
   color: rgb(var(--ochre-ink));
 }
-.lab-margin .lab-angle output {
-  font-family: var(--mono);
-}
-@media (max-width: 1279px) {
-  .lab-bench {
-    grid-template-columns: minmax(0, 1fr) 240px;
-    gap: 24px;
-  }
-  .lab-margin {
-    padding-left: 16px;
-  }
-  .trajectory-row {
-    gap: 16px;
-  }
-  .trajectory-row .readout dd {
-    font-size: 19px;
-  }
-}
-@media (max-width: 1023px) {
-  .lab-bench {
-    display: block;
-  }
-  .lab-margin {
-    margin-top: 32px;
-    border: 0;
-    border-top: 1px solid rgb(var(--rule));
-    padding: 24px 0 0;
-    max-width: 640px;
-  }
-  .lab-margin .setup-values {
-    max-width: 320px;
-  }
-  .lab-margin .lab-predictions button {
-    min-width: 88px;
-  }
-  .lab-margin .lab-test {
-    width: auto;
-  }
-  .lab-margin select {
-    max-width: 320px;
-  }
-  .lab-margin input[type="range"] {
-    max-width: 480px;
-  }
-  .lab-margin .lab-angle {
-    max-width: 480px;
-  }
-  .lab-margin .annotation {
-    max-width: 60ch;
-  }
-}
 @media (max-width: 767px) {
-  .lab-plot {
-    padding: 8px 0;
-    aspect-ratio: 4/3;
-    display: flex;
-    align-items: center;
+  .lab-bench {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
   }
-  .lab-plot svg {
-    height: auto;
+  .lab-prompt,
+  .lab-plot.measured-figure {
+    border-radius: 18px;
+  }
+  .lab-prompt h1 {
+    max-width: 13ch;
+  }
+  .lab-badge {
+    margin-bottom: 16px;
+  }
+  .lab-prompt h1 + p {
+    margin: 14px 0 20px;
+  }
+  .lab-plot.measured-figure {
+    padding: 12px 4px 8px;
   }
   .lab-plot text {
-    font-size: 16px;
+    font-size: 25px;
   }
-  .working-lab .lab-predictions button {
-    min-width: 96px;
-  }
-  .lab-margin .lab-test {
-    width: 100%;
-    position: sticky;
-    bottom: calc(72px + env(safe-area-inset-bottom));
-    z-index: 12;
-  }
-  .lab-margin .setup-values {
-    max-width: none;
-  }
-  .lab-margin select {
-    max-width: none;
-  }
-  .lab-outcome > p {
-    font-size: 17.5px;
-    line-height: 29px;
+  .plot-header {
+    padding-bottom: 2px;
   }
   .trajectory-row {
     display: block;
   }
   .trajectory-angle {
     display: block;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
   .trajectory-angle small {
     display: inline;
     margin-left: 8px;
   }
-  .trajectory-row .readout dd {
-    font-size: 19px;
-    line-height: 26px;
-  }
   .trajectory-row .readout .unit {
     font-size: 12px;
-  }
-  .trajectory-row .readout dt {
-    font-size: 11px;
-  }
-  .trajectory-row .readouts {
-    gap: 12px;
-  }
-  .lab-heading {
-    margin-bottom: 24px;
-  }
-  .lab-heading .section-number {
-    display: inline;
-  }
-  .today-prediction .lab-heading > .section-number {
-    display: none;
   }
 }
 /* Field notes: dated records and exact, replayable evidence changes. */
@@ -3661,34 +3715,7 @@ svg text {
   column-gap: 8px;
   padding-inline: 8px;
 }
-@media (max-width: 1023px) {
-  .working-today.first-visit {
-    display: flex;
-    flex-direction: column;
-  }
-  .first-visit > .sheet-frame {
-    display: contents;
-  }
-  .first-visit > .sheet-frame > .sheet {
-    order: 0;
-  }
-  .first-visit > .today-prediction {
-    order: 1;
-  }
-  .first-visit > .sheet-frame > .margin {
-    order: 2;
-  }
-  .first-visit > .expeditions {
-    order: 3;
-  }
-  .first-visit > .sheet-frame > .margin {
-    margin-top: 0;
-  }
-}
 @media (max-width: 767px) {
-  .lab-plot text {
-    font-size: 28px;
-  }
   .gap-figure svg text {
     font-size: 24px;
   }
@@ -3840,4 +3867,114 @@ svg text {
 }
 .detail-handle {
   touch-action: none;
+}
+
+/* The surrounding screens use light surfaces so the active task has a clear boundary. */
+.standard-heading,
+.atlas-page-header,
+.lesson-heading,
+.practice-header,
+.diagnostic-heading {
+  background: rgb(var(--cobalt-tint));
+  padding: clamp(20px, 3vw, 36px);
+  border: 0;
+  border-radius: 18px;
+}
+.standard-heading h1,
+.atlas-page-header h1,
+.lesson-heading h1 {
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+}
+.lesson-heading .lesson-summary {
+  font-size: 21px;
+}
+.lesson-prose h2 {
+  font-family: var(--ui);
+}
+.worked-example,
+.locked-lesson,
+.lesson-practice,
+.view-session .assessment,
+.diagnostic-body,
+.session-complete,
+.preference-section {
+  border: 0;
+  border-radius: 18px;
+  padding: clamp(20px, 3vw, 32px);
+  background: rgb(var(--sheet));
+}
+.worked-example {
+  background: rgb(var(--cobalt-tint));
+}
+.lesson-practice {
+  border-left: 4px solid rgb(var(--cobalt));
+}
+.view-session .sheet-frame {
+  margin-top: 16px;
+}
+.view-session .assessment .prompt,
+.diagnostic-body .assessment .prompt {
+  margin-top: 0;
+}
+.placement-result .placement-next {
+  padding: clamp(20px, 3vw, 32px);
+  background: rgb(var(--sheet));
+  border-radius: 18px;
+  border: 0;
+}
+.library-sheet {
+  border-radius: 18px;
+  background: rgb(var(--sheet));
+  padding: clamp(12px, 2vw, 24px);
+}
+.library-search-bar input,
+.atlas-search input {
+  border: 1px solid rgb(var(--rule-strong));
+  padding-inline: 12px;
+  border-radius: 8px;
+  background: rgb(var(--sheet));
+}
+.library-row[aria-pressed="true"] {
+  border-radius: 8px;
+}
+.map-scroll {
+  border-radius: 14px;
+}
+.concept-detail:not(.mobile-detail) {
+  background: rgb(var(--sheet));
+  padding: 18px;
+  border-radius: 14px;
+}
+.route-index {
+  border-top: 0;
+}
+.route-index-row {
+  background: rgb(var(--sheet));
+  border-radius: 12px;
+  margin-top: 8px;
+}
+.route-index-row[aria-expanded="true"] {
+  background: rgb(var(--cobalt-tint));
+}
+.route-index-text > strong {
+  font-family: var(--ui);
+  letter-spacing: -0.02em;
+}
+.session-ledger > article {
+  background: rgb(var(--sheet));
+  padding-inline: 16px;
+  border-radius: 8px;
+}
+@media (max-width: 767px) {
+  .library-sheet {
+    padding-inline: 10px;
+  }
+  .standard-heading,
+  .atlas-page-header,
+  .lesson-heading,
+  .practice-header {
+    border-radius: 14px;
+  }
 }

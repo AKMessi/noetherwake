@@ -202,6 +202,9 @@ test("validated import is atomic and typed deletion is explicit", async ({
   await page
     .getByRole("button", { name: "Delete local data", exact: true })
     .click();
+  await expect(
+    page.getByRole("status").filter({ hasText: "Local learner data cleared." }),
+  ).toBeVisible();
   await page.reload();
   await nav(page, "Field notes");
   await expect(

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { projectile } from "@noetherwake/engine";
+import { FlaskConical, Play } from "lucide-react";
 import { Readout, useReducedMotion } from "./ui/WorkingPage";
 import Gap from "./ui/Gap";
 export default function ProjectileLab({
@@ -66,20 +67,66 @@ export default function ProjectileLab({
     angle === 30 || angle === 45 || angle === 60
       ? comparison
       : [...comparison, { angle, ...flight }];
+  const predictionControls = (
+    <>
+      <fieldset className="lab-predictions">
+        <legend>Pick a launch angle</legend>
+        {[30, 45, 60].map((a) => (
+          <button
+            key={a}
+            aria-pressed={prediction === a}
+            disabled={revealed}
+            onClick={() => setPrediction(a)}
+          >
+            {a}°
+          </button>
+        ))}
+      </fieldset>
+      {!revealed ? (
+        <button
+          className="primary lab-test"
+          disabled={prediction === null}
+          onClick={() => {
+            if (prediction === null) return;
+            setAngle(prediction);
+            setRevealed(true);
+          }}
+        >
+          <Play size={16} aria-hidden="true" /> Test my prediction →
+        </button>
+      ) : (
+        <button
+          className="primary lab-test"
+          onClick={() => setRun((r) => r + 1)}
+        >
+          <Play size={16} aria-hidden="true" /> Replay the model
+        </button>
+      )}
+    </>
+  );
   return (
     <section className="projectile-lab working-lab" aria-labelledby="lab-title">
-      <header className="lab-heading">
-        <span className="section-number">Experiment 1</span>
-        <h2 id="lab-title">Projectile range</h2>
-        <p>
-          Same speed, different angles. Predict, then compare the measured
-          paths.
-        </p>
-      </header>
       <div className="lab-bench">
+        <div className="lab-prompt">
+          <p className="lab-badge">
+            <FlaskConical size={16} aria-hidden="true" /> Projectile lab
+          </p>
+          <h1 id="lab-title">Which angle throws farthest?</h1>
+          <p>
+            Three throws from the same spot at 12 m/s. Pick the angle you think
+            will carry the ball farthest.
+          </p>
+          {predictionControls}
+        </div>
         <div className="lab-sheet">
           <figure>
             <div className="lab-plot measured-figure measurement-grid">
+              <div className="plot-header">
+                <span>
+                  {planet === "earth" ? "Earth" : "Moon"} / Level ground
+                </span>
+                <span>{revealed ? "Model output" : "Launch setup"}</span>
+              </div>
               <svg
                 viewBox="0 0 720 400"
                 role="img"
@@ -130,28 +177,62 @@ export default function ProjectileLab({
                 <circle cx="96" cy="340" r="4" fill="rgb(var(--ink))" />
                 {!revealed && (
                   <>
-                    <path
-                      d="M96 340l40 -24M96 340l32 -32M96 340l24 -40"
-                      fill="none"
-                      stroke="rgb(var(--ink-3))"
-                      strokeDasharray="4 4"
-                    />
+                    {[96, 192, 288].map((r) => (
+                      <path
+                        key={r}
+                        d={`M96 ${340 - r} A${r} ${r} 0 0 1 ${96 + r} 340`}
+                        fill="none"
+                        stroke="rgb(var(--rule-strong))"
+                        strokeDasharray="3 6"
+                      />
+                    ))}
+                    {comparison.map(({ angle: a }) => {
+                      const radians = (a * Math.PI) / 180;
+                      const x = 96 + 306 * Math.cos(radians);
+                      const y = 340 - 306 * Math.sin(radians);
+                      const color =
+                        prediction === a
+                          ? "rgb(var(--ochre-ink))"
+                          : "rgb(var(--cobalt))";
+                      return (
+                        <g key={a}>
+                          <path
+                            d={`M96 340L${x} ${y}`}
+                            stroke={color}
+                            strokeWidth={prediction === a ? 3 : 1.5}
+                            strokeDasharray={
+                              prediction === a ? undefined : "7 5"
+                            }
+                          />
+                          <circle
+                            cx={x}
+                            cy={y}
+                            r={prediction === a ? 6 : 4}
+                            fill={color}
+                          />
+                          <text x={x + 13} y={y + 5} style={{ fill: color }}>
+                            {a}°
+                          </text>
+                        </g>
+                      );
+                    })}
+                    <text
+                      x="678"
+                      y="108"
+                      textAnchor="end"
+                      className="plot-velocity"
+                    >
+                      v₀ = {speed} m/s
+                    </text>
                     {predicted && (
-                      <g>
-                        <path
-                          d={`M${96 + predicted.range * scale} 326v28`}
-                          stroke="rgb(var(--ochre-ink))"
-                          strokeWidth="2"
-                        />
-                        <text
-                          x={Math.min(580, 96 + predicted.range * scale)}
-                          y="308"
-                          textAnchor="end"
-                          className="prediction-label"
-                        >
-                          Your prediction: {prediction}°
-                        </text>
-                      </g>
+                      <text
+                        x="678"
+                        y="68"
+                        textAnchor="end"
+                        className="prediction-label"
+                      >
+                        Your prediction: {prediction}°
+                      </text>
                     )}
                   </>
                 )}
@@ -301,38 +382,8 @@ export default function ProjectileLab({
               </dd>
             </div>
           </dl>
-          <h3>Predict</h3>
-          <p className="lab-question-text">
-            Which angle travels furthest on level ground?
-          </p>
-          <fieldset className="lab-predictions">
-            <legend>Your prediction</legend>
-            {[30, 45, 60].map((a) => (
-              <button
-                key={a}
-                aria-pressed={prediction === a}
-                disabled={revealed}
-                onClick={() => setPrediction(a)}
-              >
-                <span className="prediction-square" aria-hidden="true" />
-                {a}°
-              </button>
-            ))}
-          </fieldset>
-          {!revealed ? (
-            <button
-              className="primary lab-test"
-              disabled={prediction === null}
-              onClick={() => {
-                setAngle(prediction!);
-                setRevealed(true);
-              }}
-            >
-              Test my prediction →
-            </button>
-          ) : (
-            <>
-              <h3>Explore</h3>
+          {revealed && (
+            <div className="lab-angle-control">
               <label className="lab-angle" htmlFor="lab-angle">
                 Launch angle<output>{angle}°</output>
               </label>
@@ -345,29 +396,23 @@ export default function ProjectileLab({
                 value={angle}
                 onChange={(e) => setAngle(Number(e.target.value))}
               />
-              <button
-                className="secondary"
-                onClick={() => setRun((r) => r + 1)}
-              >
-                Replay the model
-              </button>
-            </>
+            </div>
           )}
-          <label className="field-label" htmlFor="lab-gravity">
-            Gravity setting
-          </label>
-          <select
-            id="lab-gravity"
-            value={planet}
-            onChange={(e) => {
-              setPlanet(e.target.value);
-              setRevealed(false);
-              setPrediction(null);
-            }}
-          >
-            <option value="earth">Earth · 9.81 m/s²</option>
-            <option value="moon">Moon · 1.62 m/s²</option>
-          </select>
+          <div className="lab-gravity-control">
+            <label htmlFor="lab-gravity">Gravity setting</label>
+            <select
+              id="lab-gravity"
+              value={planet}
+              onChange={(e) => {
+                setPlanet(e.target.value);
+                setRevealed(false);
+                setPrediction(null);
+              }}
+            >
+              <option value="earth">Earth · 9.81 m/s²</option>
+              <option value="moon">Moon · 1.62 m/s²</option>
+            </select>
+          </div>
           <div className="lab-margin-actions">
             <button
               className="secondary"
@@ -386,10 +431,6 @@ export default function ProjectileLab({
               Read the reasoning →
             </button>
           </div>
-          <p className="annotation">
-            The model computes every value. Changing the experiment does not
-            update your learning evidence.
-          </p>
           {revealed && maxDuration > 2.4 && (
             <p className="annotation">
               Playback is compressed to 2.4 seconds. Flight times above are

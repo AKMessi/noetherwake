@@ -2,7 +2,18 @@
 import StudioHome from "./StudioHome";
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { ArrowRight, Check, Clock3, X } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Check,
+  Clock3,
+  FlaskConical,
+  House,
+  Network,
+  NotebookPen,
+  Settings2,
+  X,
+} from "lucide-react";
 import {
   ancestors,
   createLearner,
@@ -53,11 +64,11 @@ type View =
   | "placement"
   | "lab";
 const nav = [
-  { id: "today", label: "Today" },
-  { id: "map", label: "Atlas" },
-  { id: "curriculum", label: "Library" },
-  { id: "lab", label: "Lab" },
-  { id: "journal", label: "Field notes" },
+  { id: "today", label: "Today", icon: House },
+  { id: "map", label: "Atlas", icon: Network },
+  { id: "curriculum", label: "Library", icon: BookOpen },
+  { id: "lab", label: "Lab", icon: FlaskConical },
+  { id: "journal", label: "Field notes", icon: NotebookPen },
 ] as const;
 function Brand() {
   return (
@@ -521,6 +532,7 @@ export default function Tutor() {
         >
           <Brand />
         </a>
+        <p className="brand-discipline">Mathematics &amp; physics</p>
         <nav aria-label="Main navigation">
           {nav.map((n) => (
             <button
@@ -529,20 +541,22 @@ export default function Tutor() {
               aria-current={activeView === n.id ? "page" : undefined}
               onClick={() => navigate(n.id)}
             >
-              {n.label}
+              <n.icon size={19} aria-hidden="true" /> {n.label}
             </button>
           ))}
         </nav>
         <div className="sidebar-bottom">
           {hydrated.current ? (
-            <p className="route-label mono">
+            <p className="route-label">
               Route:{" "}
               {goals.find((g) => g.id === state.goal)?.title ?? goal.title}
               <br />
-              <span>
-                {strong.filter((c) => target.has(c.id)).length} of {target.size}{" "}
-                with strong evidence
-              </span>
+              {state.onboarded && (
+                <span>
+                  {strong.filter((c) => target.has(c.id)).length} of{" "}
+                  {target.size} with strong evidence
+                </span>
+              )}
             </p>
           ) : (
             <p className="caption">Reading from this device</p>
@@ -552,7 +566,7 @@ export default function Tutor() {
             aria-current={view === "settings" ? "page" : undefined}
             onClick={() => navigate("settings")}
           >
-            Preferences
+            <Settings2 size={19} aria-hidden="true" /> Preferences
           </button>
           <p className="local-note">
             {hydrated.current
@@ -629,8 +643,6 @@ export default function Tutor() {
               now={now}
               onStart={() => setOnboarding(true)}
               onMap={() => navigate("map")}
-              onLibrary={() => navigate("curriculum")}
-              onJournal={() => navigate("journal")}
               onLab={() => navigate("lab")}
               onResumePlacement={
                 placementPending
@@ -908,7 +920,7 @@ export default function Tutor() {
               onClick={() => navigate(n.id)}
               aria-current={activeView === n.id ? "page" : undefined}
             >
-              {n.label}
+              <n.icon size={18} aria-hidden="true" /> {n.label}
             </button>
           ))}
         </nav>
