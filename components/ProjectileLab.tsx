@@ -6,8 +6,10 @@ import { Readout, useReducedMotion } from "./ui/WorkingPage";
 import Gap from "./ui/Gap";
 export default function ProjectileLab({
   onConcept,
+  placementLink,
 }: {
   onConcept: (id: string) => void;
+  placementLink?: string;
 }) {
   const [angle, setAngle] = useState(45),
     [planet, setPlanet] = useState("earth"),
@@ -70,7 +72,7 @@ export default function ProjectileLab({
   const predictionControls = (
     <>
       <fieldset className="lab-predictions">
-        <legend>Pick a launch angle</legend>
+        <legend>{revealed ? "Your prediction" : "Pick a launch angle"}</legend>
         {[30, 45, 60].map((a) => (
           <button
             key={a}
@@ -113,10 +115,15 @@ export default function ProjectileLab({
           </p>
           <h1 id="lab-title">Which angle throws farthest?</h1>
           <p>
-            Three throws from the same spot at 12 m/s. Pick the angle you think
-            will carry the ball farthest.
+            Same spot. Same speed. Pick the angle that will carry the ball
+            farthest.
           </p>
           {predictionControls}
+          {placementLink && (
+            <a className="lab-placement-link" href={placementLink}>
+              Go to placement
+            </a>
+          )}
         </div>
         <div className="lab-sheet">
           <figure>
@@ -136,6 +143,21 @@ export default function ProjectileLab({
                     : "Equal-scale axes for a projectile prediction. Measurements appear after testing."
                 }
               >
+                <path
+                  d={Array.from(
+                    { length: 8 },
+                    (_, i) => `M${96 + (i + 1) * 73.5} 30V340`,
+                  )
+                    .concat(
+                      Array.from(
+                        { length: 4 },
+                        (_, i) => `M96 ${340 - (i + 1) * 73.5}H696`,
+                      ),
+                    )
+                    .join(" ")}
+                  fill="none"
+                  stroke="rgb(var(--rule-strong) / 0.25)"
+                />
                 <path
                   d="M96 30V340H696"
                   fill="none"
@@ -296,10 +318,11 @@ export default function ProjectileLab({
               </svg>
             </div>
             <figcaption className="figure-caption">
-              Fig. 1. Equal distances on both axes represent equal lengths.
-              Launch speed {speed} m/s; constant gravity {gravity} m/s². No air
-              resistance, equal launch and landing heights. Exploration adds no
-              mastery evidence.
+              {revealed
+                ? "Both axes use the same distance scale. "
+                : "Arrows show launch direction. "}
+              Level ground, constant gravity, no air resistance. Exploration
+              adds no mastery evidence.
             </figcaption>
           </figure>
           {revealed && predicted && (
@@ -308,6 +331,10 @@ export default function ProjectileLab({
                 {winner.angle}° travelled furthest: {winner.range.toFixed(2)} m.
                 You predicted {prediction}°, which travelled{" "}
                 {predicted.range.toFixed(2)} m.
+              </p>
+              <p className="lab-insight">
+                The 30° and 60° throws land in the same spot. The higher throw
+                stays up longer but moves sideways more slowly.
               </p>
               {(reduced || progress >= 1) && (
                 <Gap

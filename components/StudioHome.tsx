@@ -89,18 +89,20 @@ export default function StudioHome({
     <div className={`working-today ${!state.onboarded ? "first-visit" : ""}`}>
       {!state.onboarded ? (
         <>
-          <div id="today-prediction">
-            <ProjectileLab onConcept={onConcept} />
-          </div>
+          <ProjectileLab
+            onConcept={onConcept}
+            placementLink="#start-learning"
+          />
           <section
             className="placement-invitation"
+            id="start-learning"
             aria-labelledby="placement-invitation"
           >
             <div>
               <h2 id="placement-invitation">Find where to begin.</h2>
               <p>
-                Choose a goal in mathematics or physics. A short placement finds
-                a lesson that fits what you know.
+                Choose a goal in mathematics or physics. Placement uses 12–18
+                questions to find a lesson that fits what you know.
               </p>
               <p className="local-promise">
                 <HardDrive size={15} aria-hidden="true" /> Your work stays on
@@ -110,7 +112,7 @@ export default function StudioHome({
             {ready ? (
               <div className="placement-actions">
                 <fieldset className="time-choice">
-                  <legend>Time for today</legend>
+                  <legend>Practice session length</legend>
                   <div className="segmented">
                     {([5, 15, 30] as const).map((m) => (
                       <button
@@ -184,7 +186,7 @@ export default function StudioHome({
                   className="primary"
                   onClick={() => onConcept(next.concept)}
                 >
-                  Begin →
+                  Open lesson
                 </button>
               ) : null}
               <button className="secondary" onClick={onMap}>

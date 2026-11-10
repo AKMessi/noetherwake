@@ -98,6 +98,13 @@ export default function LessonView({
             <EvidenceMark state={state} id={id} now={now} />
             <span className="mono">{e.label}</span>
           </div>
+          {!gaps.length && (
+            <nav className="lesson-jumps" aria-label="In this lesson">
+              <a href="#derivation-title">Derivation</a>
+              <a href="#interactive-title">Experiment</a>
+              <a href="#lesson-practice">Practice</a>
+            </nav>
+          )}
         </header>
         {gaps.length ? (
           <section className="locked-lesson">
