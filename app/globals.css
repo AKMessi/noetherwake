@@ -1009,36 +1009,6 @@ svg text {
   margin-inline: auto;
   display: flex;
 }
-.projectile-lab {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 280px;
-  gap: 32px;
-}
-.lab-predictions {
-  display: flex;
-  gap: 8px;
-  margin: 24px 0;
-}
-.lab-predictions legend {
-  font-size: 14px;
-}
-.lab-predictions button {
-  border-bottom: 1px solid rgb(var(--rule-strong));
-  min-width: 64px;
-  font-family: var(--mono);
-}
-.lab-predictions button[aria-pressed="true"] {
-  color: rgb(var(--ochre-ink));
-  background: rgb(var(--ochre-tint));
-  border-bottom: 2px solid rgb(var(--ochre-ink));
-}
-.lab-predictions svg {
-  display: none;
-}
-.lab-angle {
-  display: flex;
-  justify-content: space-between;
-}
 .map-scroll {
   overflow: auto;
   min-height: 400px;
@@ -1085,10 +1055,6 @@ svg text {
   .sheet-frame {
     grid-template-columns: minmax(0, 1fr) 240px;
     gap: 40px;
-  }
-  .projectile-lab {
-    grid-template-columns: minmax(0, 1fr) 240px;
-    gap: 24px;
   }
 }
 @media (max-width: 1099px) {
@@ -1141,9 +1107,6 @@ svg text {
   .sheet-frame {
     gap: 0;
   }
-  .projectile-lab {
-    grid-template-columns: minmax(0, 1fr) 240px;
-  }
   .topbar {
     gap: 16px;
   }
@@ -1170,9 +1133,6 @@ svg text {
   }
   .brand {
     font-size: 18px;
-  }
-  .projectile-lab {
-    grid-template-columns: minmax(0, 1fr);
   }
 }
 @media (max-width: 767px) {
@@ -1267,12 +1227,6 @@ svg text {
   .feedback p {
     font-size: 17.5px;
     line-height: 29px;
-  }
-  .projectile-lab {
-    gap: 24px;
-  }
-  .lab-predictions button {
-    min-width: 72px;
   }
   .goal-dialog {
     padding: 24px 16px;

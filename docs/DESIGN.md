@@ -1,4 +1,44 @@
-# Noetherwake — The Working Page
+# Noetherwake — Launch Lab
+
+The opening question is a projectile experiment. Predict a launch angle, run the model, then compare where the throws land. The companion route is placement. Returning learners land on the planner’s next action, with the reason, prerequisite evidence and reviews nearby.
+
+## Visual system
+
+| Role | Color |
+| --- | --- |
+| Lavender ground | `#F1EFF9` |
+| Chalk surface | `#FCFAFF` |
+| Aubergine ink | `#23173E` |
+| Violet controls | `#502CC5` |
+| Plot glass | `#29204A` |
+| Signal lime | `#DFF58D` |
+
+Instrument Sans leads headings and controls. Newsreader is reserved for authored reading and longer explanations. IBM Plex Mono distinguishes measured values and axes. All three are local. Signal lime highlights the reference path and the returning learner’s next action. Coral marks a prediction or uncertainty. Correctness keeps its existing distinct green and red labels.
+
+On desktop the prompt and experiment sit side by side. On phones they stack, with a direct link from the prompt to placement.
+
+```
+Desktop   [ navigation ] [ question + prediction | measured plot ]
+                         [ experiment settings                  ]
+                         [ placement invitation + session length ]
+Phone     [ brand / preferences ]
+          [ question + prediction ]
+          [ measured plot ]
+          [ placement and routes ]
+          [ bottom navigation ]
+```
+
+Left-align the question and reading surfaces. The plot is the visual focus and its grid follows equal increments along both axes. Before testing, the diagram shows direction vectors. After testing, the paths, comparison and measurements come from the engine. Replay is initiated by the learner. Reduced-motion mode presents the final positions immediately.
+
+A progress-led landing was considered first. The launch question took its place because new learners have no recorded progress and can make a meaningful prediction on the first visit. The screenshot review shortened the headline, aligned the controls to the top of the bench so they stay put when the measurements appear, and added a direct jump to placement for small screens.
+
+The same surfaces group the active task in placement, practice, lesson examples, Atlas, Library, notes, completion and Preferences. Lessons link directly to the derivation, experiment and practice. Connections, uncertainty, backup confirmation and offline status retain their functional roles. Startup stays inert while IndexedDB loads.
+
+The Working Page notes below document the prior visual system and the evidence contracts that Launch Lab continues to use.
+
+---
+
+## Historical design — The Working Page
 
 The presentation is a printed physics monograph that computes: a working sheet, a ruled margin, and measured figures. Newsreader carries prose, Instrument Sans carries controls, IBM Plex Mono carries measurements. Font files and their OFL licenses live in `app/fonts`; `next/font/local` self-hosts Latin and Latin Extended subsets. KaTeX remains the mathematics renderer with its bundled fonts.
 
