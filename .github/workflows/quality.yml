@@ -18,7 +18,7 @@ jobs:
       - run: npx tsx scripts/contrast.ts
       - run: npm run eval
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install chromium
       - name: Capture responsive production screens
         run: |
           npx serve out -l 3001 &
@@ -32,13 +32,13 @@ jobs:
         with:
           name: launch-lab-screens
           path: |
-            docs/images/working-page/*-opening.png
-            docs/images/working-page/*-lab-tested.png
-            docs/images/working-page/*-returning.png
-            docs/images/working-page/*-lesson.png
-            docs/images/working-page/*-atlas-selected.png
-            docs/images/working-page/*-preferences.png
-            docs/working-page-preview.json
+            docs/images/launch-lab/*-opening.png
+            docs/images/launch-lab/*-lab-tested.png
+            docs/images/launch-lab/*-returning.png
+            docs/images/launch-lab/*-lesson.png
+            docs/images/launch-lab/*-atlas-selected.png
+            docs/images/launch-lab/*-preferences.png
+            docs/launch-lab-preview.json
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
