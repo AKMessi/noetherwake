@@ -21,12 +21,12 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Capture responsive production screens
         run: |
-          npm run start &
+          npx serve out -l 3001 &
           for attempt in {1..20}; do
-            curl -fsS http://127.0.0.1:3000/ >/dev/null && break
+            curl -fsS http://127.0.0.1:3001/ >/dev/null && break
             sleep 1
           done
-          npx tsx scripts/working-page-preview.ts
+          QA_ORIGIN=http://127.0.0.1:3001 npx tsx scripts/working-page-preview.ts
       - uses: actions/upload-artifact@v4
         if: always()
         with:
