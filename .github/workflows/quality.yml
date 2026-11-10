@@ -19,6 +19,26 @@ jobs:
       - run: npm run eval
       - run: npm run build
       - run: npx playwright install --with-deps chromium
+      - name: Capture responsive production screens
+        run: |
+          npm run start &
+          for attempt in {1..20}; do
+            curl -fsS http://127.0.0.1:3000/ >/dev/null && break
+            sleep 1
+          done
+          npx tsx scripts/working-page-preview.ts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: launch-lab-screens
+          path: |
+            docs/images/working-page/*-opening.png
+            docs/images/working-page/*-lab-tested.png
+            docs/images/working-page/*-returning.png
+            docs/images/working-page/*-lesson.png
+            docs/images/working-page/*-atlas-selected.png
+            docs/images/working-page/*-preferences.png
+            docs/working-page-preview.json
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
