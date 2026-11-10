@@ -86,6 +86,20 @@ for (const [theme, tokens] of [
   });
   if (contrast < 4.5) failed = true;
 }
+const plot = parse(light);
+for (const foreground of ["plot-ink", "beam", "plot-prediction", "plot-rule"]) {
+  const minimum = foreground === "plot-rule" ? 3 : 4.5;
+  const contrast = ratio(plot[foreground], plot.plot);
+  results.push({
+    theme: "plot",
+    foreground,
+    background: "plot",
+    ratio: +contrast.toFixed(3),
+    minimum,
+    pass: contrast >= minimum,
+  });
+  if (contrast < minimum) failed = true;
+}
 writeFileSync(
   "docs/working-page-contrast.json",
   JSON.stringify(

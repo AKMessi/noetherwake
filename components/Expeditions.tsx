@@ -74,11 +74,10 @@ export default function Expeditions({
   return (
     <section className="expeditions" aria-labelledby="expedition-title">
       <div className="index-heading">
-        <span className="section-number">§3</span>
         <h2 id="expedition-title">Routes through the atlas</h2>
       </div>
       <p className="caption">
-        Each route includes its destination and all hard prerequisites.
+        Pick a destination to see the ideas it builds on.
       </p>
       <div className="route-index">
         {expeditions.map((e) => {

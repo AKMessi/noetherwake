@@ -2,6 +2,9 @@
 :root {
   --ground: 241 239 249;
   --plot: 41 32 74;
+  --plot-ink: 246 240 255;
+  --plot-rule: 159 146 192;
+  --plot-prediction: 255 177 159;
   --beam: 223 245 141;
   --sheet: 252 250 255;
   --inset: 230 225 241;
@@ -393,6 +396,7 @@ small {
   position: fixed;
   inset: 0 auto 0 0;
   width: 196px;
+  overflow-y: auto;
   border-right: 1px solid rgb(var(--rule));
   padding: 24px 14px;
   display: flex;
@@ -1838,6 +1842,12 @@ svg text {
 .working-today > .sheet-frame {
   max-width: none;
 }
+@media (min-width: 1024px) {
+  .working-today > .sheet-frame {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 32px;
+  }
+}
 .placement-invitation {
   margin-top: 24px;
   padding: 24px clamp(20px, 3vw, 42px);
@@ -1877,6 +1887,7 @@ svg text {
 }
 .time-choice .segmented button {
   flex: 1;
+  white-space: nowrap;
 }
 .working-today .margin {
   background: rgb(var(--sheet));
@@ -1886,7 +1897,7 @@ svg text {
 }
 .working-today .today-next {
   background: rgb(var(--plot));
-  color: rgb(246 240 255);
+  color: rgb(var(--plot-ink));
   border-radius: 24px;
   padding: clamp(24px, 4vw, 52px);
 }
@@ -1899,7 +1910,7 @@ svg text {
   color: rgb(var(--plot));
 }
 .today-next .secondary {
-  color: rgb(246 240 255);
+  color: rgb(var(--plot-ink));
   text-align: left;
 }
 .today-next .display {
@@ -2210,23 +2221,6 @@ svg text {
   }
 }
 @media (max-width: 767px) {
-  .first-working-page .display {
-    max-width: 18ch;
-  }
-  .first-working-page > .actions {
-    gap: 12px;
-    display: grid;
-    justify-items: start;
-  }
-  .first-working-page .primary {
-    width: 100%;
-  }
-  .today-introduction {
-    margin-top: 24px;
-  }
-  .time-choice {
-    margin-top: 24px;
-  }
   .working-today > .expeditions {
     margin-top: 48px;
   }
@@ -2291,9 +2285,6 @@ svg text {
   }
   .route-ruler button {
     min-width: 0;
-  }
-  .today-prediction {
-    margin-top: 48px;
   }
 }
 .route-ruler {
@@ -2892,8 +2883,7 @@ svg text {
   gap: 22px;
 }
 .lab-prompt {
-  align-self: stretch;
-  padding: clamp(24px, 3vw, 48px);
+  padding: clamp(24px, 2.5vw, 36px);
   border-radius: 24px;
   background: rgb(var(--cobalt-tint));
   display: flex;
@@ -2909,10 +2899,10 @@ svg text {
   margin-bottom: 28px;
 }
 .lab-prompt h1 {
-  font: 650 clamp(40px, 4.5vw, 74px) / 0.98 var(--ui);
+  font: 650 clamp(40px, 3.9vw, 64px) / 0.98 var(--ui);
   letter-spacing: -0.065em;
   text-wrap: initial;
-  max-width: 10ch;
+  max-width: 13ch;
 }
 .lab-prompt h1 + p {
   margin: 20px 0 24px;
@@ -2951,6 +2941,15 @@ svg text {
 .lab-test {
   width: 100%;
 }
+.lab-placement-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  min-height: 44px;
+  font-size: 13px;
+  text-decoration: underline;
+  margin-bottom: -10px;
+}
 .lab-sheet {
   min-width: 0;
 }
@@ -2958,18 +2957,14 @@ svg text {
   margin: 0;
 }
 .lab-plot.measured-figure {
-  --ink: 246 240 255;
-  --rule-strong: 159 146 192;
+  --ink: var(--plot-ink);
+  --rule-strong: var(--plot-rule);
   --cobalt: var(--beam);
-  --ochre-ink: 255 177 159;
+  --ochre-ink: var(--plot-prediction);
   color: rgb(var(--ink));
   border: 0;
   border-radius: 24px;
   background-color: rgb(var(--plot));
-  background-image:
-    linear-gradient(rgb(211 191 255 / 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(211 191 255 / 0.09) 1px, transparent 1px);
-  background-size: 24px 24px;
   padding: 22px 16px 12px;
 }
 .plot-header {
@@ -3065,6 +3060,11 @@ svg text {
 }
 .lab-outcome > p {
   font: 21px/1.4 var(--prose);
+}
+.lab-outcome > .lab-insight {
+  margin: 8px 0 12px;
+  color: rgb(var(--ink-2));
+  font: 15px/1.5 var(--ui);
 }
 .trajectory-ledger {
   margin-top: 24px;
@@ -3853,18 +3853,6 @@ svg text {
   font-size: 12.5px;
   color: rgb(var(--ink-3));
 }
-.home-loading > div {
-  background: rgb(var(--rule) / 0.4);
-  margin-top: 16px;
-}
-.loading-time {
-  height: 44px;
-  width: 208px;
-}
-.loading-action {
-  height: 44px;
-  width: 240px;
-}
 .detail-handle {
   touch-action: none;
 }
@@ -3889,6 +3877,20 @@ svg text {
 }
 .lesson-heading .lesson-summary {
   font-size: 21px;
+}
+.lesson-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin-top: 16px;
+}
+.lesson-jumps a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
 }
 .lesson-prose h2 {
   font-family: var(--ui);
@@ -3952,6 +3954,7 @@ svg text {
 }
 .route-index-row {
   background: rgb(var(--sheet));
+  padding-inline: clamp(16px, 3vw, 32px);
   border-radius: 12px;
   margin-top: 8px;
 }
