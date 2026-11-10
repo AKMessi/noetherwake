@@ -16,7 +16,13 @@ test("projectile prediction, equal-scale SI readouts, gravity and no fabricated 
   page,
 }) => {
   await page.goto(origin);
-  await nav(page, "Lab");
+  await expect(
+    page.getByRole("heading", { name: "Which angle throws farthest?" }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "Go to placement" }).click();
+  await expect(
+    page.getByRole("button", { name: "Find my starting point →", exact: true }),
+  ).toBeInViewport();
   await expect(
     page.getByRole("button", { name: "Test my prediction →", exact: true }),
   ).toBeDisabled();

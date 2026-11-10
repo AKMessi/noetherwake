@@ -1,3 +1,13 @@
+# Launch Lab
+
+## Presentation release — 10 November 2026
+
+The first visit opens with a projectile prediction. Choose an angle, test it, then compare the computed paths and read why two different angles can reach the same spot. Placement is available directly from the opening. Returning learners see the next action and its reason before the route overview.
+
+Lavender surfaces, a dark measured plot, new navigation and chapter links carry through the learning flows. The engine, authored lessons, learner backups and offline format remain compatible. See [design](DESIGN.md) and [verification](DESIGN_VERIFICATION.md).
+
+---
+
 # The Working Page
 
 ## Presentation release — 3 November 2026

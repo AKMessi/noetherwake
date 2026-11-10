@@ -11,7 +11,7 @@ import {
   openLesson,
   origin,
 } from "../tests/support/working-page";
-const directory = "docs/images/working-page";
+const directory = "docs/images/launch-lab";
 mkdirSync(directory, { recursive: true });
 const browser = await chromium.launch(),
   fixture = await learnerFixture();
@@ -262,7 +262,7 @@ try {
 } finally {
   await browser.close();
   writeFileSync(
-    "docs/working-page-preview.json",
+    "docs/launch-lab-preview.json",
     JSON.stringify(report, null, 2) + "\n",
   );
 }

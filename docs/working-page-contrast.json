@@ -5,7 +5,7 @@
       "theme": "light",
       "foreground": "ink",
       "background": "ground",
-      "ratio": 14.107,
+      "ratio": 14.605,
       "minimum": 4.5,
       "pass": true
     },
@@ -13,7 +13,7 @@
       "theme": "light",
       "foreground": "ink-2",
       "background": "ground",
-      "ratio": 7.021,
+      "ratio": 8.258,
       "minimum": 4.5,
       "pass": true
     },
@@ -21,7 +21,7 @@
       "theme": "light",
       "foreground": "ink-3",
       "background": "ground",
-      "ratio": 5.411,
+      "ratio": 6.629,
       "minimum": 4.5,
       "pass": true
     },
@@ -29,7 +29,7 @@
       "theme": "light",
       "foreground": "cobalt",
       "background": "ground",
-      "ratio": 7.315,
+      "ratio": 7.359,
       "minimum": 4.5,
       "pass": true
     },
@@ -37,7 +37,7 @@
       "theme": "light",
       "foreground": "ochre-ink",
       "background": "ground",
-      "ratio": 5.248,
+      "ratio": 7.142,
       "minimum": 4.5,
       "pass": true
     },
@@ -45,7 +45,7 @@
       "theme": "light",
       "foreground": "ok",
       "background": "ground",
-      "ratio": 5.572,
+      "ratio": 5.531,
       "minimum": 4.5,
       "pass": true
     },
@@ -53,7 +53,7 @@
       "theme": "light",
       "foreground": "err",
       "background": "ground",
-      "ratio": 6.227,
+      "ratio": 6.18,
       "minimum": 4.5,
       "pass": true
     },
@@ -61,7 +61,7 @@
       "theme": "light",
       "foreground": "ink",
       "background": "sheet",
-      "ratio": 15.002,
+      "ratio": 16.032,
       "minimum": 4.5,
       "pass": true
     },
@@ -69,7 +69,7 @@
       "theme": "light",
       "foreground": "ink-2",
       "background": "sheet",
-      "ratio": 7.467,
+      "ratio": 9.064,
       "minimum": 4.5,
       "pass": true
     },
@@ -77,7 +77,7 @@
       "theme": "light",
       "foreground": "ink-3",
       "background": "sheet",
-      "ratio": 5.755,
+      "ratio": 7.277,
       "minimum": 4.5,
       "pass": true
     },
@@ -85,7 +85,7 @@
       "theme": "light",
       "foreground": "cobalt",
       "background": "sheet",
-      "ratio": 7.78,
+      "ratio": 8.078,
       "minimum": 4.5,
       "pass": true
     },
@@ -93,7 +93,7 @@
       "theme": "light",
       "foreground": "ochre-ink",
       "background": "sheet",
-      "ratio": 5.581,
+      "ratio": 7.839,
       "minimum": 4.5,
       "pass": true
     },
@@ -101,7 +101,7 @@
       "theme": "light",
       "foreground": "ok",
       "background": "sheet",
-      "ratio": 5.926,
+      "ratio": 6.071,
       "minimum": 4.5,
       "pass": true
     },
@@ -109,7 +109,7 @@
       "theme": "light",
       "foreground": "err",
       "background": "sheet",
-      "ratio": 6.622,
+      "ratio": 6.784,
       "minimum": 4.5,
       "pass": true
     },
@@ -117,7 +117,7 @@
       "theme": "light",
       "foreground": "ink",
       "background": "inset",
-      "ratio": 12.535,
+      "ratio": 12.983,
       "minimum": 4.5,
       "pass": true
     },
@@ -125,7 +125,7 @@
       "theme": "light",
       "foreground": "ink-2",
       "background": "inset",
-      "ratio": 6.239,
+      "ratio": 7.341,
       "minimum": 4.5,
       "pass": true
     },
@@ -133,7 +133,7 @@
       "theme": "light",
       "foreground": "ink-3",
       "background": "inset",
-      "ratio": 4.809,
+      "ratio": 5.893,
       "minimum": 4.5,
       "pass": true
     },
@@ -141,7 +141,7 @@
       "theme": "light",
       "foreground": "cobalt",
       "background": "inset",
-      "ratio": 6.501,
+      "ratio": 6.542,
       "minimum": 4.5,
       "pass": true
     },
@@ -149,7 +149,7 @@
       "theme": "light",
       "foreground": "ochre-ink",
       "background": "inset",
-      "ratio": 4.663,
+      "ratio": 6.348,
       "minimum": 4.5,
       "pass": true
     },
@@ -157,7 +157,7 @@
       "theme": "light",
       "foreground": "ok",
       "background": "inset",
-      "ratio": 4.952,
+      "ratio": 4.916,
       "minimum": 4.5,
       "pass": true
     },
@@ -165,7 +165,7 @@
       "theme": "light",
       "foreground": "err",
       "background": "inset",
-      "ratio": 5.533,
+      "ratio": 5.494,
       "minimum": 4.5,
       "pass": true
     },
@@ -173,7 +173,7 @@
       "theme": "light",
       "foreground": "ink",
       "background": "cobalt-tint",
-      "ratio": 12.404,
+      "ratio": 12.456,
       "minimum": 4.5,
       "pass": true
     },
@@ -181,7 +181,7 @@
       "theme": "light",
       "foreground": "ink-2",
       "background": "cobalt-tint",
-      "ratio": 6.173,
+      "ratio": 7.042,
       "minimum": 4.5,
       "pass": true
     },
@@ -189,7 +189,7 @@
       "theme": "light",
       "foreground": "ink-3",
       "background": "cobalt-tint",
-      "ratio": 4.758,
+      "ratio": 5.654,
       "minimum": 4.5,
       "pass": true
     },
@@ -197,7 +197,7 @@
       "theme": "light",
       "foreground": "cobalt",
       "background": "cobalt-tint",
-      "ratio": 6.432,
+      "ratio": 6.276,
       "minimum": 4.5,
       "pass": true
     },
@@ -205,7 +205,7 @@
       "theme": "light",
       "foreground": "ink",
       "background": "ochre-tint",
-      "ratio": 12.842,
+      "ratio": 13.239,
       "minimum": 4.5,
       "pass": true
     },
@@ -213,7 +213,7 @@
       "theme": "light",
       "foreground": "ink-2",
       "background": "ochre-tint",
-      "ratio": 6.392,
+      "ratio": 7.486,
       "minimum": 4.5,
       "pass": true
     },
@@ -221,7 +221,7 @@
       "theme": "light",
       "foreground": "ink-3",
       "background": "ochre-tint",
-      "ratio": 4.926,
+      "ratio": 6.009,
       "minimum": 4.5,
       "pass": true
     },
@@ -229,7 +229,7 @@
       "theme": "light",
       "foreground": "ochre-ink",
       "background": "ochre-tint",
-      "ratio": 4.777,
+      "ratio": 6.474,
       "minimum": 4.5,
       "pass": true
     },
@@ -237,7 +237,7 @@
       "theme": "light",
       "foreground": "ink",
       "background": "ok-tint",
-      "ratio": 12.546,
+      "ratio": 13.087,
       "minimum": 4.5,
       "pass": true
     },
@@ -245,7 +245,7 @@
       "theme": "light",
       "foreground": "ink-2",
       "background": "ok-tint",
-      "ratio": 6.244,
+      "ratio": 7.4,
       "minimum": 4.5,
       "pass": true
     },
@@ -253,7 +253,7 @@
       "theme": "light",
       "foreground": "ink-3",
       "background": "ok-tint",
-      "ratio": 4.813,
+      "ratio": 5.94,
       "minimum": 4.5,
       "pass": true
     },
@@ -269,7 +269,7 @@
       "theme": "light",
       "foreground": "ink",
       "background": "err-tint",
-      "ratio": 11.855,
+      "ratio": 12.367,
       "minimum": 4.5,
       "pass": true
     },
@@ -277,7 +277,7 @@
       "theme": "light",
       "foreground": "ink-2",
       "background": "err-tint",
-      "ratio": 5.9,
+      "ratio": 6.992,
       "minimum": 4.5,
       "pass": true
     },
@@ -285,7 +285,7 @@
       "theme": "light",
       "foreground": "ink-3",
       "background": "err-tint",
-      "ratio": 4.548,
+      "ratio": 5.613,
       "minimum": 4.5,
       "pass": true
     },
@@ -301,7 +301,7 @@
       "theme": "light",
       "foreground": "rule-strong",
       "background": "ground",
-      "ratio": 3.816,
+      "ratio": 4.142,
       "minimum": 3,
       "pass": true
     },
@@ -309,7 +309,7 @@
       "theme": "light",
       "foreground": "focus",
       "background": "ground",
-      "ratio": 7.315,
+      "ratio": 7.359,
       "minimum": 3,
       "pass": true
     },
@@ -317,7 +317,7 @@
       "theme": "light",
       "foreground": "ink",
       "background": "ground",
-      "ratio": 14.107,
+      "ratio": 14.605,
       "minimum": 3,
       "pass": true
     },
@@ -325,7 +325,7 @@
       "theme": "light",
       "foreground": "cobalt",
       "background": "ground",
-      "ratio": 7.315,
+      "ratio": 7.359,
       "minimum": 3,
       "pass": true
     },
@@ -333,7 +333,7 @@
       "theme": "light",
       "foreground": "ochre-ink",
       "background": "ground",
-      "ratio": 5.248,
+      "ratio": 7.142,
       "minimum": 3,
       "pass": true
     },
@@ -341,7 +341,7 @@
       "theme": "light",
       "foreground": "rule-strong",
       "background": "sheet",
-      "ratio": 4.059,
+      "ratio": 4.547,
       "minimum": 3,
       "pass": true
     },
@@ -349,7 +349,7 @@
       "theme": "light",
       "foreground": "focus",
       "background": "sheet",
-      "ratio": 7.78,
+      "ratio": 8.078,
       "minimum": 3,
       "pass": true
     },
@@ -357,7 +357,7 @@
       "theme": "light",
       "foreground": "ink",
       "background": "sheet",
-      "ratio": 15.002,
+      "ratio": 16.032,
       "minimum": 3,
       "pass": true
     },
@@ -365,7 +365,7 @@
       "theme": "light",
       "foreground": "cobalt",
       "background": "sheet",
-      "ratio": 7.78,
+      "ratio": 8.078,
       "minimum": 3,
       "pass": true
     },
@@ -373,7 +373,7 @@
       "theme": "light",
       "foreground": "ochre-ink",
       "background": "sheet",
-      "ratio": 5.581,
+      "ratio": 7.839,
       "minimum": 3,
       "pass": true
     },
@@ -381,7 +381,7 @@
       "theme": "light",
       "foreground": "rule-strong",
       "background": "inset",
-      "ratio": 3.391,
+      "ratio": 3.682,
       "minimum": 3,
       "pass": true
     },
@@ -389,7 +389,7 @@
       "theme": "light",
       "foreground": "focus",
       "background": "inset",
-      "ratio": 6.501,
+      "ratio": 6.542,
       "minimum": 3,
       "pass": true
     },
@@ -397,7 +397,7 @@
       "theme": "light",
       "foreground": "ink",
       "background": "inset",
-      "ratio": 12.535,
+      "ratio": 12.983,
       "minimum": 3,
       "pass": true
     },
@@ -405,7 +405,7 @@
       "theme": "light",
       "foreground": "cobalt",
       "background": "inset",
-      "ratio": 6.501,
+      "ratio": 6.542,
       "minimum": 3,
       "pass": true
     },
@@ -413,7 +413,7 @@
       "theme": "light",
       "foreground": "ochre-ink",
       "background": "inset",
-      "ratio": 4.663,
+      "ratio": 6.348,
       "minimum": 3,
       "pass": true
     },
@@ -421,7 +421,7 @@
       "theme": "light",
       "foreground": "button-text",
       "background": "cobalt",
-      "ratio": 7.78,
+      "ratio": 8.078,
       "minimum": 4.5,
       "pass": true
     },
@@ -429,7 +429,7 @@
       "theme": "dark",
       "foreground": "ink",
       "background": "ground",
-      "ratio": 14.375,
+      "ratio": 15.99,
       "minimum": 4.5,
       "pass": true
     },
@@ -437,7 +437,7 @@
       "theme": "dark",
       "foreground": "ink-2",
       "background": "ground",
-      "ratio": 9.435,
+      "ratio": 12.229,
       "minimum": 4.5,
       "pass": true
     },
@@ -445,7 +445,7 @@
       "theme": "dark",
       "foreground": "ink-3",
       "background": "ground",
-      "ratio": 6.672,
+      "ratio": 8.945,
       "minimum": 4.5,
       "pass": true
     },
@@ -453,7 +453,7 @@
       "theme": "dark",
       "foreground": "cobalt",
       "background": "ground",
-      "ratio": 7.301,
+      "ratio": 8.822,
       "minimum": 4.5,
       "pass": true
     },
@@ -461,7 +461,7 @@
       "theme": "dark",
       "foreground": "ochre-ink",
       "background": "ground",
-      "ratio": 10.332,
+      "ratio": 10.227,
       "minimum": 4.5,
       "pass": true
     },
@@ -469,7 +469,7 @@
       "theme": "dark",
       "foreground": "ok",
       "background": "ground",
-      "ratio": 9.087,
+      "ratio": 8.947,
       "minimum": 4.5,
       "pass": true
     },
@@ -477,7 +477,7 @@
       "theme": "dark",
       "foreground": "err",
       "background": "ground",
-      "ratio": 7.837,
+      "ratio": 7.716,
       "minimum": 4.5,
       "pass": true
     },
@@ -485,7 +485,7 @@
       "theme": "dark",
       "foreground": "ink",
       "background": "sheet",
-      "ratio": 13.397,
+      "ratio": 14.311,
       "minimum": 4.5,
       "pass": true
     },
@@ -493,7 +493,7 @@
       "theme": "dark",
       "foreground": "ink-2",
       "background": "sheet",
-      "ratio": 8.793,
+      "ratio": 10.945,
       "minimum": 4.5,
       "pass": true
     },
@@ -501,7 +501,7 @@
       "theme": "dark",
       "foreground": "ink-3",
       "background": "sheet",
-      "ratio": 6.218,
+      "ratio": 8.006,
       "minimum": 4.5,
       "pass": true
     },
@@ -509,7 +509,7 @@
       "theme": "dark",
       "foreground": "cobalt",
       "background": "sheet",
-      "ratio": 6.804,
+      "ratio": 7.896,
       "minimum": 4.5,
       "pass": true
     },
@@ -517,7 +517,7 @@
       "theme": "dark",
       "foreground": "ochre-ink",
       "background": "sheet",
-      "ratio": 9.629,
+      "ratio": 9.154,
       "minimum": 4.5,
       "pass": true
     },
@@ -525,7 +525,7 @@
       "theme": "dark",
       "foreground": "ok",
       "background": "sheet",
-      "ratio": 8.469,
+      "ratio": 8.008,
       "minimum": 4.5,
       "pass": true
     },
@@ -533,7 +533,7 @@
       "theme": "dark",
       "foreground": "err",
       "background": "sheet",
-      "ratio": 7.304,
+      "ratio": 6.906,
       "minimum": 4.5,
       "pass": true
     },
@@ -541,7 +541,7 @@
       "theme": "dark",
       "foreground": "ink",
       "background": "inset",
-      "ratio": 14.985,
+      "ratio": 16.358,
       "minimum": 4.5,
       "pass": true
     },
@@ -549,7 +549,7 @@
       "theme": "dark",
       "foreground": "ink-2",
       "background": "inset",
-      "ratio": 9.835,
+      "ratio": 12.51,
       "minimum": 4.5,
       "pass": true
     },
@@ -557,7 +557,7 @@
       "theme": "dark",
       "foreground": "ink-3",
       "background": "inset",
-      "ratio": 6.955,
+      "ratio": 9.151,
       "minimum": 4.5,
       "pass": true
     },
@@ -565,7 +565,7 @@
       "theme": "dark",
       "foreground": "cobalt",
       "background": "inset",
-      "ratio": 7.611,
+      "ratio": 9.024,
       "minimum": 4.5,
       "pass": true
     },
@@ -573,7 +573,7 @@
       "theme": "dark",
       "foreground": "ochre-ink",
       "background": "inset",
-      "ratio": 10.77,
+      "ratio": 10.462,
       "minimum": 4.5,
       "pass": true
     },
@@ -581,7 +581,7 @@
       "theme": "dark",
       "foreground": "ok",
       "background": "inset",
-      "ratio": 9.473,
+      "ratio": 9.153,
       "minimum": 4.5,
       "pass": true
     },
@@ -589,7 +589,7 @@
       "theme": "dark",
       "foreground": "err",
       "background": "inset",
-      "ratio": 8.17,
+      "ratio": 7.894,
       "minimum": 4.5,
       "pass": true
     },
@@ -597,7 +597,7 @@
       "theme": "dark",
       "foreground": "ink",
       "background": "cobalt-tint",
-      "ratio": 11.135,
+      "ratio": 10.912,
       "minimum": 4.5,
       "pass": true
     },
@@ -605,7 +605,7 @@
       "theme": "dark",
       "foreground": "ink-2",
       "background": "cobalt-tint",
-      "ratio": 7.308,
+      "ratio": 8.346,
       "minimum": 4.5,
       "pass": true
     },
@@ -613,7 +613,7 @@
       "theme": "dark",
       "foreground": "ink-3",
       "background": "cobalt-tint",
-      "ratio": 5.168,
+      "ratio": 6.105,
       "minimum": 4.5,
       "pass": true
     },
@@ -621,7 +621,7 @@
       "theme": "dark",
       "foreground": "cobalt",
       "background": "cobalt-tint",
-      "ratio": 5.655,
+      "ratio": 6.02,
       "minimum": 4.5,
       "pass": true
     },
@@ -629,7 +629,7 @@
       "theme": "dark",
       "foreground": "ink",
       "background": "ochre-tint",
-      "ratio": 10.437,
+      "ratio": 11.672,
       "minimum": 4.5,
       "pass": true
     },
@@ -637,7 +637,7 @@
       "theme": "dark",
       "foreground": "ink-2",
       "background": "ochre-tint",
-      "ratio": 6.85,
+      "ratio": 8.927,
       "minimum": 4.5,
       "pass": true
     },
@@ -645,7 +645,7 @@
       "theme": "dark",
       "foreground": "ink-3",
       "background": "ochre-tint",
-      "ratio": 4.844,
+      "ratio": 6.53,
       "minimum": 4.5,
       "pass": true
     },
@@ -653,7 +653,7 @@
       "theme": "dark",
       "foreground": "ochre-ink",
       "background": "ochre-tint",
-      "ratio": 7.501,
+      "ratio": 7.466,
       "minimum": 4.5,
       "pass": true
     },
@@ -661,7 +661,7 @@
       "theme": "dark",
       "foreground": "ink",
       "background": "ok-tint",
-      "ratio": 10.675,
+      "ratio": 12.06,
       "minimum": 4.5,
       "pass": true
     },
@@ -669,7 +669,7 @@
       "theme": "dark",
       "foreground": "ink-2",
       "background": "ok-tint",
-      "ratio": 7.006,
+      "ratio": 9.223,
       "minimum": 4.5,
       "pass": true
     },
@@ -677,7 +677,7 @@
       "theme": "dark",
       "foreground": "ink-3",
       "background": "ok-tint",
-      "ratio": 4.955,
+      "ratio": 6.747,
       "minimum": 4.5,
       "pass": true
     },
@@ -693,7 +693,7 @@
       "theme": "dark",
       "foreground": "ink",
       "background": "err-tint",
-      "ratio": 12.009,
+      "ratio": 13.567,
       "minimum": 4.5,
       "pass": true
     },
@@ -701,7 +701,7 @@
       "theme": "dark",
       "foreground": "ink-2",
       "background": "err-tint",
-      "ratio": 7.882,
+      "ratio": 10.376,
       "minimum": 4.5,
       "pass": true
     },
@@ -709,7 +709,7 @@
       "theme": "dark",
       "foreground": "ink-3",
       "background": "err-tint",
-      "ratio": 5.574,
+      "ratio": 7.59,
       "minimum": 4.5,
       "pass": true
     },
@@ -725,7 +725,7 @@
       "theme": "dark",
       "foreground": "rule-strong",
       "background": "ground",
-      "ratio": 3.914,
+      "ratio": 4.717,
       "minimum": 3,
       "pass": true
     },
@@ -733,7 +733,7 @@
       "theme": "dark",
       "foreground": "focus",
       "background": "ground",
-      "ratio": 7.301,
+      "ratio": 8.822,
       "minimum": 3,
       "pass": true
     },
@@ -741,7 +741,7 @@
       "theme": "dark",
       "foreground": "ink",
       "background": "ground",
-      "ratio": 14.375,
+      "ratio": 15.99,
       "minimum": 3,
       "pass": true
     },
@@ -749,7 +749,7 @@
       "theme": "dark",
       "foreground": "cobalt",
       "background": "ground",
-      "ratio": 7.301,
+      "ratio": 8.822,
       "minimum": 3,
       "pass": true
     },
@@ -757,7 +757,7 @@
       "theme": "dark",
       "foreground": "ochre-ink",
       "background": "ground",
-      "ratio": 10.332,
+      "ratio": 10.227,
       "minimum": 3,
       "pass": true
     },
@@ -765,7 +765,7 @@
       "theme": "dark",
       "foreground": "rule-strong",
       "background": "sheet",
-      "ratio": 3.647,
+      "ratio": 4.222,
       "minimum": 3,
       "pass": true
     },
@@ -773,7 +773,7 @@
       "theme": "dark",
       "foreground": "focus",
       "background": "sheet",
-      "ratio": 6.804,
+      "ratio": 7.896,
       "minimum": 3,
       "pass": true
     },
@@ -781,7 +781,7 @@
       "theme": "dark",
       "foreground": "ink",
       "background": "sheet",
-      "ratio": 13.397,
+      "ratio": 14.311,
       "minimum": 3,
       "pass": true
     },
@@ -789,7 +789,7 @@
       "theme": "dark",
       "foreground": "cobalt",
       "background": "sheet",
-      "ratio": 6.804,
+      "ratio": 7.896,
       "minimum": 3,
       "pass": true
     },
@@ -797,7 +797,7 @@
       "theme": "dark",
       "foreground": "ochre-ink",
       "background": "sheet",
-      "ratio": 9.629,
+      "ratio": 9.154,
       "minimum": 3,
       "pass": true
     },
@@ -805,7 +805,7 @@
       "theme": "dark",
       "foreground": "rule-strong",
       "background": "inset",
-      "ratio": 4.08,
+      "ratio": 4.825,
       "minimum": 3,
       "pass": true
     },
@@ -813,7 +813,7 @@
       "theme": "dark",
       "foreground": "focus",
       "background": "inset",
-      "ratio": 7.611,
+      "ratio": 9.024,
       "minimum": 3,
       "pass": true
     },
@@ -821,7 +821,7 @@
       "theme": "dark",
       "foreground": "ink",
       "background": "inset",
-      "ratio": 14.985,
+      "ratio": 16.358,
       "minimum": 3,
       "pass": true
     },
@@ -829,7 +829,7 @@
       "theme": "dark",
       "foreground": "cobalt",
       "background": "inset",
-      "ratio": 7.611,
+      "ratio": 9.024,
       "minimum": 3,
       "pass": true
     },
@@ -837,7 +837,7 @@
       "theme": "dark",
       "foreground": "ochre-ink",
       "background": "inset",
-      "ratio": 10.77,
+      "ratio": 10.462,
       "minimum": 3,
       "pass": true
     },
@@ -845,8 +845,40 @@
       "theme": "dark",
       "foreground": "button-text",
       "background": "cobalt",
-      "ratio": 7.611,
+      "ratio": 8.22,
       "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "plot",
+      "foreground": "plot-ink",
+      "background": "plot",
+      "ratio": 13.45,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "plot",
+      "foreground": "beam",
+      "background": "plot",
+      "ratio": 12.561,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "plot",
+      "foreground": "plot-prediction",
+      "background": "plot",
+      "ratio": 8.602,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "plot",
+      "foreground": "plot-rule",
+      "background": "plot",
+      "ratio": 5.249,
+      "minimum": 3,
       "pass": true
     }
   ]
