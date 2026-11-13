@@ -1,6 +1,30 @@
-# The Working Page — verification and delivery
+# Launch Lab — verification
 
-Verified on 3 November 2026 (Asia/Kolkata), in `/home/akmessi/noetherwake`. This is the current presentation release; earlier screenshot directories and engineering reports are historical. The static production export is `out/`. This redesign was committed and pushed to GitHub in working change sets. This release is now published through Vercel CLI; [DEPLOYMENT.md](DEPLOYMENT.md) records the source revision, deployment and live smoke checks.
+Verified on 10 November 2026 (Asia/Kolkata) in Linux GitHub Actions. The original WSL registration pointed to a missing virtual disk. Local source editing used the current Windows checkout, while project dependencies, the production export and browser tests ran on Linux.
+
+| Check | Result |
+| --- | --- |
+| TypeScript and unit tests | Passed, 28 unit tests |
+| Synthetic evaluation | Passed with the existing engine and seeds |
+| Content validation | Passed, 67 lessons, 201 templates and 201,000 checked variants |
+| Static export, offline manifest and asset budgets | Passed |
+| Chromium journeys | 22 passed, including axe, keyboard, touch, persisted backups and offline grading |
+| Contrast | 110 pairs passed. Minimum text contrast 4.916:1 and minimum functional boundary contrast 3.682:1 |
+| Visual QA | 129 captures across 1440×900, 1024×768, 768×1024 and 390×844. Zero overflows, page errors or outside-origin script or font requests |
+
+The static export was 4,841,030 bytes. Gzipped JavaScript totalled 706,329 bytes and the largest gzipped chunk was 159,648 bytes. In the 390×844 Chromium run with 4× CPU slowdown, 60 ms latency and 1,600 kbps download, largest contentful paint was **684 ms** against a 2,000 ms budget. Controls became ready after **2,976 ms**, and the initial transfer was 576,244 bytes. These measurements come from desktop Chromium throttling. [GitHub Actions results](https://github.com/AKMessi/noetherwake/actions/runs/42792705351)
+
+The preview harness generates disposable learner evidence through the engine and imports it through the app. Representative captures include the [desktop opening](images/launch-lab/1440-opening.png), [phone opening](images/launch-lab/390-opening.png), [tested prediction](images/launch-lab/1440-lab-tested.png), [returning Today](images/launch-lab/1440-returning.png), [lesson](images/launch-lab/1024-lesson.png) and [phone Atlas](images/launch-lab/390-atlas-selected.png).
+
+The existing deletion test could reload before the storage write completed. The browser test now waits for the confirmation before reloading. An initial screenshot job also left its preview server on the end-to-end port, so later captures used a separate port.
+
+WebKit was not rerun for this release. The Working Page results below describe the previous release.
+
+---
+
+## Historical verification — The Working Page
+
+Verified on 3 November 2026 (Asia/Kolkata), in `/home/akmessi/noetherwake`. This section records the previous presentation release. The static production export is `out/`. This redesign was committed and pushed to GitHub in working change sets. This release is now published through Vercel CLI; [DEPLOYMENT.md](DEPLOYMENT.md) records the source revision, deployment and live smoke checks.
 
 ## Delivered behaviour
 
